@@ -8,8 +8,9 @@ import {
   FeatureCards,
   LoanProcess,
   Customers,
-  NewsLetter,
   Partners,
+  ContactInformation,
+  GetStarted,
 } from '../components';
 
 export default function Home() {
@@ -29,6 +30,8 @@ export default function Home() {
         <LoanProcess />
         <Customers />
         <Partners />
+        <ContactInformation />
+        <GetStarted />
       </Box>
       <Footer />
     </>

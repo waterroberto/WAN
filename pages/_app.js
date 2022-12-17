@@ -4,6 +4,7 @@ import { useEffect } from 'react';
 import { useRouter } from 'next/router';
 import nprogress from 'nprogress';
 import 'nprogress/nprogress.css';
+import Script from 'next/script';
 
 const theme = createTheme({
   palette: {
@@ -31,6 +32,10 @@ function MyApp({ Component, pageProps }) {
 
   return (
     <ThemeProvider theme={theme}>
+      <Script
+        src='//code.tidio.co/p58fgwnuyv1ijzjf6dycbalgjeqrffc8.js'
+        async
+      ></Script>
       <Component {...pageProps} />
     </ThemeProvider>
   );
