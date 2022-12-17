@@ -25,7 +25,7 @@ export default function Home() {
       <Navbar />
       <Box pt={8}>
         <Hero />
-        <FeatureCards />
+        <FeatureCards showLinks={true} />
         <AboutUs />
         <LoanProcess />
         <Customers />

@@ -4,7 +4,7 @@ import Layout from '../../Layout/Layout';
 import { featuresData } from '../../../static/Data';
 import { ArrowForwardRounded } from '@mui/icons-material';
 
-const FeatureCards = () => {
+const FeatureCards = ({ showLinks }) => {
   return (
     <Layout>
       <Grid
@@ -74,21 +74,23 @@ const FeatureCards = () => {
             >
               {feature.body}
             </Typography>
-            <Button
-              variant='text'
-              href={`/${feature.page}`}
-              disableElevation
-              endIcon={<ArrowForwardRounded />}
-              sx={{
-                borderRadius: '2rem',
-                color: 'primary',
-                textTransform: 'capitalize',
-                fontWeight: 500,
-                fontFamily: 'inherit',
-              }}
-            >
-              Learn More
-            </Button>
+            {showLinks && (
+              <Button
+                variant='text'
+                href={`/${feature.page}`}
+                disableElevation
+                endIcon={<ArrowForwardRounded />}
+                sx={{
+                  borderRadius: '2rem',
+                  color: 'primary',
+                  textTransform: 'capitalize',
+                  fontWeight: 500,
+                  fontFamily: 'inherit',
+                }}
+              >
+                Learn More
+              </Button>
+            )}
           </Grid>
         ))}
       </Grid>
