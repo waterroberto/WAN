@@ -92,7 +92,7 @@ const Footer = () => {
                 },
               }}
             >
-              <Typography color='primary.accent'>@twitterhandle</Typography>
+              <Typography color='primary.accent'>@incfinance</Typography>
               <Typography>support@incfinance.com</Typography>
               <Typography>+1 (781) 234-5678</Typography>
               <Typography>234 Hamilton, Cleveland, Ohio, USA.</Typography>

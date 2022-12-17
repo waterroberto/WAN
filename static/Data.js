@@ -12,25 +12,25 @@ const featuresData = [
   {
     icon: <GiTakeMyMoney />,
     heading: 'Quick Loans',
-    body: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis ipsum delectus quas sed ipsa quis',
+    body: 'Money To Pay Rent, School Fees Or Buy A New Car, Incrypto Finance Has Got You Covered. Repay in 1 to 24 months, with little interest.',
     page: 'services/#quick-loans',
   },
   {
     icon: <RiExchangeDollarLine />,
     heading: 'Crypto Exchange',
-    body: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis ipsum delectus quas sed ipsa quis',
+    body: 'A trusted and secure crypto exchange platform, verified. Get started with the easiest and most secure platform to bank in cryptocurrencies.',
     page: 'services/#crypto-exchange',
   },
   {
     icon: <RiBankFill />,
     heading: 'Investments',
-    body: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis ipsum delectus quas sed ipsa quis',
+    body: 'Dedicate your money to purchase assets, see your money increase in value over time. Grow your investment portfolio exponentially.',
     page: 'services/#investments',
   },
   {
     icon: <RiSecurePaymentFill />,
     heading: 'Safe Spending',
-    body: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis ipsum delectus quas sed ipsa quis',
+    body: 'Balance your bank account, manange expenses, budget periodically. Spend safely, save safely with crypto. We know it, you learn it.',
     page: 'services/#safe-spending',
   },
 ];
