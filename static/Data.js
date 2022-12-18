@@ -17,9 +17,9 @@ const featuresData = [
   },
   {
     icon: <RiExchangeDollarLine />,
-    heading: 'Crypto Exchange',
-    body: 'A trusted and secure crypto exchange platform, verified. Get started with the easiest and most secure platform to bank in cryptocurrencies.',
-    page: 'services/#crypto-exchange',
+    heading: 'Decentralized Exchange',
+    body: 'Get started with the easiest and most secure platform for decentralized banking, convert your money to different currencies easily, without interference.',
+    page: 'services/#decentralized-exchange',
   },
   {
     icon: <RiBankFill />,

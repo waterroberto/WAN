@@ -13,9 +13,9 @@ const Services = () => {
   return (
     <>
       <Meta
-        title='Services - Incrypto Finanace - Online crypto banking for everyone -
+        title='Services - Incrypto Finanace - Online decentralized banking for everyone -
         Homepage'
-        description='What services Incrypto Finance offers - Online crypto banking for everyone - Services page'
+        description='What services Incrypto Finance offers - Online decentralized banking for everyone - Services page'
       />
 
       <Navbar />
@@ -76,15 +76,16 @@ const Services = () => {
               }}
             >
               Incrypto Financial Bank is a chartered bank in the United States
-              that allows you to buy, sell, and hold cryptocurrency assets
+              that allows you to buy, sell, and hold decentralized assets
               directly with your bank account. We give Loans & Grants and also
-              incoporate Crypto Spending, We facilitate Investments and also
-              enable users Spend Wisely. <br />
+              incoporate decentralized Spending, We facilitate Investments and
+              also enable users Spend Wisely. <br />
               We allow investors have a flexible yet comprehensive way of
-              investing in the crypto market at a low-cost, giving them a chance
-              to expand their investment portfolio. <br /> Incrypto Finance
-              offers both investing, banking, loans & savings services. <br />{' '}
-              Our platform is easy to use, get started in a few simple steps.
+              investing in the decentralized market at a low-cost, giving them a
+              chance to expand their investment portfolio. <br /> Incrypto
+              Finance offers both investing, banking, loans & savings services.{' '}
+              <br /> Our platform is easy to use, get started in a few simple
+              steps.
             </Typography>
           </Stack>
         </Layout>

@@ -63,14 +63,15 @@ const AboutUs = () => {
           >
             We give
             <span className='em'> Loans & Grants</span>. Our platform is easy to
-            use and enhances Crypto Spending, We facilitate Investments and also
-            enable users Spend Wisely.
+            use and enhances Decentralized Spending, We facilitate Investments
+            and also enable users Spend Wisely.
             <br /> <br />
-            The banking and crypto sectors continue to intersect and crypto
-            banks are maturing fast, cryptocurrency is giving rise to a new
-            hierarchy of money within banking systems. We manage digital
-            currency. Unlike traditional banks, which only hold fiat currency
-            and traditional financial assets, we also hold cryptocurrency.
+            The banking and decentralized assets sectors continue to intersect
+            and decentralized assets banks are maturing fast, decentralized
+            assets is giving rise to a new hierarchy of money within banking
+            systems. We manage digital currency. Unlike traditional banks, which
+            only hold fiat currency and traditional financial assets, we also
+            hold and decentralized assets..
           </Typography>
           <Button
             variant='contained'

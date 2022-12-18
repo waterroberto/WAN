@@ -36,9 +36,9 @@ const Header = () => {
               }}
             >
               Incrypto Financial Bank is one of the world`s leading investment
-              firms & crypto establishment. We aim to revolutionise the way
-              people bank, save, invest, and enhance investors financial
-              education.
+              firms & decentralized banking establishment. We aim to
+              revolutionise the way people bank, save, invest, and enhance
+              investors financial education.
               <br /> Over the years, we set milestones for ourselves and we have
               managed to accomplish most of it. <br /> We provide quality
               financial consultation services, offer soft money loans with small

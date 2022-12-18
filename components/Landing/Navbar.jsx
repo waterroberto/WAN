@@ -9,7 +9,6 @@ const links = [
   { name: 'Home', url: '' },
   { name: 'About Us', url: 'about' },
   { name: 'Services', url: 'services' },
-  { name: 'FAQs', url: 'faqs' },
   { name: 'Contact', url: 'contact' },
 ];
 
