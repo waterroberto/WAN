@@ -420,12 +420,4 @@ const amounts = [
   '$7500',
 ];
 
-const times = [
-  '2 Minutes',
-  '5 Minutes',
-  '10 Minutes',
-  '15 Minutes',
-  '20 Minutes',
-];
-
-export { featuresData, contactInformation, faqs, receivers, amounts, times };
+export { featuresData, contactInformation, faqs, receivers, amounts };

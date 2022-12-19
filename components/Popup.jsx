@@ -1,8 +1,8 @@
 import { Stack, Typography } from '@mui/material';
 import MuiAlert from '@mui/material/Alert';
 import Snackbar from '@mui/material/Snackbar';
-import React, { forwardRef, useEffect, useState } from 'react';
-import { amounts, receivers, times } from '../static/Data';
+import React, { forwardRef, useState } from 'react';
+import { amounts, receivers } from '../static/Data';
 
 const Alert = forwardRef(function Alert(props, ref) {
   return <MuiAlert elevation={6} ref={ref} variant='filled' {...props} />;
@@ -58,7 +58,7 @@ const Popup = ({ children }) => {
               <Typography component='span' sx={{ color: 'primary.main' }}>
                 {amounts[Math.abs(Math.floor(Math.random() * 20))]}{' '}
               </Typography>
-              {times[[Math.abs(Math.floor(Math.random() * 5))]]} ago
+              2 Minutes ago
             </span>
           </Alert>
         </Snackbar>
