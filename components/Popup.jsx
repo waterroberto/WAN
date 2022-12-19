@@ -23,8 +23,8 @@ const Popup = ({ children }) => {
     setOpen(false);
   };
 
-  const min = 360000;
-  const max = 900000;
+  const min = 600000;
+  const max = 1200000;
 
   setInterval(() => {
     handleClick();
