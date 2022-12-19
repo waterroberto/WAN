@@ -30,7 +30,7 @@ const featuresData = [
   {
     icon: <RiSecurePaymentFill />,
     heading: 'Safe Spending',
-    body: 'Balance your bank account, manange expenses, budget periodically. Spend safely, save safely with crypto. We know it, you learn it.',
+    body: 'Balance your bank account, manange expenses, budget periodically. Spend safely, save safely with Deccentralized Finance (De-Fi). We know it, you learn it.',
     page: 'services/#safe-spending',
   },
 ];
