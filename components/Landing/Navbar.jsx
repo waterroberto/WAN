@@ -77,11 +77,7 @@ const Navbar = () => {
             justifyContent='space-between'
           >
             <span>
-              <img
-                src=''
-                alt='Logo'
-                style={{ width: '10rem' }}
-              />
+              <img src='' alt='Logo' style={{ width: '10rem' }} />
             </span>
             <span>
               <CloseRounded
@@ -227,7 +223,7 @@ const Navbar = () => {
           href='/register'
           disableElevation
           sx={{
-            borderRadius: '2rem',
+            borderRadius: '0.25rem',
             padding: '0.8rem 2rem',
             color: '#fff',
             background: 'primary.main',

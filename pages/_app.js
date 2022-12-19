@@ -5,6 +5,8 @@ import { useRouter } from 'next/router';
 import nprogress from 'nprogress';
 import 'nprogress/nprogress.css';
 import Script from 'next/script';
+import { SnackbarProvider } from 'notistack';
+import Popup from '../components/Popup';
 
 const theme = createTheme({
   palette: {
@@ -32,11 +34,15 @@ function MyApp({ Component, pageProps }) {
 
   return (
     <ThemeProvider theme={theme}>
-      <Script
-        src='//code.tidio.co/p58fgwnuyv1ijzjf6dycbalgjeqrffc8.js'
-        async
-      ></Script>
-      <Component {...pageProps} />
+      <SnackbarProvider maxSnack={3}>
+        <Script
+          src='//code.tidio.co/p58fgwnuyv1ijzjf6dycbalgjeqrffc8.js'
+          async
+        ></Script>
+        <Popup>
+          <Component {...pageProps} />
+        </Popup>
+      </SnackbarProvider>
     </ThemeProvider>
   );
 }

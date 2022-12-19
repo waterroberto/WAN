@@ -85,7 +85,7 @@ const NewsLetter = () => {
               variant='contained'
               disableElevation
               sx={{
-                borderRadius: '0.5rem',
+                borderRadius: '0.25rem',
                 color: '#fff',
                 padding: '0.8rem',
                 textTransform: 'capitalize',

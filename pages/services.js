@@ -7,6 +7,10 @@ import {
   GetStarted,
   FeatureCards,
   FAQs,
+  QuickLoans,
+  DeExchange,
+  Investments,
+  SafeSpending,
 } from '../components';
 import { Box, Typography, Stack } from '@mui/material';
 
@@ -92,6 +96,12 @@ const Services = () => {
         </Layout>
       </Box>
       <FeatureCards showLinks={false} />
+      <>
+        <QuickLoans />
+        <DeExchange />
+        <Investments />
+        <SafeSpending />
+      </>
       <FAQs />
       <GetStarted />
       <Footer />

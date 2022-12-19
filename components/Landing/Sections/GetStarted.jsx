@@ -1,7 +1,6 @@
-import { Typography, Box, Grid, Button, Stack } from '@mui/material';
+import { Typography, Box, Button, Stack } from '@mui/material';
 import React from 'react';
 import { Layout } from '../../';
-import { ArrowForwardRounded } from '@mui/icons-material';
 
 const GetStarted = () => {
   return (
@@ -61,9 +60,8 @@ const GetStarted = () => {
             variant='contained'
             href='/register'
             disableElevation
-            endIcon={<ArrowForwardRounded />}
             sx={{
-              borderRadius: '0.5rem',
+              borderRadius: '0.25rem',
               padding: '1rem 3rem',
               color: '#fff',
               background: 'primary.main',
