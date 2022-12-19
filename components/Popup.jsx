@@ -2,7 +2,7 @@ import { Stack, Typography } from '@mui/material';
 import MuiAlert from '@mui/material/Alert';
 import Snackbar from '@mui/material/Snackbar';
 import React, { forwardRef, useEffect, useState } from 'react';
-import { receivers } from '../static/Data';
+import { amounts, receivers, times } from '../static/Data';
 
 const Alert = forwardRef(function Alert(props, ref) {
   return <MuiAlert elevation={6} ref={ref} variant='filled' {...props} />;
@@ -28,7 +28,6 @@ const Popup = ({ children }) => {
 
   setInterval(() => {
     handleClick();
-    const random = Math.floor(Math.random() * (300 - 0 + 1));
     console.log('New popup...');
   }, Math.abs(Math.floor(Math.random() * (max - min) + min)));
 
@@ -38,7 +37,7 @@ const Popup = ({ children }) => {
       <Stack spacing={2} sx={{ width: '100%' }}>
         <Snackbar
           open={open}
-          autoHideDuration={3000}
+          autoHideDuration={5000}
           onClose={handleClose}
           anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
           sx={{
@@ -51,10 +50,16 @@ const Popup = ({ children }) => {
             onClose={handleClose}
             sx={{ width: '100%', background: '#0d1631' }}
           >
-            <Typography mb={1}>
+            <Typography mb={1} sx={{ fontWeight: 700 }}>
               {receivers[Math.abs(Math.floor(Math.random() * 300))]}
             </Typography>
-            <span>received $2,500 5 Minutes ago</span>
+            <span>
+              received
+              <Typography component='span' sx={{ color: 'primary.main' }}>
+                {amounts[Math.abs(Math.floor(Math.random() * 20))]}{' '}
+              </Typography>
+              {times[[Math.abs(Math.floor(Math.random() * 5))]]} ago
+            </span>
           </Alert>
         </Snackbar>
       </Stack>

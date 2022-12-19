@@ -397,4 +397,35 @@ const receivers = [
   'Kacey Heath',
 ];
 
-export { featuresData, contactInformation, faqs, receivers };
+const amounts = [
+  '$200',
+  '$300',
+  '$500',
+  '$1000',
+  '$1500',
+  '$3000',
+  '$4000',
+  '$8000',
+  '$12,000',
+  '$10,000',
+  '$15,000',
+  '$20,000',
+  '$15,000',
+  '$1200',
+  '$3500',
+  '$9000',
+  '$2000',
+  '$18,000',
+  '$400',
+  '$7500',
+];
+
+const times = [
+  '2 Minutes',
+  '5 Minutes',
+  '10 Minutes',
+  '15 Minutes',
+  '20 Minutes',
+];
+
+export { featuresData, contactInformation, faqs, receivers, amounts, times };
