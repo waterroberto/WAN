@@ -79,7 +79,7 @@ const Services = () => {
               Incrypto Financial Bank is a chartered bank in the United States
               that allows you to buy, sell, and hold decentralized assets
               directly with your bank account. We give Loans & Grants and also
-              incoporate decentralized Spending, We facilitate Investments and
+              incoporate Decentralized Spending, We facilitate Investments and
               also enable users Spend Wisely. <br />
               We allow investors have a flexible yet comprehensive way of
               investing in the decentralized market at a low-cost, giving them a

@@ -79,7 +79,7 @@ const Navbar = () => {
             <span>
               <img
                 src=''
-                alt='Incrypto Finanace Logo'
+                alt='Logo'
                 style={{ width: '10rem' }}
               />
             </span>
@@ -195,7 +195,7 @@ const Navbar = () => {
         }}
       >
         <Link href='/'>
-          <img src='' alt='Incrypto Finanace Logo' className='' />
+          <img src='' alt='Logo' className='' />
         </Link>
         <Stack
           direction='row'
