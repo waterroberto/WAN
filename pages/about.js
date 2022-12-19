@@ -8,6 +8,7 @@ import {
   Statistics,
   ContactInformation,
   GetStarted,
+  FAQs,
 } from '../components';
 
 const About = () => {
@@ -23,6 +24,7 @@ const About = () => {
       <Header />
       <Statistics />
       <Stats />
+      <FAQs />
       <ContactInformation />
       <GetStarted />
       <Footer />

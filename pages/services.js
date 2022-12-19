@@ -6,6 +6,7 @@ import {
   Navbar,
   GetStarted,
   FeatureCards,
+  FAQs,
 } from '../components';
 import { Box, Typography, Stack } from '@mui/material';
 
@@ -91,6 +92,7 @@ const Services = () => {
         </Layout>
       </Box>
       <FeatureCards showLinks={false} />
+      <FAQs />
       <GetStarted />
       <Footer />
     </>

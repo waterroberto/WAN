@@ -29,7 +29,7 @@ const StyledNavOverlay = styled('div')(({ theme }) => ({
 const StyledNav = styled('div')(() => ({
   padding: '2rem',
   width: '90%',
-  height: '75%',
+  height: '65%',
   zIndex: 20,
   background: '#fff',
   position: 'absolute',
@@ -101,7 +101,7 @@ const Navbar = () => {
             component='ul'
             sx={{
               alignItems: 'flex-start',
-              justifyContent: 'space-between',
+              justifyContent: 'space-evenly',
             }}
           >
             {links.map((link, index) => (

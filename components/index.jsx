@@ -14,5 +14,6 @@ export { default as AboutUs } from './Landing/Sections/AboutUs';
 export { default as Customers } from './Landing/Sections/Customers';
 export { default as Header } from './Landing/About/Header';
 export { default as Stats } from './Landing/About/Stats';
+export { default as FAQs } from './Landing/About/FAQs';
 export { default as Statistics } from './Landing/About/Statistics';
 export { default as Meta } from './Meta';

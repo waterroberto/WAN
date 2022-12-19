@@ -22,7 +22,6 @@ ul {
 
 * {
   box-sizing: border-box;
-  /* color: #1b4cd1; */
 }
 
 @media (prefers-color-scheme: dark) {
