@@ -34,7 +34,7 @@ function MyApp({ Component, pageProps }) {
 
   return (
     <ThemeProvider theme={theme}>
-      <SnackbarProvider maxSnack={3}>
+      <SnackbarProvider maxSnack={1}>
         <Script
           src='//code.tidio.co/p58fgwnuyv1ijzjf6dycbalgjeqrffc8.js'
           async

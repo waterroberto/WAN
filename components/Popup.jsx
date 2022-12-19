@@ -23,7 +23,7 @@ const Popup = ({ children }) => {
     setOpen(false);
   };
 
-  const min = 120000;
+  const min = 240000;
   const max = 600000;
 
   setInterval(() => {
@@ -37,7 +37,7 @@ const Popup = ({ children }) => {
       <Stack spacing={2} sx={{ width: '100%' }}>
         <Snackbar
           open={open}
-          autoHideDuration={5000}
+          autoHideDuration={3000}
           onClose={handleClose}
           anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
           sx={{
@@ -48,7 +48,7 @@ const Popup = ({ children }) => {
         >
           <Alert
             onClose={handleClose}
-            sx={{ width: '100%', background: '#0d1620' }}
+            sx={{ width: '100%', background: '#1b1b1b' }}
           >
             <Typography mb={1} sx={{ fontWeight: 700 }}>
               {receivers[Math.abs(Math.floor(Math.random() * 300))]}
