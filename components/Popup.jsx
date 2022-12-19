@@ -48,13 +48,13 @@ const Popup = ({ children }) => {
         >
           <Alert
             onClose={handleClose}
-            sx={{ width: '100%', background: '#0d1631' }}
+            sx={{ width: '100%', background: '#0d1620' }}
           >
             <Typography mb={1} sx={{ fontWeight: 700 }}>
               {receivers[Math.abs(Math.floor(Math.random() * 300))]}
             </Typography>
             <span>
-              received
+              received{' '}
               <Typography component='span' sx={{ color: 'primary.main' }}>
                 {amounts[Math.abs(Math.floor(Math.random() * 20))]}{' '}
               </Typography>
