@@ -76,7 +76,7 @@ const Hero = () => {
                   },
                 }}
               >
-                Crypto Banking{' '}
+                De-Fi Banking{' '}
               </Typography>
               Institution
             </Typography>
