@@ -13,9 +13,9 @@ const StyledInputElement = styled('input')(
   line-height: 1.5;
   padding: 1rem;
   border-radius: 0.5rem;
-  color: #1b1b1b;
-  background: 'transparent';
-  border: 2px solid #1b4cd1;
+  color: #ccc;
+  background: #1b1b1b;
+  border: 1px solid #333;
   outline: none;
 
   &:hover {

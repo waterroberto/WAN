@@ -1,6 +1,10 @@
 export { default as Layout } from './Layout/Layout';
 export { default as Footer } from './Landing/Footer';
 export { default as Navbar } from './Landing/Navbar';
+export { default as Dash } from './Dashboard/Dash';
+export { default as Sidebar } from './Dashboard/Sidebar';
+export { default as Heading } from './Dashboard/Home/Heading';
+export { default as MobileNav } from './Dashboard/MobileNav';
 export { default as NewsLetter } from './Landing/NewsLetter';
 export { default as Partners } from './Landing/Partners';
 export { default as Hero } from './Landing/Sections/Hero';

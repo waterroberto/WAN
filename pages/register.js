@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react';
 import { NativeSelect, FormControl, InputLabel } from '@mui/material';
 import { StyledOption, CustomSelect } from '../components/UnstyledSelect';
-import { Meta, Layout } from '../components';
+import { Meta, Layout, Footer } from '../components';
 import { styled, Box, Typography, Button } from '@mui/material';
 import cogoToast from 'cogo-toast';
 import CustomInput from '../components/UnstyledInput';
@@ -14,7 +14,7 @@ const Blur = styled('div')(({ theme }) => ({
   height: '400px',
   borderRadius: '50%',
   position: 'absolute',
-  bottom: '-200px',
+  bottom: '200px',
   left: '-100px',
 }));
 
@@ -35,7 +35,7 @@ const Register = () => {
   return (
     <>
       <Meta
-        title='Register - Incrypto Finanace - Online crypto banking for everyone -
+        title='Register - Incrypto Finance - Online crypto banking for everyone -
         Homepage'
         description='Get Stated with Incrypto Finance - Online crypto banking for everyone - Registeration page'
       />
@@ -210,8 +210,6 @@ const Register = () => {
                     }}
                   >
                     <StyledOption value={'ID Number'}>ID Number</StyledOption>
-                    <StyledOption value={'SSN'}>SSN</StyledOption>
-                    <StyledOption value={'BVN'}>BVN</StyledOption>
                     <StyledOption value={'Passport Number'}>
                       Passport Number
                     </StyledOption>
@@ -268,6 +266,7 @@ const Register = () => {
         </Layout>
         <Blur />
       </Box>
+      <Footer />
     </>
   );
 };
