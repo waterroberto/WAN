@@ -11,6 +11,7 @@ const initialState = {
   phone: '',
   country: '',
   currency: '',
+  accountNumber: '',
 };
 
 const userDataContext = createContext(initialState);
@@ -30,10 +31,11 @@ export const UserDataProvider = ({ children }) => {
     phone: '09055355357',
     zipcode: '569101',
     DOB: '07-10-2022',
+    accountNumber: 'ICF147598623',
   });
 
   return (
-    <userDataContext.Provider value={{ userData }}>
+    <userDataContext.Provider value={{ ...userData }}>
       {children}
     </userDataContext.Provider>
   );

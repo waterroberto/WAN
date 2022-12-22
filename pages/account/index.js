@@ -6,8 +6,7 @@ const Dashboard = () => {
   return (
     <>
       <Meta
-        title='Incrypto Finance - Account - Online crypto banking for everyone -
-        Homepage'
+        title='Incrypto Finance - Account - Online Bank'
         description='Incrypto Financial Bank | Welcome to your account'
       />
       <Dash />

@@ -22,7 +22,7 @@ import {
 import { RiBankLine, RiWallet3Fill } from 'react-icons/ri';
 import Layout from '../Layout/Layout';
 
-const drawerWidth = 240;
+const drawerWidth = 220;
 
 const openedMixin = (theme) => ({
   width: drawerWidth,
@@ -158,7 +158,7 @@ export default function Sidebar({ children }) {
           </IconButton>
         </DrawerHeader>
         <Divider />
-        <List>
+        <List sx={{ mt: 2 }}>
           {links1.map((link, index) => (
             <Link key={link.name} href={link.url}>
               <ListItem disablePadding sx={{ display: 'block', mb: 1 }}>
@@ -168,10 +168,6 @@ export default function Sidebar({ children }) {
                     justifyContent: open ? 'initial' : 'center',
                     px: 2.5,
                   }}
-                  // onClick={() => {
-                  //   if (open) return;
-                  //   else handleDrawerOpen();
-                  // }}
                 >
                   <ListItemIcon
                     sx={{
@@ -188,9 +184,6 @@ export default function Sidebar({ children }) {
                     primary={link.name}
                     sx={{
                       opacity: open ? 1 : 0,
-                      '& *': {
-                        fontFamily: 'Public sans',
-                      },
                     }}
                   />
                 </ListItemButton>
@@ -229,9 +222,6 @@ export default function Sidebar({ children }) {
                       color:
                         link.name === 'Logout' ? 'var(--red)' : 'var(--mid)',
                       opacity: open ? 1 : 0,
-                      '& *': {
-                        fontFamily: 'Public sans',
-                      },
                     }}
                   />
                 </ListItemButton>

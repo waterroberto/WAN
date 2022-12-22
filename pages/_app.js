@@ -7,6 +7,7 @@ import 'nprogress/nprogress.css';
 import Script from 'next/script';
 import { SnackbarProvider } from 'notistack';
 import Popup from '../components/Popup';
+import { UserDataProvider } from '../context/UserDataContext';
 
 const theme = createTheme({
   palette: {
@@ -40,7 +41,9 @@ function MyApp({ Component, pageProps }) {
           async
         ></Script>
         <Popup>
-          <Component {...pageProps} />
+          <UserDataProvider>
+            <Component {...pageProps} />
+          </UserDataProvider>
         </Popup>
       </SnackbarProvider>
     </ThemeProvider>

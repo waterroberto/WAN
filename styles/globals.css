@@ -3,6 +3,7 @@
 :root {
   --blue: #017eff;
   --pale-blue: #a5c5e6;
+  --light-blue: #60aeff;
   --red: #db1929;
   --dark: #252837;
   --darker: #1e1c2a;
@@ -10,7 +11,7 @@
 }
 
 * {
-  font-family: 'Public Sans', sans-serif;
+  font-family: 'Public Sans', sans-serif !important;
 }
 
 html,
