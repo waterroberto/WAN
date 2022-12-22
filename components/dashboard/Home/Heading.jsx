@@ -20,7 +20,7 @@ const Heading = () => {
           mx={{ md: 2 }}
           my={{ xs: 2, sm: 2, md: 0 }}
           p={6}
-          sx={{ background: 'var(--mid)', borderRadius: '0.5rem' }}
+          sx={{ background: 'var(--blue)', borderRadius: '1rem' }}
         ></Box>
       </Grid>
       <Grid item xs={12} sm={12} md={6} width='100%'>

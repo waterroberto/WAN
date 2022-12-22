@@ -11,7 +11,7 @@ const Dashboard = () => {
         description='Incrypto Financial Bank | Welcome to your account'
       />
       <Dash />
-      <Box minHeight='100vh'>
+      <Box minHeight='100vh' sx={{ background: 'var(--darker)' }}>
         <Sidebar>
           <Typography
             variant='h5'

@@ -107,6 +107,7 @@ export default function MiniDrawer({ children }) {
             color: 'var(--mid)',
             position: 'relative',
             background: 'var(--dark)',
+            transition: '0.5s ease-out',
 
             '&:before': {
               content: '""',
@@ -167,7 +168,10 @@ export default function MiniDrawer({ children }) {
                     justifyContent: open ? 'initial' : 'center',
                     px: 2.5,
                   }}
-                  onClick={handleDrawerOpen}
+                  // onClick={() => {
+                  //   if (open) return;
+                  //   else handleDrawerOpen();
+                  // }}
                 >
                   <ListItemIcon
                     sx={{
