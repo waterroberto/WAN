@@ -83,7 +83,7 @@ const links2 = [
   { name: 'Logout', url: '/account/profile', icon: <HiLogout /> },
 ];
 
-export default function MiniDrawer({ children }) {
+export default function Sidebar({ children }) {
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
 
