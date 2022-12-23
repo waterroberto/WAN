@@ -20,6 +20,7 @@ const FeatureCards = ({ showLinks }) => {
           boxShadow: '1px 1px 32px rgb(0, 0, 0, 0.1)',
           borderRadius: '0.25rem',
         }}
+        data-aos='fade-left'
       >
         {featuresData.map((feature, index) => (
           <Grid

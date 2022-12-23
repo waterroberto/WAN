@@ -1,6 +1,7 @@
 import { Box, Typography } from '@mui/material';
 import React from 'react';
 import { MobileNav, Meta, Dash, Sidebar, Heading } from '../../components';
+import CryptoMarquee from '../../components/dashboard/CryptoMarquee';
 
 const Dashboard = () => {
   return (
@@ -10,16 +11,18 @@ const Dashboard = () => {
         description='Incrypto Financial Bank | Welcome to your account'
       />
       <Dash />
+
       <Box minHeight='100vh' sx={{ background: 'var(--darker)' }}>
         <Sidebar>
           <Typography
             variant='h5'
             mb={4}
-            sx={{ color: 'var(--blue)', fontWeight: 700 }}
+            sx={{ color: 'var(--light-blue)', fontWeight: 700 }}
           >
             Dashboard
           </Typography>
           <Heading />
+          <CryptoMarquee />
         </Sidebar>
       </Box>
       <MobileNav />

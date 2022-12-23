@@ -25,6 +25,7 @@ const GetStarted = () => {
         },
       }}
       width='100%'
+      data-aos='fade-up'
     >
       <Layout>
         <Stack

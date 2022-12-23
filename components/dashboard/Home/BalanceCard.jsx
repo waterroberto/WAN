@@ -1,6 +1,8 @@
 import React, { useContext } from 'react';
-import { Typography, Box } from '@mui/material';
+import { Typography, Box, Button } from '@mui/material';
 import userDataContext from '../../../context/UserDataContext';
+import { MdOutlineAdd } from 'react-icons/md';
+import { HiOutlineArrowTrendingUp } from 'react-icons/hi2';
 
 const boxStyles = {
   position: 'absolute',
@@ -41,8 +43,36 @@ const BalanceCard = () => {
             fontSize: { xs: '1.5rem', sm: '1.5rem', md: '1.8rem' },
           }}
         >
-          {currency} {(20264627.67).toLocaleString()}
+          {currency} {(14000000).toLocaleString()}
         </Typography>
+
+        <Button
+          variant='text'
+          disableElevation
+          startIcon={<MdOutlineAdd />}
+          sx={{
+            color: '#fff',
+            textTransform: 'capitalize',
+            fontWeight: 500,
+            fontFamily: 'inherit',
+            mr: 4,
+          }}
+        >
+          Add Money
+        </Button>
+        <Button
+          variant='text'
+          disableElevation
+          startIcon={<HiOutlineArrowTrendingUp />}
+          sx={{
+            color: '#fff',
+            textTransform: 'capitalize',
+            fontWeight: 500,
+            fontFamily: 'inherit',
+          }}
+        >
+          Transfer
+        </Button>
       </Box>
       <Box
         sx={{

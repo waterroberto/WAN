@@ -14,7 +14,7 @@ const AboutUs = () => {
         background: '#060606',
       }}
     >
-      <Grid item xs={12} sm={12} md={6} width='100%'>
+      <Grid item xs={12} sm={12} md={6} width='100%' data-aos='fade-left'>
         <Layout>
           <Image
             src={incfSvg}
@@ -28,7 +28,7 @@ const AboutUs = () => {
           />
         </Layout>
       </Grid>
-      <Grid item xs={12} sm={12} md={6} width='100%'>
+      <Grid item xs={12} sm={12} md={6} width='100%' data-aos='fade-right'>
         <Layout>
           <Typography
             mb={2}

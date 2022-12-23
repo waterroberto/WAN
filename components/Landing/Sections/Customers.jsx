@@ -14,7 +14,7 @@ const Customers = () => {
         background: '#fff',
       }}
     >
-      <Grid item xs={12} sm={12} md={6} width='100%'>
+      <Grid item xs={12} sm={12} md={6} width='100%' data-aos='fade-up'>
         <Layout>
           <Image
             src={people}
@@ -29,7 +29,7 @@ const Customers = () => {
           />
         </Layout>
       </Grid>
-      <Grid item xs={12} sm={12} md={6} width='100%'>
+      <Grid item xs={12} sm={12} md={6} width='100%' data-aos='fade-up'>
         <Layout>
           <Typography
             mb={2}

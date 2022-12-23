@@ -21,6 +21,8 @@ import {
 } from 'react-icons/md';
 import { RiBankLine, RiWallet3Fill } from 'react-icons/ri';
 import Layout from '../Layout/Layout';
+import logo2Light from '../../assets/logo-2-light.svg';
+import Image from 'next/image';
 
 const drawerWidth = 220;
 
@@ -116,7 +118,7 @@ export default function Sidebar({ children }) {
               left: 0,
               height: '100%',
               width: '100%',
-              opacity: 0.75,
+              opacity: 0.5,
               background: `url("https://firebasestorage.googleapis.com/v0/b/elite-financial-services.appspot.com/o/pattern.png?alt=media&token=657fc54a-3643-40cb-b691-15c566a9f527") no-repeat center center/cover`,
             },
 
@@ -142,9 +144,16 @@ export default function Sidebar({ children }) {
               mx: 'auto',
               display: 'block',
               p: 0,
+              pt: 3,
+              pb: 1,
             }}
           >
-            <MenuIcon />
+            <Image
+              src={logo2Light}
+              alt='ICF Logo'
+              width={open ? 60 : 50}
+              height={open ? 60 : 50}
+            />
           </IconButton>
           <IconButton
             onClick={handleDrawerClose}
@@ -158,7 +167,7 @@ export default function Sidebar({ children }) {
           </IconButton>
         </DrawerHeader>
         <Divider />
-        <List sx={{ mt: 2 }}>
+        <List>
           {links1.map((link, index) => (
             <Link key={link.name} href={link.url}>
               <ListItem disablePadding sx={{ display: 'block', mb: 1 }}>

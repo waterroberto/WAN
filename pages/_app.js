@@ -1,4 +1,6 @@
 import '../styles/globals.css';
+import Aos from 'aos';
+import 'aos/dist/aos.css';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useEffect } from 'react';
 import { useRouter } from 'next/router';
@@ -24,6 +26,10 @@ const theme = createTheme({
 });
 
 function MyApp({ Component, pageProps }) {
+  useEffect(() => {
+    Aos.init({ duration: 1000, once: true });
+  }, []);
+
   const router = useRouter();
   nprogress.configure({ showSpinner: false });
 

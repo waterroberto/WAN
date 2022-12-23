@@ -12,7 +12,7 @@ const Stats = () => {
       }}
     >
       <Grid container columns={12}>
-        <Grid item xs={12} sm={12} md={6} width='100%'>
+        <Grid item xs={12} sm={12} md={6} width='100%' data-aos='fade-down'>
           <Layout>
             <Image
               src={globe}
@@ -38,6 +38,7 @@ const Stats = () => {
                 fontWeight: 700,
                 fontSize: { xs: '2rem', sm: '2.5rem', xl: '4rem' },
               }}
+              data-aos='fade-up'
             >
               Available in 112 Countries
             </Typography>
@@ -47,6 +48,7 @@ const Stats = () => {
                 fontWeight: 300,
                 fontSize: { xs: '1.1rem', sm: '1.2rem', md: '1.3rem' },
               }}
+              data-aos='fade-up'
             >
               Investors from all over the world trust us. Incrypto Financial
               Bank is trusted by your favourite firms. We love to serve and we

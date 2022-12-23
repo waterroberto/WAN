@@ -13,7 +13,7 @@ const QuickLoans = () => {
       }}
       id='quick-loans'
     >
-      <Grid item xs={12} sm={12} md={6} width='100%'>
+      <Grid item xs={12} sm={12} md={6} width='100%' data-aos='fade-up'>
         <Layout>
           <Typography
             mb={2}
@@ -73,7 +73,7 @@ const QuickLoans = () => {
           </Button>
         </Layout>
       </Grid>
-      <Grid item xs={12} sm={12} md={6} width='100%'>
+      <Grid item xs={12} sm={12} md={6} width='100%' data-aos='fade-up'>
         <Layout>
           <Box
             sx={{

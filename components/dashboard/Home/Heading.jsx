@@ -1,5 +1,4 @@
-import { Box, Grid, Typography } from '@mui/material';
-import Link from 'next/link';
+import { Grid } from '@mui/material';
 import React, { useContext } from 'react';
 import { MdOutlineWaterfallChart, MdRemoveCircle } from 'react-icons/md';
 import { GiBanknote } from 'react-icons/gi';

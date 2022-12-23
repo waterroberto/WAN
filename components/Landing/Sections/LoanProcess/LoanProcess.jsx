@@ -28,7 +28,7 @@ const LoanProcess = () => {
       width='100%'
     >
       <Grid container columns={12} sx={{ alignItems: 'center' }}>
-        <Grid item xs={12} sm={12} md={6} width='100%'>
+        <Grid item xs={12} sm={12} md={6} width='100%' data-aos='fade-down'>
           <Layout>
             <Typography
               mb={2}
@@ -61,7 +61,7 @@ const LoanProcess = () => {
             <Roadmap />
           </Layout>
         </Grid>
-        <Grid item xs={12} sm={12} md={6} width='100%'>
+        <Grid item xs={12} sm={12} md={6} width='100%' data-aos='fade-up'>
           <Layout>
             <Range />
           </Layout>

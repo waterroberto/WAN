@@ -45,6 +45,7 @@ const Partners = () => {
               sx={{
                 maxWidth: '200px',
               }}
+              data-aos='fade-up'
             >
               <Image
                 src={image}

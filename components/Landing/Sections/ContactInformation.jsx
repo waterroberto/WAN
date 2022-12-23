@@ -15,6 +15,7 @@ const ContactInformation = () => {
           mb: 1,
           textAlign: 'center',
         }}
+        data-aos='fade-up'
       >
         Contact Us
       </Typography>
@@ -26,6 +27,7 @@ const ContactInformation = () => {
           mx: 'auto',
           mb: 4,
         }}
+        data-aos='fade-right'
       ></Box>
       <Grid container maxWidth='1280px' mx='auto' columns={12}>
         {contactInformation.map((feature, index) => (
@@ -45,6 +47,7 @@ const ContactInformation = () => {
               textAlign: 'center',
               outline: '4px solid #fff',
             }}
+            data-aos='fade-up'
           >
             <Box sx={{ color: 'primary.main', fontSize: '4.5rem' }} p={1}>
               {feature.icon}

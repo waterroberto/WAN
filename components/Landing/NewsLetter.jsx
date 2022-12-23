@@ -46,7 +46,7 @@ function UnstyledInputIntroduction() {
 
 const NewsLetter = () => {
   return (
-    <Box sx={{ background: '#060606' }}>
+    <Box sx={{ background: '#060606' }} data-aos='fade-up'>
       <Layout>
         <Grid
           container

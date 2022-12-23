@@ -1,5 +1,7 @@
 import React, { useContext } from 'react';
-import { Typography, Box } from '@mui/material';
+import { IoDocumentAttachSharp } from 'react-icons/io5';
+import { HiUser } from 'react-icons/hi';
+import { Typography, Box, Button } from '@mui/material';
 import userDataContext from '../../../context/UserDataContext';
 
 const boxStyles = {
@@ -40,6 +42,33 @@ const DetailsCard = () => {
         >
           {accountNumber}
         </Typography>
+        <Button
+          variant='text'
+          disableElevation
+          startIcon={<IoDocumentAttachSharp />}
+          sx={{
+            color: '#fff',
+            textTransform: 'capitalize',
+            fontWeight: 500,
+            fontFamily: 'inherit',
+            mr: 4,
+          }}
+        >
+          Increase Limit
+        </Button>
+        <Button
+          variant='text'
+          disableElevation
+          startIcon={<HiUser />}
+          sx={{
+            color: '#fff',
+            textTransform: 'capitalize',
+            fontWeight: 500,
+            fontFamily: 'inherit',
+          }}
+        >
+          Account
+        </Button>
       </Box>
       <Box
         sx={{

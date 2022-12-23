@@ -34,6 +34,7 @@ const Statistics = () => {
             textAlign: 'center',
             fontSize: { xs: '2.5rem', sm: '3rem', xl: '4rem' },
           }}
+          data-aos='fade-up'
         >
           Our Company`s Open Statistics
         </Typography>
@@ -47,6 +48,7 @@ const Statistics = () => {
             textAlign: 'center',
             fontSize: { xs: '1.1rem', sm: '1.2rem', md: '1.3rem' },
           }}
+          data-aos='fade-up'
         >
           Trace us to our periodical milestones
         </Typography>
@@ -56,19 +58,19 @@ const Statistics = () => {
           mt={8}
           rowSpacing={{ xs: 4, sm: 4, lg: 0 }}
         >
-          <Grid item xs={12} sm={6} lg={3} width='100%'>
+          <Grid item xs={12} sm={6} lg={3} width='100%' data-aos='fade-up'>
             <Typography sx={headingStyles}>1,781,227</Typography>
             <Typography sx={subheadingStyles}>ACTIVE USERS</Typography>
           </Grid>
-          <Grid item xs={12} sm={6} lg={3} width='100%'>
+          <Grid item xs={12} sm={6} lg={3} width='100%' data-aos='fade-down'>
             <Typography sx={headingStyles}>$2,142,857</Typography>
             <Typography sx={subheadingStyles}>MONTHLY WITHDRAWALS</Typography>
           </Grid>
-          <Grid item xs={12} sm={6} lg={3} width='100%'>
+          <Grid item xs={12} sm={6} lg={3} width='100%' data-aos='fade-up'>
             <Typography sx={headingStyles}>$3,142,857</Typography>
             <Typography sx={subheadingStyles}>MONTHLY DEPOSITS</Typography>
           </Grid>
-          <Grid item xs={12} sm={6} lg={3} width='100%'>
+          <Grid item xs={12} sm={6} lg={3} width='100%' data-aos='fade-down'>
             <Typography sx={headingStyles}>$21,169,000</Typography>
             <Typography sx={subheadingStyles}>IN APPROVED LOANS</Typography>
           </Grid>
