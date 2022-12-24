@@ -107,7 +107,7 @@ export default function Sidebar({ children }) {
           display: { xs: 'none', sm: 'block' },
           '& .MuiPaper-elevation': {
             color: 'var(--mid)',
-            position: 'relative',
+            position: 'fixed',
             background: 'var(--dark)',
             transition: '0.5s ease-out',
 
@@ -241,6 +241,7 @@ export default function Sidebar({ children }) {
       </Drawer>
       <Box
         component='main'
+        mb={8}
         sx={{
           flexGrow: 1,
           background: 'var(--darker)',

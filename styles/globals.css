@@ -1,13 +1,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700&display=swap');
 
 :root {
-  --blue: #017eff;
+  --blue: rgb(1, 126, 255);
   --pale-blue: #a5c5e6;
   --light-blue: #60aeff;
   --red: #db1929;
   --dark: #252837;
   --darker: #1e1c2a;
   --mid: #aaa;
+  --secondary: #fe8235;
 }
 
 * {

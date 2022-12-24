@@ -12,6 +12,7 @@ const initialState = {
   country: '',
   currency: '',
   accountNumber: '',
+  username: 'ernest20221212',
 };
 
 const userDataContext = createContext(initialState);
@@ -31,7 +32,8 @@ export const UserDataProvider = ({ children }) => {
     phone: '09055355357',
     zipcode: '569101',
     DOB: '07-10-2022',
-    accountNumber: 'ICF147598623',
+    accountNumber: 'IF2212205845',
+    username: 'ernest20221212',
   });
 
   return (

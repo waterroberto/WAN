@@ -1,7 +1,10 @@
-import { Box, Typography } from '@mui/material';
+import { Box, Stack, Typography } from '@mui/material';
 import React from 'react';
 import { MobileNav, Meta, Dash, Sidebar, Heading } from '../../components';
+import AppBar from '../../components/dashboard/AppBar';
 import CryptoMarquee from '../../components/dashboard/CryptoMarquee';
+import InvestCards from '../../components/dashboard/InvestCards';
+import ReferralCard from '../../components/dashboard/ReferralCard';
 
 const Dashboard = () => {
   return (
@@ -14,15 +17,11 @@ const Dashboard = () => {
 
       <Box minHeight='100vh' sx={{ background: 'var(--darker)' }}>
         <Sidebar>
-          <Typography
-            variant='h5'
-            mb={4}
-            sx={{ color: 'var(--light-blue)', fontWeight: 700 }}
-          >
-            Dashboard
-          </Typography>
+          <AppBar page='Dashboard' />
           <Heading />
           <CryptoMarquee />
+          <InvestCards />
+          <ReferralCard />
         </Sidebar>
       </Box>
       <MobileNav />

@@ -1,7 +1,7 @@
 import { Grid } from '@mui/material';
 import React, { useContext } from 'react';
-import { MdOutlineWaterfallChart, MdRemoveCircle } from 'react-icons/md';
 import { GiBanknote } from 'react-icons/gi';
+import { MdOutlineWaterfallChart, MdRemoveCircle } from 'react-icons/md';
 import { RiWallet3Fill } from 'react-icons/ri';
 import BalanceCard from './BalanceCard';
 import DetailsCard from './DetailsCard';
