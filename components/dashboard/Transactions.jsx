@@ -96,7 +96,7 @@ const Transactions = () => {
                   {transaction.amount.toLocaleString()}
                 </Typography>
               </Stack>
-              <Divider />
+              <Divider color='#555' />
             </>
           ))}
         </Box>
