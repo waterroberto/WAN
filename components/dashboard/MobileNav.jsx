@@ -6,9 +6,13 @@ import HomeIcon from '@mui/icons-material/Home';
 import AddCardIcon from '@mui/icons-material/AddCard';
 import AccountBalanceIcon from '@mui/icons-material/AccountBalance';
 import TrendingUpIcon from '@mui/icons-material/TrendingUp';
+import Link from 'next/link';
 import { Paper } from '@mui/material';
+import { useRouter } from 'next/router';
 
 const MobileNav = () => {
+  const router = useRouter();
+
   return (
     <Paper
       sx={{
@@ -24,7 +28,6 @@ const MobileNav = () => {
       <BottomNavigation
         showLabels
         sx={{
-          p: 2,
           background: 'var(--dark)',
 
           '&:before': {
@@ -47,26 +50,32 @@ const MobileNav = () => {
           label='Home'
           icon={<HomeIcon />}
           sx={{ color: '#fff' }}
+          onClick={() => router.push('/account')}
         />
         <BottomNavigationAction
           label='Deposit'
           icon={<AddCardIcon />}
           sx={{ color: '#fff' }}
+          onClick={() => router.push('/account/deposit')}
         />
         <BottomNavigationAction
           label='Invest'
           icon={<TrendingUpIcon />}
           sx={{ color: '#fff' }}
+          onClick={() => router.push('/account/invest')}
         />
         <BottomNavigationAction
           label='Withdraw'
           icon={<AccountBalanceIcon />}
           sx={{ color: '#fff' }}
+          onClick={() => router.push('/account/withdraw')}
         />
+
         <BottomNavigationAction
           label='Account'
           icon={<PersonIcon />}
           sx={{ color: '#fff' }}
+          onClick={() => router.push('/account/profile')}
         />
       </BottomNavigation>
     </Paper>

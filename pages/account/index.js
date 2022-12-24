@@ -5,6 +5,7 @@ import AppBar from '../../components/dashboard/AppBar';
 import CryptoMarquee from '../../components/dashboard/CryptoMarquee';
 import InvestCards from '../../components/dashboard/InvestCards';
 import ReferralCard from '../../components/dashboard/ReferralCard';
+import Transactions from '../../components/dashboard/Transactions';
 
 const Dashboard = () => {
   return (
@@ -20,6 +21,7 @@ const Dashboard = () => {
           <AppBar page='Dashboard' />
           <Heading />
           <CryptoMarquee />
+          <Transactions />
           <InvestCards />
           <ReferralCard />
         </Sidebar>

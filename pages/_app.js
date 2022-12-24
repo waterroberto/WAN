@@ -32,6 +32,7 @@ function MyApp({ Component, pageProps }) {
 
   const router = useRouter();
   nprogress.configure({ showSpinner: false });
+  // nprogress.configure({ showSpinner: false });
 
   useEffect(() => {
     router.events.on('routeChangeStart', () => nprogress.start());

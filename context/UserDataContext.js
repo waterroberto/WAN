@@ -13,6 +13,7 @@ const initialState = {
   currency: '',
   accountNumber: '',
   username: 'ernest20221212',
+  transactions: [],
 };
 
 const userDataContext = createContext(initialState);
@@ -34,6 +35,40 @@ export const UserDataProvider = ({ children }) => {
     DOB: '07-10-2022',
     accountNumber: 'IF2212205845',
     username: 'ernest20221212',
+    transactions: [
+      {
+        type: 'deposit',
+        amount: 720000,
+        date: new Date(),
+        dated: '24 - December - 2022',
+        status: 'pending',
+        narration: 'Bank Transfer',
+      },
+      {
+        type: 'withdraw',
+        amount: 1255000,
+        date: new Date(),
+        dated: '22 - December - 2022',
+        status: 'approved',
+        narration: 'Bank Transfer',
+      },
+      {
+        type: 'deposit',
+        amount: 7812270,
+        date: new Date(),
+        dated: '15 - November - 2022',
+        status: 'approved',
+        narration: 'Bank Transfer',
+      },
+      {
+        type: 'deposit',
+        amount: 20264627,
+        date: new Date(),
+        dated: '8 - October - 2022',
+        status: 'approved',
+        narration: 'Bank Transfer',
+      },
+    ],
   });
 
   return (
