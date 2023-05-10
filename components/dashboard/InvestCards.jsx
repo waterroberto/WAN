@@ -1,4 +1,5 @@
 import React, { useRef, useState } from 'react';
+import Link from 'next/link';
 import { Box, Grid, Typography } from '@mui/material';
 import liftingWeight from '../../assets/png/business-person-lifting-weight.png';
 import showingDollar from '../../assets/png/man-showing-dollar-and-rupee.png';
@@ -24,6 +25,7 @@ const cardsData = [
         Fund <br /> Account
       </>
     ),
+    page: '/account/deposit',
   },
   {
     image: holdingCurrency,
@@ -32,23 +34,26 @@ const cardsData = [
         Loans <br /> & Grants
       </>
     ),
+    page: '/account/loan',
   },
-  {
-    image: holdingCurrency1,
-    title: (
-      <>
-        Start <br /> Saving
-      </>
-    ),
-  },
-  {
-    image: liftingWeight,
-    title: (
-      <>
-        Start <br /> Investing
-      </>
-    ),
-  },
+  // {
+  //   image: holdingCurrency1,
+  //   title: (
+  //     <>
+  //       Start <br /> Saving
+  //     </>
+  //   ),
+  //   page: '/account',
+  // },
+  // {
+  //   image: liftingWeight,
+  //   title: (
+  //     <>
+  //       Start <br /> Investing
+  //     </>
+  //   ),
+  //   page: '/account',
+  // },
 ];
 
 export default function InvestCards() {
@@ -67,33 +72,39 @@ export default function InvestCards() {
             lg={3}
             data-aos='fade-up'
           >
-            <Box
-              style={swiperCardStyles}
-              mx={{ sm: 1 }}
-              my={{ xs: 1, sm: 1, md: 0 }}
-              sx={{ position: 'relative' }}
-            >
-              <Image
-                src={card.image}
-                alt={card.title}
-                height={130}
-                width={130}
-                style={{ position: 'absolute', bottom: '1rem', left: '0.5rem' }}
-              />
+            <Link href={card.page}>
               <Box
-                sx={{
-                  display: 'flex',
-                  alignItems: 'flex-end',
-                  justifyContent: 'flex-end',
-                  width: '100%',
-                  height: '100px',
-                }}
+                style={swiperCardStyles}
+                mx={{ sm: 1 }}
+                my={{ xs: 1, sm: 1, md: 0 }}
+                sx={{ position: 'relative' }}
               >
-                <Typography sx={{ fontSize: '1.6rem', fontWeight: 600 }}>
-                  {card.title}
-                </Typography>
+                <Image
+                  src={card.image}
+                  alt={card.title}
+                  height={130}
+                  width={130}
+                  style={{
+                    position: 'absolute',
+                    bottom: '1rem',
+                    left: '0.5rem',
+                  }}
+                />
+                <Box
+                  sx={{
+                    display: 'flex',
+                    alignItems: 'flex-end',
+                    justifyContent: 'flex-end',
+                    width: '100%',
+                    height: '100px',
+                  }}
+                >
+                  <Typography sx={{ fontSize: '1.6rem', fontWeight: 600 }}>
+                    {card.title}
+                  </Typography>
+                </Box>
               </Box>
-            </Box>
+            </Link>
           </Grid>
         ))}
       </Grid>

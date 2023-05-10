@@ -7,15 +7,18 @@ const StyledInputElement = styled('input')(
   ({ theme }) => `
   width: 100%;
   font-family: 'Public sans;
-  font-size: 16px !important;
+  font-size: 17px !important;
   font-weight: 300;
   padding: 1.25rem 1rem;
   border-radius: 8px;
-  color: #ccc;
+  color: #eee;
   background: #1b1b1b;
   border: none;
   outline: none;
-  border: 1px solid #222;
+  border: 1px solid #333;
+  max-width: 512px;
+  display: block;
+  margin: auto;
 `
 );
 

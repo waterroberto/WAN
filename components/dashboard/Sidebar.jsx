@@ -77,10 +77,10 @@ const links1 = [
   { name: 'Dashboard', url: '/account', icon: <MdDashboard /> },
   { name: 'Deposit', url: '/account/deposit', icon: <RiWallet3Fill /> },
   { name: 'Withdraw', url: '/account/withdraw', icon: <MdRemoveCircle /> },
-  { name: 'Invest', url: '/account/invest', icon: <MdOutlineWaterfallChart /> },
+  // { name: 'Loan', url: '/account/loan', icon: <MdOutlineWaterfallChart /> },
 ];
 const links2 = [
-  { name: 'Loans & Grants', url: '/account/loans', icon: <RiBankLine /> },
+  { name: 'Loans & Grants', url: '/account/loan', icon: <RiBankLine /> },
   { name: 'Profile', url: '/account/profile', icon: <HiUser /> },
   { name: 'Logout', url: '/account/profile', icon: <HiLogout /> },
 ];
@@ -99,12 +99,11 @@ export default function Sidebar({ children }) {
 
   return (
     <Box sx={{ display: 'flex' }}>
-      {/* <CssBaseline /> */}
       <Drawer
         variant='permanent'
         open={open}
         sx={{
-          display: { xs: 'none', sm: 'block' },
+          display: { xs: 'none', md: 'block' },
           '& .MuiPaper-elevation': {
             color: 'var(--mid)',
             position: 'fixed',
@@ -241,7 +240,7 @@ export default function Sidebar({ children }) {
       </Drawer>
       <Box
         component='main'
-        mb={8}
+        pb={16}
         sx={{
           flexGrow: 1,
           background: 'var(--darker)',

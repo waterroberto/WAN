@@ -1,6 +1,7 @@
 import { createContext, useState } from 'react';
 
 const initialState = {
+  id: '',
   firstName: '',
   lastName: '',
   isVerified: true,
@@ -20,6 +21,7 @@ const userDataContext = createContext(initialState);
 
 export const UserDataProvider = ({ children }) => {
   const [userData, setUserData] = useState({
+    id: 'eRnEsT202IsAiaH21212',
     firstName: 'Isaiah',
     lastName: 'Ernest',
     isVerified: true,
@@ -38,41 +40,41 @@ export const UserDataProvider = ({ children }) => {
     transactions: [
       {
         type: 'deposit',
-        amount: 24045000,
+        amount: 2400000,
         date: new Date(),
-        dated: '24 - December - 2022',
+        dated: '24-December-2022',
         status: 'pending',
         narration: 'Bank Transfer',
       },
       {
         type: 'withdraw',
-        amount: 1720000,
+        amount: 172000,
         date: new Date(),
-        dated: '21 - December - 2022',
+        dated: '21-December-2022',
         status: 'pending',
         narration: 'Bank Transfer',
       },
       {
         type: 'withdraw',
-        amount: 1255000,
+        amount: 125000,
         date: new Date(),
-        dated: '22 - November - 2022',
+        dated: '22-November-2022',
         status: 'approved',
         narration: 'Bank Transfer',
       },
       {
         type: 'deposit',
-        amount: 7812270,
+        amount: 780000,
         date: new Date(),
-        dated: '15 - October - 2022',
+        dated: '15-October-2022',
         status: 'approved',
         narration: 'Bank Transfer',
       },
       {
         type: 'deposit',
-        amount: 20264627,
+        amount: 2026460,
         date: new Date(),
-        dated: '8 - September - 2022',
+        dated: '8-September-2022',
         status: 'approved',
         narration: 'Bank Transfer',
       },

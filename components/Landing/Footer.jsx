@@ -5,7 +5,7 @@ import { Layout, NewsLetter } from '../';
 
 const Footer = () => {
   return (
-    <Box>
+    <Box sx={{ background: '#f5f5f5' }}>
       <NewsLetter />
       <Layout>
         <Grid

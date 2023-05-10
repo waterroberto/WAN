@@ -20,7 +20,11 @@ const theme = createTheme({
     },
     secondary: {
       main: '#FE8235',
-      dark: '#1B1B1B',
+      dark: '#1b1b1b',
+    },
+    custom: {
+      main: '#1b1b1b',
+      contrastText: '#060606',
     },
   },
 });

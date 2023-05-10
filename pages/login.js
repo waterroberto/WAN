@@ -1,8 +1,13 @@
 import React from 'react';
 import { Footer, Meta, Layout, Navbar } from '../components';
-import { Box } from '@mui/material';
+import { Box, Typography, Button } from '@mui/material';
+import CustomInput from '../components/UnstyledInput';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
 
 const Login = () => {
+  const router = useRouter();
+
   return (
     <>
       <Meta
@@ -10,9 +15,91 @@ const Login = () => {
         Homepage'
         description='Login to your Incrypto Account - Online crypto banking for everyone - Login page'
       />
-      <Box mt={8}>
+      <Box
+        mt={8}
+        sx={{
+          background:
+            'linear-gradient(55deg, rgba(6,6,6,1) 0%, rgba(27,27,27,1) 53%, rgba(27,34,52,1) 76%, rgba(9,9,9,1) 100%)',
+        }}
+      >
         <Navbar />
-        <h1>Login Page</h1>
+
+        <Layout>
+          <Typography
+            component='h2'
+            mb={2}
+            sx={{
+              fontSize: {
+                xs: '2rem',
+                sm: '2rem',
+                md: '2.5rem',
+              },
+              fontWeight: 700,
+              fontFamily: 'inherit',
+              textAlign: 'center',
+              color: '#fff',
+            }}
+          >
+            Sign In
+          </Typography>
+
+          <form style={{ width: '100%', margin: 'auto', maxWidth: '512px' }}>
+            <CustomInput
+              aria-label='Email'
+              placeholder='Email'
+              type='email'
+              required
+            />
+            <CustomInput
+              aria-label='Password'
+              placeholder='Password'
+              type='password'
+              required
+            />
+            <Link
+              href='/forgot-password'
+              style={{
+                color: '#1b4cd1',
+                fontWeight: 700,
+                textAlign: 'right',
+                display: 'block',
+                marginTop: '8px',
+                marginBottom: '8px',
+              }}
+            >
+              Forgot Password?
+            </Link>
+            <Button
+              variant='contained'
+              type='button'
+              disableElevation
+              sx={{
+                color: '#fff',
+                padding: '0.8rem',
+                fontWeight: 300,
+                fontFamily: 'inherit',
+                width: '100%',
+                maxWidth: '512px',
+                mb: 2,
+                '&:hover': {
+                  background: '#1b4cd1',
+                },
+              }}
+              onClick={() => router.replace('/account')}
+            >
+              Login
+            </Button>
+            <Typography textAlign='right' sx={{ color: '#fff' }}>
+              <span>Don`t have an account?</span> {'  '}
+              <Link
+                href='/register'
+                style={{ color: '#1b4cd1', fontWeight: 700 }}
+              >
+                Register
+              </Link>
+            </Typography>
+          </form>
+        </Layout>
         <Footer />
       </Box>
     </>

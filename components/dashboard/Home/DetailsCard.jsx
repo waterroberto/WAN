@@ -1,4 +1,5 @@
 import React, { useContext } from 'react';
+import Link from 'next/link';
 import { IoDocumentAttachSharp } from 'react-icons/io5';
 import { HiUser } from 'react-icons/hi';
 import { Typography, Box, Button } from '@mui/material';
@@ -54,7 +55,7 @@ const DetailsCard = () => {
             mr: 4,
           }}
         >
-          Increase Limit
+          <Link href='/account/profile'>Increase Limit</Link>
         </Button>
         <Button
           variant='text'
@@ -67,7 +68,7 @@ const DetailsCard = () => {
             fontFamily: 'inherit',
           }}
         >
-          Account
+          <Link href='/account/profile'>Profile</Link>
         </Button>
       </Box>
       <Box

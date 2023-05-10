@@ -1,11 +1,12 @@
 import React, { useContext, useState } from 'react';
-import { NativeSelect, FormControl, InputLabel } from '@mui/material';
+import { NativeSelect, FormControl, InputLabel, Stack } from '@mui/material';
 import { StyledOption, CustomSelect } from '../components/UnstyledSelect';
-import { Meta, Layout, Footer } from '../components';
+import { Meta, Layout, Footer, Navbar } from '../components';
 import { styled, Box, Typography, Button } from '@mui/material';
 import cogoToast from 'cogo-toast';
 import CustomInput from '../components/UnstyledInput';
 import { countries } from '../static/Data';
+import Link from 'next/link';
 
 const Blur = styled('div')(({ theme }) => ({
   background: '#1b4cd1',
@@ -39,6 +40,7 @@ const Register = () => {
         Homepage'
         description='Get Stated with Incrypto Finance - Online crypto banking for everyone - Registeration page'
       />
+      <Navbar />
       <Box
         sx={{
           background:
@@ -53,6 +55,7 @@ const Register = () => {
           <Box
             mx='auto'
             maxWidth='600px'
+            mt={8}
             sx={{ position: 'relative', zIndex: 1, overflow: 'hidden' }}
           >
             <Typography
@@ -65,7 +68,7 @@ const Register = () => {
                   sm: '2rem',
                   md: '2.5rem',
                 },
-                fontWeight: 600,
+                fontWeight: 800,
                 fontFamily: 'inherit',
                 textAlign: 'center',
               }}
@@ -245,7 +248,7 @@ const Register = () => {
 
               <Button
                 variant='contained'
-                type='submit'
+                type='button'
                 disableElevation
                 sx={{
                   color: '#fff',
@@ -261,6 +264,15 @@ const Register = () => {
               >
                 REGISTER
               </Button>
+              <Typography textAlign='right'>
+                <span>Already have an account?</span> {'  '}
+                <Link
+                  href='/login'
+                  style={{ color: '#1b4cd1', fontWeight: 700 }}
+                >
+                  Login
+                </Link>
+              </Typography>
             </form>
           </Box>
         </Layout>

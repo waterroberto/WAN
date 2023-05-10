@@ -2,6 +2,7 @@
 
 :root {
   --green: rgb(9, 219, 121);
+  --green-hover: rgb(9, 200, 120);
   --blue: rgb(1, 126, 255);
   --pale-blue: #a5c5e6;
   --light-blue: #60aeff;
@@ -45,7 +46,7 @@ span.em {
 }
 
 #nprogress .bar {
-  background: var(--red) !important;
+  background: var(--blue) !important;
   height: 3px !important;
 }
 

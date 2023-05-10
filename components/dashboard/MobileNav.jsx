@@ -59,10 +59,10 @@ const MobileNav = () => {
           onClick={() => router.push('/account/deposit')}
         />
         <BottomNavigationAction
-          label='Invest'
+          label='Loan'
           icon={<TrendingUpIcon />}
           sx={{ color: '#fff' }}
-          onClick={() => router.push('/account/invest')}
+          onClick={() => router.push('/account/loan')}
         />
         <BottomNavigationAction
           label='Withdraw'

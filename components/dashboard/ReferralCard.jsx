@@ -1,9 +1,13 @@
 import { Box, Stack, Typography } from '@mui/material';
 import Image from 'next/image';
-import React from 'react';
+import React, { useContext } from 'react';
 import logoOutlineDark from '../../assets/logo-outline-dark.svg';
+import userDataContext from '../../context/UserDataContext';
+import cogoToast from 'cogo-toast';
 
 const ReferralCard = () => {
+  const { id } = useContext(userDataContext);
+
   return (
     <Box
       sx={{
@@ -11,7 +15,6 @@ const ReferralCard = () => {
         my: 4,
         position: 'relative',
         width: '100%',
-        height: '15rem',
         background: 'var(--dark)',
 
         '&:before': {
@@ -36,10 +39,10 @@ const ReferralCard = () => {
       </Typography>
 
       <Stack
-        direction='row'
-        alignItems='center'
-        justifyContent='space-between'
-        gap={1}
+        direction={{ xs: 'column', sm: 'row' }}
+        alignItems={{ xs: 'flex-start', sm: 'center' }}
+        justifyContent={{ xs: 'center', sm: 'space-between' }}
+        gap={2}
         sx={{
           p: 2,
           mt: 4,
@@ -51,10 +54,27 @@ const ReferralCard = () => {
       >
         <Box>
           <Typography sx={{ fontWeight: 700, color: 'var(--darker)', mb: 0.5 }}>
-            Refer & Earn
+            Refer & Earn (Click the referral ID to copy it)
           </Typography>
           <Typography variant='subtitle2' sx={{ fontWeight: 300 }}>
             Earn 5$ when you refer a friend and they make a deposit of over 10$
+          </Typography>
+          <Typography
+            sx={{
+              fontWeight: 700,
+              mt: 1,
+              cursor: 'pointer',
+              color: 'var(--dark)',
+            }}
+            onClick={() => {
+              window.navigator.clipboard
+                .writeText(
+                  `https://${window.location.host}/register?refBy=${id}`
+                )
+                .then(() => cogoToast.success('Copied'));
+            }}
+          >
+            {id}
           </Typography>
         </Box>
         <Image
@@ -63,6 +83,7 @@ const ReferralCard = () => {
           style={{
             height: '80px',
             width: '80px',
+            alignSelf: 'flex-end',
           }}
         />
       </Stack>

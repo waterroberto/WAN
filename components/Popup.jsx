@@ -28,7 +28,7 @@ const Popup = ({ children }) => {
 
   setInterval(() => {
     handleClick();
-    console.log('New popup...');
+    // console.log('New popup...');
   }, Math.abs(Math.floor(Math.random() * (max - min) + min)));
 
   return (

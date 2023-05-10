@@ -26,6 +26,7 @@ const Button = React.forwardRef(function Button(props, ref) {
         alignItems: 'center',
         justifyContent: 'space-between',
         color: '#ccc',
+        maxWidth: '512px',
       }}
     >
       <span>{other.children}</span>

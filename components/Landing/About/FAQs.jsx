@@ -49,7 +49,6 @@ export default function FAQs() {
               borderRadius: 0,
             },
           }}
-          data-aos='fade-up'
         >
           <AccordionSummary
             expandIcon={

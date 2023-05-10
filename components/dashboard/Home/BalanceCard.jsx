@@ -3,6 +3,7 @@ import { Typography, Box, Button } from '@mui/material';
 import userDataContext from '../../../context/UserDataContext';
 import { MdOutlineAdd } from 'react-icons/md';
 import { HiOutlineArrowTrendingUp } from 'react-icons/hi2';
+import Link from 'next/link';
 
 const boxStyles = {
   position: 'absolute',
@@ -58,7 +59,7 @@ const BalanceCard = () => {
             mr: 4,
           }}
         >
-          Add Money
+          <Link href='/account/deposit'>Add Money</Link>
         </Button>
         <Button
           variant='text'
@@ -71,7 +72,7 @@ const BalanceCard = () => {
             fontFamily: 'inherit',
           }}
         >
-          Transfer
+          <Link href='/account/withdraw'>Transfer</Link>
         </Button>
       </Box>
       <Box

@@ -1,14 +1,13 @@
 import { Box, Button, Divider, Stack, Typography } from '@mui/material';
 import { RiFolder5Fill } from 'react-icons/ri';
 import React, { useContext } from 'react';
-import userDataContext from '../../context/UserDataContext';
+import parseDate from '../../utils/parseDate';
 
-const Transactions = () => {
-  const { transactions, currency } = useContext(userDataContext);
+const Transactions = ({ transactions, currency, customStyles }) => {
   return (
     <Box
       sx={{
-        p: { xs: 2, sm: 2, md: 4 },
+        ...customStyles,
         my: 4,
         position: 'relative',
         width: '100%',
@@ -28,17 +27,9 @@ const Transactions = () => {
         '& *': {
           zIndex: 2,
         },
-        borderRadius: '1rem',
+        borderRadius: '0.5rem',
       }}
     >
-      <Stack direction='row' alignItems='center' justifyContent='space-between'>
-        <Typography sx={{ fontSize: '1.4rem', fontWeight: 700, p: 1 }}>
-          Transactions
-        </Typography>
-        <Button variant='outlined' color='secondary'>
-          {transactions.length}
-        </Button>
-      </Stack>
       {transactions.length > 0 ? (
         <Box sx={{ mt: 4 }}>
           {transactions.map((transaction, index) => (
@@ -53,8 +44,13 @@ const Transactions = () => {
               >
                 <Typography
                   sx={{
-                    textTransform: 'uppercase',
-                    color: 'var(--pale-blue)',
+                    textTransform: 'capitalize',
+                    color:
+                      transaction.type === 'withdraw'
+                        ? 'var(--red)'
+                        : transaction.type === 'deposit'
+                        ? 'var(--green)'
+                        : 'var(--pale-blue)',
                   }}
                 >
                   {transaction.type}
@@ -62,14 +58,20 @@ const Transactions = () => {
                   <Typography
                     component='span'
                     sx={{
-                      textTransform: 'uppercase',
                       color: 'var(--mid)',
-                      fontSize: '12px',
+                      fontWeight: 800,
                     }}
                   >
-                    {transaction.dated}
+                    {transaction.type === 'deposit'
+                      ? '+'
+                      : transaction.type === 'withdraw'
+                      ? '-'
+                      : 'x'}
+                    {currency}
+                    {transaction.amount.toLocaleString()}
                   </Typography>
                 </Typography>
+
                 <Typography
                   sx={{
                     fontWeight: 700,
@@ -79,6 +81,7 @@ const Transactions = () => {
                 >
                   <Typography
                     component='span'
+                    fontWeight={700}
                     sx={{
                       textTransform: 'uppercase',
                       color:
@@ -91,9 +94,16 @@ const Transactions = () => {
                     {transaction.status}
                   </Typography>{' '}
                   <br />
-                  {transaction.type === 'deposit' ? '+' : '-'}
-                  {currency}
-                  {transaction.amount.toLocaleString()}
+                  <Typography
+                    component='span'
+                    sx={{
+                      textTransform: 'uppercase',
+                      color: 'var(--mid)',
+                      fontSize: '12px',
+                    }}
+                  >
+                    {parseDate(transaction?.dated)}
+                  </Typography>
                 </Typography>
               </Stack>
               <Divider color='#555' />
