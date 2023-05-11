@@ -1,0 +1,65 @@
+import React, { useState } from 'react';
+import {
+  Box,
+  Button,
+  Typography,
+  Modal,
+  Stack,
+  IconButton,
+} from '@mui/material';
+import { MdOutlineClose } from 'react-icons/md';
+
+const style = {
+  position: 'absolute',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+  width: 400,
+  bgcolor: 'var(--dark)',
+  boxShadow: 24,
+  borderRadius: 1,
+  color: 'var(--mid)',
+  width: '98%',
+  maxWidth: '512px',
+};
+
+export default function PopupModal({
+  children,
+  title = 'Title',
+  open = false,
+  handleClose,
+  handleOpen,
+}) {
+  return (
+    <div>
+      <Modal
+        open={open}
+        onClose={handleClose}
+        aria-labelledby='modal-modal-title'
+        aria-describedby='modal-modal-description'
+      >
+        <Box sx={style}>
+          <Stack
+            direction='row'
+            alignItems='center'
+            justifyContent='space-between'
+            id='modal-modal-title'
+            py={2}
+            px={3}
+            sx={{ borderBottom: '1px solid var(--blue)' }}
+          >
+            <Typography variant='h6' component='p' fontWeight={800}>
+              {title}
+            </Typography>
+            <IconButton sx={{ color: 'var(--mid)' }}>
+              <MdOutlineClose onClick={handleClose} />
+            </IconButton>
+          </Stack>
+          <Box id='modal-modal-description' sx={{ my: 2, py: 2, px: 3 }}>
+            {children}
+          </Box>
+        </Box>
+      </Modal>
+    </div>
+  );
+}

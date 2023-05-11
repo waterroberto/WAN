@@ -44,7 +44,8 @@ const BalanceCard = () => {
             fontSize: { xs: '1.5rem', sm: '1.5rem', md: '1.8rem' },
           }}
         >
-          {currency} {(147598623).toLocaleString()}
+          {currency}
+          {(147598623).toLocaleString()}
         </Typography>
 
         <Button
