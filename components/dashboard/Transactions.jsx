@@ -2,6 +2,7 @@ import { Box, Button, Divider, Stack, Typography } from '@mui/material';
 import { RiFolder5Fill } from 'react-icons/ri';
 import React, { useContext } from 'react';
 import parseDate from '../../utils/parseDate';
+import { FiArrowDownLeft, FiArrowUpRight, FiPlusCircle } from 'react-icons/fi';
 
 const Transactions = ({
   transactions = [],
@@ -51,35 +52,32 @@ const Transactions = ({
                   px={1}
                   py={1}
                 >
-                  <Typography
-                    sx={{
-                      textTransform: 'capitalize',
-                      color:
-                        transaction.type === 'withdraw'
-                          ? 'var(--red)'
-                          : transaction.type === 'deposit'
-                          ? 'var(--green)'
-                          : 'var(--pale-blue)',
-                    }}
-                  >
-                    {transaction.type}
-                    <br />
+                  <Stack direction='row' alignItems='center' gap={1}>
+                    {transaction?.type.toLowerCase() === 'withdraw' ?
+                      <span className='transaction-icon withdraw'>
+                        <FiArrowUpRight />
+                      </span>
+                      :
+                      transaction?.type.toLowerCase() === 'deposit' ?
+                        <span className='transaction-icon deposit'>
+                          <FiArrowDownLeft />
+                        </span>
+                        :
+                        transaction?.type.toLowerCase() === 'loan' ?
+                          <span className='transaction-icon loan'>
+                            <FiPlusCircle />
+                          </span> : ''
+                    }
                     <Typography
-                      component='span'
                       sx={{
+                        fontWeight: 700,
                         color: 'var(--mid)',
-                        fontWeight: 800,
                       }}
                     >
-                      {transaction.type === 'deposit'
-                        ? '+'
-                        : transaction.type === 'withdraw'
-                        ? '-'
-                        : 'x'}
                       {currency}
-                      {transaction.amount.toLocaleString()}
+                      {transaction?.amount.toLocaleString()}
                     </Typography>
-                  </Typography>
+                  </Stack>
 
                   <Typography
                     sx={{

@@ -1,16 +1,21 @@
 @import url('https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700&display=swap');
 
 :root {
+  --green-light: rgb(9, 219, 121, 0.3);
   --green: rgb(9, 219, 121);
   --green-hover: rgb(9, 200, 120);
+  --blue-light: rgb(1, 126, 255, 0.2);
   --blue: rgb(1, 126, 255);
   --pale-blue: #a5c5e6;
   --light-blue: #60aeff;
+  --red-light: rgb(219, 25, 41, 0.3);
   --red: #db1929;
   --dark: #252837;
   --darker: #1e1c2a;
   --mid: #ccc;
+  --secondary-light: rgb(254, 130, 53, 0.2);
   --secondary: #fe8235;
+  --secondary-clicked: #e15323;
 }
 
 * {
@@ -25,6 +30,7 @@ body {
   /* eslint-disable-next-line */
   scroll-behavior: smooth !important;
 }
+
 a {
   color: inherit;
   text-decoration: none;
@@ -38,8 +44,7 @@ ul {
   box-sizing: border-box;
 }
 
-@media (prefers-color-scheme: dark) {
-}
+@media (prefers-color-scheme: dark) {}
 
 span.em {
   font-weight: 700;
@@ -75,6 +80,7 @@ span.em {
   font-family: 'Public sans';
   color: #fff;
 }
+
 .input-group {
   display: flex;
   flex-direction: column;
@@ -88,4 +94,27 @@ span.em {
     justify-content: space-between;
     gap: 0.75rem;
   }
+}
+
+.transaction-icon {
+  padding: 0.5rem;
+  border-radius: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.transaction-icon.withdraw {
+  color: var(--secondary);
+  background: var(--secondary-light);
+}
+
+.transaction-icon.deposit {
+  color: var(--green);
+  background: var(--green-light);
+}
+
+.transaction-icon.loan {
+  color: var(--blue);
+  background: var(--blue-light);
 }

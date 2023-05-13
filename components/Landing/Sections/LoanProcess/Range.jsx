@@ -85,7 +85,7 @@ export default function Range() {
           justifyContent='space-between'
         >
           <Typography sx={{ fontWeight: 700, fontFamily: 'inherit' }}>
-            $200
+            R5000
           </Typography>
           <Typography
             sx={{
@@ -94,10 +94,10 @@ export default function Range() {
               color: 'primary.main',
             }}
           >
-            ${value * 200 === 0 ? 200 : (value * 200).toLocaleString()}
+            R{value * 5000 === 0 ? 5000 : (value * 5000).toLocaleString()}
           </Typography>
           <Typography sx={{ fontWeight: 700, fontFamily: 'inherit' }}>
-            $20,000
+            R500,000
           </Typography>
         </Stack>
       </Box>
@@ -129,10 +129,10 @@ export default function Range() {
               color: 'primary.main',
             }}
           >
-            {days * 7.3 === 0 ? 7 : Math.floor(days * 7.3)} Days
+            {days * 29.2 === 0 ? 7 : Math.floor(days * 29.2)} Days
           </Typography>
           <Typography sx={{ fontWeight: 700, fontFamily: 'inherit' }}>
-            730 Days
+            2920 Days
           </Typography>
         </Stack>
       </Box>
@@ -175,7 +175,7 @@ export default function Range() {
               },
             }}
           >
-            ${value * 200 === 0 ? 200 : (value * 200).toLocaleString()}
+            R{value * 5000 === 0 ? 5000 : (value * 5000).toLocaleString()}
           </Typography>
         </Grid>
         <Grid px={2} py={1} item xs={6} sm={4} md={4} width='100%'>
@@ -202,7 +202,7 @@ export default function Range() {
               },
             }}
           >
-            {days * 7.3 === 0 ? 7 : Math.floor(days * 7.3)} Days
+            {days * 29.2 === 0 ? 7 : Math.floor(days * 29.2)} Days
           </Typography>
         </Grid>
         <Grid px={2} py={1} item xs={6} sm={4} md={4} width='100%'>
@@ -229,12 +229,12 @@ export default function Range() {
               },
             }}
           >
-            $
+            R
             {Math.floor(
-              (value * 200 === 0 ? 200 : value * 200) *
-                0.25 *
-                ((days * 7.3 === 0 ? 7 : days * 7.3) / 365) +
-                (value * 200 === 0 ? 200 : value * 200)
+              (value * 5000 === 0 ? 5000 : value * 5000) *
+              0.15 *
+              ((days * 29.2 === 0 ? 7 : days * 29.2) / 365) +
+              (value * 5000 === 0 ? 5000 : value * 5000)
             ).toLocaleString()}
           </Typography>
         </Grid>

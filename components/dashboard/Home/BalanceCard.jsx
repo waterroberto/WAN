@@ -15,7 +15,8 @@ const boxStyles = {
 };
 
 const BalanceCard = () => {
-  const { currency } = useContext(userDataContext);
+  const { currency, loanBalance } = useContext(userDataContext);
+
   return (
     <Box
       mx={{ md: 1 }}
@@ -34,7 +35,7 @@ const BalanceCard = () => {
           variant='subtitle1'
           sx={{ color: '#fff', fontWeight: 500, fontFamily: 'inherit' }}
         >
-          Wallet Balance
+          Loan Balance
         </Typography>
         <Typography
           my={2}
@@ -45,7 +46,7 @@ const BalanceCard = () => {
           }}
         >
           {currency}
-          {(147598623).toLocaleString()}
+          {(loanBalance).toLocaleString()}
         </Typography>
 
         <Button
@@ -60,7 +61,7 @@ const BalanceCard = () => {
             mr: 4,
           }}
         >
-          <Link href='/account/deposit'>Add Money</Link>
+          <Link href='/account/loan'>Get Loan</Link>
         </Button>
         <Button
           variant='text'

@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import Link from 'next/link';
-import { IoDocumentAttachSharp } from 'react-icons/io5';
-import { HiUser } from 'react-icons/hi';
+import { MdOutlineAdd } from 'react-icons/md';
+import { HiOutlineArrowTrendingUp } from 'react-icons/hi2';
 import { Typography, Box, Button } from '@mui/material';
 import userDataContext from '../../../context/UserDataContext';
 
@@ -15,7 +15,8 @@ const boxStyles = {
 };
 
 const DetailsCard = () => {
-  const { accountNumber, accountLevel } = useContext(userDataContext);
+  const { currency, depositBalance } = useContext(userDataContext);
+
   return (
     <Box
       mx={{ md: 1 }}
@@ -31,7 +32,7 @@ const DetailsCard = () => {
     >
       <Box sx={{ position: 'relative', zIndex: 2 }}>
         <Typography variant='subtitle1' sx={{ color: '#fff', fontWeight: 500 }}>
-          Level {accountLevel} Account
+          Deposit Balance
         </Typography>
         <Typography
           my={2}
@@ -41,12 +42,13 @@ const DetailsCard = () => {
             fontSize: { xs: '1.5rem', sm: '1.5rem', md: '1.8rem' },
           }}
         >
-          {accountNumber}
+          {currency}
+          {(depositBalance).toLocaleString()}
         </Typography>
         <Button
           variant='text'
           disableElevation
-          startIcon={<IoDocumentAttachSharp />}
+          startIcon={<MdOutlineAdd />}
           sx={{
             color: '#fff',
             textTransform: 'capitalize',
@@ -55,12 +57,12 @@ const DetailsCard = () => {
             mr: 4,
           }}
         >
-          <Link href='/account/profile'>Increase Limit</Link>
+          <Link href='/account/deposit'>Fund Account</Link>
         </Button>
         <Button
           variant='text'
           disableElevation
-          startIcon={<HiUser />}
+          startIcon={<HiOutlineArrowTrendingUp />}
           sx={{
             color: '#fff',
             textTransform: 'capitalize',
@@ -68,7 +70,7 @@ const DetailsCard = () => {
             fontFamily: 'inherit',
           }}
         >
-          <Link href='/account/profile'>Profile</Link>
+          <Link href='/account/withdraw'>Transfer</Link>
         </Button>
       </Box>
       <Box

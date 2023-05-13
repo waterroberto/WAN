@@ -3,7 +3,7 @@ import Transactions from '../../components/dashboard/Transactions';
 import { FaFolderOpen } from 'react-icons/fa';
 import { MdArrowDropDown } from 'react-icons/md';
 import React, { useContext } from 'react';
-import { MobileNav, Meta, Dash, Sidebar, Heading } from '../../components';
+import { MobileNav, Meta, Dash, Sidebar } from '../../components';
 import AppBar from '../../components/dashboard/AppBar';
 import userDataContext from '../../context/UserDataContext';
 
@@ -30,26 +30,39 @@ const Withdraw = () => {
               width: '100%',
               maxWidth: '1024px',
               margin: 'auto',
-              background: 'var(--dark)',
-              borderRadius: 1,
-              border: '1px solid #333',
               mb: 4,
-              p: { xs: 2, sm: 4 },
             }}
           >
             <Typography>WITHDRAWAL & TRANSFER</Typography>
             <Stack
-              mt={2}
+              my={2}
+              direction={{ xs: 'column', sm: 'row' }}
+              gap={2}
+              sx={{
+                '& div': {
+                  p: 2,
+                  width: '100%',
+                  height: '180px',
+                  borderRadius: 2,
+                  background: 'var(--dark)',
+                }
+              }}
+            >
+              <Box></Box>
+              <Box></Box>
+            </Stack>
+            <Stack
               direction={{ xs: 'column', sm: 'row' }}
               alignItems='center'
               justifyContent='flex-start'
               gap={2}
-              width={{ xs: '100%', lg: '50%' }}
+              width='100%'
             >
               <Button
                 variant='text'
                 disableElevation
                 sx={{
+                  p: 1.5,
                   color: '#fff',
                   textTransform: 'capitalize',
                   fontWeight: 500,
@@ -61,30 +74,31 @@ const Withdraw = () => {
                     transition: '0.5s ease-out',
                     background: 'var(--blue)',
                   },
-                  width: { xs: '100%', lg: '50%' },
+                  width: '100%',
                 }}
               >
-                International Transfer
+                Transfer to other banks
               </Button>
               <Button
                 variant='text'
                 disableElevation
                 sx={{
+                  p: 1.5,
                   color: '#fff',
                   textTransform: 'capitalize',
                   fontWeight: 500,
                   fontFamily: 'inherit',
-                  background: 'var(--light-blue)',
+                  background: 'var(--secondary)',
                   transition: '0.5s ease-in',
 
                   '&:hover': {
                     transition: '0.5s ease-out',
-                    background: 'var(--blue)',
+                    background: 'var(--secondary-clicked)',
                   },
-                  width: { xs: '100%', lg: '50%' },
+                  width: '100%',
                 }}
               >
-                Domestic Transfer
+                Transfer to my account
               </Button>
             </Stack>
           </Box>

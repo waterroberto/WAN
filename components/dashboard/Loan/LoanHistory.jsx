@@ -1,6 +1,7 @@
 import { Box, Button, Divider, Stack, Typography } from '@mui/material';
 import PopupModal from '../../Global/Modal';
 import parseDate from '../../../utils/parseDate';
+import { FiPlusCircle } from 'react-icons/fi';
 import { RiFolder5Fill } from 'react-icons/ri';
 import React, { useContext } from 'react';
 import { useState } from 'react';
@@ -8,7 +9,7 @@ import { useState } from 'react';
 const LoanHistory = ({
   transactions = [],
   currency = '$',
-  customStyles = [],
+  customStyles = {},
   modalOpen = false,
   handleModalOpen,
   handleModalClose,
@@ -111,8 +112,8 @@ const LoanHistory = ({
                     modalBody?.status === 'pending'
                       ? 'var(--secondary)'
                       : modalBody?.status === 'approved'
-                      ? 'var(--green)'
-                      : 'var(--red)',
+                        ? 'var(--green)'
+                        : 'var(--red)',
                   fontSize: '14px',
                   borderRadius: '4px',
                 }}
@@ -210,10 +211,10 @@ const LoanHistory = ({
                 {modalBody?.status === 'pending'
                   ? '. . .'
                   : modalBody?.status === 'approved'
-                  ? parseDate(modalBody?.payout_date)
-                  : modalBody?.status === 'declined'
-                  ? '. . .'
-                  : '. . .'}
+                    ? parseDate(modalBody?.payout_date)
+                    : modalBody?.status === 'declined'
+                      ? '. . .'
+                      : '. . .'}
               </Typography>
             </Stack>
             <Divider color='#555' />
@@ -246,10 +247,10 @@ const LoanHistory = ({
                 {modalBody?.status === 'pending'
                   ? '. . .'
                   : modalBody?.status === 'approved'
-                  ? parseDate(modalBody?.repayment_date)
-                  : modalBody?.status === 'declined'
-                  ? '. . .'
-                  : '. . .'}
+                    ? parseDate(modalBody?.repayment_date)
+                    : modalBody?.status === 'declined'
+                      ? '. . .'
+                      : '. . .'}
               </Typography>
             </Stack>
             <Divider color='#555' />
@@ -281,35 +282,23 @@ const LoanHistory = ({
                     py={1}
                     sx={{ cursor: 'pointer', width: '100%' }}
                   >
-                    <Typography
-                      sx={{
-                        textTransform: 'capitalize',
-                        color:
-                          transaction.type === 'withdraw'
-                            ? 'var(--red)'
-                            : transaction.type === 'deposit'
-                            ? 'var(--green)'
-                            : 'var(--pale-blue)',
-                      }}
-                    >
-                      {transaction.type}
-                      <br />
+                    <Stack direction='row' alignItems='center' gap={1}>
+                      {
+                        transaction?.type.toLowerCase() === 'loan' ?
+                          <span className='transaction-icon loan'>
+                            <FiPlusCircle />
+                          </span> : ''
+                      }
                       <Typography
-                        component='span'
                         sx={{
+                          fontWeight: 700,
                           color: 'var(--mid)',
-                          fontWeight: 800,
                         }}
                       >
-                        {transaction.type === 'deposit'
-                          ? '+'
-                          : transaction.type === 'withdraw'
-                          ? '-'
-                          : ''}
                         {currency}
-                        {transaction.amount.toLocaleString()}
+                        {transaction?.amount.toLocaleString()}
                       </Typography>
-                    </Typography>
+                    </Stack>
 
                     <Typography
                       sx={{
@@ -327,10 +316,10 @@ const LoanHistory = ({
                             transaction.status === 'approved'
                               ? 'var(--green)'
                               : transaction.status === 'pending'
-                              ? 'var(--secondary)'
-                              : transaction.status === 'declined'
-                              ? 'var(--red)'
-                              : 'var(--pale-blue)',
+                                ? 'var(--secondary)'
+                                : transaction.status === 'declined'
+                                  ? 'var(--red)'
+                                  : 'var(--pale-blue)',
                           fontSize: '12px',
                         }}
                       >
@@ -348,10 +337,10 @@ const LoanHistory = ({
                         {transaction?.status === 'pending'
                           ? parseDate(transaction?.application_date)
                           : transaction?.status === 'approved'
-                          ? parseDate(transaction?.payout_date)
-                          : transaction?.status === 'declined'
-                          ? parseDate(transaction?.application_date)
-                          : '. . .'}
+                            ? parseDate(transaction?.payout_date)
+                            : transaction?.status === 'declined'
+                              ? parseDate(transaction?.application_date)
+                              : '. . .'}
                       </Typography>
                     </Typography>
                   </Stack>

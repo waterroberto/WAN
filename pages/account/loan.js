@@ -38,7 +38,7 @@ const Loan = (props) => {
               p: { xs: 2, sm: 4 },
             }}
           >
-            <Typography>FUND YOUR ACCOUNT</Typography>
+            <Typography>LOAN APPLICATION</Typography>
             <Stack
               mt={2}
               direction={{ xs: 'column', md: 'row' }}
@@ -51,6 +51,7 @@ const Loan = (props) => {
                 variant='text'
                 disableElevation
                 sx={{
+                  p: 1.5,
                   color: '#fff',
                   textTransform: 'capitalize',
                   fontWeight: 500,

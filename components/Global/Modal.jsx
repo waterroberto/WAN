@@ -28,7 +28,6 @@ export default function PopupModal({
   title = 'Title',
   open = false,
   handleClose,
-  handleOpen,
 }) {
   return (
     <div>
@@ -51,8 +50,8 @@ export default function PopupModal({
             <Typography variant='h6' component='p' fontWeight={800}>
               {title}
             </Typography>
-            <IconButton sx={{ color: 'var(--mid)' }}>
-              <MdOutlineClose onClick={handleClose} />
+            <IconButton sx={{ color: 'var(--mid)' }} onClick={handleClose} >
+              <MdOutlineClose />
             </IconButton>
           </Stack>
           <Box id='modal-modal-description' sx={{ my: 2, py: 2, px: 3 }}>
