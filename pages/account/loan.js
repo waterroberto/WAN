@@ -1,12 +1,13 @@
-import { Box, Stack, Typography, Button } from '@mui/material';
-import LoanHistory from '../../components/dashboard/Loan/LoanHistory';
-import { FaFolderOpen } from 'react-icons/fa';
-import React from 'react';
-import { MobileNav, Meta, Dash, Sidebar } from '../../components';
-import AppBar from '../../components/dashboard/AppBar';
-import { useContext, useState } from 'react';
-import userDataContext from '../../context/UserDataContext';
-import PopupModal from '../../components/Global/Modal';
+import { Box, Stack, Typography, Button } from "@mui/material";
+import LoanHistory from "../../components/dashboard/Loan/LoanHistory";
+import { FaFolderOpen } from "react-icons/fa";
+import React from "react";
+import { MobileNav, Meta, Dash, Sidebar } from "../../components";
+import AppBar from "../../components/dashboard/AppBar";
+import { useContext, useState } from "react";
+import userDataContext from "../../context/UserDataContext";
+import PopupModal from "../../components/Global/Modal";
+import Container from "../../components/dashboard/Container";
 
 const Loan = (props) => {
   const [open, setOpen] = useState(false);
@@ -18,79 +19,59 @@ const Loan = (props) => {
   return (
     <>
       <Meta
-        title='Incrypto Finance - Loan - Online Bank'
-        description='Incrypto Financial Bank | Loan into your account'
+        title="Incrypto Finance - Loan - Online Bank"
+        description="Incrypto Financial Bank | Loan into your account"
       />
       <Dash />
 
-      <Box minHeight='100vh' sx={{ background: 'var(--darker)' }}>
+      <Box minHeight="100vh" sx={{ background: "var(--darker)" }}>
         <Sidebar>
-          <AppBar page='Loan' />
-          <Box
-            sx={{
-              width: '100%',
-              maxWidth: '1024px',
-              margin: 'auto',
-              background: 'var(--dark)',
-              borderRadius: 1,
-              border: '1px solid #333',
-              mb: 4,
-              p: { xs: 2, sm: 4 },
-            }}
-          >
+          <AppBar page="Loan" />
+          <Container>
             <Typography>LOAN APPLICATION</Typography>
             <Stack
               mt={2}
-              direction={{ xs: 'column', md: 'row' }}
-              alignItems='center'
-              justifyContent='flex-start'
+              direction={{ xs: "column", md: "row" }}
+              alignItems="center"
+              justifyContent="flex-start"
               gap={2}
-              width={{ xs: '100%', lg: '50%' }}
+              width={{ xs: "100%", md: "50%" }}
             >
               <Button
-                variant='text'
+                variant="text"
                 disableElevation
                 sx={{
-                  p: 1.5,
-                  color: '#fff',
-                  textTransform: 'capitalize',
+                  p: 2,
+                  color: "#fff",
+                  textTransform: "capitalize",
                   fontWeight: 500,
-                  fontFamily: 'inherit',
-                  background: 'var(--pale-blue)',
-                  transition: '0.5s ease-in',
+                  fontFamily: "inherit",
+                  background: "var(--pale-blue)",
+                  transition: "0.5s ease-in",
+                  borderRadius: 2,
 
-                  '&:hover': {
-                    transition: '0.5s ease-out',
-                    background: 'var(--blue)',
+                  "&:hover": {
+                    transition: "0.5s ease-out",
+                    background: "var(--blue)",
                   },
-                  width: { xs: '100%', lg: '50%' },
+                  width: "100%",
                 }}
               >
                 Apply for Loan
               </Button>
             </Stack>
-          </Box>
-          <Box
-            sx={{
-              width: '100%',
-              maxWidth: '1024px',
-              margin: 'auto',
-              p: { xs: 2, sm: 4 },
-              background: 'var(--dark)',
-              borderRadius: 1,
-              border: '1px solid #333',
-            }}
-          >
+          </Container>
+          <Container>
             <Typography>LOAN HISTORY</Typography>
             {(!loans || loans.length === 0) && (
               <Stack
-                alignItems='center'
-                justifyContent='center'
+                alignItems="center"
+                justifyContent="center"
                 mt={8}
                 py={2}
-                sx={{ color: 'var(--mid)' }}
+                sx={{ color: "var(--mid)" }}
               >
-                <Box sx={{ fontSize: '64px' }}>
+                <Box sx={{ fontSize: "64px" }}>
                   <FaFolderOpen />
                 </Box>
                 <Typography>No Transactions Yet</Typography>
@@ -105,7 +86,7 @@ const Loan = (props) => {
                 handleModalOpen={handleOpen}
               />
             )}
-          </Box>
+          </Container>
         </Sidebar>
       </Box>
       <MobileNav />

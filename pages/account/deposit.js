@@ -1,115 +1,98 @@
-import { Box, Stack, Typography, Button } from '@mui/material';
-import React, { useContext } from 'react';
-import { Dash, Meta, MobileNav, Sidebar } from '../../components';
-import AppBar from '../../components/dashboard/AppBar';
-import { MdArrowDropDown } from 'react-icons/md';
-import { FaFolderOpen } from 'react-icons/fa';
-import userDataContext from '../../context/UserDataContext';
-import Transactions from '../../components/dashboard/Transactions';
+import { Box, Stack, Typography, Button } from "@mui/material";
+import React, { useContext } from "react";
+import { Dash, Meta, MobileNav, Sidebar } from "../../components";
+import AppBar from "../../components/dashboard/AppBar";
+import { MdArrowDropDown } from "react-icons/md";
+import { FaFolderOpen } from "react-icons/fa";
+import userDataContext from "../../context/UserDataContext";
+import Transactions from "../../components/dashboard/Transactions";
+import Container from "../../components/dashboard/Container";
 
 const Deposit = () => {
   const { transactions, currency } = useContext(userDataContext);
 
   const deposits = transactions.filter(
-    (transaction) => transaction.type.toLowerCase() === 'deposit'
+    (transaction) => transaction.type.toLowerCase() === "deposit"
   );
 
   return (
     <>
       <Meta
-        title='Incrypto Finance - Deposit - Online Bank'
-        description='Incrypto Financial Bank | Deposit into your account'
+        title="Incrypto Finance - Deposit - Online Bank"
+        description="Incrypto Financial Bank | Deposit into your account"
       />
       <Dash />
 
-      <Box minHeight='100vh' sx={{ background: 'var(--darker)' }}>
+      <Box minHeight="100vh" sx={{ background: "var(--darker)" }}>
         <Sidebar>
-          <AppBar page='Deposit' />
-          <Box
-            sx={{
-              width: '100%',
-              maxWidth: '1024px',
-              margin: 'auto',
-              background: 'var(--dark)',
-              borderRadius: 1,
-              border: '1px solid #333',
-              mb: 4,
-              p: { xs: 2, sm: 4 },
-            }}
-          >
+          <AppBar page="Deposit" />
+          <Container>
             <Typography>FUND YOUR ACCOUNT</Typography>
             <Stack
               mt={2}
-              direction={{ xs: 'column', md: 'row' }}
-              alignItems='center'
-              justifyContent='flex-start'
+              direction={{ xs: "column", md: "row" }}
+              alignItems="center"
+              justifyContent="flex-start"
               gap={2}
-              width={{ xs: '100%', lg: '50%' }}
             >
               <Button
-                variant='text'
+                variant="text"
                 disableElevation
                 endIcon={<MdArrowDropDown />}
                 sx={{
-                  color: '#fff',
-                  textTransform: 'capitalize',
+                  p: 2,
+                  color: "#fff",
+                  textTransform: "capitalize",
                   fontWeight: 500,
-                  fontFamily: 'inherit',
-                  background: 'var(--green)',
-                  transition: '0.5s ease-in',
+                  fontFamily: "inherit",
+                  background: "var(--green)",
+                  transition: "0.5s ease-in",
+                  borderRadius: 2,
 
-                  '&:hover': {
-                    transition: '0.5s ease-out',
-                    background: 'var(--green-hover)',
+                  "&:hover": {
+                    transition: "0.5s ease-out",
+                    background: "var(--green-hover)",
                   },
-                  width: { xs: '100%', lg: '50%' },
+                  width: "100%",
                 }}
               >
                 Select Payment Method
               </Button>
               <Button
-                variant='text'
+                variant="text"
                 disableElevation
                 sx={{
-                  color: '#fff',
-                  textTransform: 'capitalize',
+                  p: 2,
+                  color: "#fff",
+                  textTransform: "capitalize",
                   fontWeight: 500,
-                  fontFamily: 'inherit',
-                  background: 'var(--green)',
-                  transition: '0.5s ease-in',
+                  fontFamily: "inherit",
+                  background: "var(--green)",
+                  transition: "0.5s ease-in",
+                  borderRadius: 2,
 
-                  '&:hover': {
-                    transition: '0.5s ease-out',
-                    background: 'var(--green-hover)',
+                  "&:hover": {
+                    transition: "0.5s ease-out",
+                    background: "var(--green-hover)",
                   },
-                  width: { xs: '100%', lg: '50%' },
+                  width: "100%",
                 }}
               >
                 Upload Proof of Deposit
               </Button>
             </Stack>
-          </Box>
-          <Box
-            sx={{
-              width: '100%',
-              maxWidth: '1024px',
-              margin: 'auto',
-              p: { xs: 2, sm: 4 },
-              background: 'var(--dark)',
-              borderRadius: 1,
-              border: '1px solid #333',
-            }}
-          >
+          </Container>
+          <Container>
             <Typography>DEPOSIT HISTORY</Typography>
             {(!deposits || deposits.length === 0) && (
               <Stack
-                alignItems='center'
-                justifyContent='center'
+                alignItems="center"
+                justifyContent="center"
                 mt={8}
                 py={2}
-                sx={{ color: 'var(--mid)' }}
+                sx={{ color: "var(--mid)" }}
               >
-                <Box sx={{ fontSize: '64px' }}>
+                <Box sx={{ fontSize: "64px" }}>
                   <FaFolderOpen />
                 </Box>
                 <Typography>No Transactions Yet</Typography>
@@ -118,7 +101,7 @@ const Deposit = () => {
             {deposits && deposits.length > 0 && (
               <Transactions transactions={deposits} currency={currency} />
             )}
-          </Box>
+          </Container>
         </Sidebar>
       </Box>
       <MobileNav />
