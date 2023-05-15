@@ -271,6 +271,30 @@ const Profile = () => {
             </Grid>
           </Container>
           <ReferralCard />
+
+          <Button
+            variant="text"
+            disableElevation
+            sx={{
+              p: 1,
+              color: "#fff",
+              textTransform: "capitalize",
+              fontWeight: 500,
+              fontFamily: "inherit",
+              background: "var(--red)",
+              transition: "0.5s ease-in",
+              borderRadius: 2,
+
+              "&:hover": {
+                transition: "0.5s ease-out",
+                background: "var(--red-hover)",
+              },
+              width: "100%",
+            }}
+            onClick={() => {}}
+          >
+            Logout
+          </Button>
         </Sidebar>
       </Box>
       <MobileNav />

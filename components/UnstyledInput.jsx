@@ -1,9 +1,9 @@
-import * as React from 'react';
-import { useInput } from '@mui/base';
-import { styled } from '@mui/system';
-import { unstable_useForkRef as useForkRef } from '@mui/utils';
+import * as React from "react";
+import { useInput } from "@mui/base";
+import { styled } from "@mui/system";
+import { unstable_useForkRef as useForkRef } from "@mui/utils";
 
-const StyledInputElement = styled('input')(
+const StyledInputElement = styled("input")(
   ({ theme }) => `
   width: 100%;
   font-family: 'Public sans;
@@ -31,8 +31,13 @@ const CustomInput = React.forwardRef(function CustomInput(props, ref) {
   inputProps.ref = useForkRef(inputProps.ref, ref);
 
   return (
-    <div {...getRootProps()} style={{ width: '100%' }}>
-      <StyledInputElement {...props} {...inputProps} required sx={{ mb: 2 }} />
+    <div {...getRootProps()} style={{ width: "100%" }}>
+      <StyledInputElement
+        {...props}
+        {...inputProps}
+        required
+        sx={{ mb: 2, ...props.sx }}
+      />
     </div>
   );
 });

@@ -6,10 +6,12 @@
   --green-hover: rgb(6, 176, 105);
   --blue-light: rgb(1, 126, 255, 0.2);
   --blue: rgb(1, 126, 255);
+  --blue-hover: rgb(10, 100, 190);
   --pale-blue: #a5c5e6;
   --light-blue: #60aeff;
   --red-light: rgb(219, 25, 41, 0.3);
   --red: #db1929;
+  --red-hover: #a51420;
   --dark: #252837;
   --darker: #1e1c2a;
   --mid: #ccc;
@@ -117,4 +119,9 @@ span.em {
 .transaction-icon.loan {
   color: var(--blue);
   background: var(--blue-light);
+}
+
+button {
+  text-transform: capitalize !important;
+  font-weight: 500 !important;
 }

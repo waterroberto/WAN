@@ -58,7 +58,7 @@ const cardsData = [
 
 export default function InvestCards() {
   return (
-    <Box>
+    <Box maxWidth='1024px' mx='auto'>
       <Typography variant='h5' component='p' sx={{ fontWeight: 700 }}>
         Build Your Wealth
       </Typography>
