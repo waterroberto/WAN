@@ -1,99 +1,147 @@
-import React from 'react';
-import { Footer, Meta, Layout, Navbar } from '../components';
-import { Box, Typography, Button } from '@mui/material';
-import CustomInput from '../components/UnstyledInput';
-import Link from 'next/link';
-import { useRouter } from 'next/router';
+import React from "react";
+import { Footer, Meta, Layout, Navbar } from "../components";
+import { Box, Typography, Button } from "@mui/material";
+import CustomInput from "../components/UnstyledInput";
+import Link from "next/link";
+import { useRouter } from "next/router";
+import { useState } from "react";
+import { AuthService } from "../services/auth";
+import cogoToast from "cogo-toast";
 
 const Login = () => {
   const router = useRouter();
+  const [formData, setFormData] = useState({ email: "", password: "" });
+  const [isLoading, setIsLoading] = useState(false);
+
+  const { email, password } = formData;
+
+  const loginHandler = async () => {
+    setIsLoading(true);
+    try {
+      // { email: support@blueshipfinance.online password: support17052023%%}
+      const req = await AuthService.login(email, password);
+
+      if (req) {
+        console.log(req);
+
+        cogoToast.success("Welcome");
+        router.replace("/account");
+      }
+    } catch (error) {
+      console.log(error);
+
+      cogoToast.error(AuthService.processError(error.code));
+    }
+
+    setIsLoading(false);
+  };
+
+  const inputChangeHandler = (e) => {
+    setFormData((prev) => ({
+      ...prev,
+      [e.target.id]: e.target.value,
+    }));
+  };
 
   return (
     <>
       <Meta
-        title='Login - Incrypto Finanace - Online crypto banking for everyone -
-        Homepage'
-        description='Login to your Incrypto Account - Online crypto banking for everyone - Login page'
+        title="Login - Incrypto Finanace - Online crypto banking for everyone -
+        Homepage"
+        description="Login to your Incrypto Account - Online crypto banking for everyone - Login page"
       />
       <Box
         mt={8}
         sx={{
           background:
-            'linear-gradient(55deg, rgba(6,6,6,1) 0%, rgba(27,27,27,1) 53%, rgba(27,34,52,1) 76%, rgba(9,9,9,1) 100%)',
+            "linear-gradient(55deg, rgba(6,6,6,1) 0%, rgba(27,27,27,1) 53%, rgba(27,34,52,1) 76%, rgba(9,9,9,1) 100%)",
         }}
       >
         <Navbar />
-
         <Layout>
           <Typography
-            component='h2'
+            component="h2"
             mb={2}
             sx={{
               fontSize: {
-                xs: '2rem',
-                sm: '2rem',
-                md: '2.5rem',
+                xs: "2rem",
+                sm: "2rem",
+                md: "2.5rem",
               },
               fontWeight: 700,
-              fontFamily: 'inherit',
-              textAlign: 'center',
-              color: '#fff',
+              fontFamily: "inherit",
+              textAlign: "center",
+              color: "#fff",
             }}
           >
             Sign In
           </Typography>
 
-          <form style={{ width: '100%', margin: 'auto', maxWidth: '512px' }}>
+          <form style={{ width: "100%", margin: "auto", maxWidth: "512px" }}>
             <CustomInput
-              aria-label='Email'
-              placeholder='Email'
-              type='email'
+              aria-label="Email"
+              placeholder="Email"
+              type="email"
               required
+              id="email"
+              value={email}
+              onChange={inputChangeHandler}
             />
             <CustomInput
-              aria-label='Password'
-              placeholder='Password'
-              type='password'
+              aria-label="Password"
+              placeholder="Password"
+              type="password"
               required
+              id="password"
+              value={password}
+              onChange={inputChangeHandler}
             />
             <Link
-              href='/forgot-password'
+              href="/forgot-password"
               style={{
-                color: '#1b4cd1',
+                color: "#1b4cd1",
                 fontWeight: 700,
-                textAlign: 'right',
-                display: 'block',
-                marginTop: '8px',
-                marginBottom: '8px',
+                textAlign: "right",
+                display: "block",
+                marginTop: "8px",
+                marginBottom: "8px",
               }}
             >
               Forgot Password?
             </Link>
             <Button
-              variant='contained'
-              type='button'
+              variant="contained"
+              type="button"
               disableElevation
               sx={{
-                color: '#fff',
-                padding: '0.8rem',
+                padding: "0.8rem",
                 fontWeight: 300,
-                fontFamily: 'inherit',
-                width: '100%',
-                maxWidth: '512px',
+                fontFamily: "inherit",
+                width: "100%",
+                maxWidth: "512px",
                 mb: 2,
-                '&:hover': {
-                  background: '#1b4cd1',
+                cursor: isLoading ? "not-allowed" : "cursor",
+                background: "var(--blue)",
+                color: "#fff",
+
+                "&:hover": {
+                  background: isLoading ? "var(--mid)" : "#1b4cd1",
+                },
+                "&:disabled": {
+                  background: "var(--light-blue)",
+                  cursor: "not-allowed",
                 },
               }}
-              onClick={() => router.replace('/account')}
+              onClick={loginHandler}
+              disabled={isLoading}
             >
-              Login
+              {isLoading ? "Loading..." : "Login"}
             </Button>
-            <Typography textAlign='right' sx={{ color: '#fff' }}>
-              <span>Don`t have an account?</span> {'  '}
+            <Typography textAlign="right" sx={{ color: "#fff" }}>
+              <span>Don`t have an account?</span> {"  "}
               <Link
-                href='/register'
-                style={{ color: '#1b4cd1', fontWeight: 700 }}
+                href="/register"
+                style={{ color: "#1b4cd1", fontWeight: 700 }}
               >
                 Register
               </Link>

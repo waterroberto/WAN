@@ -10,6 +10,7 @@ import parseDate from "../../utils/parseDate";
 import { AiFillCheckCircle } from "react-icons/ai";
 import { MdCancel } from "react-icons/md";
 import Container from "../../components/dashboard/Container";
+import PrivateRoute from "../../components/auth/PrivateRoute";
 
 const Profile = () => {
   const {
@@ -28,7 +29,7 @@ const Profile = () => {
   } = useContext(userDataContext);
 
   return (
-    <>
+    <PrivateRoute>
       <Meta
         title="Incrypto Finance - Profile - Online Bank"
         description="Incrypto Financial Bank | Profile into your account"
@@ -298,7 +299,7 @@ const Profile = () => {
         </Sidebar>
       </Box>
       <MobileNav />
-    </>
+    </PrivateRoute>
   );
 };
 

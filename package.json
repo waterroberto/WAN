@@ -17,6 +17,7 @@
     "cogo-toast": "^4.2.3",
     "eslint": "8.29.0",
     "eslint-config-next": "13.0.6",
+    "firebase": "^9.22.0",
     "next": "13.0.6",
     "notistack": "^2.0.8",
     "nprogress": "^0.2.0",

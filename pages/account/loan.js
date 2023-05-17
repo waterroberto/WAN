@@ -17,6 +17,7 @@ import userDataContext from "../../context/UserDataContext";
 import PopupModal from "../../components/Global/Modal";
 import Container from "../../components/dashboard/Container";
 import CustomInput from "../../components/UnstyledInput";
+import PrivateRoute from "../../components/auth/PrivateRoute";
 
 const Loan = (props) => {
   const [open1, setOpen1] = useState(false);
@@ -30,7 +31,7 @@ const Loan = (props) => {
   const handleClose2 = () => setOpen2(false);
 
   return (
-    <>
+    <PrivateRoute>
       <Meta
         title="Incrypto Finance - Loan - Online Bank"
         description="Incrypto Financial Bank | Loan into your account"
@@ -310,7 +311,7 @@ const Loan = (props) => {
         </Sidebar>
       </Box>
       <MobileNav />
-    </>
+    </PrivateRoute>
   );
 };
 

@@ -33,6 +33,7 @@ const CustomInput = React.forwardRef(function CustomInput(props, ref) {
   return (
     <div {...getRootProps()} style={{ width: "100%" }}>
       <StyledInputElement
+        id="styled-input"
         {...props}
         {...inputProps}
         required

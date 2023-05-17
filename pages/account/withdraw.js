@@ -1,4 +1,5 @@
 import { Box, Stack, Typography, Button } from "@mui/material";
+import PrivateRoute from "../../components/auth/PrivateRoute";
 import Container from "../../components/dashboard/Container";
 import Transactions from "../../components/dashboard/Transactions";
 import { FaFolderOpen } from "react-icons/fa";
@@ -16,7 +17,7 @@ const Withdraw = () => {
   );
 
   return (
-    <>
+    <PrivateRoute>
       <Meta
         title="Incrypto Finance - Withdraw - Online Bank"
         description="Incrypto Financial Bank | Withdraw into your account"
@@ -127,7 +128,7 @@ const Withdraw = () => {
         </Sidebar>
       </Box>
       <MobileNav />
-    </>
+    </PrivateRoute>
   );
 };
 

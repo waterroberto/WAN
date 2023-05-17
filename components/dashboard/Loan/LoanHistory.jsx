@@ -301,12 +301,12 @@ const LoanHistory = ({
             .map((transaction, index) => (
               <>
                 <div
+                  key={`${transaction.type}-${index}_${index * 0.5}`}
                   onClick={() => {
                     handleModalOpen();
                     setModalBody(transaction);
                   }}
                   style={{ cursor: "pointer", width: "100%" }}
-                  key={transaction.type + (index + 1)}
                 >
                   <Stack
                     direction="row"

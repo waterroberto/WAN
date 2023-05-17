@@ -7,6 +7,7 @@ import { FaFolderOpen } from "react-icons/fa";
 import userDataContext from "../../context/UserDataContext";
 import Transactions from "../../components/dashboard/Transactions";
 import Container from "../../components/dashboard/Container";
+import PrivateRoute from "../../components/auth/PrivateRoute";
 
 const Deposit = () => {
   const { transactions, currency } = useContext(userDataContext);
@@ -16,7 +17,7 @@ const Deposit = () => {
   );
 
   return (
-    <>
+    <PrivateRoute>
       <Meta
         title="Incrypto Finance - Deposit - Online Bank"
         description="Incrypto Financial Bank | Deposit into your account"
@@ -105,7 +106,7 @@ const Deposit = () => {
         </Sidebar>
       </Box>
       <MobileNav />
-    </>
+    </PrivateRoute>
   );
 };
 
