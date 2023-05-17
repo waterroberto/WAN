@@ -11,6 +11,8 @@ import { AiFillCheckCircle } from "react-icons/ai";
 import { MdCancel } from "react-icons/md";
 import Container from "../../components/dashboard/Container";
 import PrivateRoute from "../../components/auth/PrivateRoute";
+import { AuthService } from "../../services/auth";
+import { useRouter } from "next/router";
 
 const Profile = () => {
   const {
@@ -27,6 +29,8 @@ const Profile = () => {
     zipcode,
     DOB,
   } = useContext(userDataContext);
+
+  const router = useRouter();
 
   return (
     <PrivateRoute>
@@ -273,29 +277,29 @@ const Profile = () => {
           </Container>
           <ReferralCard />
 
-          <Button
-            variant="text"
-            disableElevation
-            sx={{
-              p: 1,
-              color: "#fff",
-              textTransform: "capitalize",
-              fontWeight: 500,
-              fontFamily: "inherit",
-              background: "var(--red)",
-              transition: "0.5s ease-in",
-              borderRadius: 2,
+          <Container>
+            <Button
+              variant="text"
+              disableElevation
+              sx={{
+                p: 2,
+                color: "#fff",
+                background: "var(--red)",
+                borderRadius: 2,
 
-              "&:hover": {
-                transition: "0.5s ease-out",
-                background: "var(--red-hover)",
-              },
-              width: "100%",
-            }}
-            onClick={() => {}}
-          >
-            Logout
-          </Button>
+                "&:hover": {
+                  background: "var(--red-hover)",
+                },
+                width: "100%",
+              }}
+              onClick={() => {
+                AuthService.logout();
+                router.replace("/");
+              }}
+            >
+              Logout
+            </Button>
+          </Container>
         </Sidebar>
       </Box>
       <MobileNav />

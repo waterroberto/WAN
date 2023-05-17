@@ -22,8 +22,6 @@ const Login = () => {
       const req = await AuthService.login(email, password);
 
       if (req) {
-        console.log(req);
-
         cogoToast.success("Welcome");
         router.replace("/account");
       }
@@ -78,7 +76,8 @@ const Login = () => {
           </Typography>
 
           <form style={{ width: "100%", margin: "auto", maxWidth: "512px" }}>
-            <CustomInput
+            <input
+              className="styled-input"
               aria-label="Email"
               placeholder="Email"
               type="email"
@@ -87,7 +86,8 @@ const Login = () => {
               value={email}
               onChange={inputChangeHandler}
             />
-            <CustomInput
+            <input
+              className="styled-input"
               aria-label="Password"
               placeholder="Password"
               type="password"

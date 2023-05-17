@@ -16,7 +16,7 @@ import { useContext, useState } from "react";
 import userDataContext from "../../context/UserDataContext";
 import PopupModal from "../../components/Global/Modal";
 import Container from "../../components/dashboard/Container";
-import CustomInput from "../../components/UnstyledInput";
+// import CustomInput from "../../components/UnstyledInput";
 import PrivateRoute from "../../components/auth/PrivateRoute";
 
 const Loan = (props) => {
@@ -57,7 +57,8 @@ const Loan = (props) => {
           alignItems="center"
         >
           <Grid item xs={12} sm={6} width="100%">
-            <CustomInput
+            <input
+              className="styled-input"
               aria-label="Desired Amount"
               placeholder="Desired Amount"
               type="number"
@@ -70,7 +71,8 @@ const Loan = (props) => {
             />
           </Grid>
           <Grid item xs={12} sm={6} width="100%">
-            <CustomInput
+            <input
+              className="styled-input"
               aria-label="Repayment Duration"
               placeholder="Repayment Duration (months)"
               type="number"
@@ -95,7 +97,8 @@ const Loan = (props) => {
           alignItems="center"
         >
           <Grid item xs={12} sm={6} width="100%">
-            <CustomInput
+            <input
+              className="styled-input"
               aria-label="Monthly Income"
               placeholder="Monthly Income"
               type="number"
@@ -178,7 +181,8 @@ const Loan = (props) => {
             </FormControl>
           </Grid>
           <Grid item xs={12} sm={6} width="100%">
-            <CustomInput
+            <input
+              className="styled-input"
               aria-label="Employment Duration"
               placeholder="Employment Duration (Years)"
               type="number"

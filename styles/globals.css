@@ -127,7 +127,7 @@ button {
   font-weight: 500 !important;
 }
 
-#styled-input {
+.styled-input {
   width: 100%;
   font-family: "Public sans" sans-serif;
   font-size: 17px !important;
@@ -142,4 +142,5 @@ button {
   max-width: 512px;
   display: block;
   margin: auto;
+  margin-bottom: 8px;
 }
