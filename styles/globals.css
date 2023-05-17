@@ -135,10 +135,10 @@ button {
   padding: 1.25rem 1rem;
   border-radius: 8px;
   color: #eee;
-  background: #1b1b1b;
+  background: var(--dark);
   border: none;
   outline: none;
-  border: 1px solid #333;
+  border: 1px solid #444;
   max-width: 512px;
   display: block;
   margin: auto;
