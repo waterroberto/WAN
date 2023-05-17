@@ -16,7 +16,6 @@ export function AuthContextProvider({ children }) {
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
       if (user) {
-        console.log(user);
         setIsAuthenticated(true);
       }
       setCheckingStatus(false);

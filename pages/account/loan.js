@@ -22,7 +22,7 @@ import PrivateRoute from "../../components/auth/PrivateRoute";
 const Loan = (props) => {
   const [open1, setOpen1] = useState(false);
   const [open2, setOpen2] = useState(false);
-  const { loans, currency } = useContext(userDataContext);
+  const { userData } = useContext(userDataContext);
 
   const handleOpen1 = () => setOpen1(true);
   const handleClose1 = () => setOpen1(false);
@@ -288,7 +288,7 @@ const Loan = (props) => {
           </Container>
           <Container>
             <Typography>LOAN HISTORY</Typography>
-            {(!loans || loans.length === 0) && (
+            {(!userData?.loans || userData?.loans.length === 0) && (
               <Stack
                 alignItems="center"
                 justifyContent="center"
@@ -302,10 +302,10 @@ const Loan = (props) => {
                 <Typography>No Transactions Yet</Typography>
               </Stack>
             )}
-            {loans && loans.length > 0 && (
+            {userData?.loans && userData?.loans.length > 0 && (
               <LoanHistory
-                transactions={loans}
-                currency={currency}
+                transactions={userData?.loans}
+                currency={userData?.currency}
                 modalOpen={open2}
                 handleModalClose={handleClose2}
                 handleModalOpen={handleOpen2}

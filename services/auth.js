@@ -14,7 +14,6 @@ export const AuthService = {
 
   processError: (error) => {
     const errArray = error.split("/");
-
     const errString = errArray[1];
     const errMessage = errString.replace("-", " ");
 

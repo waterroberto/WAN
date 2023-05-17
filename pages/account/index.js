@@ -10,7 +10,7 @@ import userDataContext from "../../context/UserDataContext";
 import PrivateRoute from "../../components/auth/PrivateRoute";
 
 const Dashboard = () => {
-  const { transactions, currency } = useContext(userDataContext);
+  const { userData } = useContext(userDataContext);
 
   return (
     <PrivateRoute>
@@ -34,12 +34,12 @@ const Dashboard = () => {
               Transactions
             </Typography>
             <Button variant="outlined" color="secondary">
-              {transactions.length}
+              {userData?.transactions?.length}
             </Button>
           </Stack>
           <Transactions
-            transactions={transactions}
-            currency={currency}
+            transactions={userData?.transactions}
+            currency={userData?.currency}
             customStyles={{ p: { xs: 2, sm: 3, md: 4 } }}
           />
           <InvestCards />

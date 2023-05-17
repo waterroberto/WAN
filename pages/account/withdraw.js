@@ -10,9 +10,9 @@ import AppBar from "../../components/dashboard/AppBar";
 import userDataContext from "../../context/UserDataContext";
 
 const Withdraw = () => {
-  const { transactions, currency } = useContext(userDataContext);
+  const { userData } = useContext(userDataContext);
 
-  const withdrawals = transactions.filter(
+  const withdrawals = userData?.transactions.filter(
     (transaction) => transaction.type.toLowerCase() === "withdraw"
   );
 
@@ -122,7 +122,10 @@ const Withdraw = () => {
               </Stack>
             )}
             {withdrawals && withdrawals.length > 0 && (
-              <Transactions transactions={withdrawals} currency={currency} />
+              <Transactions
+                transactions={withdrawals}
+                currency={userData?.currency}
+              />
             )}
           </Container>
         </Sidebar>

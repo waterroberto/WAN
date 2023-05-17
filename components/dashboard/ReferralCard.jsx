@@ -6,7 +6,7 @@ import userDataContext from "../../context/UserDataContext";
 import cogoToast from "cogo-toast";
 
 const ReferralCard = () => {
-  const { id } = useContext(userDataContext);
+  const { userData } = useContext(userDataContext);
 
   return (
     <Box
@@ -62,8 +62,9 @@ const ReferralCard = () => {
             Earn 5$ when you refer a friend and they make a deposit of over 10$
           </Typography>
           <Typography
+            fontSize={14}
             sx={{
-              fontWeight: 700,
+              fontWeight: 600,
               mt: 1,
               cursor: "pointer",
               color: "var(--dark)",
@@ -71,12 +72,12 @@ const ReferralCard = () => {
             onClick={() => {
               window.navigator.clipboard
                 .writeText(
-                  `https://${window.location.host}/register?refBy=${id}`
+                  `https://${window.location.host}/register?refBy=${userData?.id}`
                 )
                 .then(() => cogoToast.success("Copied"));
             }}
           >
-            {id}
+            {userData?.id}
           </Typography>
         </Box>
         <Image

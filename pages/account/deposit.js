@@ -10,9 +10,9 @@ import Container from "../../components/dashboard/Container";
 import PrivateRoute from "../../components/auth/PrivateRoute";
 
 const Deposit = () => {
-  const { transactions, currency } = useContext(userDataContext);
+  const { userData } = useContext(userDataContext);
 
-  const deposits = transactions.filter(
+  const deposits = userData?.transactions.filter(
     (transaction) => transaction.type.toLowerCase() === "deposit"
   );
 
@@ -100,7 +100,10 @@ const Deposit = () => {
               </Stack>
             )}
             {deposits && deposits.length > 0 && (
-              <Transactions transactions={deposits} currency={currency} />
+              <Transactions
+                transactions={deposits}
+                currency={userData?.currency}
+              />
             )}
           </Container>
         </Sidebar>

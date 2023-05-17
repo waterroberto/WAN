@@ -15,20 +15,7 @@ import { AuthService } from "../../services/auth";
 import { useRouter } from "next/router";
 
 const Profile = () => {
-  const {
-    firstName,
-    lastName,
-    phone,
-    email,
-    documents: { passport },
-    accountLevel,
-    timeStamp,
-    isVerified = false,
-    gender,
-    country,
-    zipcode,
-    DOB,
-  } = useContext(userDataContext);
+  const { userData } = useContext(userDataContext);
 
   const router = useRouter();
 
@@ -49,7 +36,7 @@ const Profile = () => {
             alignItems="center"
             gap={2}
             sx={{
-              background: isVerified
+              background: userData?.isVerified
                 ? "var(--green-light)"
                 : "var(--red-light)",
               color: "#fff",
@@ -59,9 +46,9 @@ const Profile = () => {
               mx: "auto",
             }}
           >
-            {isVerified ? <AiFillCheckCircle /> : <MdCancel />}
+            {userData?.isVerified ? <AiFillCheckCircle /> : <MdCancel />}
             <Typography fontWeight={600}>
-              {isVerified ? "Email is Verified" : "Unverified Email"}
+              {userData?.isVerified ? "Email is Verified" : "Unverified Email"}
             </Typography>
           </Stack>
           <Container>
@@ -77,9 +64,9 @@ const Profile = () => {
                 <Stack direction="row" alignItems="center" gap={4}>
                   <Avatar
                     {...stringAvatar(
-                      `${firstName.toUpperCase()} ${lastName.toUpperCase()}`
+                      `${userData?.firstName.toUpperCase()} ${userData?.lastName.toUpperCase()}`
                     )}
-                    src={passport}
+                    src={userData?.documents?.passport}
                     sx={{
                       width: 120,
                       height: 120,
@@ -88,10 +75,11 @@ const Profile = () => {
                   />
                   <Box>
                     <Typography fontWeight={800} fontSize={20}>
-                      {firstName.toUpperCase()} {lastName.toUpperCase()}
+                      {userData?.firstName.toUpperCase()}{" "}
+                      {userData?.lastName.toUpperCase()}
                     </Typography>
                     <Typography fontSize={16} fontWeight={300}>
-                      {email}
+                      {userData?.email}
                     </Typography>
                   </Box>
                 </Stack>
@@ -101,7 +89,7 @@ const Profile = () => {
                   Account Tier
                 </Typography>
                 <Typography fontSize={16} fontWeight={300}>
-                  Level {accountLevel}
+                  Level {userData?.accountLevel}
                 </Typography>
               </Grid>
               <Grid item xs={12} sm={6} md={4} width="100%">
@@ -109,12 +97,12 @@ const Profile = () => {
                   Member Since
                 </Typography>
                 <Typography fontSize={16} fontWeight={300}>
-                  {parseDate(timeStamp)}
+                  {parseDate(userData?.timeStamp?.seconds * 1000)}
                 </Typography>
               </Grid>
             </Grid>
           </Container>
-          {(accountLevel < 3 || !isVerified) && (
+          {(userData?.accountLevel < 3 || !userData?.isVerified) && (
             <Container>
               <Typography fontWeight={800} fontSize={20} mb={4}>
                 Account Verification
@@ -126,7 +114,7 @@ const Profile = () => {
                 gap={2}
                 width="100%"
               >
-                {!isVerified && (
+                {!userData?.isVerified && (
                   <Button
                     variant="text"
                     disableElevation
@@ -150,7 +138,7 @@ const Profile = () => {
                     Verify Email
                   </Button>
                 )}
-                {accountLevel !== 3 && (
+                {userData?.accountLevel !== 3 && (
                   <Button
                     variant="text"
                     disableElevation
@@ -171,7 +159,7 @@ const Profile = () => {
                       width: "100%",
                     }}
                   >
-                    Upgrade to Tier {accountLevel + 1}
+                    Upgrade to Tier {userData?.accountLevel + 1}
                   </Button>
                 )}
               </Stack>
@@ -198,7 +186,7 @@ const Profile = () => {
                   fontSize={18}
                   textTransform="capitalize"
                 >
-                  {firstName} {lastName}
+                  {userData?.firstName} {userData?.lastName}
                 </Typography>
               </Grid>
               <Grid item xs={6} sm={6} md={4} lg={3} width="100%">
@@ -210,7 +198,7 @@ const Profile = () => {
                   fontSize={18}
                   textTransform="capitalize"
                 >
-                  {phone}
+                  {userData?.phone}
                 </Typography>
               </Grid>
               <Grid item xs={12} sm={6} md={4} lg={3} width="100%">
@@ -222,7 +210,7 @@ const Profile = () => {
                   fontSize={18}
                   textTransform="lowercase"
                 >
-                  {email}
+                  {userData?.email}
                 </Typography>
               </Grid>
               <Grid item xs={6} sm={6} md={4} lg={3} width="100%">
@@ -234,7 +222,7 @@ const Profile = () => {
                   fontSize={18}
                   textTransform="capitalize"
                 >
-                  {gender}
+                  {userData?.gender}
                 </Typography>
               </Grid>
               <Grid item xs={6} sm={6} md={4} lg={3} width="100%">
@@ -246,7 +234,7 @@ const Profile = () => {
                   fontSize={18}
                   textTransform="capitalize"
                 >
-                  {country}
+                  {userData?.country}
                 </Typography>
               </Grid>
               <Grid item xs={6} sm={6} md={4} lg={3} width="100%">
@@ -258,7 +246,7 @@ const Profile = () => {
                   fontSize={18}
                   textTransform="capitalize"
                 >
-                  {zipcode}
+                  {userData?.zipcode}
                 </Typography>
               </Grid>
               <Grid item xs={6} sm={6} md={4} lg={3} width="100%">
@@ -270,13 +258,12 @@ const Profile = () => {
                   fontSize={18}
                   textTransform="capitalize"
                 >
-                  {parseDate(DOB)}
+                  {parseDate(userData?.DOB?.seconds * 1000)}
                 </Typography>
               </Grid>
             </Grid>
           </Container>
           <ReferralCard />
-
           <Container>
             <Button
               variant="text"
