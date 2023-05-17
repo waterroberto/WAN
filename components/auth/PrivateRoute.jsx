@@ -3,7 +3,7 @@ import AuthContext from "../../context/AuthContext";
 import { useRouter } from "next/router";
 import Spinner from "../Global/Spinner";
 
-export default function ({ children }) {
+export default function PrivateRoute({ children }) {
   const router = useRouter();
   const { checkingStatus, isAuthenticated } = useContext(AuthContext);
 
@@ -11,7 +11,7 @@ export default function ({ children }) {
     if (!checkingStatus && !isAuthenticated) {
       router.replace("/login");
     }
-  }, [checkingStatus, isAuthenticated]);
+  }, [router, checkingStatus, isAuthenticated]);
 
   return (
     <section id="private-route">
