@@ -52,8 +52,10 @@ export const UserService = {
           application_date: new Date(),
           payout_date: ". . .",
           repayment_date: ". . .",
+          dated: new Date(),
         },
       ],
+      canRequestLoan: false,
     });
 
     return {

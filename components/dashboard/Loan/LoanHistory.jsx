@@ -212,7 +212,7 @@ const LoanHistory = ({
                   fontSize: "14px",
                 }}
               >
-                {parseDate(modalBody?.application_date)}
+                {parseDate(modalBody?.application_date?.seconds * 1000)}
               </Typography>
             </Stack>
             <Divider color="#555" />
@@ -245,7 +245,7 @@ const LoanHistory = ({
                 {modalBody?.status === "pending"
                   ? ". . ."
                   : modalBody?.status === "approved"
-                  ? parseDate(modalBody?.payout_date)
+                  ? parseDate(modalBody?.payout_date?.seconds * 1000)
                   : modalBody?.status === "declined"
                   ? ". . ."
                   : ". . ."}
@@ -296,7 +296,8 @@ const LoanHistory = ({
           {[...transactions]
             .sort(
               (a, b) =>
-                new Date(b.dated).getTime() - new Date(a.dated).getTime()
+                new Date(b.dated?.seconds * 1000).getTime() -
+                new Date(a.dated?.seconds * 1000).getTime()
             )
             .map((transaction, index) => (
               <>
@@ -370,11 +371,15 @@ const LoanHistory = ({
                         }}
                       >
                         {transaction?.status === "pending"
-                          ? parseDate(transaction?.application_date)
+                          ? parseDate(
+                              transaction?.application_date?.seconds * 1000
+                            )
                           : transaction?.status === "approved"
-                          ? parseDate(transaction?.payout_date)
+                          ? parseDate(transaction?.payout_date?.seconds * 1000)
                           : transaction?.status === "declined"
-                          ? parseDate(transaction?.application_date)
+                          ? parseDate(
+                              transaction?.application_date?.seconds * 1000
+                            )
                           : ". . ."}
                       </Typography>
                     </Typography>

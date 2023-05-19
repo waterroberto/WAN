@@ -121,7 +121,7 @@ const Loan = (props) => {
         duration: +duration,
         employmentDuration: +employmentDuration,
         bankStatement: "",
-        applicationDate: new Date(),
+        applicationDate: new Date().getTime(),
       };
 
       try {
@@ -134,9 +134,21 @@ const Loan = (props) => {
           );
 
           console.log(pendingLoanRequest);
-          cogoToast.success("Loan sent");
+          cogoToast.success("Loan request submitted");
+          cogoToast.info("Our manager will contact you");
+
+          setFormData({
+            amount: "",
+            duration: "",
+            income: "",
+            placement: "Under Debt Review",
+            employmentStatus: "Permanent Employment",
+            employmentDuration: "",
+            bankStatement: "",
+          });
         }
 
+        handleClose1();
         setRequesting(false);
       } catch (error) {
         console.log(error);
