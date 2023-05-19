@@ -1,11 +1,9 @@
 import React from "react";
-import { Footer, Meta, Layout, Navbar } from "../components";
+import { Meta, Layout } from "../../components";
 import { Box, Typography, Button } from "@mui/material";
-import CustomInput from "../components/UnstyledInput";
-import Link from "next/link";
 import { useRouter } from "next/router";
 import { useState } from "react";
-import { AuthService } from "../services/auth";
+import { AuthService } from "../../services/auth";
 import cogoToast from "cogo-toast";
 
 const Login = () => {
@@ -44,17 +42,18 @@ const Login = () => {
   return (
     <>
       <Meta
-        title="Login - Blue Shipt Finanace - Online banking for everyone"
-        description="Login to your Blue Shipt Account - Online banking for everyone"
+        title="Login - Blue Ship Finance - Online banking for everyone -
+        Homepage"
+        description="Login to your Blue Ship Account - Online banking for everyone - Login page"
       />
       <Box
-        mt={8}
+        pt={16}
         sx={{
+          minHeight: "100vh",
           background:
             "linear-gradient(55deg, rgba(6,6,6,1) 0%, rgba(27,27,27,1) 53%, rgba(27,34,52,1) 76%, rgba(9,9,9,1) 100%)",
         }}
       >
-        <Navbar />
         <Layout>
           <Typography
             component="h2"
@@ -71,7 +70,7 @@ const Login = () => {
               color: "#fff",
             }}
           >
-            Sign In
+            Admin Portal
           </Typography>
 
           <form style={{ width: "100%", margin: "auto", maxWidth: "512px" }}>
@@ -95,19 +94,6 @@ const Login = () => {
               value={password}
               onChange={inputChangeHandler}
             />
-            <Link
-              href="/forgot-password"
-              style={{
-                color: "#1b4cd1",
-                fontWeight: 700,
-                textAlign: "right",
-                display: "block",
-                marginTop: "8px",
-                marginBottom: "8px",
-              }}
-            >
-              Forgot Password?
-            </Link>
             <Button
               variant="contained"
               type="button"
@@ -120,34 +106,26 @@ const Login = () => {
                 maxWidth: "512px",
                 mb: 2,
                 cursor: isLoading ? "not-allowed" : "cursor",
-                background: "var(--blue)",
+                background: "var(--secondary)",
                 color: "#fff",
 
                 "&:hover": {
-                  background: isLoading ? "var(--mid)" : "#1b4cd1",
+                  background: isLoading
+                    ? "var(--mid)"
+                    : "var(--secondary-clicked)",
                 },
                 "&:disabled": {
-                  background: "var(--light-blue)",
+                  background: "var(--secondary-light)",
                   cursor: "not-allowed",
                 },
               }}
               onClick={loginHandler}
               disabled={isLoading}
             >
-              {isLoading ? "Loading..." : "Login"}
+              {isLoading ? "Authenticating..." : "Sign In"}
             </Button>
-            <Typography textAlign="right" sx={{ color: "#fff" }}>
-              <span>Don`t have an account?</span> {"  "}
-              <Link
-                href="/register"
-                style={{ color: "#1b4cd1", fontWeight: 700 }}
-              >
-                Register
-              </Link>
-            </Typography>
           </form>
         </Layout>
-        <Footer />
       </Box>
     </>
   );

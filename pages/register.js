@@ -36,9 +36,8 @@ const Register = () => {
   return (
     <>
       <Meta
-        title="Register - Incrypto Finance - Online crypto banking for everyone -
-        Homepage"
-        description="Get Stated with Incrypto Finance - Online crypto banking for everyone - Registeration page"
+        title="Register - Blue Ship Finance - Online crypto banking for everyone"
+        description="Get Stated with Blue Ship Finance - Online crypto banking for everyone"
       />
       <Navbar />
       <Box

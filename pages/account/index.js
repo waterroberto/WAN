@@ -25,10 +25,12 @@ const Dashboard = () => {
           <AppBar page="Dashboard" />
           <Heading />
           <CryptoMarquee />
+          <InvestCards />
           <Stack
             direction="row"
             alignItems="center"
             justifyContent="space-between"
+            mt={4}
           >
             <Typography sx={{ fontSize: "1.4rem", fontWeight: 700, p: 1 }}>
               Transactions
@@ -42,7 +44,6 @@ const Dashboard = () => {
             currency={userData?.currency}
             customStyles={{ p: { xs: 2, sm: 3, md: 4 } }}
           />
-          <InvestCards />
           <ReferralCard />
         </Sidebar>
       </Box>

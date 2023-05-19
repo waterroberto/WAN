@@ -83,7 +83,7 @@ const ReferralCard = () => {
         </Box>
         <Image
           src={logoOutlineDark}
-          alt="Logo outline dark for incrypto finance"
+          alt="Logo outline dark for blue ship finance"
           style={{
             height: "80px",
             width: "80px",

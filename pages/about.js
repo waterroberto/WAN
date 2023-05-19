@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import {
   Footer,
   Meta,
@@ -9,15 +9,15 @@ import {
   ContactInformation,
   GetStarted,
   FAQs,
-} from '../components';
+} from "../components";
 
 const About = () => {
   return (
     <>
       <Meta
-        title='About - Incrypto Finance - Online crypto banking for everyone -
-        Homepage'
-        description='About us - Incrypto Finance - Online crypto banking for everyone - About page'
+        title="About - Blue Shipe Finance - Online loans for everyone -
+        Homepage"
+        description="About us - Blue Shipe Finance - Online loans for everyone - About page"
       />
 
       <Navbar />

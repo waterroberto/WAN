@@ -1,4 +1,4 @@
-import { Box } from '@mui/material';
+import { Box } from "@mui/material";
 import {
   Footer,
   Navbar,
@@ -11,17 +11,15 @@ import {
   Partners,
   ContactInformation,
   GetStarted,
-} from '../components';
+} from "../components";
 
 export default function Home() {
   return (
     <>
       <Meta
-        title='Incrypto Finanace - Home - Online crypto banking for everyone -
-        Homepage'
-        description='Incrypto Financial Bank - Online crypto banking for everyone - Homepage - Incrypto Finanace'
+        title="Blue Ship Finance - Home - Online loans banking for everyone"
+        description="Blue Ship Financial Bank - Online loans banking for everyone - Homepage"
       />
-
       <Navbar />
       <Box pt={8}>
         <Hero />
