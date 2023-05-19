@@ -144,3 +144,8 @@ button {
   margin: auto;
   margin-bottom: 8px;
 }
+
+label {
+  display: block;
+  margin: 12px 0;
+}
