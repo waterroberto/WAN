@@ -180,7 +180,8 @@ const LoanHistory = ({
               >
                 {currency}
                 {Math.round(
-                  modalBody?.amount / modalBody?.duration
+                  (0.15 * modalBody?.amount) / modalBody?.duration +
+                    modalBody?.amount / modalBody?.duration
                 ).toLocaleString()}
                 /Month
               </Typography>
