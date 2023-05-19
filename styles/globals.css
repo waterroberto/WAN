@@ -1,15 +1,15 @@
 @import url("https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700&display=swap");
 
 :root {
-  --green-light: rgb(9, 219, 121, 0.3);
+  --green-light: rgb(9, 219, 121, 0.2);
   --green: rgb(9, 219, 121);
   --green-hover: rgb(6, 176, 105);
-  --blue-light: rgb(1, 126, 255, 0.2);
+  --blue-light: rgb(1, 126, 255, 0.1);
   --blue: rgb(1, 126, 255);
   --blue-hover: rgb(10, 100, 190);
   --pale-blue: #a5c5e6;
   --light-blue: #60aeff;
-  --red-light: rgb(219, 25, 41, 0.3);
+  --red-light: rgb(219, 25, 41, 0.2);
   --red: #db1929;
   --red-hover: #a51420;
   --dark: #252837;

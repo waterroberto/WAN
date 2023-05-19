@@ -20,6 +20,7 @@ import PrivateRoute from "../../components/auth/PrivateRoute";
 import cogoToast from "cogo-toast";
 
 import { UserService } from "../../services/user";
+import ReferralCard from "../../components/dashboard/ReferralCard";
 
 const Loan = (props) => {
   const [open1, setOpen1] = useState(false);
@@ -383,42 +384,70 @@ const Loan = (props) => {
         <Sidebar>
           <AppBar page="Loan" />
           <Container>
-            <Typography>LOAN APPLICATION</Typography>
-            <Stack
-              mt={2}
-              direction={{ xs: "column", md: "row" }}
-              alignItems="center"
-              justifyContent="flex-start"
-              gap={2}
-              width={{ xs: "100%", md: "50%" }}
-            >
-              <Button
-                variant="text"
-                disableElevation
+            <Typography fontWeight={700}>LOAN APPLICATION</Typography>
+            {!userData?.canRequestLoan && (
+              <Typography
+                mt={4}
+                p={3}
                 sx={{
-                  p: 2,
-                  color: "#fff",
-                  textTransform: "capitalize",
-                  fontWeight: 500,
-                  fontFamily: "inherit",
-                  background: "var(--pale-blue)",
-                  transition: "0.5s ease-in",
+                  background: "var(--blue-light)",
                   borderRadius: 2,
-
-                  "&:hover": {
-                    transition: "0.5s ease-out",
-                    background: "var(--blue)",
-                  },
-                  width: "100%",
+                  color: "var(--mid)",
                 }}
-                onClick={handleOpen1}
               >
-                Apply for Loan
-              </Button>
-            </Stack>
+                Cannot request loan until you clear pending loans
+              </Typography>
+            )}
+            {userData?.canRequestLoan && userData?.accountLevel < 3 && (
+              <Typography
+                mt={4}
+                p={3}
+                sx={{
+                  background: "var(--red-light)",
+                  borderRadius: 2,
+                  color: "var(--mid)",
+                }}
+              >
+                To request loan, Verify account to Tier 3
+              </Typography>
+            )}
+            {userData?.canRequestLoan && userData?.accountLevel >= 3 && (
+              <Stack
+                mt={2}
+                direction={{ xs: "column", md: "row" }}
+                alignItems="center"
+                justifyContent="flex-start"
+                gap={2}
+                width={{ xs: "100%", md: "50%" }}
+              >
+                <Button
+                  variant="text"
+                  disableElevation
+                  sx={{
+                    p: 2,
+                    color: "#fff",
+                    textTransform: "capitalize",
+                    fontWeight: 500,
+                    fontFamily: "inherit",
+                    background: "var(--pale-blue)",
+                    transition: "0.5s ease-in",
+                    borderRadius: 2,
+
+                    "&:hover": {
+                      transition: "0.5s ease-out",
+                      background: "var(--blue)",
+                    },
+                    width: "100%",
+                  }}
+                  onClick={handleOpen1}
+                >
+                  Apply for Loan
+                </Button>
+              </Stack>
+            )}
           </Container>
           <Container>
-            <Typography>LOAN HISTORY</Typography>
+            <Typography fontWeight={700}>LOAN HISTORY</Typography>
             {(!userData?.loans || userData?.loans.length === 0) && (
               <Stack
                 alignItems="center"
@@ -443,6 +472,8 @@ const Loan = (props) => {
               />
             )}
           </Container>
+
+          <ReferralCard />
         </Sidebar>
       </Box>
       <MobileNav />

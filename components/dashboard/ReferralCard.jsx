@@ -59,7 +59,8 @@ const ReferralCard = () => {
             Refer & Earn (Click the referral ID to copy it)
           </Typography>
           <Typography variant="subtitle2" sx={{ fontWeight: 300 }}>
-            Earn 5$ when you refer a friend and they make a deposit of over 10$
+            Earn R100 when you refer a friend and they make a deposit of over
+            R500
           </Typography>
           <Typography
             fontSize={14}

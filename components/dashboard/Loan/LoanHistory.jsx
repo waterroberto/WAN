@@ -1,7 +1,7 @@
 import { Box, Button, Divider, Stack, Typography } from "@mui/material";
 import PopupModal from "../../Global/Modal";
 import parseDate from "../../../utils/parseDate";
-import { FiPlusCircle } from "react-icons/fi";
+import { RiBankFill } from "react-icons/ri";
 import { RiFolder5Fill } from "react-icons/ri";
 import React, { useContext } from "react";
 import { useState } from "react";
@@ -320,7 +320,7 @@ const LoanHistory = ({
                     <Stack direction="row" alignItems="center" gap={1}>
                       {transaction?.type.toLowerCase() === "loan" ? (
                         <span className="transaction-icon loan">
-                          <FiPlusCircle />
+                          <RiBankFill />
                         </span>
                       ) : (
                         ""

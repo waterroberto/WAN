@@ -13,9 +13,6 @@ export default function PrivateRoute({ children }) {
     if (!checkingStatus && !fetchingData && !isAuthenticated && !userData) {
       router.replace("/login");
     }
-
-    // console.log(`Fetching Data: `, fetchingData);
-    console.log(`User Data: `, userData);
   }, [router, checkingStatus, isAuthenticated, userData]);
 
   return (
