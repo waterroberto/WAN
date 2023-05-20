@@ -2,6 +2,11 @@ import React from "react";
 import AdminRoute from "../../components/auth/AdminRoute";
 import { Meta, Layout } from "../../components";
 import AdminMobileNav from "../../components/admin/AdminMobileNav";
+import { Box, Typography } from "@mui/material";
+import Nav from "../../components/admin/Nav";
+import StatCards from "../../components/admin/Home/StatCards/StatCards";
+import UsersTable from "../../components/admin/Home/UsersTable";
+import LoansTable from "../../components/admin/Loans/LoansTable";
 
 const Admin = () => {
   return (
@@ -10,9 +15,20 @@ const Admin = () => {
         title="Admin Portal - Blue Ship Finance"
         description="Admin Portal - Blue Ship Finance"
       />
-      <Layout>
-        <p>Admin</p>
-      </Layout>
+      <Box minHeight="100vh" sx={{ background: "var(--darker)" }}>
+        <Nav />
+        <Layout>
+          <Box mt={8} sx={{ color: "#f5f5f5" }}>
+            <Typography fontSize={24} fontWeight={500} mb={4}>
+              Home
+            </Typography>
+
+            <StatCards />
+            <UsersTable />
+            <LoansTable />
+          </Box>
+        </Layout>
+      </Box>
       <AdminMobileNav />
     </AdminRoute>
   );
