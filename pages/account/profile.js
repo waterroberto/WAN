@@ -22,8 +22,8 @@ const Profile = () => {
   return (
     <PrivateRoute>
       <Meta
-        title="Incrypto Finance - Profile - Online Bank"
-        description="Incrypto Financial Bank | Profile into your account"
+        title="Blue Ship Finance - Profile - Online Bank"
+        description="Blue Ship Financial Bank | Profile into your account"
       />
       <Dash />
 

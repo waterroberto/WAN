@@ -19,8 +19,8 @@ const Withdraw = () => {
   return (
     <PrivateRoute>
       <Meta
-        title="Incrypto Finance - Withdraw - Online Bank"
-        description="Incrypto Financial Bank | Withdraw into your account"
+        title="Blue Ship Finance - Withdraw - Online Bank"
+        description="Blue Ship Financial Bank | Withdraw into your account"
       />
       <Dash />
 

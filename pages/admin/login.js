@@ -17,19 +17,22 @@ const Login = () => {
     setIsLoading(true);
     try {
       // { email: support@blueshipfinance.online password: support17052023%%}
-      const req = await AuthService.login(email, password);
+      const req = await AuthService.loginAdmin(email, password);
+
+      // console.log(req);
 
       if (req) {
         cogoToast.success("Welcome");
-        router.replace("/account");
+        router.replace("/admin");
       }
+      setIsLoading(false);
     } catch (error) {
-      console.log(error);
+      error.code
+        ? cogoToast.error(AuthService.processError(error.code))
+        : cogoToast.error(AuthService.processError(error.message));
 
-      cogoToast.error(AuthService.processError(error.code));
+      setIsLoading(false);
     }
-
-    setIsLoading(false);
   };
 
   const inputChangeHandler = (e) => {
@@ -41,11 +44,7 @@ const Login = () => {
 
   return (
     <>
-      <Meta
-        title="Login - Blue Ship Finance - Online banking for everyone -
-        Homepage"
-        description="Login to your Blue Ship Account - Online banking for everyone - Login page"
-      />
+      <Meta title="Login - Blue Ship Finance - Online banking for everyone" />
       <Box
         pt={16}
         sx={{
@@ -111,11 +110,12 @@ const Login = () => {
 
                 "&:hover": {
                   background: isLoading
-                    ? "var(--mid)"
+                    ? "var(--secondary)"
                     : "var(--secondary-clicked)",
                 },
                 "&:disabled": {
-                  background: "var(--secondary-light)",
+                  color: "#fff",
+                  background: "var(--secondary-clicked)",
                   cursor: "not-allowed",
                 },
               }}

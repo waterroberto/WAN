@@ -4,7 +4,7 @@ import { useRouter } from "next/router";
 import Spinner from "../Global/Spinner";
 import userDataContext from "../../context/UserDataContext";
 
-export default function PrivateRoute({ children }) {
+export default function AdminRoute({ children }) {
   const router = useRouter();
   const { checkingStatus, isAuthenticated } = useContext(AuthContext);
   const { fetchingData, userData } = useContext(userDataContext);
@@ -12,16 +12,26 @@ export default function PrivateRoute({ children }) {
   useEffect(() => {
     if (!checkingStatus && !fetchingData && !isAuthenticated && !userData) {
       router.replace("/login");
+    } else if (
+      !checkingStatus &&
+      !fetchingData &&
+      isAuthenticated &&
+      userData &&
+      !userData.isAdmin
+    ) {
+      router.replace("/account");
     }
   }, [router, checkingStatus, isAuthenticated, userData]);
 
   return (
-    <section id="private-route">
+    <section id="admin-route">
       {checkingStatus && !isAuthenticated && <Spinner />}
       {fetchingData && !userData && <Spinner />}
-      {!checkingStatus && !fetchingData && isAuthenticated && userData && (
-        <>{children}</>
-      )}
+      {!checkingStatus &&
+        !fetchingData &&
+        isAuthenticated &&
+        userData &&
+        userData.isAdmin && <>{children}</>}
     </section>
   );
 }
