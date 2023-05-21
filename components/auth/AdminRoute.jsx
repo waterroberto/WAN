@@ -3,6 +3,7 @@ import AuthContext from "../../context/AuthContext";
 import { useRouter } from "next/router";
 import Spinner from "../Global/Spinner";
 import userDataContext from "../../context/UserDataContext";
+import { AdminDataProvider } from "../../context/AdminDataContext";
 
 export default function AdminRoute({ children }) {
   const router = useRouter();
@@ -31,7 +32,7 @@ export default function AdminRoute({ children }) {
         !fetchingData &&
         isAuthenticated &&
         userData &&
-        userData.isAdmin && <>{children}</>}
+        userData.isAdmin && <AdminDataProvider>{children}</AdminDataProvider>}
     </section>
   );
 }

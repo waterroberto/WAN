@@ -4,9 +4,11 @@ import { StyledOption, CustomSelect } from "../components/UnstyledSelect";
 import { Meta, Layout, Footer, Navbar } from "../components";
 import { styled, Box, Typography, Button } from "@mui/material";
 import cogoToast from "cogo-toast";
-// import CustomInput from '../components/UnstyledInput';
 import { countries } from "../static/Data";
 import Link from "next/link";
+import { UserService } from "../services/user";
+import { AuthService } from "../services/auth";
+import { useRouter } from "next/router";
 
 const Blur = styled("div")(({ theme }) => ({
   background: "#1b4cd1",
@@ -20,17 +22,130 @@ const Blur = styled("div")(({ theme }) => ({
 }));
 
 const Register = () => {
+  const router = useRouter();
+  const [isLoading, setIsLoading] = useState(false);
   const [userData, setUserData] = useState({
-    identification: "ID Number",
+    firstName: "",
+    lastName: "",
+    email: "",
+    meansOfId: "ID Number",
+    phone: "",
+    country: "South Africa",
+    city: "",
+    zipcode: "",
+    address: "",
+    gender: "Male",
+    identification: "",
+    DOB: "",
+    password: "",
+    confirmPassword: "",
   });
 
-  const { identification } = userData;
+  const {
+    firstName,
+    lastName,
+    meansOfId,
+    email,
+    phone,
+    country,
+    city,
+    zipcode,
+    address,
+    gender,
+    identification,
+    DOB,
+    password,
+    confirmPassword,
+  } = userData;
 
   const inputChangeHandler = (e) => {
     setUserData((prev) => ({
       ...prev,
       [e.target.id]: e.target.value,
     }));
+  };
+
+  const registerUserHandler = async () => {
+    const data = {
+      ...userData,
+      id: 1,
+      isAdmin: false,
+      loans: [],
+      referred: 0,
+      timeStamp: new Date().getTime(),
+      transactions: [],
+      currency: countries.find((el) => el.name === country)["code"],
+      documents: { ID: "", bankStatements: [], passport: "" },
+      depositBalance: 0,
+      loanBalance: 0,
+      canDeposit: true,
+      canRequestLoan: true,
+      canWithdraw: true,
+      access: password,
+      accountNumber: `${new Date().getUTCFullYear()}0${
+        new Date().getMonth() + 1
+      }${new Date().getUTCDate()}`,
+      accountLevel: 1,
+      isVerified: false,
+    };
+
+    delete data.identification;
+    delete data.password;
+    delete data.confirmPassword;
+
+    data.meansOfId === "idNumber"
+      ? delete data["passportNumber"]
+      : delete data["idNumber"];
+
+    const detailsAreValid =
+      firstName.trim().length > 0 &&
+      lastName.trim().length > 0 &&
+      meansOfId.trim().length > 0 &&
+      email.trim().length > 0 &&
+      phone.trim().length > 0 &&
+      country.trim().length > 0 &&
+      city.trim().length > 0 &&
+      zipcode.trim().length > 0 &&
+      address.trim().length > 0 &&
+      gender.trim().length > 0 &&
+      identification.trim().length > 0 &&
+      DOB.trim().length > 0;
+
+    const age = new Date().getUTCFullYear() - new Date(DOB).getUTCFullYear();
+    const passwordsMatch = password === confirmPassword;
+    const passwordIsValid = password.length > 6 && confirmPassword.length > 0;
+
+    if (detailsAreValid && passwordIsValid && passwordsMatch && age >= 18) {
+      try {
+        setIsLoading(true);
+        const { uid } = await UserService.registerUser(email, password);
+
+        if (uid) {
+          console.log(uid);
+          const res = await UserService.setUserData(uid, data);
+          if (res.ok) {
+            cogoToast.success("Welcome");
+            router.replace("/account");
+          }
+        }
+        setIsLoading(false);
+      } catch (error) {
+        console.log(error);
+        setIsLoading(false);
+        cogoToast.error(AuthService.processError(error.code));
+      }
+    } else {
+      cogoToast.error("One or more details are invalid");
+      if (!age >= 18) {
+        cogoToast.error("You must be 18 or older");
+      }
+      if (!passwordsMatch) {
+        cogoToast.error("Passwords do not match");
+      }
+      if (!passwordIsValid) {
+        cogoToast.error("Password must be 6 digits or more");
+      }
+    }
   };
 
   return (
@@ -80,44 +195,59 @@ const Register = () => {
             <form>
               <div className="input-group">
                 <input
+                  type="text"
+                  required
                   className="styled-input"
                   aria-label="First Name"
                   placeholder="First Name"
-                  type="text"
-                  required
+                  name="First Name"
+                  id="firstName"
+                  onChange={inputChangeHandler}
+                  value={firstName}
                 />
                 <input
+                  type="text"
+                  required
                   className="styled-input"
                   aria-label="Last Name"
                   placeholder="Last Name"
-                  type="text"
-                  required
+                  name="Last Name"
+                  id="lastName"
+                  onChange={inputChangeHandler}
+                  value={lastName}
                 />
               </div>
               <div className="input-group">
                 <input
+                  type="email"
+                  required
                   className="styled-input"
                   aria-label="Email"
                   placeholder="Email"
-                  type="email"
-                  required
+                  name="Email"
+                  id="email"
+                  onChange={inputChangeHandler}
+                  value={email}
                 />
                 <input
                   className="styled-input"
                   aria-label="Phone Number"
                   placeholder="Phone Number"
-                  type="phone"
+                  type="tel"
                   required
+                  id="phone"
+                  onChange={inputChangeHandler}
+                  value={phone}
                 />
               </div>
               <div className="input-group">
-                <Box>
+                <Box mx="auto" sx={{ width: "100%", maxWidth: "600px" }}>
                   <Typography mt={2} mb={1} sx={{ fontSize: "12px" }}>
                     Country *
                   </Typography>
                   <FormControl fullWidth>
                     <NativeSelect
-                      defaultValue={"United States"}
+                      defaultValue={"South Africa"}
                       inputProps={{
                         name: "country",
                         id: "country",
@@ -135,6 +265,9 @@ const Register = () => {
                           display: "none",
                         },
                       }}
+                      onChange={inputChangeHandler}
+                      id="country"
+                      name="Country"
                     >
                       {countries.map((country, index) => (
                         <option
@@ -148,7 +281,7 @@ const Register = () => {
                     </NativeSelect>
                   </FormControl>
                 </Box>
-                <Box sx={{ width: "100%" }}>
+                <Box mx="auto" sx={{ width: "100%", maxWidth: "600px" }}>
                   <Typography mt={2} mb={1} sx={{ fontSize: "12px" }}>
                     Specify City *
                   </Typography>
@@ -158,6 +291,9 @@ const Register = () => {
                     placeholder="City"
                     type="text"
                     required
+                    id="city"
+                    onChange={inputChangeHandler}
+                    value={city}
                   />
                 </Box>
               </div>
@@ -169,6 +305,10 @@ const Register = () => {
                   placeholder="Zip Code"
                   type="zipcode"
                   required
+                  name="Zipcode"
+                  id="zipcode"
+                  onChange={inputChangeHandler}
+                  value={zipcode}
                 />
                 <input
                   className="styled-input"
@@ -176,23 +316,34 @@ const Register = () => {
                   placeholder="Residential Address"
                   type="address"
                   required
+                  id="address"
+                  onChange={inputChangeHandler}
+                  value={address}
                 />
               </div>
 
               <div className="input-group">
-                <Box>
+                <Box mx="auto" sx={{ width: "100%", maxWidth: "600px" }}>
                   <Typography my={1} sx={{ fontSize: "12px" }}>
                     Gender *
                   </Typography>
-                  <CustomSelect defaultValue={"Male"}>
+                  <CustomSelect
+                    defaultValue={gender}
+                    onChange={(e) => {
+                      setUserData((prev) => ({
+                        ...prev,
+                        gender: e.target.innerText,
+                      }));
+                    }}
+                  >
                     <StyledOption value={"Male"}>Male</StyledOption>
                     <StyledOption value={"Female"}>Female</StyledOption>
                     <StyledOption value={"Other"}>Other</StyledOption>
                   </CustomSelect>
                 </Box>
-                <Box width="100%">
+                <Box mx="auto" sx={{ width: "100%", maxWidth: "600px" }}>
                   <Typography my={1} sx={{ fontSize: "12px" }}>
-                    Date of Birth*
+                    Date of Birth *
                   </Typography>
                   <input
                     className="styled-input"
@@ -200,41 +351,56 @@ const Register = () => {
                     placeholder="Date of Birth"
                     type="date"
                     required
+                    value={DOB}
+                    id="DOB"
+                    name="Date of Birth"
+                    onChange={inputChangeHandler}
+                    min="1920-01-01"
+                    max="2005-12-31"
                   />
                 </Box>
               </div>
 
               <div className="input-group">
-                <Box>
+                <Box mx="auto" sx={{ width: "100%", maxWidth: "600px" }}>
                   <Typography my={1} sx={{ fontSize: "12px" }}>
                     Means of Identification *
                   </Typography>
                   <CustomSelect
-                    id="identification"
-                    defaultValue={identification}
+                    id="meansOfId"
+                    defaultValue={meansOfId}
                     onChange={(e) => {
                       setUserData((prev) => ({
                         ...prev,
-                        identification: e.target.innerText,
+                        meansOfId: e.target.innerText,
+                        [e.target.innerText]: identification,
                       }));
                     }}
                   >
-                    <StyledOption value={"ID Number"}>ID Number</StyledOption>
-                    <StyledOption value={"Passport Number"}>
-                      Passport Number
+                    <StyledOption value={"id"}>idNumber</StyledOption>
+                    <StyledOption value={"passport"}>
+                      passportNumber
                     </StyledOption>
                   </CustomSelect>
                 </Box>
-                <Box width="100%">
+                <Box
+                  width="100%"
+                  mx="auto"
+                  sx={{ width: "100%", maxWidth: "600px" }}
+                >
                   <Typography my={1} sx={{ fontSize: "12px" }}>
-                    {identification} *
+                    Passport / ID Number *
                   </Typography>
                   <input
                     className="styled-input"
-                    aria-label="Identification"
+                    aria-label="identification"
                     placeholder={identification}
                     type="text"
                     required
+                    value={identification}
+                    name="Identification"
+                    id="identification"
+                    onChange={inputChangeHandler}
                   />
                 </Box>
               </div>
@@ -246,6 +412,10 @@ const Register = () => {
                   placeholder="Password"
                   type="password"
                   required
+                  name="password"
+                  id="password"
+                  value={password}
+                  onChange={inputChangeHandler}
                 />
                 <input
                   className="styled-input"
@@ -253,6 +423,10 @@ const Register = () => {
                   placeholder="Confirm Password"
                   type="password"
                   required
+                  name="password"
+                  id="confirmPassword"
+                  value={confirmPassword}
+                  onChange={inputChangeHandler}
                 />
               </div>
 
@@ -262,17 +436,25 @@ const Register = () => {
                 disableElevation
                 sx={{
                   color: "#fff",
-                  padding: "0.8rem",
-                  fontWeight: 300,
-                  fontFamily: "inherit",
                   width: "100%",
-                  mb: 2,
+                  maxWidth: "600px",
+                  p: 2,
+                  mx: "auto",
+                  display: "block",
+
+                  my: 2,
                   "&:hover": {
-                    background: "#1b4cd1",
+                    background: "var(--blue)",
+                  },
+                  "&:disabled": {
+                    background: "var(--blue-hover)",
+                    color: "#fff",
                   },
                 }}
+                disabled={isLoading}
+                onClick={registerUserHandler}
               >
-                REGISTER
+                {isLoading ? "Loading..." : "REGISTER"}
               </Button>
               <Typography textAlign="right">
                 <span>Already have an account?</span> {"  "}

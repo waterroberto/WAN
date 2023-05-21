@@ -1,16 +1,13 @@
-import {
-  doc,
-  getDoc,
-  getFirestore,
-  setDoc,
-  updateDoc,
-} from "firebase/firestore";
-import { ref, getDownloadURL, uploadBytes, getStorage } from "firebase/storage";
-import { db, storage } from "./firebase.config";
+import { doc, getDoc, setDoc, updateDoc } from "firebase/firestore";
+import { ref, getDownloadURL, uploadBytes } from "firebase/storage";
+import { auth, db, storage } from "./firebase.config";
+import { createUserWithEmailAndPassword } from "firebase/auth";
 
 export const UserService = {
-  createNewUser: async function (email, password) {
-    return { email, password };
+  registerUser: async function (email, password) {
+    const user = await createUserWithEmailAndPassword(auth, email, password);
+
+    return { uid: user.user.uid };
   },
 
   getUrlFromFileUpload: async function (userId, loanId, file) {
@@ -61,5 +58,15 @@ export const UserService = {
     return {
       userId,
     };
+  },
+  setUserData: async function (uid, data) {
+    const REF = doc(db, "users", userId);
+
+    await setDoc(REF, uid, {
+      ...data,
+      id: uid,
+    });
+
+    return { ok: true };
   },
 };
