@@ -60,9 +60,7 @@ export const UserService = {
     };
   },
   setUserData: async function (uid, data) {
-    const REF = doc(db, "users", userId);
-
-    await setDoc(REF, uid, {
+    await setDoc(doc(db, "users", uid), {
       ...data,
       id: uid,
     });
