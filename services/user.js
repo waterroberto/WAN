@@ -30,7 +30,7 @@ export const UserService = {
       bankStatement: url,
     });
 
-    return { message: "Successful", ok: true };
+    return { message: "Successful", ok: true, id: data?._id };
   },
 
   addPendingLoan: async function (userId, data) {
@@ -59,6 +59,7 @@ export const UserService = {
       userId,
     };
   },
+
   setUserData: async function (uid, data) {
     await setDoc(doc(db, "users", uid), {
       ...data,

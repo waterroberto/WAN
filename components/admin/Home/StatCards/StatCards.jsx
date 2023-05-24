@@ -1,34 +1,40 @@
 import StatCard from "./StatCard";
 import { Grid } from "@mui/material";
-import { useState } from "react";
 import { HiUsers } from "react-icons/hi2";
 import { RiBankFill } from "react-icons/ri";
 import { IoTodaySharp } from "react-icons/io5";
+import { useContext, useEffect, useState } from "react";
+import AdminDataContext from "../../../../context/AdminDataContext";
 
 const StatCards = () => {
-  const [statsData, setStatsData] = useState([
-    {
-      name: "users",
-      icon: <HiUsers />,
-      body: 7812,
-      bg: "var(--blue-light)",
-      color: "var(--blue)",
-    },
-    {
-      name: "pending loans",
-      icon: <RiBankFill />,
-      body: 56,
-      bg: "var(--secondary-light)",
-      color: "var(--secondary)",
-    },
-    {
-      name: "loans applied today",
-      icon: <IoTodaySharp />,
-      body: 12,
-      bg: "var(--tertiary-light)",
-      color: "var(--tertiary)",
-    },
-  ]);
+  const [statsData, setStatsData] = useState([]);
+  const { users, loanRequests } = useContext(AdminDataContext);
+
+  useEffect(() => {
+    setStatsData([
+      {
+        name: "users",
+        icon: <HiUsers />,
+        body: users ? users.length : 0,
+        bg: "var(--blue-light)",
+        color: "var(--blue)",
+      },
+      {
+        name: "pending loans",
+        icon: <RiBankFill />,
+        body: loanRequests ? loanRequests.length : 0,
+        bg: "var(--secondary-light)",
+        color: "var(--secondary)",
+      },
+      {
+        name: "loans applied today",
+        icon: <IoTodaySharp />,
+        body: 0,
+        bg: "var(--tertiary-light)",
+        color: "var(--tertiary)",
+      },
+    ]);
+  }, [users]);
 
   return (
     <Grid container columns={12} rowSpacing={2} columnSpacing={2}>

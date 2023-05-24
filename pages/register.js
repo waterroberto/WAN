@@ -9,6 +9,7 @@ import Link from "next/link";
 import { UserService } from "../services/user";
 import { AuthService } from "../services/auth";
 import { useRouter } from "next/router";
+import { serverTimestamp } from "firebase/firestore";
 
 const Blur = styled("div")(({ theme }) => ({
   background: "#1b4cd1",
@@ -72,7 +73,7 @@ const Register = () => {
       isAdmin: false,
       loans: [],
       referred: 0,
-      timeStamp: new Date().getTime(),
+      timeStamp: serverTimestamp(),
       transactions: [],
       currency: countries.find((el) => el.name === country)["code"],
       documents: { ID: "", bankStatements: [], passport: "" },
@@ -87,6 +88,7 @@ const Register = () => {
       }${new Date().getUTCDate()}`,
       accountLevel: 1,
       isVerified: false,
+      DOB: new Date(DOB),
     };
 
     delete data.identification;

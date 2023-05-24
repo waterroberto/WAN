@@ -5,8 +5,8 @@ import AdminMobileNav from "../../components/admin/AdminMobileNav";
 import { Box, Typography } from "@mui/material";
 import Nav from "../../components/admin/Nav";
 import StatCards from "../../components/admin/Home/StatCards/StatCards";
-import UsersTable from "../../components/admin/Home/UsersTable";
 import LoansTable from "../../components/admin/Loans/LoansTable";
+import Users from "../../components/admin/Home/Users/Users";
 
 const Admin = () => {
   return (
@@ -24,7 +24,7 @@ const Admin = () => {
             </Typography>
 
             <StatCards />
-            <UsersTable />
+            <Users />
             <LoansTable />
           </Box>
         </Layout>

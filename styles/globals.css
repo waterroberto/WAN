@@ -4,7 +4,7 @@
   --green-light: rgb(9, 219, 121, 0.2);
   --green: rgb(9, 219, 121);
   --green-hover: rgb(6, 176, 105);
-  --blue-light: rgb(1, 126, 255, 0.1);
+  --blue-light: rgb(1, 126, 255, 0.2);
   --blue: rgb(1, 126, 255);
   --blue-hover: rgb(10, 100, 190);
   --pale-blue: #a5c5e6;
@@ -15,7 +15,7 @@
   --dark: #252837;
   --darker: #1e1c2a;
   --mid: #ccc;
-  --secondary-light: rgb(254, 130, 53, 0.2);
+  --secondary-light: rgb(254, 130, 53, 0.3);
   --secondary: #fe8235;
   --secondary-clicked: #e15323;
   --tertiary: rgb(242, 1, 255);
@@ -150,4 +150,37 @@ button {
 label {
   display: block;
   margin: 12px 0;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  width: 100%;
+  border: 1px solid var(--dark);
+  box-shadow: 2px 1px 8px var(--darker);
+}
+
+th,
+td {
+  text-align: left;
+  padding: 16px 14px;
+}
+
+table tr th {
+  font-size: 14px;
+  text-transform: uppercase;
+}
+
+table tr td {
+  font-size: 14px;
+  cursor: pointer;
+  text-transform: capitalize;
+}
+
+#table-head-row {
+  background: var(--dark);
+}
+
+#table-container {
+  overflow-x: auto;
 }

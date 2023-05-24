@@ -117,12 +117,13 @@ const Loan = (props) => {
         _id: uuidv4(),
         _user: userData?.id,
         ...formData,
+        status: "pending",
         amount: +amount,
         income: +income,
         duration: +duration,
         employmentDuration: +employmentDuration,
         bankStatement: "",
-        applicationDate: new Date().getTime(),
+        applicationDate: new Date(),
       };
 
       try {
@@ -131,7 +132,7 @@ const Loan = (props) => {
         if (res.ok) {
           const pendingLoanRequest = await UserService.addPendingLoan(
             userData?.id,
-            { amount: +amount, duration: +duration }
+            { amount: +amount, duration: +duration, _id: res.id }
           );
 
           console.log(pendingLoanRequest);

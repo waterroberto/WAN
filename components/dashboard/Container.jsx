@@ -14,6 +14,7 @@ const Container = (props) => {
         p: 4,
         ...props?.sx,
       }}
+      {...props}
     >
       {props.children}
     </Box>
