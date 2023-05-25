@@ -10,10 +10,10 @@ export const UserService = {
     return { uid: user.user.uid };
   },
 
-  getUrlFromFileUpload: async function (userId, loanId, file) {
+  getUrlFromFileUpload: async function (_fileRef, userId, loanId, file) {
     const fileRef = ref(
       storage,
-      `bankStatements/${userId}__${loanId}__${new Date().getTime()}`
+      `${_fileRef}/${userId}__${loanId}__${new Date().getTime()}`
     );
 
     const snapshot = await uploadBytes(fileRef, file);
@@ -23,7 +23,12 @@ export const UserService = {
   },
 
   sendLoanRequest: async function (data, file) {
-    const url = await this.getUrlFromFileUpload(data._user, data._id, file);
+    const url = await this.getUrlFromFileUpload(
+      "bankStatements",
+      data._user,
+      data._id,
+      file
+    );
 
     await setDoc(doc(db, "loanRequests", data?._id), {
       ...data,
@@ -67,5 +72,16 @@ export const UserService = {
     });
 
     return { ok: true };
+  },
+
+  uploadUserSelfie: async function (userId, randomId, file) {
+    const url = await this.getUrlFromFileUpload(
+      "userSelfies",
+      userId,
+      randomId,
+      file
+    );
+
+    return url;
   },
 };

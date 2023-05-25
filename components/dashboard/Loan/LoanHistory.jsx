@@ -116,13 +116,10 @@ const LoanHistory = ({
                   fontSize: "14px",
                 }}
               >
-                {currency}
-                {modalBody?.amount.toLocaleString()}
+                {currency} {modalBody?.amount.toLocaleString()}
               </Typography>
             </Stack>
             <Divider color="#555" />
-            {/*  */}
-
             <Stack
               direction="row"
               alignItems="center"
@@ -178,7 +175,7 @@ const LoanHistory = ({
                   fontSize: "14px",
                 }}
               >
-                {currency}
+                {currency}{" "}
                 {Math.round(
                   (0.15 * modalBody?.amount) / modalBody?.duration +
                     modalBody?.amount / modalBody?.duration
@@ -332,8 +329,7 @@ const LoanHistory = ({
                           color: "var(--mid)",
                         }}
                       >
-                        {currency}
-                        {transaction?.amount.toLocaleString()}
+                        {currency} {transaction?.amount.toLocaleString()}
                       </Typography>
                     </Stack>
 

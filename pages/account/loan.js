@@ -26,7 +26,6 @@ const Loan = (props) => {
   const [open1, setOpen1] = useState(false);
   const [open2, setOpen2] = useState(false);
   const [requesting, setRequesting] = useState(false);
-  const { userData } = useContext(userDataContext);
   const [formData, setFormData] = useState({
     amount: "",
     duration: "",
@@ -36,6 +35,8 @@ const Loan = (props) => {
     employmentDuration: "",
     bankStatement: "",
   });
+
+  const { userData } = useContext(userDataContext);
 
   const handleOpen1 = () => setOpen1(true);
   const handleClose1 = () => setOpen1(false);
@@ -352,9 +353,9 @@ const Loan = (props) => {
             <input
               hidden
               accept=".png, .jpg, .jpeg, .pdf"
-              multiple
               type="file"
               onChange={addBankStatement}
+              max={1}
             />
             {bankStatement && bankStatement.name}
           </Button>

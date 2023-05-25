@@ -5,7 +5,7 @@ import { MobileNav, Meta, Dash, Sidebar } from "../../components";
 import AppBar from "../../components/dashboard/AppBar";
 import { stringAvatar } from "../../utils/stringAvatar";
 import userDataContext from "../../context/UserDataContext";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import parseDate from "../../utils/parseDate";
 import { AiFillCheckCircle } from "react-icons/ai";
 import { MdCancel } from "react-icons/md";
@@ -13,11 +13,84 @@ import Container from "../../components/dashboard/Container";
 import PrivateRoute from "../../components/auth/PrivateRoute";
 import { AuthService } from "../../services/auth";
 import { useRouter } from "next/router";
+import PopupModal from "../../components/Global/Modal";
+import cogoToast from "cogo-toast";
+import { UserService } from "../../services/user";
+import { doc, getDoc, updateDoc } from "firebase/firestore";
+import { db } from "../../services/firebase.config";
 
 const Profile = () => {
+  const router = useRouter();
+  const [open, setOpen] = useState(false);
+
+  const [isLoading, setIsLoading] = useState(false);
+
+  const [documentData, setDocumentData] = useState({
+    documentType: "",
+    documentFile: "",
+  });
+
+  const { documentType, documentFile } = documentData;
   const { userData } = useContext(userDataContext);
 
-  const router = useRouter();
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+
+  const addDocument = (e) => {
+    setDocumentData((prev) => ({
+      ...prev,
+      documentType: e.target?.files[0]?.type,
+      documentFile: e.target?.files[0],
+    }));
+  };
+
+  const handleDocumentUpload = async () => {
+    const documentIsValid =
+      documentType === "image/jpeg" ||
+      documentType === "image/jpg" ||
+      documentType === "image/png";
+
+    if (documentIsValid) {
+      try {
+        setIsLoading(true);
+        const url = await UserService.uploadUserSelfie(
+          userData?.id,
+          `${userData.firstName} ${userData.lastName}`,
+          documentFile
+        );
+
+        if (url) {
+          const userRef = doc(db, "users", userData?.id);
+          const userDoc = await getDoc(userRef);
+
+          const userDocuments = userDoc.data().documents;
+
+          await updateDoc(userRef, {
+            documents: {
+              ...userDocuments,
+              passport: url,
+            },
+          });
+
+          cogoToast.success("Successful");
+          cogoToast.info(
+            "Your document will be reviewed before account upgrade."
+          );
+          setDocumentData({ documentFile: "", documentType: "" });
+          handleClose();
+
+          // TODO - Update admin to increase account Tier
+        }
+
+        setIsLoading(false);
+        console.log(url);
+      } catch (error) {
+        setIsLoading(false);
+        cogoToast.error("Something went wrong");
+        console.log(error);
+      }
+    }
+  };
 
   return (
     <PrivateRoute>
@@ -27,6 +100,90 @@ const Profile = () => {
       />
       <Dash />
 
+      <PopupModal
+        open={open}
+        handleClose={handleClose}
+        handleOpen={handleOpen}
+        title="INCREASE ACCOUNT LEVEL"
+        sx={{ maxWidth: "640px" }}
+      >
+        <Typography my={2} fontWeight={700}>
+          {userData?.accountLevel === 1
+            ? "Upload Selfie Of Yourself"
+            : userData?.accountLevel === 2
+            ? "Upload Valid Passport or ID"
+            : "Upload ID or Passport Document"}
+        </Typography>
+
+        {documentFile && (
+          <img
+            alt={documentFile?.name}
+            src={URL.createObjectURL(documentFile)}
+            style={{
+              margin: "auto",
+              maxWidth: "100%",
+              backgroundPosition: "center",
+              objectFit: "cover",
+              display: "block",
+            }}
+          />
+        )}
+
+        <Button
+          disableElevation
+          sx={{
+            mt: 2,
+            p: 1,
+            color: "#fff",
+            textTransform: "capitalize",
+            border: documentFile
+              ? "1px solid var(--blue)"
+              : "1px solid var(--secondary)",
+
+            "&:hover": {
+              border: documentFile
+                ? "1px solid var(--blue-hover)"
+                : "1px solid var(--secondary-clicked)",
+            },
+            width: "100%",
+          }}
+          component="label"
+        >
+          {documentFile ? "Change Image - " : "Select Image"}{" "}
+          {documentFile && documentFile.name}
+          <input
+            hidden
+            accept=".png, .jpg, .jpeg"
+            type="file"
+            onChange={addDocument}
+            max={1}
+          />
+        </Button>
+        {documentFile && (
+          <Button
+            disableElevation
+            sx={{
+              mt: 2,
+              p: 2,
+              color: "#fff",
+              background: "var(--green)",
+
+              "&:hover": {
+                background: "var(--green-hover)",
+              },
+              "&:disabled": {
+                color: "#fff",
+                background: "var(--green-hover)",
+              },
+              width: "100%",
+            }}
+            onClick={handleDocumentUpload}
+            disabled={isLoading}
+          >
+            {isLoading ? "Sending document..." : "Upload Document"}
+          </Button>
+        )}
+      </PopupModal>
       <Box minHeight="100vh" sx={{ background: "var(--darker)" }}>
         <Sidebar>
           <AppBar page="Profile" />
@@ -158,6 +315,7 @@ const Profile = () => {
                       },
                       width: "100%",
                     }}
+                    onClick={handleOpen}
                   >
                     Upgrade to Tier {userData?.accountLevel + 1}
                   </Button>

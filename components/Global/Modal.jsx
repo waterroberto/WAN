@@ -55,7 +55,11 @@ export default function PopupModal({
             px={3}
             sx={{ borderBottom: "1px solid var(--blue)" }}
           >
-            <Typography variant="h6" component="p" fontWeight={800}>
+            <Typography
+              component="p"
+              fontWeight={800}
+              textTransform="uppercase"
+            >
               {title}
             </Typography>
             <IconButton sx={{ color: "var(--mid)" }} onClick={handleClose}>
