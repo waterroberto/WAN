@@ -5,7 +5,7 @@ import AccountBalanceIcon from "@mui/icons-material/AccountBalance";
 import TrendingUpIcon from "@mui/icons-material/TrendingUp";
 import { Paper } from "@mui/material";
 import { useRouter } from "next/router";
-import { HiUsers, HiHome } from "react-icons/hi";
+import { HiHome } from "react-icons/hi";
 
 const AdminMobileNav = () => {
   const router = useRouter();
@@ -48,12 +48,6 @@ const AdminMobileNav = () => {
           icon={<HiHome style={{ fontSize: 20 }} />}
           sx={{ color: "#fff" }}
           onClick={() => router.push("/admin")}
-        />
-        <BottomNavigationAction
-          label="Users"
-          icon={<HiUsers style={{ fontSize: 20 }} />}
-          sx={{ color: "#fff" }}
-          onClick={() => router.push("/admin/users")}
         />
         <BottomNavigationAction
           label="Loans"

@@ -227,7 +227,7 @@ const Profile = () => {
                     sx={{
                       width: 120,
                       height: 120,
-                      border: "4px solid var(--secondary)",
+                      border: "4px solid var(--pale-blue)",
                     }}
                   />
                   <Box>
