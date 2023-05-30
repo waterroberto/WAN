@@ -118,13 +118,13 @@ const Loan = (props) => {
         _id: uuidv4(),
         _user: userData?.id,
         ...formData,
-        status: "pending",
         amount: +amount,
         income: +income,
         duration: +duration,
         employmentDuration: +employmentDuration,
         bankStatement: "",
         applicationDate: new Date(),
+        status: "pending",
       };
 
       try {
