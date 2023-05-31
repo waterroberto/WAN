@@ -125,6 +125,7 @@ const Loan = (props) => {
         bankStatement: "",
         applicationDate: new Date(),
         status: "pending",
+        currency: userData?.currency,
       };
 
       try {
