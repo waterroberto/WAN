@@ -28,7 +28,7 @@ const LoansTable = () => {
               {loanRequests.map((loan) => (
                 <tr
                   key={loan?._id}
-                  onClick={() => router.push(`admin/loans/${loan?._user}`)}
+                  onClick={() => router.push(`admin/loans/${loan?._id}`)}
                 >
                   <td>
                     {loan?.currency} {parseInt(loan?.amount).toLocaleString()}
