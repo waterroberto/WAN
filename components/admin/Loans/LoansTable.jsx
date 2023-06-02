@@ -25,34 +25,39 @@ const LoansTable = () => {
                 <th>Status</th>
                 <th>Financial Placement</th>
               </tr>
-              {loanRequests.map((loan) => (
-                <tr
-                  key={loan?._id}
-                  onClick={() => router.push(`admin/loans/${loan?._id}`)}
-                >
-                  <td>
-                    {loan?.currency} {parseInt(loan?.amount).toLocaleString()}
-                  </td>
-                  <td>{loan?.duration} Months</td>
-                  <td>{parseDate(loan?.applicationDate?.seconds * 1000)}</td>
-                  <td
-                    style={{
-                      color:
-                        loan?.status === "pending"
-                          ? "var(--secondary)"
-                          : loan?.status === "declined"
-                          ? "var(--red)"
-                          : loan?.status === "approved"
-                          ? "var(--green)"
-                          : "var(--mid)",
-                      fontWeight: 600,
-                    }}
+              {[...loanRequests]
+                .sort(
+                  (a, b) =>
+                    b.applicationDate.seconds - a.applicationDate.seconds
+                )
+                .map((loan) => (
+                  <tr
+                    key={loan?._id}
+                    onClick={() => router.push(`admin/loans/${loan?._id}`)}
                   >
-                    {loan?.status.toUpperCase()}
-                  </td>
-                  <td>{loan?.placement}</td>
-                </tr>
-              ))}
+                    <td>
+                      {loan?.currency} {parseInt(loan?.amount).toLocaleString()}
+                    </td>
+                    <td>{loan?.duration} Months</td>
+                    <td>{parseDate(loan?.applicationDate?.seconds * 1000)}</td>
+                    <td
+                      style={{
+                        color:
+                          loan?.status === "pending"
+                            ? "var(--secondary)"
+                            : loan?.status === "declined"
+                            ? "var(--red)"
+                            : loan?.status === "approved"
+                            ? "var(--green)"
+                            : "var(--mid)",
+                        fontWeight: 600,
+                      }}
+                    >
+                      {loan?.status.toUpperCase()}
+                    </td>
+                    <td>{loan?.placement}</td>
+                  </tr>
+                ))}
             </table>
           </div>
         </>

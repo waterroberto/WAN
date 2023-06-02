@@ -26,21 +26,23 @@ const Users = () => {
                 <th>Date Joined</th>
                 <th>Account Level</th>
               </tr>
-              {users.map((user) => (
-                <tr
-                  key={user?.id}
-                  onClick={() => router.push(`admin/users/${user?.id}`)}
-                >
-                  <td>
-                    {user?.firstName} {user?.lastName}
-                  </td>
-                  <td>{user?.email}</td>
-                  <td>{user?.phone}</td>
-                  <td>{user?.country}</td>
-                  <td>{parseDate(user?.timeStamp?.seconds * 1000)}</td>
-                  <td>Level {user?.accountLevel}</td>
-                </tr>
-              ))}
+              {[...users]
+                .sort((a, b) => b.timeStamp.seconds - a.timeStamp.seconds)
+                .map((user) => (
+                  <tr
+                    key={user?.id}
+                    onClick={() => router.push(`admin/users/${user?.id}`)}
+                  >
+                    <td>
+                      {user?.firstName} {user?.lastName}
+                    </td>
+                    <td>{user?.email}</td>
+                    <td>{user?.phone}</td>
+                    <td>{user?.country}</td>
+                    <td>{parseDate(user?.timeStamp?.seconds * 1000)}</td>
+                    <td>Level {user?.accountLevel}</td>
+                  </tr>
+                ))}
             </table>
           </div>
         </>

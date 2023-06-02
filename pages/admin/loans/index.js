@@ -81,41 +81,46 @@ const Loans = () => {
                     <th>Status</th>
                     <th>Financial Placement</th>
                   </tr>
-                  {loanRequests.map((loan) => (
-                    <tr
-                      key={loan?._id}
-                      style={{
-                        opacity: loan?.status === "declined" ? 0.5 : 1,
-                      }}
-                    >
-                      <Link href={`/admin/loans/${loan?._id}`}>
-                        <td>
-                          {loan?.currency}{" "}
-                          {parseInt(loan?.amount).toLocaleString()}
-                        </td>
-                      </Link>
-                      <td>{loan?.duration} Months</td>
-                      <td>
-                        {parseDate(loan?.applicationDate?.seconds * 1000)}
-                      </td>
-                      <td
+                  {[...loanRequests]
+                    .sort(
+                      (a, b) =>
+                        b.applicationDate.seconds - a.applicationDate.seconds
+                    )
+                    .map((loan) => (
+                      <tr
+                        key={loan?._id}
                         style={{
-                          color:
-                            loan?.status === "pending"
-                              ? "var(--secondary)"
-                              : loan?.status === "declined"
-                              ? "var(--red)"
-                              : loan?.status === "approved"
-                              ? "var(--green)"
-                              : "var(--mid)",
-                          fontWeight: 600,
+                          opacity: loan?.status === "declined" ? 0.5 : 1,
                         }}
                       >
-                        {loan?.status.toUpperCase()}
-                      </td>
-                      <td>{loan?.placement}</td>
-                    </tr>
-                  ))}
+                        <Link href={`/admin/loans/${loan?._id}`}>
+                          <td>
+                            {loan?.currency}{" "}
+                            {parseInt(loan?.amount).toLocaleString()}
+                          </td>
+                        </Link>
+                        <td>{loan?.duration} Months</td>
+                        <td>
+                          {parseDate(loan?.applicationDate?.seconds * 1000)}
+                        </td>
+                        <td
+                          style={{
+                            color:
+                              loan?.status === "pending"
+                                ? "var(--secondary)"
+                                : loan?.status === "declined"
+                                ? "var(--red)"
+                                : loan?.status === "approved"
+                                ? "var(--green)"
+                                : "var(--mid)",
+                            fontWeight: 600,
+                          }}
+                        >
+                          {loan?.status.toUpperCase()}
+                        </td>
+                        <td>{loan?.placement}</td>
+                      </tr>
+                    ))}
                 </table>
               </div>
             </>

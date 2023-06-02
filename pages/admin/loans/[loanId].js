@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
-import { doc, getDoc } from "firebase/firestore";
+import { doc, getDoc, updateDoc } from "firebase/firestore";
 import { db } from "../../../services/firebase.config";
 import cogoToast from "cogo-toast";
 import { Layout } from "../../../components";
@@ -13,6 +13,7 @@ import { Meta } from "../../../components";
 import { stringAvatar } from "../../../utils/stringAvatar";
 import Link from "next/link";
 import parseDate from "../../../utils/parseDate";
+import Progress from "../../../components/Global/Progress";
 
 const Loans = () => {
   const router = useRouter();
@@ -20,6 +21,8 @@ const Loans = () => {
   const [userData, setUserData] = useState(null);
   const [loanDetails, setLoanDetails] = useState(null);
   const [loading, setLoading] = useState(false);
+
+  const [isUpdating, setIsUpdating] = useState(false);
 
   useEffect(() => {
     const fetchLoanDetails = async () => {
@@ -37,9 +40,6 @@ const Loans = () => {
         if (_userDoc.exists && _loanDoc) {
           setUserData(_userDoc.data());
           setLoanDetails(_loanDoc.data());
-
-          console.log("User: ", _userDoc.data());
-          console.log("Loan Details: ", _loanDoc.data());
         }
         setLoading(false);
       } catch (error) {
@@ -51,6 +51,52 @@ const Loans = () => {
 
     fetchLoanDetails();
   }, []);
+
+  const sendLoanApproval = async () => {
+    const loanId = loanDetails._id;
+    const loan = userData.loans?.find((loan) => loan._id === loanId);
+
+    const loanRef = doc(db, "loanRequests", loanId.trim());
+    const userRef = doc(db, "users", loanDetails._user.trim());
+
+    const applicationDate = loan.application_date.seconds * 1000;
+
+    const repaymentDate = new Date(
+      applicationDate + loan.duration * 2629800000
+    );
+    const payoutDate = new Date(new Date().getTime() + 86400 * 7 * 1000);
+
+    try {
+      setIsUpdating(true);
+      const res = await getDoc(userRef);
+      const userLoans = res.data().loans;
+
+      await updateDoc(userRef, {
+        canRequestLoan: true,
+        loans: [
+          ...userLoans,
+          {
+            ...loan,
+            status: "approved",
+            payout_date: payoutDate,
+            repayment_date: repaymentDate,
+          },
+        ],
+      });
+
+      await updateDoc(loanRef, {
+        status: "approved",
+      });
+      setIsUpdating(false);
+
+      cogoToast.success("Successful");
+    } catch (error) {
+      cogoToast.error("Error updating loan");
+
+      console.log(error);
+      setIsUpdating(false);
+    }
+  };
 
   return (
     <AdminRoute>
@@ -171,6 +217,7 @@ const Loans = () => {
                 </Grid>
               </Container>
               {/*  */}
+              {isUpdating && <Progress />}
               {loanDetails?.status !== "declined" &&
                 loanDetails?.status !== "approved" && (
                   <Container>
@@ -188,7 +235,7 @@ const Loans = () => {
                           },
                           width: "100%",
                         }}
-                        onClick={() => {}}
+                        onClick={sendLoanApproval}
                       >
                         Approve
                       </Button>
