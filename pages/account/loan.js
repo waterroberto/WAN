@@ -18,7 +18,6 @@ import PopupModal from "../../components/Global/Modal";
 import Container from "../../components/dashboard/Container";
 import PrivateRoute from "../../components/auth/PrivateRoute";
 import cogoToast from "cogo-toast";
-
 import { UserService } from "../../services/user";
 import ReferralCard from "../../components/dashboard/ReferralCard";
 
@@ -26,6 +25,7 @@ const Loan = (props) => {
   const [open1, setOpen1] = useState(false);
   const [open2, setOpen2] = useState(false);
   const [requesting, setRequesting] = useState(false);
+
   const [formData, setFormData] = useState({
     amount: "",
     duration: "",
@@ -114,8 +114,11 @@ const Loan = (props) => {
       }
     } else {
       setRequesting(true);
+
+      const _id = uuidv4();
+
       const data = {
-        _id: uuidv4(),
+        _id,
         _user: userData?.id,
         ...formData,
         amount: +amount,
@@ -132,9 +135,11 @@ const Loan = (props) => {
         const res = await UserService.sendLoanRequest(data, bankStatement);
 
         if (res.ok) {
+          console.log(res);
+
           const pendingLoanRequest = await UserService.addPendingLoan(
             userData?.id,
-            { amount: +amount, duration: +duration, _id: res.id }
+            { amount: +amount, duration: +duration, _id }
           );
 
           console.log(pendingLoanRequest);
