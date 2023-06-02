@@ -371,12 +371,6 @@ const LoanHistory = ({
                           ? parseDate(
                               transaction?.application_date?.seconds * 1000
                             )
-                          : transaction?.status === "approved"
-                          ? parseDate(transaction?.payout_date?.seconds * 1000)
-                          : transaction?.status === "declined"
-                          ? parseDate(
-                              transaction?.application_date?.seconds * 1000
-                            )
                           : ". . ."}
                       </Typography>
                     </Typography>

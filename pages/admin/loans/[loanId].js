@@ -14,6 +14,7 @@ import { stringAvatar } from "../../../utils/stringAvatar";
 import Link from "next/link";
 import parseDate from "../../../utils/parseDate";
 import Progress from "../../../components/Global/Progress";
+import { UpdateDisabled } from "@mui/icons-material";
 
 const Loans = () => {
   const router = useRouter();
@@ -52,7 +53,7 @@ const Loans = () => {
     fetchLoanDetails();
   }, []);
 
-  const sendLoanApproval = async () => {
+  const updateLoanStatus = async (_status) => {
     const loanId = loanDetails._id;
     const loan = userData.loans?.find((loan) => loan._id === loanId);
 
@@ -71,21 +72,40 @@ const Loans = () => {
       const res = await getDoc(userRef);
       const userLoans = res.data().loans;
 
+      const loanToUpdate = userLoans.find((loan) => loan._id === loanId);
+
+      const updatedLoans = [
+        ...userLoans.filter((loan) => loan._id !== loanId),
+        {
+          ...loanToUpdate,
+          status: _status,
+          payout_date:
+            _status === "approved"
+              ? payoutDate
+              : _status === "declined"
+              ? ". . ."
+              : ". . .",
+          repayment_date:
+            _status === "approved"
+              ? repaymentDate
+              : _status === "declined"
+              ? ". . ."
+              : ". . .",
+        },
+      ];
+
       await updateDoc(userRef, {
         canRequestLoan: true,
-        loans: [
-          ...userLoans,
-          {
-            ...loan,
-            status: "approved",
-            payout_date: payoutDate,
-            repayment_date: repaymentDate,
-          },
-        ],
+        loans: updatedLoans,
       });
 
       await updateDoc(loanRef, {
-        status: "approved",
+        status:
+          _status === "approved"
+            ? "approved"
+            : _status === "declined"
+            ? "declined"
+            : "pending",
       });
       setIsUpdating(false);
 
@@ -235,7 +255,7 @@ const Loans = () => {
                           },
                           width: "100%",
                         }}
-                        onClick={sendLoanApproval}
+                        onClick={() => updateLoanStatus("approved")}
                       >
                         Approve
                       </Button>
@@ -250,7 +270,7 @@ const Loans = () => {
                           },
                           width: "100%",
                         }}
-                        onClick={() => {}}
+                        onClick={() => updateLoanStatus("declined")}
                       >
                         Decline
                       </Button>
