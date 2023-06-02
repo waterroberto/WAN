@@ -20,7 +20,7 @@ const style = {
   color: "var(--mid)",
   width: "98%",
   maxWidth: "512px",
-  backdropFilter: "blur(8px)",
+  backdropFilter: "blur(16px)",
 };
 
 export default function PopupModal({

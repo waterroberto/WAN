@@ -51,7 +51,7 @@ const Loans = () => {
             <Typography
               fontSize={32}
               sx={{
-                height: "100vh",
+                height: "60vh",
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",

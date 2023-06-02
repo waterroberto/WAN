@@ -1,15 +1,18 @@
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
-import { Box } from "@mui/material";
 import { doc, getDoc } from "firebase/firestore";
 import { db } from "../../../services/firebase.config";
 import cogoToast from "cogo-toast";
 import { Layout } from "../../../components";
 import AdminRoute from "../../../components/auth/AdminRoute";
-import { Typography, Stack, Button } from "@mui/material";
+import { Typography, Stack, Button, Grid, Box, Avatar } from "@mui/material";
 import Nav from "../../../components/admin/Nav";
 import AdminMobileNav from "../../../components/admin/AdminMobileNav";
 import Container from "../../../components/dashboard/Container";
+import { Meta } from "../../../components";
+import { stringAvatar } from "../../../utils/stringAvatar";
+import Link from "next/link";
+import parseDate from "../../../utils/parseDate";
 
 const Loans = () => {
   const router = useRouter();
@@ -47,23 +50,23 @@ const Loans = () => {
     };
 
     fetchLoanDetails();
-  }, [loanId]);
+  }, []);
 
   return (
     <AdminRoute>
+      <Meta
+        title="Admin Portal - Blue Ship Finance"
+        description="Admin Portal - Blue Ship Finance"
+      />
       <Box minHeight="100vh" sx={{ background: "var(--darker)" }}>
         <Nav />
-
+        <Box my={4} />
         <Layout>
-          <Box my={8} fontSize={18} sx={{ color: "var(--mid)" }}>
-            Loan Details
-          </Box>
-
-          {loading && !loanDetails && (
+          {loading && (
             <Typography
               fontSize={32}
               sx={{
-                height: "100vh",
+                height: "60vh",
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
@@ -94,41 +97,206 @@ const Loans = () => {
                   </Typography>
                 </Typography>
               </Container>
+              {/*  */}
+              <Typography
+                fontSize={24}
+                fontWeight={600}
+                sx={{
+                  color: "var(--mid)",
+                }}
+                mb={2}
+              >
+                Loan Details
+              </Typography>
               <Container>
-                <Stack gap={2} direction={{ xs: "column", sm: "row" }}>
-                  <Button
-                    disableElevation
-                    sx={{
-                      color: "var(--mid)",
-                      background: "var(--green)",
-
-                      "&:hover": {
-                        background: "var(--green-hover)",
-                      },
-                      width: "100%",
-                    }}
-                    onClick={() => {}}
-                  >
-                    Approve
-                  </Button>
-                  <Button
-                    disableElevation
-                    sx={{
-                      color: "var(--mid)",
-                      background: "var(--red)",
-
-                      "&:hover": {
-                        background: "var(--red-hover)",
-                      },
-                      width: "100%",
-                    }}
-                    onClick={() => {}}
-                  >
-                    Decline
-                  </Button>
-                </Stack>
+                <Grid
+                  container
+                  mx="auto"
+                  rowSpacing={{ xs: 4, sm: 6 }}
+                  columnSpacing={{ sm: 4, md: 8 }}
+                  columns={12}
+                  alignItems="center"
+                  sx={{ color: "var(--mid)" }}
+                >
+                  <Grid item xs={12} sm={6} md={4} width="100%">
+                    <Typography fontWeight={800} fontSize={20}>
+                      Application Date
+                    </Typography>
+                    <Typography fontSize={16} fontWeight={300}>
+                      {parseDate(loanDetails?.applicationDate?.seconds * 1000)}
+                    </Typography>
+                  </Grid>
+                  <Grid item xs={12} sm={6} md={4} width="100%">
+                    <Typography fontWeight={800} fontSize={20}>
+                      Loan Amount
+                    </Typography>
+                    <Typography fontSize={16} fontWeight={300}>
+                      {loanDetails?.currency}{" "}
+                      {parseInt(loanDetails?.amount).toLocaleString()}
+                    </Typography>
+                  </Grid>
+                  <Grid item xs={12} sm={6} md={4} width="100%">
+                    <Typography fontWeight={800} fontSize={20}>
+                      Client`s Income
+                    </Typography>
+                    <Typography fontSize={16} fontWeight={300}>
+                      {loanDetails?.currency}{" "}
+                      {parseInt(loanDetails?.income).toLocaleString()}
+                    </Typography>
+                  </Grid>
+                  <Grid item xs={12} sm={6} md={4} width="100%">
+                    <Typography fontWeight={800} fontSize={20}>
+                      Financial Placement
+                    </Typography>
+                    <Typography fontSize={16} fontWeight={300}>
+                      {loanDetails?.placement}
+                    </Typography>
+                  </Grid>
+                  <Grid item xs={12} sm={6} md={4} width="100%">
+                    <Typography fontWeight={800} fontSize={20}>
+                      Employment Status
+                    </Typography>
+                    <Typography fontSize={16} fontWeight={300}>
+                      {loanDetails?.employmentStatus}
+                    </Typography>
+                  </Grid>
+                  <Grid item xs={12} sm={6} md={4} width="100%">
+                    <Typography fontWeight={800} fontSize={20}>
+                      Employment Duration
+                    </Typography>
+                    <Typography fontSize={16} fontWeight={300}>
+                      {loanDetails?.employmentDuration} years
+                    </Typography>
+                  </Grid>
+                </Grid>
               </Container>
+              {/*  */}
+              {loanDetails?.status !== "declined" &&
+                loanDetails?.status !== "approved" && (
+                  <Container>
+                    {/* {!user.role === 'admin' && <UserLayout /> } */}
+                    {/* {user.role !== 'admin' && <UserLayout/> } */}
+                    <Stack gap={2} direction={{ xs: "column", sm: "row" }}>
+                      <Button
+                        disableElevation
+                        sx={{
+                          color: "var(--mid)",
+                          background: "var(--green)",
+
+                          "&:hover": {
+                            background: "var(--green-hover)",
+                          },
+                          width: "100%",
+                        }}
+                        onClick={() => {}}
+                      >
+                        Approve
+                      </Button>
+                      <Button
+                        disableElevation
+                        sx={{
+                          color: "var(--mid)",
+                          background: "var(--red)",
+
+                          "&:hover": {
+                            background: "var(--red-hover)",
+                          },
+                          width: "100%",
+                        }}
+                        onClick={() => {}}
+                      >
+                        Decline
+                      </Button>
+                    </Stack>
+                  </Container>
+                )}
+              {/*  */}
+              <Typography
+                fontSize={24}
+                fontWeight={600}
+                sx={{
+                  color: "var(--mid)",
+                }}
+                mb={2}
+              >
+                User Details
+              </Typography>
+              <Container>
+                <Grid
+                  container
+                  mx="auto"
+                  rowSpacing={{ xs: 4, sm: 6 }}
+                  columnSpacing={{ sm: 4, md: 8 }}
+                  columns={12}
+                  alignItems="center"
+                  sx={{ color: "var(--mid)" }}
+                >
+                  <Grid item xs={12} sm={6} md={4} width="100%">
+                    <Stack direction="row" alignItems="center" gap={4}>
+                      <Link href={`/admin/users/${userData?.id}`}>
+                        <Avatar
+                          {...stringAvatar(
+                            `${userData?.firstName.toUpperCase()} ${userData?.lastName.toUpperCase()}`
+                          )}
+                          src={userData?.documents?.passport}
+                          sx={{
+                            width: 120,
+                            height: 120,
+                            border: "4px solid var(--pale-blue)",
+                          }}
+                        />
+                      </Link>
+                      <Box>
+                        <Typography fontWeight={800} fontSize={20}>
+                          {userData?.firstName.toUpperCase()}{" "}
+                          {userData?.lastName.toUpperCase()}
+                        </Typography>
+                        <Typography fontSize={16} fontWeight={300}>
+                          {userData?.email}
+                        </Typography>
+                      </Box>
+                    </Stack>
+                  </Grid>
+                  <Grid item xs={12} sm={6} md={4} width="100%">
+                    <Typography fontWeight={800} fontSize={20}>
+                      Location
+                    </Typography>
+                    <Typography fontSize={16} fontWeight={300}>
+                      {userData?.city}, {userData?.country}
+                    </Typography>
+                  </Grid>
+                  <Grid item xs={12} sm={6} md={4} width="100%">
+                    <Typography fontWeight={800} fontSize={20}>
+                      Gender
+                    </Typography>
+                    <Typography fontSize={16} fontWeight={300}>
+                      {userData?.gender}
+                    </Typography>
+                  </Grid>
+                  <Grid item xs={12} sm={6} md={4} width="100%">
+                    <Typography fontWeight={800} fontSize={20}>
+                      Phone Number
+                    </Typography>
+                    <Typography fontSize={16} fontWeight={300}>
+                      {userData?.phone}
+                    </Typography>
+                  </Grid>
+                </Grid>
+              </Container>
+              {/*  */}
             </>
+          )}
+          {!loading && !loanDetails && (
+            <Container>
+              <Typography
+                fontSize={32}
+                sx={{
+                  color: "var(--mid)",
+                }}
+              >
+                Cannot fetch details
+              </Typography>
+            </Container>
           )}
         </Layout>
 

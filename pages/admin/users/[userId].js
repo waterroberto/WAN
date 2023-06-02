@@ -10,11 +10,14 @@ import { onSnapshot, doc } from "firebase/firestore";
 import { db } from "../../../services/firebase.config";
 import parseDate from "../../../utils/parseDate";
 import { stringAvatar } from "../../../utils/stringAvatar";
-import Image from "next/image";
+import Transactions from "../../../components/dashboard/Transactions";
+import LoanHistory from "../../../components/dashboard/Loan/LoanHistory";
 
 const UserDetails = () => {
   const router = useRouter();
   const userId = router.query?.userId;
+
+  const [open2, setOpen2] = useState(false);
   const [userData, setUserData] = useState(null);
 
   useEffect(() => {
@@ -27,6 +30,9 @@ const UserDetails = () => {
       unsub();
     };
   }, [userId]);
+
+  const handleOpen2 = () => setOpen2(true);
+  const handleClose2 = () => setOpen2(false);
 
   return (
     <AdminRoute>
@@ -93,9 +99,9 @@ const UserDetails = () => {
               </Grid>
             </Grid>
           </Container>
-          <Container>
-            <Box my={4}>
-              {userData?.accountLevel !== 3 && (
+          {userData?.accountLevel !== 3 && (
+            <Container>
+              <Box my={4}>
                 <Button
                   disableElevation
                   sx={{
@@ -118,9 +124,9 @@ const UserDetails = () => {
                 >
                   Upgrade to Tier {userData?.accountLevel + 1}
                 </Button>
-              )}
-            </Box>
-          </Container>
+              </Box>
+            </Container>
+          )}
 
           <Container>
             <Typography
@@ -285,6 +291,42 @@ const UserDetails = () => {
               )}
             </Grid>
           </Container>
+          {userData?.loans && userData?.loans.length > 0 && (
+            <Container>
+              <Typography
+                fontSize={24}
+                fontWeight={600}
+                sx={{
+                  color: "var(--mid)",
+                }}
+                mb={2}
+              >
+                Loan History
+              </Typography>
+              <LoanHistory
+                transactions={userData?.loans}
+                currency={userData?.currency}
+                modalOpen={open2}
+                handleModalClose={handleClose2}
+                handleModalOpen={handleOpen2}
+              />
+            </Container>
+          )}
+          <Typography
+            fontSize={24}
+            fontWeight={600}
+            sx={{
+              color: "var(--mid)",
+            }}
+            mb={2}
+          >
+            Transaction History
+          </Typography>
+          <Transactions
+            transactions={userData?.transactions}
+            currency={userData?.currency}
+            customStyles={{ p: { xs: 2, sm: 3, md: 4 } }}
+          />
           <Container>
             <Stack gap={4} direction={{ xs: "column", sm: "row" }}>
               <Button
