@@ -403,7 +403,8 @@ const Loan = (props) => {
                   color: "var(--mid)",
                 }}
               >
-                Cannot request loan until you clear pending loans
+                Cannot request loan at the moment. Contact manager for more
+                information.
               </Typography>
             )}
             {userData?.canRequestLoan && userData?.accountLevel < 3 && (
