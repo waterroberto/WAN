@@ -367,11 +367,9 @@ const LoanHistory = ({
                           fontSize: "12px",
                         }}
                       >
-                        {transaction?.status === "pending"
-                          ? parseDate(
-                              transaction?.application_date?.seconds * 1000
-                            )
-                          : ". . ."}
+                        {parseDate(
+                          transaction?.application_date?.seconds * 1000
+                        )}
                       </Typography>
                     </Typography>
                   </Stack>

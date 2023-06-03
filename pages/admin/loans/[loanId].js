@@ -107,8 +107,8 @@ const Loans = () => {
             ? "declined"
             : "pending",
       });
-      setIsUpdating(false);
 
+      setIsUpdating(false);
       cogoToast.success("Successful");
     } catch (error) {
       cogoToast.error("Error updating loan");
