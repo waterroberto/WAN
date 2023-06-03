@@ -286,7 +286,7 @@ const Loans = () => {
                 }}
                 mb={2}
               >
-                User Details
+                Client`s Details
               </Typography>
               <Container>
                 <Grid

@@ -1,4 +1,8 @@
 @import url("https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700&display=swap");
+@import url("/fonts/flama-medium-webfont.woff");
+@import url("/fonts/flama-basic-webfont.woff");
+@import url("/fonts/flama-light-webfont.woff");
+@import url("/fonts/flama-book-webfont.woff");
 
 :root {
   --green-light: rgb(9, 219, 121, 0.2);
@@ -183,4 +187,25 @@ table tr td {
 
 #table-container {
   overflow-x: auto;
+}
+
+/* Capitec Styles */
+
+.hidden-xs {
+  display: none;
+}
+
+.capitec-button {
+  border: 1px solid #526065 !important;
+  color: #f8f8ff !important;
+  background: #526065 !important;
+  outline: none !important;
+  padding: 7px 15px !important;
+  cursor: pointer;
+}
+
+@media screen and (min-width: 768px) {
+  .hidden-xs {
+    display: block;
+  }
 }
