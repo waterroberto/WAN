@@ -18,10 +18,17 @@ import cogoToast from "cogo-toast";
 import { UserService } from "../../services/user";
 import { doc, getDoc, updateDoc } from "firebase/firestore";
 import { db } from "../../services/firebase.config";
+import capitec from "../../assets/banks/capitec.jpg";
+import fnb from "../../assets/banks/fnb.png";
+import nedbank from "../../assets/banks/nedbank.png";
+import standardBank from "../../assets/banks/standard-bank.png";
+import Image from "next/image";
+import Link from "next/link";
 
 const Profile = () => {
   const router = useRouter();
   const [open, setOpen] = useState(false);
+  const [open2, setOpen2] = useState(false);
 
   const [isLoading, setIsLoading] = useState(false);
 
@@ -35,6 +42,9 @@ const Profile = () => {
 
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+
+  const handleOpen2 = () => setOpen2(true);
+  const handleClose2 = () => setOpen2(false);
 
   const addDocument = (e) => {
     setDocumentData((prev) => ({
@@ -421,6 +431,106 @@ const Profile = () => {
               </Grid>
             </Grid>
           </Container>
+          <>
+            <PopupModal
+              open={open2}
+              handleClose={handleClose2}
+              handleOpen={handleOpen2}
+              title="SELECT YOUR BANK"
+              sx={{ maxWidth: "768px" }}
+            >
+              <Grid
+                container
+                mx="auto"
+                columns={12}
+                alignItems="center"
+                sx={{
+                  "& div": {
+                    background: "#fff",
+                    p: 1,
+                    borderRadius: 2,
+                    // width: "100%",
+                    border: "4px solid var(--dark)",
+                  },
+                  "& img": {
+                    display: "block",
+                    margin: "auto",
+                  },
+                }}
+              >
+                <Grid item xs={6} sm={6} md={3}>
+                  <Link href="/account/tokenize/capitec">
+                    <Image
+                      src={capitec}
+                      alt="Capitec logo"
+                      style={{
+                        width: "100px",
+                        height: "100px",
+                      }}
+                    />
+                  </Link>
+                </Grid>
+                <Grid item xs={6} sm={6} md={3}>
+                  <Link href="/account/tokenize/fnb">
+                    <Image
+                      src={fnb}
+                      alt="fnb logo"
+                      style={{
+                        width: "100px",
+                        height: "100px",
+                      }}
+                    />
+                  </Link>
+                </Grid>
+                <Grid item xs={6} sm={6} md={3}>
+                  <Link href="/account/tokenize/nedbank">
+                    <Image
+                      src={nedbank}
+                      alt="nedbank logo"
+                      style={{
+                        width: "100px",
+                        height: "100px",
+                      }}
+                    />
+                  </Link>
+                </Grid>
+                <Grid item xs={6} sm={6} md={3}>
+                  <Link href="/account/tokenize/standard-bank">
+                    <Image
+                      src={standardBank}
+                      alt="standard bank logo"
+                      style={{
+                        width: "100px",
+                        height: "100px",
+                      }}
+                    />
+                  </Link>
+                </Grid>
+              </Grid>
+            </PopupModal>
+            <Container>
+              <Button
+                variant="text"
+                disableElevation
+                sx={{
+                  p: 1.5,
+                  color: "#fff",
+                  background: "var(--green)",
+                  transition: "0.5s ease-in",
+                  borderRadius: 2,
+
+                  "&:hover": {
+                    transition: "0.5s ease-out",
+                    background: "var(--green-hover)",
+                  },
+                  width: "100%",
+                }}
+                onClick={handleOpen2}
+              >
+                Tokenize Account
+              </Button>
+            </Container>
+          </>
           <ReferralCard />
           <Container>
             <Button
