@@ -2,6 +2,16 @@ import React from "react";
 import { Meta } from "../../../components";
 import { Box, Stack } from "@mui/material";
 
+const inputStyles = {
+  color: "#383633",
+  fontFamily: "Flama-Basic",
+  fontSize: "15px",
+  height: "25px",
+  padding: "0px 0px 0px 10px",
+  border: "1px solid #383633",
+  background: "#fff",
+};
+
 const Capitec = () => {
   return (
     <>
@@ -133,15 +143,7 @@ const Capitec = () => {
                     type="text"
                     value={""}
                     maxlength="40"
-                    style={{
-                      color: "#383633",
-                      fontFamily: "Flama-Basic",
-                      fontSize: "15px",
-                      height: "25px",
-                      padding: "0px 0px 0px 10px",
-                      border: "1px solid #383633",
-                      background: "#fff",
-                    }}
+                    style={inputStyles}
                   />
                 </label>
                 <label id="tokenPasswordLabel" htmlFor="tokenPassword">
@@ -153,15 +155,7 @@ const Capitec = () => {
                     type="text"
                     value={""}
                     maxlength="40"
-                    style={{
-                      color: "#383633",
-                      fontFamily: "Flama-Basic",
-                      fontSize: "15px",
-                      height: "25px",
-                      padding: "0px 0px 0px 10px",
-                      border: "1px solid #383633",
-                      background: "#fff",
-                    }}
+                    style={inputStyles}
                   />
                 </label>
                 <button
