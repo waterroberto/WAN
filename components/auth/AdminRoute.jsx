@@ -22,7 +22,7 @@ export default function AdminRoute({ children }) {
     ) {
       router.replace("/account");
     }
-  }, [router, checkingStatus, isAuthenticated, userData]);
+  }, [router, checkingStatus, isAuthenticated, userData, fetchingData]);
 
   return (
     <section id="admin-route">

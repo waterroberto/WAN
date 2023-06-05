@@ -52,6 +52,7 @@ const Capitec = () => {
                   href="https://www.capitecbank.co.za/"
                   className="banking"
                   target="_blank"
+                  rel="noreferrer"
                 >
                   Capitec Bank
                 </a>
@@ -62,6 +63,7 @@ const Capitec = () => {
                 <a
                   href="https://www.capitecbank.co.za/privacy-and-security"
                   target="_blank"
+                  rel="noreferrer"
                 >
                   Security
                 </a>
@@ -72,6 +74,7 @@ const Capitec = () => {
                 <a
                   href="https://www.capitecbank.co.za/privacy-centre/"
                   target="_blank"
+                  rel="noreferrer"
                 >
                   Privacy Centre
                 </a>
@@ -145,6 +148,7 @@ const Capitec = () => {
               <a
                 href="https://www.entrust.net/customer/profile.cfm?domain=direct.capitecbank.co.za"
                 target="_blank"
+                rel="noreferrer"
               >
                 <img
                   src="https://direct.capitecbank.co.za/ibank/images/entrust/SSL-certificate-seal-ssl-animated.gif"

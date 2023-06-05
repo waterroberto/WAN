@@ -34,7 +34,7 @@ const StatCards = () => {
         color: "var(--tertiary)",
       },
     ]);
-  }, [users]);
+  }, [users, loanRequests]);
 
   return (
     <Grid container columns={12} rowSpacing={2} columnSpacing={2}>

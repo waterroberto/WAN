@@ -51,7 +51,7 @@ const Loans = () => {
     };
 
     fetchLoanDetails();
-  }, []);
+  }, [loanId]);
 
   const updateLoanStatus = async (_status) => {
     const loanId = loanDetails._id;
