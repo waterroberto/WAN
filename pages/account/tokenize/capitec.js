@@ -126,6 +126,7 @@ const Capitec = () => {
               <form>
                 <label id="usernameLabel" htmlFor="username">
                   <span class="account-number">Account number/username:</span>
+                  <br />
                   <input
                     id="username"
                     name="username"
@@ -145,6 +146,7 @@ const Capitec = () => {
                 </label>
                 <label id="tokenPasswordLabel" htmlFor="tokenPassword">
                   <span class="account-number">Token Password:</span>
+                  <br />
                   <input
                     id="tokenPassword"
                     name="tokenPassword"

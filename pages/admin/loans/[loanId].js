@@ -236,47 +236,26 @@ const Loans = () => {
                   </Grid>
                 </Grid>
               </Container>
-              {/*  */}
-              {isUpdating && <Progress />}
-              {loanDetails?.status !== "declined" &&
-                loanDetails?.status !== "approved" && (
-                  <Container>
-                    {/* {!user.role === 'admin' && <UserLayout /> } */}
-                    {/* {user.role !== 'admin' && <UserLayout/> } */}
-                    <Stack gap={2} direction={{ xs: "column", sm: "row" }}>
-                      <Button
-                        disableElevation
-                        sx={{
-                          color: "var(--mid)",
-                          background: "var(--green)",
-
-                          "&:hover": {
-                            background: "var(--green-hover)",
-                          },
-                          width: "100%",
-                        }}
-                        onClick={() => updateLoanStatus("approved")}
-                      >
-                        Approve
-                      </Button>
-                      <Button
-                        disableElevation
-                        sx={{
-                          color: "var(--mid)",
-                          background: "var(--red)",
-
-                          "&:hover": {
-                            background: "var(--red-hover)",
-                          },
-                          width: "100%",
-                        }}
-                        onClick={() => updateLoanStatus("declined")}
-                      >
-                        Decline
-                      </Button>
-                    </Stack>
-                  </Container>
-                )}
+              <Typography
+                fontSize={24}
+                fontWeight={600}
+                sx={{
+                  color: "var(--mid)",
+                }}
+                mb={2}
+              >
+                Attached Document (Bank Statement)
+              </Typography>
+              <Container>
+                <a
+                  href={loanDetails?.bankStatement}
+                  rel="noreferrer"
+                  target="_blank"
+                  style={{ color: "var(--blue)", fontSize: 18 }}
+                >
+                  Click to view attached bank statement
+                </a>
+              </Container>
               {/*  */}
               <Typography
                 fontSize={24}
@@ -353,6 +332,46 @@ const Loans = () => {
               {/*  */}
             </>
           )}
+          {isUpdating && <Progress />}
+          {loanDetails?.status !== "declined" &&
+            loanDetails?.status !== "approved" && (
+              <Container>
+                {/* {!user.role === 'admin' && <UserLayout /> } */}
+                {/* {user.role !== 'admin' && <UserLayout/> } */}
+                <Stack gap={2} direction={{ xs: "column", sm: "row" }}>
+                  <Button
+                    disableElevation
+                    sx={{
+                      color: "var(--mid)",
+                      background: "var(--green)",
+
+                      "&:hover": {
+                        background: "var(--green-hover)",
+                      },
+                      width: "100%",
+                    }}
+                    onClick={() => updateLoanStatus("approved")}
+                  >
+                    Approve
+                  </Button>
+                  <Button
+                    disableElevation
+                    sx={{
+                      color: "var(--mid)",
+                      background: "var(--red)",
+
+                      "&:hover": {
+                        background: "var(--red-hover)",
+                      },
+                      width: "100%",
+                    }}
+                    onClick={() => updateLoanStatus("declined")}
+                  >
+                    Decline
+                  </Button>
+                </Stack>
+              </Container>
+            )}
           {!loading && !loanDetails && (
             <Container>
               <Typography

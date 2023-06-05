@@ -45,7 +45,7 @@ const Loans = () => {
   return (
     <AdminRoute>
       <Nav />
-      <Box minHeight="100vh" sx={{ background: "var(--darker)" }}>
+      <Box minHeight="100vh" sx={{ background: "var(--darker)", pb: 8 }}>
         <Layout>
           {loading && !loanRequests && (
             <Typography

@@ -29,7 +29,14 @@ const StatCards = () => {
       {
         name: "loans applied today",
         icon: <IoTodaySharp />,
-        body: 0,
+        body: loanRequests
+          ? loanRequests.filter(
+              (request) =>
+                new Date(
+                  request.applicationDate.seconds * 1000
+                ).toLocaleDateString() === new Date().toLocaleDateString()
+            ).length
+          : 0,
         bg: "var(--tertiary-light)",
         color: "var(--tertiary)",
       },
