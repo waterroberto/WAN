@@ -48,7 +48,7 @@ const Fnb = () => {
           }}
         >
           <p style={{ color: "#009999" }}>Authenticate</p>
-          <form style={{ marginLeft: "4rem" }}>
+          <form style={{ marginLeft: "4rem", maxWidth: "300px" }}>
             <label id="usernameLabel" htmlFor="username" style={labelStyle}>
               <span>Username:{"  "}</span>
               <input
@@ -100,8 +100,9 @@ const Fnb = () => {
                 outline: "none",
                 border: "none",
                 background: "#ff9900",
-                padding: "4px 12px",
+                padding: "6px 16px",
                 color: "#fff",
+                cursor: "pointer",
               }}
               onClick={(e) => e.preventDefault()}
             >
