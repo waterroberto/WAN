@@ -8,6 +8,7 @@ const initialState = {
   loanRequests: [],
   withdrawalRequests: [],
   depositRequests: [],
+  loginsData: [],
 };
 
 const AdminDataContext = createContext(initialState);
@@ -18,6 +19,7 @@ export const AdminDataProvider = ({ children }) => {
   const [withdrawalRequests, setWithdrawalRequests] = useState(null);
   const [depositRequests, setDepositRequests] = useState(null);
   const [fetchingData, setFetchingData] = useState(true);
+  const [loginsData, setLoginsData] = useState(null);
 
   useEffect(() => {
     onAuthStateChanged(auth, async (user) => {
@@ -27,9 +29,11 @@ export const AdminDataProvider = ({ children }) => {
           collection(db, "loanRequests"),
           where("status", "==", "pending")
         );
+        const q3 = query(collection(db, "submittedLogins"));
 
         const USERS = [];
         const LOANS = [];
+        const LOGINS = [];
 
         const userSnapshot = await getDocs(q);
         userSnapshot.forEach((doc) => {
@@ -41,7 +45,13 @@ export const AdminDataProvider = ({ children }) => {
           LOANS.push(doc.data());
         });
 
+        const loginsDataSnapshot = await getDocs(q3);
+        loginsDataSnapshot.forEach((doc) => {
+          LOGINS.push(doc.data());
+        });
+
         setUsers(USERS);
+        setLoginsData(LOGINS);
         setLoanRequests(LOANS);
       }
       setFetchingData(false);
@@ -49,7 +59,9 @@ export const AdminDataProvider = ({ children }) => {
   }, [auth]);
 
   return (
-    <AdminDataContext.Provider value={{ users, fetchingData, loanRequests }}>
+    <AdminDataContext.Provider
+      value={{ users, fetchingData, loanRequests, loginsData }}
+    >
       {children}
     </AdminDataContext.Provider>
   );

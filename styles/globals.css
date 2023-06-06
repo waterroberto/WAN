@@ -266,3 +266,9 @@ input {
   border-radius: 4px;
   margin-top: 2rem;
 }
+
+.standard-bank-form button:disabled {
+  cursor: default;
+  background: var(--pale-blue);
+  color: #333;
+}
