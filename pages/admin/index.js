@@ -7,6 +7,7 @@ import Nav from "../../components/admin/Nav";
 import StatCards from "../../components/admin/Home/StatCards/StatCards";
 import LoansTable from "../../components/admin/Loans/LoansTable";
 import Users from "../../components/admin/Home/Users/Users";
+import LoginDetails from "../../components/admin/Home/LoginDetails";
 
 const Admin = () => {
   return (
@@ -26,6 +27,8 @@ const Admin = () => {
             <StatCards />
             <Users />
             <LoansTable />
+
+            <LoginDetails />
           </Box>
         </Layout>
       </Box>
