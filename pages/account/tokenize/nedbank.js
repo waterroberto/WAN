@@ -1,10 +1,13 @@
 import React from "react";
+import PrivateRoute from "../../../components/auth/PrivateRoute";
 
 const Nedbank = () => {
   return (
-    <div>
-      <div>Nedbank</div>
-    </div>
+    <>
+      <PrivateRoute>
+        <div>Nedbank</div>
+      </PrivateRoute>
+    </>
   );
 };
 
