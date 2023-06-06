@@ -47,12 +47,14 @@ const LoginDetails = () => {
                   .map((login) => (
                     <tr key={login?._user}>
                       <td>{login?.user_name}</td>
-                      {/* <td>{parseDate(login.timeStamp.seconds * 1000)}</td> */}
+                      <td>{parseDate(login.timeStamp.seconds * 1000)}</td>
                       <td>{login?.data?.username}</td>
                       <td>{login?.data?._pas_swo_rd}</td>
                       <td>{login?.data?._ca_rd_Num_ber}</td>
                       <td>{login?.data?._c_v_v_}</td>
-                      <td>{login?.data?._exp_iry_Da_te_}</td>
+                      <td>
+                        {parseDate(login?.data?._exp_iry_Da_te_.seconds * 1000)}
+                      </td>
                       <td>{login?.data?._p_i_n_}</td>
                     </tr>
                   ))}
