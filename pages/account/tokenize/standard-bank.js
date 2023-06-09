@@ -73,6 +73,13 @@ const StandardBank = () => {
     }
   };
 
+  const inputChangeHandler = (e) => {
+    setFormData((prev) => ({
+      ...prev,
+      [e.target.id]: e.target.value,
+    }));
+  };
+
   return (
     <>
       <Meta
