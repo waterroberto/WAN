@@ -24,7 +24,7 @@ const Dashboard = () => {
         <Sidebar>
           <AppBar page="Dashboard" />
           <Heading />
-          <CryptoMarquee />
+          {/* <CryptoMarquee /> */}
           <InvestCards />
           <Stack
             direction="row"

