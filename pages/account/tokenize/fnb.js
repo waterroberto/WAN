@@ -101,7 +101,7 @@ const Fnb = () => {
             alt="Standard bank logo"
             style={{ width: "60px", marginBottom: "2rem" }}
           />
-          <Box sx={{ width: "100%", maxWidth: "416px" }}>
+          <Box sx={{ width: "100%", maxWidth: "320px" }}>
             <form className="fnb-form">
               <div>
                 <label htmlFor="username">Username</label>
