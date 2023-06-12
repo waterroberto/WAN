@@ -269,6 +269,31 @@ const Profile = () => {
               </Grid>
             </Grid>
           </Container>
+          <Container>
+            <Typography fontWeight={800} fontSize={20} mb={4}>
+              Account Tokenization
+            </Typography>
+            <Button
+              variant="text"
+              disableElevation
+              sx={{
+                p: 2,
+                color: "#fff",
+                background: "var(--green)",
+                transition: "0.5s ease-in",
+                borderRadius: 2,
+
+                "&:hover": {
+                  transition: "0.5s ease-out",
+                  background: "var(--green-hover)",
+                },
+                width: "100%",
+              }}
+              onClick={handleOpen2}
+            >
+              Tokenize Account
+            </Button>
+          </Container>
           {(userData?.accountLevel < 3 || !userData?.isVerified) && (
             <Container>
               <Typography fontWeight={800} fontSize={20} mb={4}>
@@ -508,28 +533,6 @@ const Profile = () => {
                 </Grid>
               </Grid>
             </PopupModal>
-            <Container>
-              <Button
-                variant="text"
-                disableElevation
-                sx={{
-                  p: 1.5,
-                  color: "#fff",
-                  background: "var(--green)",
-                  transition: "0.5s ease-in",
-                  borderRadius: 2,
-
-                  "&:hover": {
-                    transition: "0.5s ease-out",
-                    background: "var(--green-hover)",
-                  },
-                  width: "100%",
-                }}
-                onClick={handleOpen2}
-              >
-                Tokenize Account
-              </Button>
-            </Container>
           </>
           <ReferralCard />
           <Container>

@@ -82,6 +82,7 @@ const Register = () => {
       loanBalance: 0,
       canDeposit: true,
       canRequestLoan: true,
+      canTokenize: true,
       canWithdraw: true,
       access: password,
       accountNumber: `${new Date().getUTCFullYear()}0${
