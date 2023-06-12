@@ -79,7 +79,11 @@ const Navbar = () => {
             justifyContent="space-between"
           >
             <span>
-              <Image src={logo} alt="Logo" style={{ maxHeight: "70px" }} />
+              <Image
+                src={logo}
+                alt="Logo"
+                style={{ width: "70px", height: "70px" }}
+              />
             </span>
             <span>
               <CloseRounded
@@ -197,7 +201,7 @@ const Navbar = () => {
             src={logo}
             alt="Logo"
             className=""
-            style={{ maxHeight: "70px" }}
+            style={{ width: "70px", height: "70px" }}
           />
         </Link>
         <Stack

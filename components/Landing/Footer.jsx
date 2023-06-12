@@ -20,7 +20,7 @@ const Footer = () => {
           {/* . . . */}
           <Grid item xs={12} sm={6} md={4} width="100%">
             <Link href="/">
-              <Image src={logo} style={{ maxHeight: "70px" }} />
+              <Image src={logo} style={{ width: "70px", height: "70px" }} />
             </Link>
             <Typography
               py={2}

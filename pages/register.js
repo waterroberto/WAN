@@ -189,6 +189,7 @@ const Register = () => {
                 fontFamily: "inherit",
                 textAlign: "center",
               }}
+              mt={8}
             >
               Create Account
             </Typography>
