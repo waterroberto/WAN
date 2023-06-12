@@ -15,9 +15,9 @@ const About = () => {
   return (
     <>
       <Meta
-        title="About - Blue Shipe Finance - Online loans for everyone -
+        title="About - Blue Chip Finance - Online loans for everyone -
         Homepage"
-        description="About us - Blue Shipe Finance - Online loans for everyone - About page"
+        description="About us - Blue Chip Finance - Online loans for everyone - About page"
       />
 
       <Navbar />

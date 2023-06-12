@@ -18,8 +18,8 @@ const Services = () => {
   return (
     <>
       <Meta
-        title="Services - Blue Shipe Finanace - Online loan banking for everyone"
-        description="What services Blue Shipe Finance offers - Online loan banking for everyone"
+        title="Services - Blue Chip Finanace - Online loan banking for everyone"
+        description="What services Blue Chip Finance offers - Online loan banking for everyone"
       />
 
       <Navbar />
@@ -30,7 +30,7 @@ const Services = () => {
           position: "relative",
           overflow: "hidden",
           background:
-            'url("https://images.unsplash.com/photo-1517048676732-d65bc937f952?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80") no-repeat center center/cover',
+            'url("https://firebasestorage.googleapis.com/v0/b/west-financial-services.appspot.com/o/agric-loan.jpg?alt=media&token=1987e002-d8fd-4cb3-b2ad-17c29c04e6e8") no-repeat center center/cover',
 
           "&:after": {
             content: "''",
@@ -79,14 +79,14 @@ const Services = () => {
                 fontFamily: "inherit",
               }}
             >
-              Blue Ship Financial Bank is a chartered bank in Africa that allows
+              Blue Chip Financial Bank is a chartered bank in Africa that allows
               you to buy, sell, and hold assets directly with your bank account.
               We give Loans & Grants and also incoporate Decentralized Spending,
               We facilitate Investments and enable users Spend Wisely. <br />
               We allow investors have a flexible way of investing in market at a
               low-cost, and bridge the gap between loan applicant`s and
               corporate organisations, giving them a chance to expand their
-              investment portfolio. <br /> Blue Ship Finance offers banking,
+              investment portfolio. <br /> Blue Chip Finance offers banking,
               loans & savings services. <br /> Our platform is easy to use, get
               started in a few simple steps.
             </Typography>

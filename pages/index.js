@@ -17,8 +17,8 @@ export default function Home() {
   return (
     <>
       <Meta
-        title="Blue Ship Finance - Home - Online loans banking for everyone"
-        description="Blue Ship Financial Bank - Online loans banking for everyone - Homepage"
+        title="Blue Chip Finance - Home - Online loans banking for everyone"
+        description="Blue Chip Financial Bank - Online loans banking for everyone - Homepage"
       />
       <Navbar />
       <Box pt={8}>

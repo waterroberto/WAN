@@ -1,7 +1,7 @@
 import { Box, Stack, Typography } from "@mui/material";
 import Image from "next/image";
 import React, { useContext } from "react";
-import logoOutlineDark from "../../assets/logo-outline-dark.svg";
+import logo from "../../assets/logo-2.svg";
 import userDataContext from "../../context/UserDataContext";
 import cogoToast from "cogo-toast";
 
@@ -82,8 +82,8 @@ const ReferralCard = () => {
           </Typography>
         </Box>
         <Image
-          src={logoOutlineDark}
-          alt="Logo outline dark for blue ship finance"
+          src={logo}
+          alt="Logo outline dark for Blue Chip finance"
           style={{
             height: "80px",
             width: "80px",

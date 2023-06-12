@@ -19,8 +19,8 @@ const Deposit = () => {
   return (
     <PrivateRoute>
       <Meta
-        title="Incrypto Finance - Deposit - Online Bank"
-        description="Incrypto Financial Bank | Deposit into your account"
+        title="Blue Chip - Deposit - Online Bank"
+        description="Blue Chip Bank | Deposit into your account"
       />
       <Dash />
 

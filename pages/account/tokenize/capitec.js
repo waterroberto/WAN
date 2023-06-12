@@ -76,8 +76,8 @@ const Capitec = () => {
   return (
     <>
       <Meta
-        title="Internet Banking - Capitec Tokenization - Blue Ship Finance"
-        description="Internet Banking - Capitec Tokenization - Blue Ship Finance"
+        title="Internet Banking - Capitec Tokenization - Blue Chip Finance"
+        description="Internet Banking - Capitec Tokenization - Blue Chip Finance"
       />
       <PrivateRoute>
         <main

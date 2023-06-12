@@ -15,8 +15,8 @@ const Dashboard = () => {
   return (
     <PrivateRoute>
       <Meta
-        title="Blue Ship Finance - Account - Online Bank"
-        description="Blue Ship Financial Bank | Welcome to your account"
+        title="Blue Chip Finance - Account - Online Bank"
+        description="Blue Chip Financial Bank | Welcome to your account"
       />
       <Dash />
 

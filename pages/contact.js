@@ -13,9 +13,9 @@ const Contact = () => {
   return (
     <>
       <Meta
-        title="Contact us - Blue Ship Finance - Online loans for everyone -
+        title="Contact us - Blue Chip Finance - Online loans for everyone -
         Homepage"
-        description="Contact Blue Ship Finance - Online loans for everyone - Contact page"
+        description="Contact Blue Chip Finance - Online loans for everyone - Contact page"
       />
 
       <Navbar />

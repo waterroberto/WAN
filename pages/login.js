@@ -44,8 +44,8 @@ const Login = () => {
   return (
     <>
       <Meta
-        title="Login - Blue Shipt Finanace - Online banking for everyone"
-        description="Login to your Blue Shipt Account - Online banking for everyone"
+        title="Login - Blue Chip Finanace - Online banking for everyone"
+        description="Login to your Blue Chip Account - Online banking for everyone"
       />
       <Box
         mt={8}

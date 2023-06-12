@@ -121,8 +121,8 @@ const Loans = () => {
   return (
     <AdminRoute>
       <Meta
-        title="Admin Portal - Blue Ship Finance"
-        description="Admin Portal - Blue Ship Finance"
+        title="Admin Portal - Blue Chip Finance"
+        description="Admin Portal - Blue Chip Finance"
       />
       <Box minHeight="100vh" sx={{ background: "var(--darker)" }}>
         <Nav />

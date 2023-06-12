@@ -44,7 +44,7 @@ const Login = () => {
 
   return (
     <>
-      <Meta title="Login - Blue Ship Finance - Online banking for everyone" />
+      <Meta title="Login - Blue Chip Finance - Online banking for everyone" />
       <Box
         pt={16}
         sx={{

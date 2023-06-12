@@ -169,8 +169,8 @@ const Loan = (props) => {
   return (
     <PrivateRoute>
       <Meta
-        title="Blue Ship Finance - Loan - Online Bank"
-        description="Blue Ship Financial Bank | Loan into your account"
+        title="Blue Chip Finance - Loan - Online Bank"
+        description="Blue Chip Financial Bank | Loan into your account"
       />
       <Dash />
 

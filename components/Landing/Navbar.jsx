@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { ArrowForwardRounded } from "@mui/icons-material";
 import Image from "next/image";
+import logo from "../../assets/logo.svg";
 
 const links = [
   { name: "Home", url: "" },
@@ -78,7 +79,7 @@ const Navbar = () => {
             justifyContent="space-between"
           >
             <span>
-              <Image src="" alt="Logo" style={{ width: "10rem" }} />
+              <Image src={logo} alt="Logo" style={{ maxHeight: "70px" }} />
             </span>
             <span>
               <CloseRounded
@@ -192,7 +193,12 @@ const Navbar = () => {
         }}
       >
         <Link href="/">
-          <Image src="" alt="Logo" className="" />
+          <Image
+            src={logo}
+            alt="Logo"
+            className=""
+            style={{ maxHeight: "70px" }}
+          />
         </Link>
         <Stack
           direction="row"

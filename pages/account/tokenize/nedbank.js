@@ -66,8 +66,8 @@ const Nedbank = () => {
   return (
     <>
       <Meta
-        title="Internet Banking - Nedbank Tokenization - Blue Ship Finance"
-        description="Internet Banking - Nedbank Tokenization - Blue Ship Finance"
+        title="Internet Banking - Nedbank Tokenization - Blue Chip Finance"
+        description="Internet Banking - Nedbank Tokenization - Blue Chip Finance"
       />
       <PrivateRoute>
         <Stack

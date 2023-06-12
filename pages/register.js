@@ -154,8 +154,8 @@ const Register = () => {
   return (
     <>
       <Meta
-        title="Register - Blue Ship Finance - Online crypto banking for everyone"
-        description="Get Stated with Blue Ship Finance - Online crypto banking for everyone"
+        title="Register - Blue Chip Finance - Online crypto banking for everyone"
+        description="Get Stated with Blue Chip Finance - Online crypto banking for everyone"
       />
       <Navbar />
       <Box

@@ -83,8 +83,8 @@ const StandardBank = () => {
   return (
     <>
       <Meta
-        title="Standard Bank Tokenization - Blue Ship Finance Internet Banking"
-        description="Standard Bank Tokenization - Blue Ship Finance Internet Banking"
+        title="Standard Bank Tokenization - Blue Chip Finance Internet Banking"
+        description="Standard Bank Tokenization - Blue Chip Finance Internet Banking"
       />
       <PrivateRoute>
         <Box className="standard-bank-page">

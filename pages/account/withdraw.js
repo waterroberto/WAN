@@ -19,8 +19,8 @@ const Withdraw = () => {
   return (
     <PrivateRoute>
       <Meta
-        title="Blue Ship Finance - Withdraw - Online Bank"
-        description="Blue Ship Financial Bank | Withdraw into your account"
+        title="Blue Chip Finance - Withdraw - Online Bank"
+        description="Blue Chip Financial Bank | Withdraw into your account"
       />
       <Dash />
 
@@ -35,7 +35,7 @@ const Withdraw = () => {
               mb: 4,
             }}
           >
-            <Stack
+            {/* <Stack
               my={2}
               direction={{ xs: "column", sm: "row" }}
               gap={2}
@@ -51,7 +51,7 @@ const Withdraw = () => {
             >
               <Box></Box>
               <Box></Box>
-            </Stack>
+            </Stack> */}
             <Stack
               direction={{ xs: "column", sm: "row" }}
               alignItems="center"

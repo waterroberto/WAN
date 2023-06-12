@@ -105,8 +105,8 @@ const Profile = () => {
   return (
     <PrivateRoute>
       <Meta
-        title="Blue Ship Finance - Profile - Online Bank"
-        description="Blue Ship Financial Bank | Profile into your account"
+        title="Blue Chip Finance - Profile - Online Bank"
+        description="Blue Chip Financial Bank | Profile into your account"
       />
       <Dash />
 

@@ -11,15 +11,14 @@ import {
 const featuresData = [
   {
     icon: <GiTakeMyMoney />,
-    heading: "Quick Loans",
-    body: "Money To Pay Rent, School Fees Or Buy A New Car, Incrypto Finance Has Got You Covered. Repay in 1 to 24 months, with little interest.",
-    page: "services/#quick-loans",
+    heading: "Personal Loans",
+    body: "We help cover spending expenses on personal basis. Application for personal loans is fast and easy with no upfront fees.",
+    page: "services/#personal-loans",
   },
   {
     icon: <RiExchangeDollarLine />,
-    heading: "Decentralized Exchange",
-    body: "Get started with the easiest and most secure platform for decentralized banking, convert your money to different currencies easily, without interference.",
-    page: "services/#decentralized-exchange",
+    heading: "Car Loans",
+    body: "Our loan program cover cars & property purchase. We make it easier for you to buy the car of your dream.",
   },
   {
     icon: <RiBankFill />,
@@ -29,20 +28,20 @@ const featuresData = [
   },
   {
     icon: <RiSecurePaymentFill />,
-    heading: "Safe Spending",
-    body: "Balance your bank account, manange expenses, budget periodically. Spend safely, save safely with Deccentralized Finance (De-Fi). We know it, you learn it.",
-    page: "services/#safe-spending",
+    heading: "Payroll System",
+    body: "Our payroll tool helps with easy and affordable payroll management for businesses of all sizes.",
+    page: "services/#payroll-system",
   },
 ];
 
 const contactInformation = [
   {
     icon: <RiWhatsappLine />,
-    body: "+1 (781) 234-5678",
+    body: "+27 (781) 234-5678",
   },
   {
     icon: <MdMarkEmailRead />,
-    body: "support@incfinance.com",
+    body: "support@bluechipfinance.online",
   },
   {
     icon: <ImLocation />,
