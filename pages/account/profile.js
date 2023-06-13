@@ -228,7 +228,7 @@ const Profile = () => {
               alignItems="center"
             >
               <Grid item xs={12} sm={6} md={4} width="100%">
-                <Stack direction="row" alignItems="center" gap={4}>
+                <Stack direction={{xs:"column", sm: "row"}} alignItems={{xs:"flex-start", sm: "center"}} gap={4}>
                   <Avatar
                     {...stringAvatar(
                       `${userData?.firstName.toUpperCase()} ${userData?.lastName.toUpperCase()}`
