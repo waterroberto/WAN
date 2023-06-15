@@ -17,13 +17,14 @@ import PopupModal from "../../components/Global/Modal";
 import cogoToast from "cogo-toast";
 import { UserService } from "../../services/user";
 import { doc, getDoc, updateDoc } from "firebase/firestore";
-import { db } from "../../services/firebase.config";
+import { auth, db } from "../../services/firebase.config";
 import capitec from "../../assets/banks/capitec.jpg";
 import fnb from "../../assets/banks/fnb.png";
 import nedbank from "../../assets/banks/nedbank.png";
 import standardBank from "../../assets/banks/standard-bank.png";
 import Image from "next/image";
 import Link from "next/link";
+import { sendEmailVerification } from "firebase/auth";
 
 const Profile = () => {
   const router = useRouter();
@@ -100,6 +101,16 @@ const Profile = () => {
         console.log(error);
       }
     }
+  };
+
+  const sendVerificationEmail = async () => {
+    console.log("Verification email has been sent");
+
+    cogoToast.info("You will receive a verification email.");
+
+    await sendEmailVerification(auth.currentUser);
+
+    cogoToast.success("Verification email has been sent");
   };
 
   return (
@@ -326,6 +337,7 @@ const Profile = () => {
                       },
                       width: "100%",
                     }}
+                    onClick={sendVerificationEmail}
                   >
                     Verify Email
                   </Button>

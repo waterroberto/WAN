@@ -19,7 +19,7 @@ export const UserDataProvider = ({ children }) => {
       if (user) {
         const ref = doc(db, "users", user.uid);
         onSnapshot(ref, (doc) => {
-          setUserData(doc.data());
+          setUserData({ ...doc.data(), isVerified: user.emailVerified });
         });
         setFetchingData(false);
       } else {
