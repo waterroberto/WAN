@@ -1,25 +1,24 @@
 import {
   Box,
-  Stack,
-  Typography,
   Button,
   Grid,
   NativeSelect,
-} from "@mui/material";
-import { v4 as uuidv4 } from "uuid";
-import LoanHistory from "../../components/dashboard/Loan/LoanHistory";
-import { FaFolderOpen } from "react-icons/fa";
-import React from "react";
-import { MobileNav, Meta, Dash, Sidebar } from "../../components";
-import AppBar from "../../components/dashboard/AppBar";
-import { useContext, useState } from "react";
-import userDataContext from "../../context/UserDataContext";
-import PopupModal from "../../components/Global/Modal";
-import Container from "../../components/dashboard/Container";
-import PrivateRoute from "../../components/auth/PrivateRoute";
-import cogoToast from "cogo-toast";
-import { UserService } from "../../services/user";
-import ReferralCard from "../../components/dashboard/ReferralCard";
+  Stack,
+  Typography,
+} from '@mui/material';
+import cogoToast from 'cogo-toast';
+import React, { useContext, useState } from 'react';
+import { FaFolderOpen } from 'react-icons/fa';
+import { v4 as uuidv4 } from 'uuid';
+import { Dash, Meta, MobileNav, Sidebar } from '../../components';
+import PopupModal from '../../components/Global/Modal';
+import PrivateRoute from '../../components/auth/PrivateRoute';
+import AppBar from '../../components/dashboard/AppBar';
+import Container from '../../components/dashboard/Container';
+import LoanHistory from '../../components/dashboard/Loan/LoanHistory';
+import ReferralCard from '../../components/dashboard/ReferralCard';
+import userDataContext from '../../context/UserDataContext';
+import { UserService } from '../../services/user';
 
 const Loan = (props) => {
   const [open1, setOpen1] = useState(false);
@@ -27,13 +26,13 @@ const Loan = (props) => {
   const [requesting, setRequesting] = useState(false);
 
   const [formData, setFormData] = useState({
-    amount: "",
-    duration: "",
-    income: "",
-    placement: "Under Debt Review",
-    employmentStatus: "Permanent Employment",
-    employmentDuration: "",
-    bankStatement: "",
+    amount: '',
+    duration: '',
+    income: '',
+    placement: 'Under Debt Review',
+    employmentStatus: 'Permanent Employment',
+    employmentDuration: '',
+    bankStatement: '',
   });
 
   const { userData } = useContext(userDataContext);
@@ -69,9 +68,9 @@ const Loan = (props) => {
   };
 
   const bankStatementValid =
-    bankStatement.type === "application/pdf" ||
-    bankStatement.type === "image/jpeg" ||
-    bankStatement.type === "image/png";
+    bankStatement.type === 'application/pdf' ||
+    bankStatement.type === 'image/jpeg' ||
+    bankStatement.type === 'image/png';
   const amountIsValid = parseInt(amount) >= 5000;
   const durationIsValid = parseInt(duration) >= 6;
   const placementIsValid = placement.trim().length > 0;
@@ -90,27 +89,27 @@ const Loan = (props) => {
 
   const sendLoanRequest = async () => {
     if (!detailsAreValid) {
-      cogoToast.error("One or more details are invalid");
+      cogoToast.error('One or more details are invalid');
       if (!bankStatementValid) {
-        cogoToast.error("Attach valid document");
+        cogoToast.error('Attach valid document');
       }
       if (!amountIsValid) {
-        cogoToast.error("Loan amount must be 5000 or higher");
+        cogoToast.error('Loan amount must be 5000 or higher');
       }
       if (!durationIsValid) {
-        cogoToast.error("Loan duration must be at least 6 months");
+        cogoToast.error('Loan duration must be at least 6 months');
       }
       if (!placementIsValid) {
-        cogoToast.error("Kindly select financial status");
+        cogoToast.error('Kindly select financial status');
       }
       if (!employmentStatusIsValid) {
-        cogoToast.error("Please select employment status");
+        cogoToast.error('Please select employment status');
       }
       if (!employmentDurationIsValid) {
-        cogoToast.error("Input employment duration");
+        cogoToast.error('Input employment duration');
       }
       if (!monthlyIncomIsValid) {
-        cogoToast.error("Input monthly income");
+        cogoToast.error('Input monthly income');
       }
     } else {
       setRequesting(true);
@@ -125,9 +124,9 @@ const Loan = (props) => {
         income: +income,
         duration: +duration,
         employmentDuration: +employmentDuration,
-        bankStatement: "",
+        bankStatement: '',
         applicationDate: new Date(),
-        status: "pending",
+        status: 'pending',
         currency: userData?.currency,
       };
 
@@ -143,17 +142,17 @@ const Loan = (props) => {
           );
 
           console.log(pendingLoanRequest);
-          cogoToast.success("Loan request submitted");
-          cogoToast.info("Our manager will contact you");
+          cogoToast.success('Loan request submitted');
+          cogoToast.info('Our manager will contact you');
 
           setFormData({
-            amount: "",
-            duration: "",
-            income: "",
-            placement: "Under Debt Review",
-            employmentStatus: "Permanent Employment",
-            employmentDuration: "",
-            bankStatement: "",
+            amount: '',
+            duration: '',
+            income: '',
+            placement: 'Under Debt Review',
+            employmentStatus: 'Permanent Employment',
+            employmentDuration: '',
+            bankStatement: '',
           });
         }
 
@@ -169,8 +168,8 @@ const Loan = (props) => {
   return (
     <PrivateRoute>
       <Meta
-        title="Blue Chip Finance - Loan - Online Bank"
-        description="Blue Chip Financial Bank | Loan into your account"
+        title='Massaa Bank Finance - Loan - Online Bank'
+        description='Massaa Bank Financial Bank | Loan into your account'
       />
       <Dash />
 
@@ -178,47 +177,47 @@ const Loan = (props) => {
         open={open1}
         handleClose={handleClose1}
         handleOpen={handleOpen1}
-        title="Loan Application"
-        sx={{ maxWidth: "768px" }}
+        title='Loan Application'
+        sx={{ maxWidth: '768px' }}
       >
         <Grid
           container
-          mx="auto"
+          mx='auto'
           rowSpacing={1}
           columnSpacing={{ sm: 1 }}
           columns={12}
-          alignItems="center"
+          alignItems='center'
         >
-          <Grid item xs={12} sm={6} width="100%">
-            <label htmlFor="duration">Loan Amount</label>
+          <Grid item xs={12} sm={6} width='100%'>
+            <label htmlFor='duration'>Loan Amount</label>
             <input
-              name="amount"
-              className="styled-input"
-              aria-label="Desired Amount"
-              placeholder="Desired Amount"
-              type="number"
+              name='amount'
+              className='styled-input'
+              aria-label='Desired Amount'
+              placeholder='Desired Amount'
+              type='number'
               required
               sx={{
-                background: "var(--dark)",
-                border: "1px solid #555",
+                background: 'var(--dark)',
+                border: '1px solid #555',
                 fontSize: 15,
               }}
               value={amount}
               onChange={formInputHandler}
             />
           </Grid>
-          <Grid item xs={12} sm={6} width="100%">
-            <label htmlFor="duration">Loan Duration</label>
+          <Grid item xs={12} sm={6} width='100%'>
+            <label htmlFor='duration'>Loan Duration</label>
             <input
-              name="duration"
-              className="styled-input"
-              aria-label="Repayment Duration"
-              placeholder="Loan Duration (months)"
-              type="number"
+              name='duration'
+              className='styled-input'
+              aria-label='Repayment Duration'
+              placeholder='Loan Duration (months)'
+              type='number'
               required
               sx={{
-                background: "var(--dark)",
-                border: "1px solid #555",
+                background: 'var(--dark)',
+                border: '1px solid #555',
                 fontSize: 15,
               }}
               value={duration}
@@ -228,138 +227,138 @@ const Loan = (props) => {
         </Grid>
         <Grid
           container
-          mx="auto"
+          mx='auto'
           rowSpacing={1}
           columnSpacing={{ sm: 1 }}
           columns={12}
-          alignItems="center"
+          alignItems='center'
         >
-          <Grid item xs={12} sm={6} width="100%">
-            <label htmlFor="income">Monthly Income</label>
+          <Grid item xs={12} sm={6} width='100%'>
+            <label htmlFor='income'>Monthly Income</label>
             <input
-              name="income"
-              className="styled-input"
-              aria-label="Monthly Income"
-              placeholder="Monthly Income"
-              type="number"
+              name='income'
+              className='styled-input'
+              aria-label='Monthly Income'
+              placeholder='Monthly Income'
+              type='number'
               required
               sx={{
-                background: "var(--dark)",
-                border: "1px solid #555",
+                background: 'var(--dark)',
+                border: '1px solid #555',
                 fontSize: 15,
               }}
               value={income}
               onChange={formInputHandler}
             />
           </Grid>
-          <Grid item xs={12} sm={6} width="100%">
-            <label htmlFor="financial-placement">Financial Placement</label>
+          <Grid item xs={12} sm={6} width='100%'>
+            <label htmlFor='financial-placement'>Financial Placement</label>
             <NativeSelect
               defaultValue={placement}
               inputProps={{
-                name: "placement",
-                id: "financial-placement",
+                name: 'placement',
+                id: 'financial-placement',
               }}
               sx={{
-                width: "100%",
-                color: "#ccc",
-                padding: "0.75rem 1rem",
-                borderRadius: "10px",
-                fontSize: "14px",
-                color: "#ccc",
-                background: "var(--dark)",
-                border: "1px solid #555",
+                width: '100%',
+                color: '#ccc',
+                padding: '0.75rem 1rem',
+                borderRadius: '10px',
+                fontSize: '14px',
+                color: '#ccc',
+                background: 'var(--dark)',
+                border: '1px solid #555',
                 fontSize: 15,
 
-                "&:before, &:after": {
-                  display: "none",
+                '&:before, &:after': {
+                  display: 'none',
                 },
               }}
               onChange={formInputHandler}
             >
-              <option value="Unpaid Loan">Unpaid Loan</option>
-              <option value="Bad Credit Score">Bad Credit Score</option>
-              <option value="Under Debt Review">Under Debt Review</option>
-              <option value="Blacklisted">Blacklisted</option>
-              <option value="None">None</option>
+              <option value='Unpaid Loan'>Unpaid Loan</option>
+              <option value='Bad Credit Score'>Bad Credit Score</option>
+              <option value='Under Debt Review'>Under Debt Review</option>
+              <option value='Blacklisted'>Blacklisted</option>
+              <option value='None'>None</option>
             </NativeSelect>
           </Grid>
-          <Grid item xs={12} sm={6} width="100%">
-            <label htmlFor="employmentStatus">Financial Status</label>
+          <Grid item xs={12} sm={6} width='100%'>
+            <label htmlFor='employmentStatus'>Financial Status</label>
             <NativeSelect
               defaultValue={employmentStatus}
               inputProps={{
-                name: "employmentStatus",
-                id: "employmentStatus",
+                name: 'employmentStatus',
+                id: 'employmentStatus',
               }}
               sx={{
-                width: "100%",
-                color: "#ccc",
-                padding: "0.75rem 1rem",
-                borderRadius: "10px",
-                fontSize: "14px",
-                color: "#ccc",
-                background: "var(--dark)",
-                border: "1px solid #555",
+                width: '100%',
+                color: '#ccc',
+                padding: '0.75rem 1rem',
+                borderRadius: '10px',
+                fontSize: '14px',
+                color: '#ccc',
+                background: 'var(--dark)',
+                border: '1px solid #555',
                 fontSize: 15,
 
-                "&:before, &:after": {
-                  display: "none",
+                '&:before, &:after': {
+                  display: 'none',
                 },
               }}
               onChange={formInputHandler}
             >
-              <option value="Permanent Employment">Permanent Employment</option>
-              <option value="Contract Based">Contract Based</option>
-              <option value="Self Employed">Self Employed</option>
+              <option value='Permanent Employment'>Permanent Employment</option>
+              <option value='Contract Based'>Contract Based</option>
+              <option value='Self Employed'>Self Employed</option>
             </NativeSelect>
           </Grid>
-          <Grid item xs={12} sm={6} width="100%">
-            <label htmlFor="employmentDuration">Employment Duration</label>
+          <Grid item xs={12} sm={6} width='100%'>
+            <label htmlFor='employmentDuration'>Employment Duration</label>
             <input
-              className="styled-input"
-              aria-label="Employment Duration"
-              placeholder="Employment Duration (Years)"
-              type="number"
+              className='styled-input'
+              aria-label='Employment Duration'
+              placeholder='Employment Duration (Years)'
+              type='number'
               required
               sx={{
-                background: "var(--dark)",
-                border: "1px solid #555",
+                background: 'var(--dark)',
+                border: '1px solid #555',
                 fontSize: 15,
                 mt: { xs: 2, sm: 5 },
               }}
-              name="employmentDuration"
+              name='employmentDuration'
               value={employmentDuration}
               onChange={formInputHandler}
             />
           </Grid>
           <Button
-            variant="text"
+            variant='text'
             disableElevation
             sx={{
               mt: 2,
               p: 2,
-              color: "#fff",
-              textTransform: "capitalize",
-              fontFamily: "inherit",
-              border: "2px solid var(--blue)",
+              color: '#fff',
+              textTransform: 'capitalize',
+              fontFamily: 'inherit',
+              border: '2px solid var(--blue)',
 
-              "&:hover": {
-                border: "2px solid var(--blue-hover)",
+              '&:hover': {
+                border: '2px solid var(--blue-hover)',
               },
-              width: "100%",
+              width: '100%',
             }}
             onClick={() => {}}
-            component="label"
+            component='label'
           >
             {bankStatement
-              ? "Change Document"
-              : "Upload Recent Bank Statement(3 months)"}{" "}
-            {" - "}
+              ? 'Change Document'
+              : 'Upload Recent Bank Statement(3 months)'}{' '}
+            {' - '}
             <input
               hidden
-              accept=".png, .jpg, .jpeg, .pdf"
-              type="file"
+              accept='.png, .jpg, .jpeg, .pdf'
+              type='file'
               onChange={addBankStatement}
               max={1}
             />
@@ -371,26 +370,26 @@ const Loan = (props) => {
           sx={{
             mt: 4,
             p: 2,
-            color: "#fff",
-            textTransform: "capitalize",
-            fontFamily: "inherit",
-            background: "var(--green)",
+            color: '#fff',
+            textTransform: 'capitalize',
+            fontFamily: 'inherit',
+            background: 'var(--green)',
 
-            "&:hover": {
-              transition: "0.5s ease-out",
-              background: "var(--green-hover)",
+            '&:hover': {
+              transition: '0.5s ease-out',
+              background: 'var(--green-hover)',
             },
-            width: "100%",
+            width: '100%',
           }}
           onClick={sendLoanRequest}
           disabled={requesting}
         >
-          {requesting ? "Loading..." : "Proceed"}
+          {requesting ? 'Loading...' : 'Proceed'}
         </Button>
       </PopupModal>
-      <Box minHeight="100vh" sx={{ background: "var(--darker)" }}>
+      <Box minHeight='100vh' sx={{ background: 'var(--darker)' }}>
         <Sidebar>
-          <AppBar page="Loan" />
+          <AppBar page='Loan' />
           <Container>
             <Typography fontWeight={700}>LOAN APPLICATION</Typography>
             {!userData?.canRequestLoan && (
@@ -398,9 +397,9 @@ const Loan = (props) => {
                 mt={4}
                 p={3}
                 sx={{
-                  background: "var(--blue-light)",
+                  background: 'var(--blue-light)',
                   borderRadius: 2,
-                  color: "var(--mid)",
+                  color: 'var(--mid)',
                 }}
               >
                 Cannot request loan at the moment. Contact manager for more
@@ -412,9 +411,9 @@ const Loan = (props) => {
                 mt={4}
                 p={3}
                 sx={{
-                  background: "var(--red-light)",
+                  background: 'var(--red-light)',
                   borderRadius: 2,
-                  color: "var(--mid)",
+                  color: 'var(--mid)',
                 }}
               >
                 To request loan, Verify account to Tier 3
@@ -423,30 +422,30 @@ const Loan = (props) => {
             {userData?.canRequestLoan && userData?.accountLevel >= 3 && (
               <Stack
                 mt={2}
-                direction={{ xs: "column", md: "row" }}
-                alignItems="center"
-                justifyContent="flex-start"
+                direction={{ xs: 'column', md: 'row' }}
+                alignItems='center'
+                justifyContent='flex-start'
                 gap={2}
-                width={{ xs: "100%", md: "50%" }}
+                width={{ xs: '100%', md: '50%' }}
               >
                 <Button
-                  variant="text"
+                  variant='text'
                   disableElevation
                   sx={{
                     p: 2,
-                    color: "#fff",
-                    textTransform: "capitalize",
+                    color: '#fff',
+                    textTransform: 'capitalize',
                     fontWeight: 500,
-                    fontFamily: "inherit",
-                    background: "var(--pale-blue)",
-                    transition: "0.5s ease-in",
+                    fontFamily: 'inherit',
+                    background: 'var(--pale-blue)',
+                    transition: '0.5s ease-in',
                     borderRadius: 2,
 
-                    "&:hover": {
-                      transition: "0.5s ease-out",
-                      background: "var(--blue)",
+                    '&:hover': {
+                      transition: '0.5s ease-out',
+                      background: 'var(--blue)',
                     },
-                    width: "100%",
+                    width: '100%',
                   }}
                   onClick={handleOpen1}
                 >
@@ -459,13 +458,13 @@ const Loan = (props) => {
             <Typography fontWeight={700}>LOAN HISTORY</Typography>
             {(!userData?.loans || userData?.loans.length === 0) && (
               <Stack
-                alignItems="center"
-                justifyContent="center"
+                alignItems='center'
+                justifyContent='center'
                 mt={8}
                 py={2}
-                sx={{ color: "var(--mid)" }}
+                sx={{ color: 'var(--mid)' }}
               >
-                <Box sx={{ fontSize: "64px" }}>
+                <Box sx={{ fontSize: '64px' }}>
                   <FaFolderOpen />
                 </Box>
                 <Typography>No Transactions Yet</Typography>

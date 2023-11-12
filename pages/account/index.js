@@ -1,13 +1,13 @@
-import { Box, Stack, Typography, Button } from "@mui/material";
-import React, { useContext } from "react";
-import { MobileNav, Meta, Dash, Sidebar, Heading } from "../../components";
-import AppBar from "../../components/dashboard/AppBar";
-import CryptoMarquee from "../../components/dashboard/CryptoMarquee";
-import InvestCards from "../../components/dashboard/InvestCards";
-import ReferralCard from "../../components/dashboard/ReferralCard";
-import Transactions from "../../components/dashboard/Transactions";
-import userDataContext from "../../context/UserDataContext";
-import PrivateRoute from "../../components/auth/PrivateRoute";
+import { Box, Button, Stack, Typography } from '@mui/material';
+import React, { useContext } from 'react';
+import { Dash, Heading, Meta, MobileNav, Sidebar } from '../../components';
+import PrivateRoute from '../../components/auth/PrivateRoute';
+import AppBar from '../../components/dashboard/AppBar';
+import CryptoMarquee from '../../components/dashboard/CryptoMarquee';
+import InvestCards from '../../components/dashboard/InvestCards';
+import ReferralCard from '../../components/dashboard/ReferralCard';
+import Transactions from '../../components/dashboard/Transactions';
+import userDataContext from '../../context/UserDataContext';
 
 const Dashboard = () => {
   const { userData } = useContext(userDataContext);
@@ -15,27 +15,27 @@ const Dashboard = () => {
   return (
     <PrivateRoute>
       <Meta
-        title="Blue Chip Finance - Account - Online Bank"
-        description="Blue Chip Financial Bank | Welcome to your account"
+        title='Massaa Bank - Account - Online Bank'
+        description='Massaa Online Financial Bank | Welcome to your account'
       />
       <Dash />
 
-      <Box minHeight="100vh" sx={{ background: "var(--darker)" }}>
+      <Box minHeight='100vh' sx={{ background: 'var(--darker)' }}>
         <Sidebar>
-          <AppBar page="Dashboard" />
+          <AppBar page='Dashboard' />
           <Heading />
           {/* <CryptoMarquee /> */}
           <InvestCards />
           <Stack
-            direction="row"
-            alignItems="center"
-            justifyContent="space-between"
+            direction='row'
+            alignItems='center'
+            justifyContent='space-between'
             mt={4}
           >
-            <Typography sx={{ fontSize: "1.4rem", fontWeight: 700, p: 1 }}>
+            <Typography sx={{ fontSize: '1.4rem', fontWeight: 700, p: 1 }}>
               Transactions
             </Typography>
-            <Button variant="outlined" color="secondary">
+            <Button variant='outlined' color='secondary'>
               {userData?.transactions?.length}
             </Button>
           </Stack>

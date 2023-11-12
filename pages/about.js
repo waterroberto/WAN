@@ -1,23 +1,23 @@
-import React from "react";
+import React from 'react';
 import {
+  ContactInformation,
+  FAQs,
   Footer,
+  GetStarted,
+  Header,
   Meta,
   Navbar,
-  Header,
-  Stats,
   Statistics,
-  ContactInformation,
-  GetStarted,
-  FAQs,
-} from "../components";
+  Stats,
+} from '../components';
 
 const About = () => {
   return (
     <>
       <Meta
-        title="About - Blue Chip Finance - Online loans for everyone -
-        Homepage"
-        description="About us - Blue Chip Finance - Online loans for everyone - About page"
+        title='About - Massaa Bank- Online loans for everyone -
+        Homepage'
+        description='About us - Massaa Bank- Online loans for everyone - About page'
       />
 
       <Navbar />

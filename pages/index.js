@@ -1,24 +1,24 @@
-import { Box } from "@mui/material";
+import { Box } from '@mui/material';
 import {
-  Footer,
-  Navbar,
-  Meta,
   AboutUs,
-  Hero,
-  FeatureCards,
-  LoanProcess,
-  Customers,
-  Partners,
   ContactInformation,
+  Customers,
+  FeatureCards,
+  Footer,
   GetStarted,
-} from "../components";
+  Hero,
+  LoanProcess,
+  Meta,
+  Navbar,
+  Partners,
+} from '../components';
 
 export default function Home() {
   return (
     <>
       <Meta
-        title="Blue Chip Finance - Home - Online loans banking for everyone"
-        description="Blue Chip Financial Bank - Online loans banking for everyone - Homepage"
+        title='Massaa Bank - Home - Online loans banking for everyone'
+        description='Massaa Bank - Online loans banking for everyone - Homepage'
       />
       <Navbar />
       <Box pt={8}>

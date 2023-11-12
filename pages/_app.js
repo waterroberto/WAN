@@ -1,31 +1,31 @@
-import "../styles/globals.css";
-import Aos from "aos";
-import "aos/dist/aos.css";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
-import { useEffect } from "react";
-import { useRouter } from "next/router";
-import nprogress from "nprogress";
-import "nprogress/nprogress.css";
-import Script from "next/script";
-import { SnackbarProvider } from "notistack";
-import Popup from "../components/Popup";
-import { UserDataProvider } from "../context/UserDataContext";
-import { AuthContextProvider } from "../context/AuthContext";
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+import Aos from 'aos';
+import 'aos/dist/aos.css';
+import { useRouter } from 'next/router';
+import Script from 'next/script';
+import { SnackbarProvider } from 'notistack';
+import nprogress from 'nprogress';
+import 'nprogress/nprogress.css';
+import { useEffect } from 'react';
+import Popup from '../components/Popup';
+import { AuthContextProvider } from '../context/AuthContext';
+import { UserDataProvider } from '../context/UserDataContext';
+import '../styles/globals.css';
 
 const theme = createTheme({
   palette: {
     primary: {
-      main: "#1b4cd1",
-      dark: "#060606",
-      contrastText: "#1b4cd5",
+      main: '#d1491b',
+      dark: '#a84322',
+      contrastText: '#1b4cd5',
     },
     secondary: {
-      main: "#FE8235",
-      dark: "#1b1b1b",
+      main: '#5c13d1',
+      dark: '#1a052e',
     },
     custom: {
-      main: "#1b1b1b",
-      contrastText: "#060606",
+      main: '#1b1b1b',
+      contrastText: '#060606',
     },
   },
 });
@@ -40,16 +40,16 @@ function MyApp({ Component, pageProps }) {
   // nprogress.configure({ showSpinner: false });
 
   useEffect(() => {
-    router.events.on("routeChangeStart", () => nprogress.start());
-    router.events.on("routeChangeComplete", () => nprogress.done());
-    router.events.on("routeChangeError", () => nprogress.done());
+    router.events.on('routeChangeStart', () => nprogress.start());
+    router.events.on('routeChangeComplete', () => nprogress.done());
+    router.events.on('routeChangeError', () => nprogress.done());
   }, [router.events]);
 
   return (
     <ThemeProvider theme={theme}>
       <SnackbarProvider maxSnack={1}>
         <Script
-          src="//code.tidio.co/p58fgwnuyv1ijzjf6dycbalgjeqrffc8.js"
+          src='//code.tidio.co/p58fgwnuyv1ijzjf6dycbalgjeqrffc8.js'
           async
         ></Script>
         <Popup>

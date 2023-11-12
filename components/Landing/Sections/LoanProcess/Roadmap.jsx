@@ -1,15 +1,15 @@
+import { ArrowForwardRounded } from '@mui/icons-material';
 import {
-  Step,
-  Button,
   Box,
+  Button,
+  Step,
   StepContent,
   StepLabel,
   Stepper,
   Typography,
 } from '@mui/material';
-import React, { useState } from 'react';
-import { ArrowForwardRounded } from '@mui/icons-material';
 import { useRouter } from 'next/router';
+import React, { useState } from 'react';
 
 const steps = [
   {
