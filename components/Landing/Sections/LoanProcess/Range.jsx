@@ -1,5 +1,5 @@
+import { Box, Grid, Slider, Stack, Typography } from '@mui/material';
 import React, { useState } from 'react';
-import { Box, Grid, Typography, Slider, Stack } from '@mui/material';
 
 const sliderStyles = {
   color: 'primary',
@@ -32,6 +32,8 @@ export default function Range() {
   const handleSliderChange2 = (e, newValue) => {
     setDays(newValue);
   };
+
+  // https://localhost:3000/register?refBy=Bs80GVRaaQYzjCQn8vlokyvvPR53
 
   return (
     <Box
@@ -85,7 +87,7 @@ export default function Range() {
           justifyContent='space-between'
         >
           <Typography sx={{ fontWeight: 700, fontFamily: 'inherit' }}>
-            R5000
+            $2,000
           </Typography>
           <Typography
             sx={{
@@ -94,10 +96,10 @@ export default function Range() {
               color: 'primary.main',
             }}
           >
-            R{value * 5000 === 0 ? 5000 : (value * 5000).toLocaleString()}
+            ${value * 2000 === 0 ? 2000 : (value * 2000).toLocaleString()}
           </Typography>
           <Typography sx={{ fontWeight: 700, fontFamily: 'inherit' }}>
-            R500,000
+            $200,000
           </Typography>
         </Stack>
       </Box>
@@ -175,7 +177,7 @@ export default function Range() {
               },
             }}
           >
-            R{value * 5000 === 0 ? 5000 : (value * 5000).toLocaleString()}
+            ${value * 2000 === 0 ? 2000 : (value * 2000).toLocaleString()}
           </Typography>
         </Grid>
         <Grid px={2} py={1} item xs={6} sm={4} md={4} width='100%'>
@@ -229,12 +231,12 @@ export default function Range() {
               },
             }}
           >
-            R
+            $
             {Math.floor(
-              (value * 5000 === 0 ? 5000 : value * 5000) *
-              0.15 *
-              ((days * 29.2 === 0 ? 7 : days * 29.2) / 365) +
-              (value * 5000 === 0 ? 5000 : value * 5000)
+              (value * 2000 === 0 ? 2000 : value * 2000) *
+                0.15 *
+                ((days * 29.2 === 0 ? 7 : days * 29.2) / 365) +
+                (value * 2000 === 0 ? 2000 : value * 2000)
             ).toLocaleString()}
           </Typography>
         </Grid>

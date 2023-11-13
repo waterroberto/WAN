@@ -1,12 +1,12 @@
 import { Box, Button, Divider, Stack, Typography } from '@mui/material';
-import { RiFolder5Fill } from 'react-icons/ri';
 import React, { useContext } from 'react';
-import parseDate from '../../utils/parseDate';
 import { FiArrowDownLeft, FiArrowUpRight, FiPlusCircle } from 'react-icons/fi';
+import { RiFolder5Fill } from 'react-icons/ri';
+import parseDate from '../../utils/parseDate';
 
 const Transactions = ({
   transactions = [],
-  currency = '$',
+  currency = '£',
   customStyles = {},
 }) => {
   return (
@@ -53,29 +53,28 @@ const Transactions = ({
                   py={1}
                 >
                   <Stack direction='row' alignItems='center' gap={1}>
-                    {transaction?.type.toLowerCase() === 'withdraw' ?
+                    {transaction?.type.toLowerCase() === 'withdraw' ? (
                       <span className='transaction-icon withdraw'>
                         <FiArrowUpRight />
                       </span>
-                      :
-                      transaction?.type.toLowerCase() === 'deposit' ?
-                        <span className='transaction-icon deposit'>
-                          <FiArrowDownLeft />
-                        </span>
-                        :
-                        transaction?.type.toLowerCase() === 'loan' ?
-                          <span className='transaction-icon loan'>
-                            <FiPlusCircle />
-                          </span> : ''
-                    }
+                    ) : transaction?.type.toLowerCase() === 'deposit' ? (
+                      <span className='transaction-icon deposit'>
+                        <FiArrowDownLeft />
+                      </span>
+                    ) : transaction?.type.toLowerCase() === 'loan' ? (
+                      <span className='transaction-icon loan'>
+                        <FiPlusCircle />
+                      </span>
+                    ) : (
+                      ''
+                    )}
                     <Typography
                       sx={{
                         fontWeight: 700,
                         color: 'var(--mid)',
                       }}
                     >
-                      {currency}
-                      {transaction?.amount.toLocaleString()}
+                      {/* {currency} */}£{transaction?.amount.toLocaleString()}
                     </Typography>
                   </Stack>
 
