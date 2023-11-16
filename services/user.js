@@ -1,7 +1,7 @@
-import { doc, getDoc, setDoc, updateDoc } from "firebase/firestore";
-import { ref, getDownloadURL, uploadBytes } from "firebase/storage";
-import { auth, db, storage } from "./firebase.config";
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { doc, getDoc, setDoc, updateDoc } from 'firebase/firestore';
+import { getDownloadURL, ref, uploadBytes } from 'firebase/storage';
+import { auth, db, storage } from './firebase.config';
 
 export const UserService = {
   registerUser: async function (email, password) {
@@ -24,22 +24,22 @@ export const UserService = {
 
   sendLoanRequest: async function (data, file) {
     const url = await this.getUrlFromFileUpload(
-      "bankStatements",
+      'bankStatements',
       data._user,
       data._id,
       file
     );
 
-    await setDoc(doc(db, "loanRequests", data?._id), {
+    await setDoc(doc(db, 'loanRequests', data?._id), {
       ...data,
       bankStatement: url,
     });
 
-    return { message: "Successful", ok: true, id: data?._id };
+    return { message: 'Successful', ok: true, id: data?._id };
   },
 
   addPendingLoan: async function (userId, data) {
-    const userRef = doc(db, "users", userId);
+    const userRef = doc(db, 'users', userId);
     const res = await getDoc(userRef);
 
     const userLoans = res.data().loans;
@@ -49,11 +49,11 @@ export const UserService = {
         ...userLoans,
         {
           ...data,
-          type: "loan",
-          status: "pending",
+          type: 'loan',
+          status: 'pending',
           application_date: new Date(),
-          payout_date: ". . .",
-          repayment_date: ". . .",
+          payout_date: '. . .',
+          repayment_date: '. . .',
           dated: new Date(),
         },
       ],
@@ -66,7 +66,7 @@ export const UserService = {
   },
 
   setUserData: async function (uid, data) {
-    await setDoc(doc(db, "users", uid), {
+    await setDoc(doc(db, 'users', uid), {
       ...data,
       id: uid,
     });
@@ -76,12 +76,68 @@ export const UserService = {
 
   uploadUserSelfie: async function (userId, randomId, file) {
     const url = await this.getUrlFromFileUpload(
-      "userSelfies",
+      'userSelfies',
       userId,
       randomId,
       file
     );
 
     return url;
+  },
+
+  sendDepositRequest: async function (user, data) {
+    const userRef = doc(db, 'users', user);
+    const res = await getDoc(userRef);
+
+    const deposits = res?.data()?.deposits;
+
+    const _ = await addDoc(collection(db, 'depositRequests'), {
+      ...data,
+      user,
+      status: 'pending',
+      type: 'deposit',
+    });
+
+    await updateDoc(userRef, {
+      deposits: [
+        ...deposits,
+        {
+          ...data,
+          status: 'pending',
+          type: 'deposit',
+          id: _.id,
+        },
+      ],
+    });
+
+    return { message: 'Successful', ok: true, id: data?._id };
+  },
+
+  sendWithdrawalRequest: async function (user, data) {
+    const userRef = doc(db, 'users', user);
+    const res = await getDoc(userRef);
+
+    const withdrawals = res?.data()?.withdrawals;
+
+    const _ = await addDoc(collection(db, 'withdrawalRequests'), {
+      ...data,
+      user,
+      status: 'pending',
+      type: 'withdraw',
+    });
+
+    await updateDoc(userRef, {
+      withdrawals: [
+        ...withdrawals,
+        {
+          ...data,
+          status: 'pending',
+          type: 'withdraw',
+          id: _.id,
+        },
+      ],
+    });
+
+    return { message: 'Successful', ok: true, id: data?._id };
   },
 };

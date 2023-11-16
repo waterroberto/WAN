@@ -1,8 +1,12 @@
 import { Box, Button, Stack, Typography } from '@mui/material';
-import React, { useContext } from 'react';
+import cogoToast from 'cogo-toast';
+import React, { useContext, useState } from 'react';
+import { BiSolidBank } from 'react-icons/bi';
 import { FaFolderOpen } from 'react-icons/fa';
 import { MdArrowDropDown } from 'react-icons/md';
+import { SiHiveBlockchain } from 'react-icons/si';
 import { Dash, Meta, MobileNav, Sidebar } from '../../components';
+import PopupModal from '../../components/Global/Modal';
 import PrivateRoute from '../../components/auth/PrivateRoute';
 import AppBar from '../../components/dashboard/AppBar';
 import Container from '../../components/dashboard/Container';
@@ -10,11 +14,15 @@ import Transactions from '../../components/dashboard/Transactions';
 import userDataContext from '../../context/UserDataContext';
 
 const Deposit = () => {
+  const [open, setOpen] = useState(false);
   const { userData } = useContext(userDataContext);
 
   const deposits = userData?.transactions.filter(
     (transaction) => transaction.type.toLowerCase() === 'deposit'
   );
+
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
 
   return (
     <PrivateRoute>
@@ -28,60 +36,35 @@ const Deposit = () => {
         <Sidebar>
           <AppBar page='Deposit' />
           <Container>
-            <Typography>FUND YOUR ACCOUNT</Typography>
-            <Stack
-              mt={2}
-              direction={{ xs: 'column', md: 'row' }}
-              alignItems='center'
-              justifyContent='flex-start'
-              gap={2}
-            >
-              <Button
-                variant='text'
-                disableElevation
-                endIcon={<MdArrowDropDown />}
-                sx={{
-                  p: 2,
-                  color: '#fff',
-                  textTransform: 'capitalize',
-                  fontWeight: 500,
-                  fontFamily: 'inherit',
-                  background: 'var(--green)',
-                  transition: '0.5s ease-in',
-                  borderRadius: 2,
-
-                  '&:hover': {
-                    transition: '0.5s ease-out',
-                    background: 'var(--green-hover)',
-                  },
-                  width: '100%',
+            <div className='grid grid-cols-1 sm:grid-cols-2 gap-4'>
+              <button
+                type='button'
+                className='w-full p-6 pb-16 rounded-3xl bg-secondary text-gray-50 relative'
+                onClick={() => {
+                  setOpen(true);
+                  // setMethod('Crypto');
                 }}
               >
-                Select Payment Method
-              </Button>
-              <Button
-                variant='text'
-                disableElevation
-                sx={{
-                  p: 2,
-                  color: '#fff',
-                  textTransform: 'capitalize',
-                  fontWeight: 500,
-                  fontFamily: 'inherit',
-                  background: 'var(--green)',
-                  transition: '0.5s ease-in',
-                  borderRadius: 2,
-
-                  '&:hover': {
-                    transition: '0.5s ease-out',
-                    background: 'var(--green-hover)',
-                  },
-                  width: '100%',
+                <p className='text-2xl font-extrabold'>Fund Via Crypto</p>
+                <span className='absolute bottom-6 right-6 text-3xl'>
+                  <SiHiveBlockchain />
+                </span>
+              </button>
+              <button
+                type='button'
+                className='w-full p-6 pb-16 rounded-3xl bg-primary-dark text-gray-50 relative'
+                onClick={() => {
+                  cogoToast.success(
+                    'Contact support for payment via local bank.'
+                  );
                 }}
               >
-                Upload Proof of Deposit
-              </Button>
-            </Stack>
+                <p className='text-2xl font-extrabold'>Fund Via Local Bank</p>
+                <span className='absolute bottom-6 right-6 text-3xl'>
+                  <BiSolidBank />
+                </span>
+              </button>
+            </div>
           </Container>
           <Container>
             <Typography>DEPOSIT HISTORY</Typography>
@@ -108,6 +91,14 @@ const Deposit = () => {
           </Container>
         </Sidebar>
       </Box>
+
+      <PopupModal
+        open={open}
+        handleClose={handleClose}
+        handleOpen={handleOpen}
+        title='deposit into your account'
+        sx={{ maxWidth: '768px' }}
+      ></PopupModal>
       <MobileNav />
     </PrivateRoute>
   );
