@@ -48,10 +48,8 @@ function MyApp({ Component, pageProps }) {
   return (
     <ThemeProvider theme={theme}>
       <SnackbarProvider maxSnack={1}>
-        <Script
-          src='//code.tidio.co/p58fgwnuyv1ijzjf6dycbalgjeqrffc8.js'
-          async
-        ></Script>
+        <Script src='//code.jivosite.com/widget/iZlmYvROve' async />
+
         <Popup>
           <AuthContextProvider>
             <UserDataProvider>
