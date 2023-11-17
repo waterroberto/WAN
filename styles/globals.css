@@ -308,6 +308,12 @@ input {
 }
 
 button {
+  cursor: pointer;
+}
+
+button,
+input {
   border: none;
   outline: none;
+  transition: 0.5s ease-in;
 }

@@ -74,7 +74,7 @@ const Transactions = ({
                         color: 'var(--mid)',
                       }}
                     >
-                      {/* {currency} */}£{transaction?.amount.toLocaleString()}
+                      £{transaction?.amount.toLocaleString()}
                     </Typography>
                   </Stack>
 
@@ -108,7 +108,7 @@ const Transactions = ({
                         fontSize: '12px',
                       }}
                     >
-                      {parseDate(transaction?.dated)}
+                      {parseDate(transaction?.date?.seconds * 1000)}
                     </Typography>
                   </Typography>
                 </Stack>

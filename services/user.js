@@ -1,5 +1,12 @@
 import { createUserWithEmailAndPassword } from 'firebase/auth';
-import { doc, getDoc, setDoc, updateDoc } from 'firebase/firestore';
+import {
+  addDoc,
+  collection,
+  doc,
+  getDoc,
+  setDoc,
+  updateDoc,
+} from 'firebase/firestore';
 import { getDownloadURL, ref, uploadBytes } from 'firebase/storage';
 import { auth, db, storage } from './firebase.config';
 

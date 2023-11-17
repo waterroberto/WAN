@@ -9,7 +9,6 @@ import {
   styled,
 } from '@mui/material';
 import cogoToast from 'cogo-toast';
-
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import React, { useContext, useState } from 'react';
@@ -81,7 +80,6 @@ const Register = () => {
       isAdmin: false,
       loans: [],
       referred: 0,
-      // timeStamp: serverTimestamp(),
       timeStamp: new Date(),
       transactions: [],
       currency: countries.find((el) => el.name === country)['code'],
@@ -99,6 +97,8 @@ const Register = () => {
       accountLevel: 1,
       isVerified: false,
       DOB: new Date(DOB),
+      deposits: [],
+      withdrawals: [],
     };
 
     delete data.identification;

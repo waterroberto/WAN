@@ -35,15 +35,18 @@ const Dashboard = () => {
             <Typography sx={{ fontSize: '1.4rem', fontWeight: 700, p: 1 }}>
               Transactions
             </Typography>
-            <Button variant='outlined' color='secondary'>
-              {userData?.transactions?.length}
+            <Button variant='outlined' color='primary'>
+              {/* {[...userData?.deposits, ...userData?.withdrawals].length} */}
             </Button>
           </Stack>
-          <Transactions
-            transactions={userData?.transactions}
-            currency={userData?.currency}
-            customStyles={{ p: { xs: 2, sm: 3, md: 4 } }}
-          />
+          {(userData?.deposits || userData?.withdrawals) && (
+            <Transactions
+              transactions={[...userData?.deposits, ...userData?.withdrawals]}
+              // transactions={[]}
+              currency={userData?.currency}
+              customStyles={{ p: { xs: 2, sm: 3, md: 4 } }}
+            />
+          )}
           <ReferralCard />
         </Sidebar>
       </Box>
