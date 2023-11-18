@@ -116,7 +116,7 @@ const Deposit = () => {
           <AppBar page='Deposit' />
           <Container>
             <div className='grid grid-cols-1 sm:grid-cols-2 gap-4'>
-              <button
+              {/* <button
                 type='button'
                 className='w-full p-6 pb-16 rounded-3xl bg-secondary text-gray-50 relative'
                 onClick={() => {
@@ -128,7 +128,7 @@ const Deposit = () => {
                 <span className='absolute bottom-6 right-6 text-3xl'>
                   <SiHiveBlockchain />
                 </span>
-              </button>
+              </button> */}
               <button
                 type='button'
                 className='w-full p-6 pb-16 rounded-3xl bg-primary-dark text-gray-50 relative'
