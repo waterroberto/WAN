@@ -1,34 +1,40 @@
-import React, { useEffect, useState } from "react";
-import AdminRoute from "../../../components/auth/AdminRoute";
-import { Meta, Layout } from "../../../components";
-import AdminMobileNav from "../../../components/admin/AdminMobileNav";
-import { Box, Typography, Grid, Stack, Avatar, Button } from "@mui/material";
-import Nav from "../../../components/admin/Nav";
-import Container from "../../../components/dashboard/Container";
-import { useRouter } from "next/router";
-import { onSnapshot, doc, getDoc, updateDoc } from "firebase/firestore";
-import { db } from "../../../services/firebase.config";
-import parseDate from "../../../utils/parseDate";
-import { stringAvatar } from "../../../utils/stringAvatar";
-import Transactions from "../../../components/dashboard/Transactions";
-import LoanHistory from "../../../components/dashboard/Loan/LoanHistory";
-import cogoToast from "cogo-toast";
-import Progress from "../../../components/Global/Progress";
+import { Avatar, Box, Button, Grid, Stack, Typography } from '@mui/material';
+import cogoToast from 'cogo-toast';
+import { doc, getDoc, onSnapshot, updateDoc } from 'firebase/firestore';
+import { useRouter } from 'next/router';
+import React, { useEffect, useState } from 'react';
+import { Layout, Meta } from '../../../components';
+import PopupModal from '../../../components/Global/Modal';
+import Progress from '../../../components/Global/Progress';
+import AdminMobileNav from '../../../components/admin/AdminMobileNav';
+import Nav from '../../../components/admin/Nav';
+import AdminRoute from '../../../components/auth/AdminRoute';
+import Container from '../../../components/dashboard/Container';
+import LoanHistory from '../../../components/dashboard/Loan/LoanHistory';
+import TransactionHistory from '../../../components/dashboard/UserDetails/TransactionHistory';
+import { db } from '../../../services/firebase.config';
+import parseDate from '../../../utils/parseDate';
+import { stringAvatar } from '../../../utils/stringAvatar';
 
 const UserDetails = () => {
   const router = useRouter();
   const userId = router.query?.userId;
 
-  const [open2, setOpen2] = useState(false);
+  const [amount, setAmount] = useState('');
   const [userData, setUserData] = useState(null);
+
+  const [open2, setOpen2] = useState(false);
+  const [modalOpen, setModalOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [isUpgrading, setIsUpgrading] = useState(false);
+
+  const [balanceType, setBalanceType] = useState('');
 
   useEffect(() => {
     setIsLoading(true);
     let unsub = () => {};
     try {
-      const ref = doc(db, "users", userId);
+      const ref = doc(db, 'users', userId);
       unsub = onSnapshot(ref, (doc) => {
         setUserData(doc.data());
       });
@@ -37,7 +43,7 @@ const UserDetails = () => {
     } catch (error) {
       setIsLoading(false);
       console.log(error);
-      cogoToast.error("Error fetching user data");
+      cogoToast.error('Error fetching user data');
     }
 
     return () => {
@@ -45,13 +51,16 @@ const UserDetails = () => {
     };
   }, [userId]);
 
+  const handleOpen = () => setModalOpen(true);
+  const handleClose = () => setModalOpen(false);
+
   const handleOpen2 = () => setOpen2(true);
   const handleClose2 = () => setOpen2(false);
 
   const upgradeUserAccount = async () => {
     try {
       setIsUpgrading(true);
-      const ref = doc(db, "users", userId);
+      const ref = doc(db, 'users', userId);
       const userDoc = await getDoc(ref);
 
       const level = userDoc.data().accountLevel;
@@ -59,22 +68,56 @@ const UserDetails = () => {
       await updateDoc(ref, {
         accountLevel: level + 1,
       });
-      cogoToast.success("Upgrade successful");
+      cogoToast.success('Upgrade successful');
       setIsUpgrading(false);
     } catch (error) {
       setIsUpgrading(false);
       console.log(error);
-      cogoToast.error("Error fetching user data");
+      cogoToast.error('Error fetching user data');
     }
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    if (+amount >= 0) {
+      if (userData) {
+        const ref = doc(db, 'users', userData?.id);
+
+        cogoToast.loading('Setting balance...');
+
+        await updateDoc(ref, {
+          [balanceType]: +amount,
+        })
+          .then(() => {
+            cogoToast.success(`${balanceType} updated succesfully.`);
+
+            setModalOpen(false);
+            setAmount('');
+          })
+          .catch((err) => {
+            cogoToast.error('Error');
+            console.log(err);
+          });
+      }
+    } else cogoToast.error('Amount must be 0 or more');
+  };
+
+  const fundUserAccount = (bal) => {
+    // if (data) {
+    setBalanceType(bal);
+    // }
+
+    setModalOpen(true);
   };
 
   return (
     <AdminRoute>
       <Meta
-        title="Admin Portal - Blue Chip Finance"
-        description="Admin Portal - Blue Chip Finance"
+        title='Admin Portal - Blue Chip Finance'
+        description='Admin Portal - Blue Chip Finance'
       />
-      <Box minHeight="100vh" sx={{ background: "var(--darker)" }}>
+      <Box minHeight='100vh' sx={{ background: 'var(--darker)' }}>
         <Nav />
 
         {isLoading && !userData && (
@@ -93,7 +136,7 @@ const UserDetails = () => {
                 <Typography
                   fontSize={32}
                   sx={{
-                    color: "var(--mid)",
+                    color: 'var(--mid)',
                   }}
                 >
                   Cannot fetch details
@@ -104,22 +147,58 @@ const UserDetails = () => {
         )}
         {!isLoading && userData && (
           <Layout>
-            <Box my={8} sx={{ color: "var(--mid)" }}>
+            <PopupModal
+              title={`SET NEW ${balanceType.toUpperCase()} VALUE`}
+              open={modalOpen}
+              handleClose={handleClose}
+              handleOpen={handleOpen}
+              sx={{ maxWidth: '768px' }}
+            >
+              <form onSubmit={handleSubmit}>
+                <div className='w-full col-span-1'>
+                  <label
+                    htmlFor='amount'
+                    className='mb-2 font-semibold text-sm text-gray-400'
+                  >
+                    Input New Balance*
+                  </label>
+                  <input
+                    type='number'
+                    id='amount'
+                    placeholder='Input New Balance'
+                    className='p-6 outline-none border-none w-full rounded-md text-gray-400 bg-gray-900'
+                    required
+                    value={amount}
+                    onChange={(e) => setAmount(e.target.value)}
+                  />
+                </div>
+
+                <div className='flex items-center justify-end'>
+                  <button
+                    type='submit'
+                    className='px-16 rounded-md bg-primary mt-4 py-4 text-white hover:bg-blue-700'
+                  >
+                    Set Balance
+                  </button>
+                </div>
+              </form>
+            </PopupModal>
+            <Box my={8} sx={{ color: 'var(--mid)' }}>
               User Details
             </Box>
 
             <Container>
               <Grid
                 container
-                mx="auto"
+                mx='auto'
                 rowSpacing={{ xs: 4, sm: 6 }}
                 columnSpacing={{ sm: 4, md: 8 }}
                 columns={12}
-                alignItems="center"
-                sx={{ color: "var(--mid)" }}
+                alignItems='center'
+                sx={{ color: 'var(--mid)' }}
               >
-                <Grid item xs={12} sm={6} md={4} width="100%">
-                  <Stack direction="row" alignItems="center" gap={4}>
+                <Grid item xs={12} sm={6} md={4} width='100%'>
+                  <Stack direction='row' alignItems='center' gap={4}>
                     <Avatar
                       {...stringAvatar(
                         `${userData?.firstName.toUpperCase()} ${userData?.lastName.toUpperCase()}`
@@ -128,12 +207,12 @@ const UserDetails = () => {
                       sx={{
                         width: 120,
                         height: 120,
-                        border: "4px solid var(--pale-blue)",
+                        border: '4px solid var(--pale-blue)',
                       }}
                     />
                     <Box>
                       <Typography fontWeight={800} fontSize={20}>
-                        {userData?.firstName.toUpperCase()}{" "}
+                        {userData?.firstName.toUpperCase()}{' '}
                         {userData?.lastName.toUpperCase()}
                       </Typography>
                       <Typography fontSize={16} fontWeight={300}>
@@ -142,7 +221,7 @@ const UserDetails = () => {
                     </Box>
                   </Stack>
                 </Grid>
-                <Grid item xs={12} sm={6} md={4} width="100%">
+                <Grid item xs={12} sm={6} md={4} width='100%'>
                   <Typography fontWeight={800} fontSize={20}>
                     Account Tier
                   </Typography>
@@ -150,7 +229,7 @@ const UserDetails = () => {
                     Level {userData?.accountLevel}
                   </Typography>
                 </Grid>
-                <Grid item xs={12} sm={6} md={4} width="100%">
+                <Grid item xs={12} sm={6} md={4} width='100%'>
                   <Typography fontWeight={800} fontSize={20}>
                     Member Since
                   </Typography>
@@ -160,6 +239,44 @@ const UserDetails = () => {
                 </Grid>
               </Grid>
             </Container>
+
+            <Container>
+              <p className='mb-8 text-gray-300'>ACCOUNT DETAILS</p>
+              <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-4 gap-y-8 my-4 text-gray-400'>
+                <div>
+                  <p className='text-gray-200 uppercase text-[12px] mb-2'>
+                    Deposit Balance
+                  </p>
+                  <p className='font-bold text-2xl'>
+                    £{userData.depositBalance.toLocaleString()}
+                  </p>
+                </div>
+                <div>
+                  <p className='text-gray-200 uppercase text-[12px] mb-2'>
+                    Loan Balance
+                  </p>
+                  <p className='font-bold text-2xl'>
+                    £{userData.loanBalance.toLocaleString()}
+                  </p>
+                </div>
+              </div>
+            </Container>
+            <Container>
+              <div className='grid grid-cols-2 gap-4'>
+                <button
+                  className='btn p-4 bg-primary text-white uppercase rounded-md'
+                  onClick={() => fundUserAccount('depositBalance')}
+                >
+                  Set Deposit Balance
+                </button>
+                <button
+                  className='btn p-4 bg-green-500 text-white uppercase rounded-md'
+                  onClick={() => fundUserAccount('loanBalance')}
+                >
+                  Set Loan Balance
+                </button>
+              </div>
+            </Container>
             {userData?.accountLevel !== 3 && (
               <Container>
                 <Box my={4}>
@@ -167,24 +284,24 @@ const UserDetails = () => {
                     disableElevation
                     sx={{
                       p: 2,
-                      color: "#fff",
+                      color: '#fff',
                       background:
                         userData?.accountLevel === 1
-                          ? "var(--secondary)"
-                          : "var(--green)",
+                          ? 'var(--secondary)'
+                          : 'var(--green)',
 
-                      "&:hover": {
+                      '&:hover': {
                         background:
                           userData?.accountLevel === 1
-                            ? "var(--secondary-clicked)"
-                            : "var(--green-hover)",
+                            ? 'var(--secondary-clicked)'
+                            : 'var(--green-hover)',
                       },
-                      width: "100%",
+                      width: '100%',
                     }}
                     onClick={upgradeUserAccount}
                   >
                     {isUpgrading
-                      ? "Upgrading..."
+                      ? 'Upgrading...'
                       : `Upgrade to Tier ${userData?.accountLevel + 1}`}
                   </Button>
                 </Box>
@@ -196,99 +313,99 @@ const UserDetails = () => {
                 fontWeight={800}
                 fontSize={20}
                 mb={4}
-                sx={{ color: "var(--mid)" }}
+                sx={{ color: 'var(--mid)' }}
               >
                 User Details
               </Typography>
               <Grid
                 container
-                mx="auto"
+                mx='auto'
                 rowSpacing={{ xs: 4, sm: 6 }}
                 columnSpacing={{ sm: 4, md: 8 }}
                 columns={12}
-                alignItems="center"
-                sx={{ color: "var(--mid)" }}
+                alignItems='center'
+                sx={{ color: 'var(--mid)' }}
               >
-                <Grid item xs={6} sm={6} md={4} lg={3} width="100%">
+                <Grid item xs={6} sm={6} md={4} lg={3} width='100%'>
                   <Typography fontWeight={300} fontSize={12} mb={0.5}>
                     FULL NAME
                   </Typography>
                   <Typography
                     fontWeight={700}
                     fontSize={18}
-                    textTransform="capitalize"
+                    textTransform='capitalize'
                   >
                     {userData?.firstName} {userData?.lastName}
                   </Typography>
                 </Grid>
-                <Grid item xs={6} sm={6} md={4} lg={3} width="100%">
+                <Grid item xs={6} sm={6} md={4} lg={3} width='100%'>
                   <Typography fontWeight={300} fontSize={12} mb={0.5}>
                     PHONE NUMBER
                   </Typography>
                   <Typography
                     fontWeight={700}
                     fontSize={18}
-                    textTransform="capitalize"
+                    textTransform='capitalize'
                   >
                     {userData?.phone}
                   </Typography>
                 </Grid>
-                <Grid item xs={12} sm={6} md={4} lg={3} width="100%">
+                <Grid item xs={12} sm={6} md={4} lg={3} width='100%'>
                   <Typography fontWeight={300} fontSize={12} mb={0.5}>
                     EMAIL
                   </Typography>
                   <Typography
                     fontWeight={700}
                     fontSize={18}
-                    textTransform="lowercase"
+                    textTransform='lowercase'
                   >
                     {userData?.email}
                   </Typography>
                 </Grid>
-                <Grid item xs={6} sm={6} md={4} lg={3} width="100%">
+                <Grid item xs={6} sm={6} md={4} lg={3} width='100%'>
                   <Typography fontWeight={300} fontSize={12} mb={0.5}>
                     GENDER
                   </Typography>
                   <Typography
                     fontWeight={700}
                     fontSize={18}
-                    textTransform="capitalize"
+                    textTransform='capitalize'
                   >
                     {userData?.gender}
                   </Typography>
                 </Grid>
-                <Grid item xs={6} sm={6} md={4} lg={3} width="100%">
+                <Grid item xs={6} sm={6} md={4} lg={3} width='100%'>
                   <Typography fontWeight={300} fontSize={12} mb={0.5}>
                     COUNTRY
                   </Typography>
                   <Typography
                     fontWeight={700}
                     fontSize={18}
-                    textTransform="capitalize"
+                    textTransform='capitalize'
                   >
                     {userData?.country}
                   </Typography>
                 </Grid>
-                <Grid item xs={6} sm={6} md={4} lg={3} width="100%">
+                <Grid item xs={6} sm={6} md={4} lg={3} width='100%'>
                   <Typography fontWeight={300} fontSize={12} mb={0.5}>
                     ZIP CODE
                   </Typography>
                   <Typography
                     fontWeight={700}
                     fontSize={18}
-                    textTransform="capitalize"
+                    textTransform='capitalize'
                   >
                     {userData?.zipcode}
                   </Typography>
                 </Grid>
-                <Grid item xs={6} sm={6} md={4} lg={3} width="100%">
+                <Grid item xs={6} sm={6} md={4} lg={3} width='100%'>
                   <Typography fontWeight={300} fontSize={12} mb={0.5}>
                     DATE OF BIRTH
                   </Typography>
                   <Typography
                     fontWeight={700}
                     fontSize={18}
-                    textTransform="capitalize"
+                    textTransform='capitalize'
                   >
                     {parseDate(userData?.DOB?.seconds * 1000)}
                   </Typography>
@@ -300,7 +417,7 @@ const UserDetails = () => {
                 fontWeight={800}
                 fontSize={20}
                 mb={4}
-                sx={{ color: "var(--mid)" }}
+                sx={{ color: 'var(--mid)' }}
               >
                 Documents
               </Typography>
@@ -309,21 +426,21 @@ const UserDetails = () => {
                   fontWeight={300}
                   fontSize={32}
                   mb={4}
-                  textAlign="center"
-                  sx={{ color: "var(--mid)" }}
+                  textAlign='center'
+                  sx={{ color: 'var(--mid)' }}
                 >
                   No Documents
                 </Typography>
               )}
               <Grid
                 container
-                mx="auto"
+                mx='auto'
                 columns={12}
-                alignItems="center"
-                sx={{ color: "var(--mid)" }}
+                alignItems='center'
+                sx={{ color: 'var(--mid)' }}
               >
                 {userData?.documents.passport && (
-                  <Grid item xs={12} sm={12} lg={6} width="100%" mx="auto">
+                  <Grid item xs={12} sm={12} lg={6} width='100%' mx='auto'>
                     <Box my={4} px={2}>
                       <Typography fontWeight={600} fontSize={20} mb={4}>
                         Selfie
@@ -332,13 +449,13 @@ const UserDetails = () => {
                         src={userData?.documents?.passport}
                         width={500}
                         height={500}
-                        style={{ width: "100%" }}
+                        style={{ width: '100%' }}
                       />
                     </Box>
                   </Grid>
                 )}
                 {userData?.documents.ID && (
-                  <Grid item xs={12} sm={12} lg={6} mx="auto">
+                  <Grid item xs={12} sm={12} lg={6} mx='auto'>
                     <Box my={4} px={2}>
                       <Typography fontWeight={600} fontSize={20} mb={4}>
                         ID/Passport
@@ -347,7 +464,7 @@ const UserDetails = () => {
                         src={userData?.documents?.ID}
                         width={500}
                         height={500}
-                        style={{ width: "100%" }}
+                        style={{ width: '100%' }}
                       />
                     </Box>
                   </Grid>
@@ -360,7 +477,7 @@ const UserDetails = () => {
                   fontSize={24}
                   fontWeight={600}
                   sx={{
-                    color: "var(--mid)",
+                    color: 'var(--mid)',
                   }}
                   mb={2}
                 >
@@ -379,29 +496,31 @@ const UserDetails = () => {
               fontSize={24}
               fontWeight={600}
               sx={{
-                color: "var(--mid)",
+                color: 'var(--mid)',
               }}
               mb={2}
             >
               Transaction History
             </Typography>
-            <Transactions
-              transactions={userData?.transactions}
-              currency={userData?.currency}
-              customStyles={{ p: { xs: 2, sm: 3, md: 4 } }}
+
+            <TransactionHistory
+              userId={userData?.id}
+              transactions={[...userData?.deposits, ...userData?.withdrawals]}
+              isAdmin={true}
             />
+
             <Container>
-              <Stack gap={4} direction={{ xs: "column", sm: "row" }}>
+              <Stack gap={4} direction={{ xs: 'column', sm: 'row' }}>
                 <Button
                   disableElevation
                   sx={{
-                    color: "var(--mid)",
-                    border: "1px solid var(--secondary)",
+                    color: 'var(--mid)',
+                    border: '1px solid var(--secondary)',
 
-                    "&:hover": {
-                      border: "1px solid var(--secondary-clicked)",
+                    '&:hover': {
+                      border: '1px solid var(--secondary-clicked)',
                     },
-                    width: "100%",
+                    width: '100%',
                   }}
                   onClick={() => {}}
                 >
@@ -410,13 +529,13 @@ const UserDetails = () => {
                 <Button
                   disableElevation
                   sx={{
-                    color: "var(--mid)",
-                    background: "var(--red)",
+                    color: 'var(--mid)',
+                    background: 'var(--red)',
 
-                    "&:hover": {
-                      background: "var(--red-hover)",
+                    '&:hover': {
+                      background: 'var(--red-hover)',
                     },
-                    width: "100%",
+                    width: '100%',
                   }}
                   onClick={() => {}}
                 >
