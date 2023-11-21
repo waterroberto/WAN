@@ -38,10 +38,7 @@ const Transactions = ({
       {transactions.length > 0 ? (
         <Box sx={{ mt: 4 }}>
           {[...transactions]
-            .sort(
-              (a, b) =>
-                new Date(b.dated).getTime() - new Date(a.dated).getTime()
-            )
+            .sort((a, b) => b.date.seconds - a.date.seconds)
             .map((transaction, index) => (
               <>
                 <Stack

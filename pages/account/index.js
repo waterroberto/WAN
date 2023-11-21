@@ -36,7 +36,7 @@ const Dashboard = () => {
               Transactions
             </Typography>
             <Button variant='outlined' color='primary'>
-              {/* {[...userData?.deposits, ...userData?.withdrawals].length} */}
+              {[...userData?.deposits, ...userData?.withdrawals].length}
             </Button>
           </Stack>
           {(userData?.deposits || userData?.withdrawals) && (

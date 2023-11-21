@@ -1,20 +1,107 @@
 import { Box, Button, Stack, Typography } from '@mui/material';
-import React, { useContext } from 'react';
+import cogoToast from 'cogo-toast';
+import React, { useContext, useState } from 'react';
 import { FaFolderOpen } from 'react-icons/fa';
 import { MdArrowDropDown } from 'react-icons/md';
 import { Dash, Meta, MobileNav, Sidebar } from '../../components';
+import PopupModal from '../../components/Global/Modal';
 import PrivateRoute from '../../components/auth/PrivateRoute';
 import AppBar from '../../components/dashboard/AppBar';
 import Container from '../../components/dashboard/Container';
 import Transactions from '../../components/dashboard/Transactions';
 import userDataContext from '../../context/UserDataContext';
+import { UserService } from '../../services/user';
 
 const Withdraw = () => {
+  const [modalOpen, setModalOpen] = useState(false);
+
+  const [asset, setAsset] = useState('depositBalance');
+  const [amount, setAmount] = useState('');
+  const [bankName, setBankName] = useState('');
+  const [accountNumber, setAccountNumber] = useState('');
+
+  const [isLoading, setIsLoading] = useState(false);
+
   const { userData } = useContext(userDataContext);
 
-  const withdrawals = userData?.transactions.filter(
-    (transaction) => transaction.type.toLowerCase() === 'withdraw'
-  );
+  const withdrawals = userData?.withdrawals;
+
+  const handleOpen = () => setModalOpen(true);
+  const handleClose = () => setModalOpen(false);
+
+  const validateFormInputs = () => {
+    return (
+      bankName.trim().length > 0 &&
+      accountNumber.trim().length > 0 &&
+      asset.trim().length > 0 &&
+      +amount > 0
+    );
+  };
+
+  const placeWithdrawal = async () => {
+    if (validateFormInputs()) {
+      if (!(+amount > userData[asset])) {
+        const data = {
+          status: 'pending',
+          type: 'withdraw',
+          amount: +amount,
+          method: '',
+          asset,
+          date: new Date(),
+          bankName,
+          accountNumber,
+        };
+
+        setIsLoading(true);
+        try {
+          const res = await UserService.sendWithdrawalRequest(
+            userData.id,
+            data
+          );
+
+          console.log(res);
+
+          // await emailjs
+          //   .send(
+          //     'service_g0jgrtw',
+          //     'template_ygsrbqm',
+          //     {
+          //       subject: 'New User Withdrawal!',
+          //       receiver: '',
+          //       message1: `A withdrawal of $${amount} has been placed by ${userData.fullname}`,
+          //       message2: `
+          //                   User Details:
+          //                   Name: ${userData.fullname}
+          //                   Email: ${userData.email}
+
+          //                   Transaction Details:
+          //                   Amount: $${amount}
+          //                   Status: 'pending'
+          //                   Date: ${parseDate(new Date().getTime())}
+          //     `,
+          //       to_email: 'admin@infinitefinance.online',
+          //     },
+          //     'CDbQ0enNBqu4x8OvS'
+          //   )
+          //   .then((res) => console.log(res));
+
+          setModalOpen(false);
+          setIsLoading(false);
+
+          cogoToast.success(
+            'Withdrawal placed. Contact admin for more information'
+          );
+        } catch (error) {
+          console.log(error);
+          cogoToast.error('Cannot process payment at the moment');
+
+          setIsLoading(false);
+        }
+      } else {
+        cogoToast.error('Insufficient funds in this wallet');
+      }
+    } else cogoToast.error('Please provide valid details');
+  };
 
   return (
     <PrivateRoute>
@@ -35,23 +122,6 @@ const Withdraw = () => {
               mb: 4,
             }}
           >
-            {/* <Stack
-              my={2}
-              direction={{ xs: "column", sm: "row" }}
-              gap={2}
-              sx={{
-                "& div": {
-                  p: 2,
-                  width: "100%",
-                  height: "180px",
-                  borderRadius: 2,
-                  background: "var(--dark)",
-                },
-              }}
-            >
-              <Box></Box>
-              <Box></Box>
-            </Stack> */}
             <Stack
               direction={{ xs: 'column', sm: 'row' }}
               alignItems='center'
@@ -60,48 +130,21 @@ const Withdraw = () => {
               width='100%'
             >
               <Button
-                variant='text'
                 disableElevation
                 sx={{
-                  p: 2,
                   color: '#fff',
-                  textTransform: 'capitalize',
-                  fontWeight: 500,
-                  fontFamily: 'inherit',
-                  background: 'var(--light-blue)',
-                  transition: '0.5s ease-in',
-                  borderRadius: 2,
-
-                  '&:hover': {
-                    transition: '0.5s ease-out',
-                    background: 'var(--blue)',
-                  },
-                  width: '100%',
-                }}
-              >
-                Transfer to other banks
-              </Button>
-              <Button
-                variant='text'
-                disableElevation
-                sx={{
-                  p: 2,
-                  color: '#fff',
-                  textTransform: 'capitalize',
-                  fontWeight: 500,
-                  fontFamily: 'inherit',
                   background: 'var(--secondary)',
-                  transition: '0.5s ease-in',
                   borderRadius: 2,
+                  minHeight: 96,
 
                   '&:hover': {
-                    transition: '0.5s ease-out',
                     background: 'var(--secondary-clicked)',
                   },
                   width: '100%',
                 }}
+                onClick={handleOpen}
               >
-                Transfer to my account
+                TRANSFER TO MY ACCOUNT
               </Button>
             </Stack>
           </Box>
@@ -130,7 +173,85 @@ const Withdraw = () => {
           </Container>
         </Sidebar>
       </Box>
+
       <MobileNav />
+
+      {/*  */}
+
+      <PopupModal
+        open={modalOpen}
+        handleClose={handleClose}
+        handleOpen={handleOpen}
+        title='withdraw from your account'
+        sx={{ maxWidth: '512px' }}
+      >
+        <div className='my-6'>
+          <label htmlFor='balanceType' className='text-sm text-gray-300 mb-2'>
+            Withdraw from:
+          </label>
+          <select
+            name='balanceType'
+            id='balanceType'
+            className='w-full px-4 py-2 outline-none rounded-md bg-gray-700 text-gray-300 text-sm'
+            onChange={(e) => setAsset(e.target.value.trim())}
+          >
+            <option value='depositBalance' defaultChecked>
+              Deposit Balance ( £{userData?.depositBalance.toLocaleString()})
+            </option>
+            <option value='loanBalance'>
+              Loan Balance ( £{userData?.loanBalance.toLocaleString()})
+            </option>
+          </select>
+        </div>
+        {/*  */}
+        <div className='my-6'>
+          <label htmlFor='accountNumber' className='text-sm text-gray-300 mb-2'>
+            Account Number
+          </label>
+          <input
+            type='text'
+            id='accountNumber'
+            className='w-full px-4 py-2 outline-none rounded-md bg-gray-700 text-gray-300 text-sm'
+            onChange={(e) => setAccountNumber(e.target.value)}
+          />
+        </div>
+        {/*  */}
+        <div className='my-6'>
+          <label htmlFor='bankName' className='text-sm text-gray-300 mb-2'>
+            Bank Name
+          </label>
+          <input
+            type='text'
+            id='bankName'
+            className='w-full px-4 py-2 outline-none rounded-md bg-gray-700 text-gray-300 text-sm'
+            onChange={(e) => setBankName(e.target.value)}
+          />
+        </div>
+        {/*  */}
+        <div className='my-6'>
+          <label htmlFor='amount' className='text-sm text-gray-300 mb-2'>
+            Amount ({asset.toUpperCase()})
+          </label>
+          <input
+            type='number'
+            id='amount'
+            className='w-full px-4 py-2 outline-none rounded-md bg-gray-700 text-gray-300 text-sm'
+            onChange={(e) => setAmount(e.target.value)}
+          />
+        </div>
+        <button
+          type='button'
+          className={`btn text-gray-50 rounded-md py-3 px-12 ${
+            isLoading
+              ? 'bg-gray-600 hover:bg-gray-600'
+              : 'bg-primary hover:bg-secondary'
+          }`}
+          onClick={placeWithdrawal}
+          disabled={isLoading}
+        >
+          {isLoading ? 'Loading...' : 'Withdraw'}
+        </button>
+      </PopupModal>
     </PrivateRoute>
   );
 };
