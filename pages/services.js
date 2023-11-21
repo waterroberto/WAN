@@ -79,7 +79,7 @@ const Services = () => {
                 fontFamily: 'inherit',
               }}
             >
-              Blue Chip Financial Bank is a chartered bank in Africa that allows
+              Blue Chip Financial Bank is a chartered bank in Europe that allows
               you to buy, sell, and hold assets directly with your bank account.
               We give Loans & Grants and also incoporate Decentralized Spending,
               We facilitate Investments and enable users Spend Wisely. <br />

@@ -8,7 +8,6 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import React, { useState } from 'react';
-import logo from '../../assets/logo.svg';
 
 const links = [
   { name: 'Home', url: '' },
@@ -83,7 +82,7 @@ const Navbar = () => {
           >
             <span>
               <Image
-                src={''}
+                src={require('../../public/logo.png')}
                 alt='Massaa Bank'
                 style={{ width: '70px', height: '70px' }}
               />
@@ -199,7 +198,7 @@ const Navbar = () => {
       >
         <Link href='/'>
           <Image
-            src={''}
+            src={require('../../public/logo.png')}
             alt='Massaa Bank Logo'
             className=''
             style={{ width: '70px', height: '70px' }}

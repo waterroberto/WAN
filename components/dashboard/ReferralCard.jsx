@@ -82,7 +82,7 @@ const ReferralCard = () => {
           </Typography>
         </Box>
         <Image
-          src={''}
+          src={require('../../public/logo.png')}
           alt='Logo outline dark for Massaa Bank'
           style={{
             height: '80px',

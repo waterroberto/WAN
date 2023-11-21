@@ -21,8 +21,7 @@ const Footer = () => {
           <Grid item xs={12} sm={6} md={4} width='100%'>
             <Link href='/'>
               <Image
-                src={''}
-                alt='Massaa Bank Logo'
+                src={require('../../public/logo.png')}
                 style={{ width: '70px', height: '70px' }}
               />
             </Link>
