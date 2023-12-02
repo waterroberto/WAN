@@ -2,12 +2,12 @@ import React from "react";
 import { Box, Typography, Grid } from "@mui/material";
 import { Layout } from "../../";
 import Image from "next/image";
-import aboutImageGroup from "../../../assets/about.png";
+import aboutImageGroup from "../../../assets/breadcrumb-1.png";
 
 const Header = () => {
   return (
     <Box
-      pt={10}
+      pt={20}
       sx={{
         background:
           "linear-gradient(55deg, rgba(3,3,3,1) 0%, rgba(27,27,27,1) 55%, rgba(27,67,177,1) 70%, rgba(27,34,52,1) 85%, rgba(9,9,9,1) 100%)",

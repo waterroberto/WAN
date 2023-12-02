@@ -6,19 +6,24 @@ import { ArrowForwardRounded } from '@mui/icons-material';
 
 const FeatureCards = ({ showLinks }) => {
   return (
-    <Layout>
+    // <Layout>
       <Grid
         container
         mx='auto'
-        maxWidth='1200px'
-        columns={12}
-        mt='-10rem'
+        // maxWidth='1200px'
+        spacing={5}
+        width={'100%'}
+        mt={10}
+        mb={10}
         sx={{
           zIndex: 5,
           position: 'relative',
           background: '#fff',
-          boxShadow: '1px 1px 32px rgb(0, 0, 0, 0.1)',
           borderRadius: '0.25rem',
+          padding: '10px 10px',
+          gap: '10px',
+          justifyContent: "center",
+
         }}
         data-aos='fade-left'
       >
@@ -29,44 +34,80 @@ const FeatureCards = ({ showLinks }) => {
             py={2}
             px={4}
             xs={12}
-            sm={6}
-            md={6}
-            lg={3}
-            width='100%'
+            sm={12}
+            md={5}
+            lg={3.5}
+            // m={1}
             sx={{
-              borderRight: index !== 3 && {
-                xs: 0,
-                sm: 0,
-                md: '1px solid rgb(0, 0, 0, 0.2)',
+              padding: '10px 10px',
+              position: 'relative',
+              overflow: 'hidden',
+              background: '#fff',
+              gap: '5px',
+              cursor: 'pointer',
+              borderRadius: '5px',
+              width: {
+                xs: "100%",
+                md: "50%",
+                lg: '30.333%',
               },
-              borderBottom: index !== 3 && {
-                xs: '1px solid rgb(0, 0, 0, 0.2)',
-                sm: '1px solid rgb(0, 0, 0, 0.2)',
-                md: 0,
-              },
+            boxShadow: '1px 1px 32px rgb(0, 0, 0, 0.1)',
+            transition: '.4s',
+            zIndex: 1,
+            '&:after': {
+                  position: 'absolute',
+                  bottom: 0,
+                  left: 0,
+                  width: '100%',
+                  height: 0,
+                  borderRadius: '5px',
+                  content: "''",
+                  zIndex: -1,
+                  backgroundColor: '#00a9a4',
+                  transition: '.4s',
+            },
+            '&:hover::after' : {
+              height: "100%",
+
+            },
             }}
           >
-            <Box sx={{ color: 'primary.main', fontSize: '4rem' }} p={1}>
-              {feature.icon}
+            <Box sx={{ 
+              color: 'primary.main', 
+              fontSize: '4rem', 
+              display: 'flex',
+              alignItems: "center",
+              }} p={1}>
+                <Box sx={{
+                  width: '65px',
+                  height: '65px',
+                  // border:'1px solid rgba(0,169,164,.6)',
+                  // borderRadius: '7px',
+                  position: 'relative',
+                }}>
+                  {feature.icon}
+                </Box>
+              <Typography
+                mb={2}
+                ml={3}
+                sx={{
+                  fontFamily: 'inherit',
+                  color: 'secondary.dark',
+                  fontWeight: 700,
+                  fontSize: {
+                    xs: '1.4rem',
+                    sm: '1.4rem',
+                    md: '1.5rem',
+                    lg: '1.75rem',
+                  },
+                }}
+              >
+                {feature.heading}
+              </Typography>             
             </Box>
             <Typography
               mb={2}
-              sx={{
-                fontFamily: 'inherit',
-                color: 'secondary.dark',
-                fontWeight: 700,
-                fontSize: {
-                  xs: '1.4rem',
-                  sm: '1.4rem',
-                  md: '1.5rem',
-                  lg: '1.75rem',
-                },
-              }}
-            >
-              {feature.heading}
-            </Typography>
-            <Typography
-              mb={4}
+              mt={2}
               sx={{
                 fontFamily: 'inherit',
                 color: 'secondary.dark',
@@ -95,7 +136,7 @@ const FeatureCards = ({ showLinks }) => {
           </Grid>
         ))}
       </Grid>
-    </Layout>
+    // </Layout>
   );
 };
 

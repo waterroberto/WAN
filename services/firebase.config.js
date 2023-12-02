@@ -3,13 +3,15 @@ import { getAuth } from 'firebase/auth';
 import { getFirestore } from 'firebase/firestore';
 import { getStorage } from 'firebase/storage';
 
+
 const firebaseConfig = {
-  apiKey: 'AIzaSyBs8v-M8j1QGlMLUr-8IfODiphqPQyzA3k',
-  authDomain: 'massaa-bank.firebaseapp.com',
-  projectId: 'massaa-bank',
-  storageBucket: 'massaa-bank.appspot.com',
-  messagingSenderId: '638810260757',
-  appId: '1:638810260757:web:597ba99f58ada87a15951c',
+  apiKey: "AIzaSyDtWRg-lxQaGyiZGRhQwD5NV8lhGTmZtVQ",
+  authDomain: "southbank-bf925.firebaseapp.com",
+  projectId: "southbank-bf925",
+  storageBucket: "southbank-bf925.appspot.com",
+  messagingSenderId: "331250612767",
+  appId: "1:331250612767:web:6611de256cc92039b8b32a",
+  measurementId: "G-5EPJC8MW6Z"
 };
 
 // Initialize Firebase

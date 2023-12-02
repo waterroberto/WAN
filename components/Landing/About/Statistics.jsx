@@ -1,6 +1,14 @@
 import React from 'react';
-import { Box, Typography, Grid } from '@mui/material';
+import { Box, Typography, Grid, List, ListItem, ListItemText, ListItemIcon } from '@mui/material';
 import { Layout } from '../../';
+import Image from "next/image";
+import aboutImage from '../../../assets/about-img-1.png'
+import CheckIcon from '@mui/icons-material/Check';
+import DoneAllIcon from '@mui/icons-material/DoneAll';
+import Avatar from '@mui/material/Avatar';
+
+
+
 
 const headingStyles = {
   fontFamily: 'inherit',
@@ -18,6 +26,12 @@ const subheadingStyles = {
   fontSize: { xs: '1.1rem', sm: '1.2rem', md: '1.3rem' },
 };
 
+const aboutList = [
+  "Cards that work all across the world.",
+  "Highest Returns on your investments",
+  "No ATM fees. No minimum balance. No overdrafts",
+]
+
 const Statistics = () => {
   return (
     <Box
@@ -26,18 +40,33 @@ const Statistics = () => {
       }}
     >
       <Layout>
+        <Image 
+              src={aboutImage}
+              alt="People smiling and happy"
+              style={{
+                width: "100%",
+                height: "100%",
+                maxWidth: "700px",
+                maxHeight: "700px",
+                filter: "hue-rotate(10deg)",
+              }}
+        />
+
         <Typography
+          mt={1}
+          mb={4}
           sx={{
-            color: '#fff',
             fontFamily: 'inherit',
-            fontWeight: 700,
-            textAlign: 'center',
-            fontSize: { xs: '2.5rem', sm: '3rem', xl: '4rem' },
+            fontWeight: 300,
+            color: '#00a9a4',
+            textAlign: 'left',
+            fontSize: { xs: '1.1rem', sm: '1.2rem', md: '1.3rem' },
           }}
           data-aos='fade-up'
         >
-          Our Company`s Open Statistics
+          Smart Banking
         </Typography>
+
         <Typography
           mt={1}
           mb={4}
@@ -45,36 +74,53 @@ const Statistics = () => {
             fontFamily: 'inherit',
             fontWeight: 300,
             color: '#fff',
-            textAlign: 'center',
+            textAlign: 'left',
             fontSize: { xs: '1.1rem', sm: '1.2rem', md: '1.3rem' },
           }}
           data-aos='fade-up'
         >
-          Trace us to our periodical milestones
+          The Better Way To Save & Invest Online Banking
         </Typography>
-        <Grid
-          container
-          columns={12}
-          mt={8}
-          rowSpacing={{ xs: 4, sm: 4, lg: 0 }}
+
+
+        <Typography
+          mt={1}
+          mb={4}
+          sx={{
+            fontFamily: 'inherit',
+            fontWeight: 300,
+            color: '#fff',
+            textAlign: 'left',
+            fontSize: { xs: '1.1rem', sm: '1.2rem', md: '1.3rem' },
+          }}
+          data-aos='fade-up'
         >
-          <Grid item xs={12} sm={6} lg={3} width='100%' data-aos='fade-up'>
-            <Typography sx={headingStyles}>1,781,227</Typography>
-            <Typography sx={subheadingStyles}>ACTIVE USERS</Typography>
-          </Grid>
-          <Grid item xs={12} sm={6} lg={3} width='100%' data-aos='fade-down'>
-            <Typography sx={headingStyles}>$2,142,857</Typography>
-            <Typography sx={subheadingStyles}>MONTHLY WITHDRAWALS</Typography>
-          </Grid>
-          <Grid item xs={12} sm={6} lg={3} width='100%' data-aos='fade-up'>
-            <Typography sx={headingStyles}>$3,142,857</Typography>
-            <Typography sx={subheadingStyles}>MONTHLY DEPOSITS</Typography>
-          </Grid>
-          <Grid item xs={12} sm={6} lg={3} width='100%' data-aos='fade-down'>
-            <Typography sx={headingStyles}>$21,169,000</Typography>
-            <Typography sx={subheadingStyles}>IN APPROVED LOANS</Typography>
-          </Grid>
-        </Grid>
+          Take Control Of Your Financial Future. Hear Our New Pick For Data Driven Investor (+203%). Maximize Returns, Sleep Well, And Build True Wealth with our Proprietary Quant Ratings.
+        </Typography>
+
+
+        <Box
+
+        >
+
+          <List>
+            {aboutList.map((text) => (
+              <ListItem  key={text}>
+                  <ListItemIcon sx={{color: "#fff",}}>
+                    <DoneAllIcon/>
+                  </ListItemIcon>
+                  <ListItemText
+                    primary={text}
+                    sx={{
+                      color: "#fff"
+                    }}
+                  />
+              </ListItem>
+            ))} 
+          </List>
+          
+
+        </Box>
       </Layout>
     </Box>
   );

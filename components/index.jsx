@@ -9,6 +9,7 @@ export { default as NewsLetter } from './Landing/NewsLetter';
 export { default as Partners } from './Landing/Partners';
 export { default as Hero } from './Landing/Sections/Hero';
 export { default as FeatureCards } from './Landing/Sections/FeatureCards';
+export {default as GoalSetting} from './Landing/Sections/GoalSetting'
 export { default as ContactInformation } from './Landing/Sections/ContactInformation';
 export { default as GetStarted } from './Landing/Sections/GetStarted';
 export { default as LoanProcess } from './Landing/Sections/LoanProcess/LoanProcess';

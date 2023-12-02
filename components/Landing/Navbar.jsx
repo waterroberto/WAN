@@ -237,7 +237,7 @@ const Navbar = () => {
             borderRadius: '0.25rem',
             padding: '0.8rem 2rem',
             color: '#fff',
-            background: 'primary.main',
+            background: '#010647',
             textTransform: 'capitalize',
             fontSize: '1rem',
 

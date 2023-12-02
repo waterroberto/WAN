@@ -11,22 +11,24 @@ import {
   Meta,
   Navbar,
   Partners,
+  GoalSetting
 } from '../components';
 
 export default function Home() {
   return (
     <>
       <Meta
-        title='Massaa Bank - Home - Online loans banking for everyone'
-        description='Massaa Bank - Online loans banking for everyone - Homepage'
+        title='South Bank - Home - Online loans banking for everyone'
+        description='South Bank - Online loans banking for everyone - Homepage'
       />
       <Navbar />
       <Box pt={8}>
         <Hero />
         <FeatureCards showLinks={true} />
         <AboutUs />
-        <LoanProcess />
+        {/* <LoanProcess /> */}
         <Customers />
+        <GoalSetting/>
         <Partners />
         <ContactInformation />
         <GetStarted />

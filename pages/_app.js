@@ -15,12 +15,12 @@ import '../styles/globals.css';
 const theme = createTheme({
   palette: {
     primary: {
-      main: '#d1491b',
+      main: '#00a9a4',
       dark: '#a84322',
       contrastText: '#1b4cd5',
     },
     secondary: {
-      main: '#5c13d1',
+      main: '#010647',
       dark: '#1a052e',
     },
     custom: {

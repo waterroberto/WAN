@@ -2,7 +2,7 @@ import React from "react";
 import { ArrowForwardRounded } from "@mui/icons-material";
 import { Button, Grid, Typography, Box } from "@mui/material";
 import Layout from "../../Layout/Layout";
-import incfSvg from "../../../assets/incf.svg";
+import aboutImage from "../../../assets/about-bank.png";
 import Image from "next/image";
 
 const AboutUs = () => {
@@ -11,13 +11,13 @@ const AboutUs = () => {
       container
       columns={12}
       sx={{
-        background: "#060606",
+        background: '#010647',
       }}
     >
       <Grid item xs={12} sm={12} md={6} width="100%" data-aos="fade-left">
         <Layout>
           <Image
-            src={incfSvg}
+            src={aboutImage}
             alt="About Incrypto Finance. Wallet balance svg"
             style={{
               width: "100%",

@@ -12,6 +12,7 @@ const Layout = ({ children }) => {
           lg: "4rem",
         },
         mx: "auto",
+        position: "relative",
       }}
     >
       {children}
