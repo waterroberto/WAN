@@ -1,7 +1,7 @@
+import { Box, Grid, Typography } from '@mui/material';
 import React from 'react';
-import { Typography, Grid, Box } from '@mui/material';
-import Layout from '../../Layout/Layout';
 import { contactInformation } from '../../../static/Data';
+import Layout from '../../Layout/Layout';
 
 const ContactInformation = () => {
   return (

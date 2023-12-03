@@ -79,16 +79,16 @@ const Services = () => {
                 fontFamily: 'inherit',
               }}
             >
-              Blue Chip Financial Bank is a chartered bank in Europe that allows
-              you to buy, sell, and hold assets directly with your bank account.
-              We give Loans & Grants and also incoporate Decentralized Spending,
-              We facilitate Investments and enable users Spend Wisely. <br />
+              South Bank is a chartered bank in America that allows you to buy,
+              sell, and hold assets directly with your bank account. We
+              incoporate Decentralized Spending, We facilitate Investments and
+              enable users Spend Wisely. <br />
               We allow investors have a flexible way of investing in market at a
               low-cost, and bridge the gap between loan applicant`s and
               corporate organisations, giving them a chance to expand their
-              investment portfolio. <br /> Blue Chip Finance offers banking,
-              loans & savings services. <br /> Our platform is easy to use, get
-              started in a few simple steps.
+              investment portfolio. <br /> South Bank offers banking, loans &
+              savings services. <br /> Our platform is easy to use, get started
+              in a few simple steps.
             </Typography>
           </Stack>
         </Layout>

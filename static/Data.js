@@ -95,10 +95,10 @@ const contactInformation = [
     icon: <MdMarkEmailRead />,
     body: 'support@southbank.online',
   },
-  {
-    icon: <ImLocation />,
-    body: '234 Hamilton, Cleveland, Ohio, USA.',
-  },
+  // {
+  //   icon: <ImLocation />,
+  //   body: '234 Hamilton, Cleveland, Ohio, USA.',
+  // },
 ];
 
 const faqs = [

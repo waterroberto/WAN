@@ -104,7 +104,7 @@ const Footer = () => {
             >
               <Typography>support@southbank.online</Typography>
               <Typography>+1 (781) 234-5678</Typography>
-              <Typography>234 Hamilton, Cleveland, Ohio, USA.</Typography>
+              {/* <Typography>234 Hamilton, Cleveland, Ohio, USA.</Typography> */}
             </Box>
           </Grid>
         </Grid>
