@@ -17,10 +17,10 @@ const Heading = () => {
   return (
     <Grid container columns={12}>
       <Grid item xs={12} sm={12} md={6} width='100%'>
-        <BalanceCard />
+        <DetailsCard />
       </Grid>
       <Grid item xs={12} sm={12} md={6} width='100%'>
-        <DetailsCard />
+        <BalanceCard />
       </Grid>
     </Grid>
   );

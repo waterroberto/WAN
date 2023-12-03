@@ -1,11 +1,10 @@
+import Image from 'next/image';
 import { GiTakeMyMoney } from 'react-icons/gi';
 import { ImLocation } from 'react-icons/im';
 import { MdMarkEmailRead } from 'react-icons/md';
-import FeatureIcon_1 from '../assets/feature-icon-1.png'
-import FeatureIcon_2 from '../assets/feature-icon-2.png'
-import FeatureIcon_3 from '../assets/feature-icon-3.png'
-import Image from "next/image";
-
+import FeatureIcon_1 from '../assets/feature-icon-1.png';
+import FeatureIcon_2 from '../assets/feature-icon-2.png';
+import FeatureIcon_3 from '../assets/feature-icon-3.png';
 
 import {
   RiBankFill,
@@ -16,64 +15,71 @@ import {
 
 const featuresData = [
   {
-    icon:<Image
+    icon: (
+      <Image
         src={FeatureIcon_1}
-        alt="About Incrypto Finance. Wallet balance svg"
+        alt='About Incrypto Finance. Wallet balance svg'
         style={{
-          width: "100%",
-          height: "100%",
-         maxWidth: "700px",
-         maxHeight: "700px",
-         borderRadius: "10px"
+          width: '100%',
+          height: '100%',
+          maxWidth: '700px',
+          maxHeight: '700px',
+          borderRadius: '10px',
         }}
-        />
-    ,
+      />
+    ),
     heading: 'Account',
     body: 'We offer a wide range of accounts to suit lifestyles & needs. Free and paid-for add-ons are available to give total control. Download, Fill & Submit at our Branch.Minimum account size of $5,000',
     page: 'services/#personal-loans',
   },
   {
-    icon:<Image
+    icon: (
+      <Image
         src={FeatureIcon_2}
-        alt="About Incrypto Finance. Wallet balance svg"
+        alt='About Incrypto Finance. Wallet balance svg'
         style={{
-          width: "100%",
-          height: "100%",
-         maxWidth: "700px",
-         maxHeight: "700px",
-         borderRadius: "10px"
+          width: '100%',
+          height: '100%',
+          maxWidth: '700px',
+          maxHeight: '700px',
+          borderRadius: '10px',
         }}
-        />,
+      />
+    ),
     heading: 'Reliable Customer Service',
     body: 'We are synonymous with innovation, building excellence, superior financial performance and creating role models for society.',
   },
   {
-    icon:<Image
+    icon: (
+      <Image
         src={FeatureIcon_3}
-        alt="About Incrypto Finance. Wallet balance svg"
+        alt='About Incrypto Finance. Wallet balance svg'
         style={{
-          width: "100%",
-          height: "100%",
-         maxWidth: "700px",
-         maxHeight: "700px",
-         borderRadius: "10px"
+          width: '100%',
+          height: '100%',
+          maxWidth: '700px',
+          maxHeight: '700px',
+          borderRadius: '10px',
         }}
-        />,
+      />
+    ),
     heading: 'Round the Clock Banking',
     body: 'Access your personal account information with ease, transfer funds securely whenever you want, wherever you want.',
   },
   {
-    icon:<Image
+    icon: (
+      <Image
         src={FeatureIcon_1}
-        alt="About Incrypto Finance. Wallet balance svg"
+        alt='About Incrypto Finance. Wallet balance svg'
         style={{
-          width: "100%",
-          height: "100%",
-         maxWidth: "700px",
-         maxHeight: "700px",
-         borderRadius: "10px"
+          width: '100%',
+          height: '100%',
+          maxWidth: '700px',
+          maxHeight: '700px',
+          borderRadius: '10px',
         }}
-        />,
+      />
+    ),
     heading: 'Payroll System',
     body: 'Our payroll tool helps with easy and affordable payroll management for businesses of all sizes.',
     page: 'services/#payroll-system',
@@ -87,7 +93,7 @@ const contactInformation = [
   },
   {
     icon: <MdMarkEmailRead />,
-    body: 'support@massaabank.online',
+    body: 'support@southbank.online',
   },
   {
     icon: <ImLocation />,

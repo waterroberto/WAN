@@ -20,11 +20,11 @@ const Dashboard = () => {
       />
       <Dash />
 
-      <Box minHeight='100vh' sx={{ background: 'var(--darker)' }}>
+      <Box minHeight='100vh' sx={{ background: '#f5f5f5' }}>
         <Sidebar>
           <AppBar page='Dashboard' />
           <Heading />
-          {/* <CryptoMarquee /> */}
+
           <InvestCards />
           <Stack
             direction='row'
@@ -35,9 +35,9 @@ const Dashboard = () => {
             <Typography sx={{ fontSize: '1.4rem', fontWeight: 700, p: 1 }}>
               Transactions
             </Typography>
-            <Button variant='outlined' color='primary'>
-              {/* {[...userData?.deposits, ...userData?.withdrawals].length} */}
-            </Button>
+            {/* <Button variant='outlined' color='primary'>
+              {[...userData?.deposits, ...userData?.withdrawals].length}
+            </Button> */}
           </Stack>
           {(userData?.deposits || userData?.withdrawals) && (
             <Transactions

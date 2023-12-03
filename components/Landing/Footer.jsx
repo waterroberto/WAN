@@ -21,7 +21,9 @@ const Footer = () => {
           <Grid item xs={12} sm={6} md={4} width='100%'>
             <Link href='/'>
               <Image
-                src={require('../../public/logo.png')}
+                src=''
+                alt='South bank logo'
+                // src={require('../../public/logo.png')}
                 style={{ width: '70px', height: '70px' }}
               />
             </Link>
@@ -100,7 +102,7 @@ const Footer = () => {
                 },
               }}
             >
-              <Typography>support@massaabank.online</Typography>
+              <Typography>support@southbank.online</Typography>
               <Typography>+1 (781) 234-5678</Typography>
               <Typography>234 Hamilton, Cleveland, Ohio, USA.</Typography>
             </Box>

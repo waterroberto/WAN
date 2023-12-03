@@ -283,7 +283,7 @@ const Profile = () => {
               </Grid>
             </Grid>
           </Container>
-          <Container>
+          {/* <Container>
             <Typography fontWeight={800} fontSize={20} mb={4}>
               Account Tokenization
             </Typography>
@@ -307,7 +307,7 @@ const Profile = () => {
             >
               Tokenize Account
             </Button>
-          </Container>
+          </Container> */}
           {(userData?.accountLevel < 3 || !userData?.isVerified) && (
             <Container>
               <Typography fontWeight={800} fontSize={20} mb={4}>

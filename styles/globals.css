@@ -28,6 +28,7 @@
   --secondary-clicked: #e15323;
   --tertiary: rgb(242, 1, 255);
   --tertiary-light: rgb(255, 1, 234, 0.2);
+  --light: rgb(150, 160, 170);
 }
 
 * {

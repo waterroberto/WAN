@@ -43,8 +43,8 @@ const Login = () => {
   return (
     <>
       <Meta
-        title='Login - Massaa Bank - Online banking for everyone'
-        description='Login to your Massaa Bank - Online banking for everyone'
+        title='Login - south Bank - Online banking for everyone'
+        description='Login to your south Bank - Online banking for everyone'
       />
       <Box
         mt={8}
@@ -120,12 +120,9 @@ const Login = () => {
                 maxWidth: '512px',
                 mb: 2,
                 cursor: isLoading ? 'not-allowed' : 'cursor',
-                background: 'var(--blue)',
+
                 color: '#fff',
 
-                '&:hover': {
-                  background: isLoading ? 'var(--mid)' : '#1b4cd1',
-                },
                 '&:disabled': {
                   background: 'var(--light-blue)',
                   cursor: 'not-allowed',

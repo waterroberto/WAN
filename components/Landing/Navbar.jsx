@@ -82,8 +82,9 @@ const Navbar = () => {
           >
             <span>
               <Image
-                src={require('../../public/logo.png')}
-                alt='Massaa Bank'
+                // src={require('../../public/logo.png')}
+                src=''
+                alt='South Bank'
                 style={{ width: '70px', height: '70px' }}
               />
             </span>
@@ -198,8 +199,9 @@ const Navbar = () => {
       >
         <Link href='/'>
           <Image
-            src={require('../../public/logo.png')}
-            alt='Massaa Bank Logo'
+            // src={require('../../public/logo.png')}
+            src=''
+            alt='South Bank Logo'
             className=''
             style={{ width: '70px', height: '70px' }}
           />

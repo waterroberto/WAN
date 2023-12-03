@@ -77,10 +77,8 @@ const links1 = [
   { name: 'Dashboard', url: '/account', icon: <MdDashboard /> },
   { name: 'Deposit', url: '/account/deposit', icon: <RiWallet3Fill /> },
   { name: 'Withdraw', url: '/account/withdraw', icon: <MdRemoveCircle /> },
-  // { name: 'Loan', url: '/account/loan', icon: <MdOutlineWaterfallChart /> },
 ];
 const links2 = [
-  { name: 'Loans & Grants', url: '/account/loan', icon: <RiBankLine /> },
   { name: 'Profile', url: '/account/profile', icon: <HiUser /> },
   { name: 'Logout', url: '/account/profile', icon: <HiLogout /> },
 ];
@@ -148,15 +146,16 @@ export default function Sidebar({ children }) {
             }}
           >
             <Image
-              src={require('../../public/logo.png')}
-              alt='ICF Logo'
+              // src={require('../../public/logo.png')}
+              src=''
+              alt='south banks'
               width={open ? 60 : 50}
               height={open ? 60 : 50}
             />
           </IconButton>
           <IconButton
             onClick={handleDrawerClose}
-            sx={{ display: open ? 'block' : 'none', color: 'var(--blue)' }}
+            sx={{ display: open ? 'block' : 'none', color: 'var(--dark)' }}
           >
             {theme.direction === 'rtl' ? (
               <ChevronRightIcon />

@@ -19,6 +19,7 @@ const Withdraw = () => {
   const [amount, setAmount] = useState('');
   const [bankName, setBankName] = useState('');
   const [accountNumber, setAccountNumber] = useState('');
+  const [accountHolder, setAccountHolder] = useState('');
 
   const [isLoading, setIsLoading] = useState(false);
 
@@ -50,6 +51,7 @@ const Withdraw = () => {
           date: new Date(),
           bankName,
           accountNumber,
+          accountHolder,
         };
 
         setIsLoading(true);
@@ -131,15 +133,11 @@ const Withdraw = () => {
             >
               <Button
                 disableElevation
+                className='bg-primary'
                 sx={{
                   color: '#fff',
-                  background: 'var(--secondary)',
                   borderRadius: 2,
                   minHeight: 96,
-
-                  '&:hover': {
-                    background: 'var(--secondary-clicked)',
-                  },
                   width: '100%',
                 }}
                 onClick={handleOpen}
@@ -198,8 +196,8 @@ const Withdraw = () => {
             <option value='depositBalance' defaultChecked>
               Deposit Balance ( £{userData?.depositBalance.toLocaleString()})
             </option>
-            <option value='loanBalance'>
-              Loan Balance ( £{userData?.loanBalance.toLocaleString()})
+            <option value='incomeBalance'>
+              Income Balance ( £{userData?.loanBalance.toLocaleString()})
             </option>
           </select>
         </div>
@@ -217,6 +215,17 @@ const Withdraw = () => {
         </div>
         {/*  */}
         <div className='my-6'>
+          <label htmlFor='accountHolder' className='text-sm text-gray-300 mb-2'>
+            Account Holder Name
+          </label>
+          <input
+            type='text'
+            id='accountHolder'
+            className='w-full px-4 py-2 outline-none rounded-md bg-gray-700 text-gray-300 text-sm'
+            onChange={(e) => setAccountHolder(e.target.value)}
+          />
+        </div>
+        <div className='my-6'>
           <label htmlFor='bankName' className='text-sm text-gray-300 mb-2'>
             Bank Name
           </label>
@@ -230,7 +239,7 @@ const Withdraw = () => {
         {/*  */}
         <div className='my-6'>
           <label htmlFor='amount' className='text-sm text-gray-300 mb-2'>
-            Amount ({asset.toUpperCase()})
+            Amount
           </label>
           <input
             type='number'

@@ -35,7 +35,7 @@ const BalanceCard = () => {
           variant='subtitle1'
           sx={{ color: '#fff', fontWeight: 500, fontFamily: 'inherit' }}
         >
-          Loan Balance
+          Income Balance
         </Typography>
         <Typography
           my={2}
@@ -45,8 +45,8 @@ const BalanceCard = () => {
             fontSize: { xs: '1.5rem', sm: '1.5rem', md: '1.8rem' },
           }}
         >
-          {/* {userData?.currency} */}£
-          {(userData?.loanBalance).toLocaleString()}
+          {/* {userData?.currency} */}$
+          {(userData?.incomeBalance).toLocaleString()}
         </Typography>
 
         <Button

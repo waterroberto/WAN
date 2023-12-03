@@ -131,7 +131,7 @@ const Deposit = () => {
               </button> */}
               <button
                 type='button'
-                className='w-full p-6 pb-16 rounded-3xl bg-primary-dark text-gray-50 relative'
+                className='w-full p-6 pb-16 rounded-3xl bg-primary text-gray-50 relative'
                 onClick={() => {
                   cogoToast.success(
                     'Contact support for payment via local bank.'
