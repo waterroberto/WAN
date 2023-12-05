@@ -1,38 +1,29 @@
-import { Box } from '@mui/material';
 import {
-  AboutUs,
   ContactInformation,
-  Customers,
-  FeatureCards,
+  FAQs,
   Footer,
-  GetStarted,
   Hero,
-  LoanProcess,
   Meta,
   Navbar,
-  Partners,
-  GoalSetting
 } from '../components';
+import BankConvenience from '../components/Landing/BankConvenience';
+import HowItWorks from '../components/Landing/HowItWorks';
+import Features from '../components/Landing/Sections/Features';
 
 export default function Home() {
   return (
     <>
       <Meta
-        title='South Bank - Home - Online loans banking for everyone'
-        description='South Bank - Online loans banking for everyone - Homepage'
+        title='Ravdak Finance - Home - Online loans banking for everyone'
+        description='Ravdak Finance - Online loans banking for everyone - Homepage'
       />
       <Navbar />
-      <Box pt={8}>
-        <Hero />
-        <FeatureCards showLinks={true} />
-        <AboutUs />
-        {/* <LoanProcess /> */}
-        <Customers />
-        <GoalSetting/>
-        <Partners />
-        <ContactInformation />
-        <GetStarted />
-      </Box>
+      <Hero />
+      <Features />
+      <BankConvenience />
+      <HowItWorks />
+      <FAQs />
+      <ContactInformation />
       <Footer />
     </>
   );

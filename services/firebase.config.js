@@ -3,15 +3,14 @@ import { getAuth } from 'firebase/auth';
 import { getFirestore } from 'firebase/firestore';
 import { getStorage } from 'firebase/storage';
 
-
 const firebaseConfig = {
-  apiKey: "AIzaSyDtWRg-lxQaGyiZGRhQwD5NV8lhGTmZtVQ",
-  authDomain: "southbank-bf925.firebaseapp.com",
-  projectId: "southbank-bf925",
-  storageBucket: "southbank-bf925.appspot.com",
-  messagingSenderId: "331250612767",
-  appId: "1:331250612767:web:6611de256cc92039b8b32a",
-  measurementId: "G-5EPJC8MW6Z"
+  apiKey: 'AIzaSyDTiQPS_ZcxKMlWvpJ1D_SI1tYR1DJeWTw',
+  authDomain: 'ravdak-finance.firebaseapp.com',
+  projectId: 'ravdak-finance',
+  storageBucket: 'ravdak-finance.appspot.com',
+  messagingSenderId: '437313426680',
+  appId: '1:437313426680:web:b9c89a998d24dd6d4d170d',
+  measurementId: 'G-10PG1VLXRR',
 };
 
 // Initialize Firebase

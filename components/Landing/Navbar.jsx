@@ -1,266 +1,99 @@
-import {
-  ArrowForwardRounded,
-  CloseRounded,
-  MenuRounded,
-} from '@mui/icons-material';
-import { Button, Stack, Typography, styled } from '@mui/material';
+// import logo from '@/assets/apex-trades.png';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useRouter } from 'next/router';
 import React, { useState } from 'react';
+import { CgMenu } from 'react-icons/cg';
 
 const links = [
-  { name: 'Home', url: '' },
-  { name: 'About Us', url: 'about' },
-  { name: 'Services', url: 'services' },
-  { name: 'Contact', url: 'contact' },
+  { name: 'home', url: '/' },
+  { name: 'about us', url: '/about' },
+  { name: 'services', url: '/services' },
+  { name: 'contact us', url: '/contact' },
 ];
 
-const StyledNavOverlay = styled('div')(({ theme }) => ({
-  padding: '1rem',
-  width: '100%',
-  height: '100vh',
-  zIndex: 15,
-  background: 'rgba(0,0,0,0.5)',
-  position: 'fixed',
-  backdropFilter: 'blur(5px)',
-  [theme.breakpoints.up('md')]: {
-    transform: 'scale(0)',
-  },
-  transition: '0.4s ease-out',
-}));
-
-const StyledNav = styled('div')(() => ({
-  padding: '2rem',
-  width: '90%',
-  height: '65%',
-  zIndex: 20,
-  background: '#fff',
-  position: 'absolute',
-  top: '5%',
-  left: '5%',
-  borderRadius: '0.5rem',
-  boxShadow: '1px 1px 64px rgba(0, 0, 0, 0.1)',
-  overflow: 'hidden',
-  transition: '0.8s ease-in',
-}));
-
-const StyledFooter = styled('div')(() => ({
-  background: '#060606',
-  width: '100%',
-  height: '20%',
-  position: 'absolute',
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-  bottom: 0,
-  right: 0,
-  padding: '1rem',
-  color: '#fff',
-}));
-
 const Navbar = () => {
-  const page = useRouter().pathname;
-  const [showNav, setShowNav] = useState(false);
+  const [showMobileNav, setShowMobileNav] = useState(false);
 
-  const toggleNav = () => setShowNav((prev) => !prev);
+  const toggleMobileNav = () => {
+    setShowMobileNav((prev) => !prev);
+  };
 
   return (
-    <>
-      <StyledNavOverlay
-        sx={{
-          transform: `${
-            showNav ? 'translateY(0) scale(1)' : 'translateY(-150%) scale(1)'
-          }`,
-        }}
-      >
-        <StyledNav>
-          <Stack
-            direction='row'
-            alignItems='center'
-            justifyContent='space-between'
-          >
-            <span>
-              <Image
-                // src={require('../../public/logo.png')}
-                src=''
-                alt='South Bank'
-                style={{ width: '70px', height: '70px' }}
-              />
-            </span>
-            <span>
-              <CloseRounded
-                onClick={toggleNav}
-                sx={{
-                  cursor: 'pointer',
-                  fontSize: '2rem',
-                }}
-              />
-            </span>
-          </Stack>
-          <Stack
-            direction='column'
-            spacing={4}
-            mt={6}
-            pl={2}
-            component='ul'
-            sx={{
-              alignItems: 'flex-start',
-              justifyContent: 'space-evenly',
-            }}
-          >
-            {links.map((link, index) => (
-              <li
-                key={`${index}_${link.name}`}
-                onClick={() => {
-                  toggleNav();
-                }}
-              >
-                <Link href={`/${link.url}`} className='sansation'>
-                  <span
-                    style={{
-                      color: '#1b1b1b',
-                      fontSize: '1.5rem',
-                    }}
-                  ></span>
-                  {link.name}
-                </Link>
-              </li>
-            ))}
-          </Stack>
-          <StyledFooter>
-            <Stack
-              direction='row'
-              spacing={2}
-              my={2}
-              alignItems='center'
-              justifyContent='center'
-            >
-              <Button
-                variant='contained'
-                href='/register'
-                disableElevation
-                endIcon={<ArrowForwardRounded />}
-                sx={{
-                  borderRadius: '2rem',
-                  padding: '0.75rem 2rem',
-                  color: '#fff',
-                  background: 'primary.main',
-                  textTransform: 'capitalize',
-
-                  fontWeight: 500,
-                  fontFamily: 'inherit',
-                }}
-              >
-                Register
-              </Button>
-              <Button
-                variant='outlined'
-                href='/login'
-                disableElevation
-                endIcon={<ArrowForwardRounded />}
-                sx={{
-                  borderRadius: '2rem',
-                  padding: '0.75rem 2rem',
-                  color: '#fff',
-                  textTransform: 'capitalize',
-                  fontWeight: 500,
-                  fontFamily: 'inherit',
-                }}
-              >
-                Login
-              </Button>
-            </Stack>
-          </StyledFooter>
-        </StyledNav>
-      </StyledNavOverlay>
-      <Stack
-        direction='row'
-        spacing={2}
-        component='nav'
-        sx={{
-          position: 'fixed',
-          alignItems: 'center',
-          justifyContent: 'space-between',
-          top: '0',
-          left: '0',
-          width: '100%',
-          padding: {
-            xs: '1.5rem',
-            md: '1.5rem 2rem',
-            lg: '1.5rem 4rem',
-            xl: '1.5rem 6rem',
-          },
-          background: '#fff',
-          transition: '.5s ease-in-out',
-          zIndex: '10',
-          borderBottom: '1px solid rgba(90, 114, 239, 0.2)',
-        }}
-      >
+    <header className='z-50 bg-white w-full fixed top-0 left-0 max-h-44'>
+      <nav className='padding border-b border-b-gray-200 flex items-center justify-between'>
         <Link href='/'>
-          <Image
-            // src={require('../../public/logo.png')}
-            src=''
-            alt='South Bank Logo'
-            className=''
-            style={{ width: '70px', height: '70px' }}
-          />
+          <img src={''} alt='navbar logo' className='max-w-[150px]' />
         </Link>
-        <Stack
-          direction='row'
-          spacing={2}
-          component='ul'
-          sx={{
-            width: { md: '50%', lg: '40%', xl: '30%' },
-            alignItems: 'center',
-            justifyContent: 'space-between',
-            display: { xs: 'none', sm: 'none', md: 'flex' },
-          }}
-        >
-          {links.map((link, index) => (
-            <li key={`${index}_${link.name}`}>
-              <Link href={`/${link.url}`} className='sansation'>
-                <span
-                  style={{
-                    color: '#fff',
-                    fontSize: '1.2rem',
-                  }}
-                ></span>
-                {link.name}
-              </Link>
-            </li>
-          ))}
-        </Stack>
-        <Button
-          variant='contained'
-          href='/register'
-          disableElevation
-          sx={{
-            borderRadius: '0.25rem',
-            padding: '0.8rem 2rem',
-            color: '#fff',
-            background: '#010647',
-            textTransform: 'capitalize',
-            fontSize: '1rem',
 
-            display: { xs: 'none', md: 'block' },
-            fontWeight: 500,
-            fontFamily: 'inherit',
-          }}
+        <div className='items-center gap-4 hidden sm:flex'>
+          <Link
+            href='/login'
+            className='btn border border-primary text-primary hover:text-secondary hover:border-secondary'
+          >
+            Login
+          </Link>
+          <Link
+            href='/register'
+            className='btn bg-primary text-white hover:bg-secondary'
+          >
+            Create Account
+          </Link>
+        </div>
+
+        <button
+          aria-label='navbar toggle Button'
+          onClick={toggleMobileNav}
+          className='block sm:hidden text-primary p-2 z-20 duration-500 border-[1px] rounded-md'
         >
-          Get Started
-        </Button>
-        <MenuRounded
-          sx={{
-            cursor: 'pointer',
-            color: 'primary.dark',
-            fontSize: '2rem',
-            display: { xs: 'block', sm: 'block', md: 'none' },
-          }}
-          onClick={toggleNav}
-        />
-      </Stack>
-    </>
+          <CgMenu className='text-2xl' />
+        </button>
+      </nav>
+
+      <ul className='padding items-center gap-8 hidden sm:flex'>
+        {links.map((link) => (
+          <li key={link.name}>
+            <Link
+              href={link.url}
+              className='text-[13px] text-secondary font-semibold uppercase'
+            >
+              {link.name}
+            </Link>
+          </li>
+        ))}
+      </ul>
+
+      <ul
+        className={`p-4 absolute w-full padding items-start gap-8 flex sm:hidden flex-col shadow-2xl bg-light duration-500 ${
+          showMobileNav ? 'navbar-open' : 'navbar-close'
+        }`}
+      >
+        {links.map((link) => (
+          <li
+            key={link.name}
+            className='py-4 border-b border-b-gray-100 w-full'
+          >
+            <Link
+              href={link.url}
+              className='text-[13px] text-secondary font-semibold uppercase'
+            >
+              {link.name}
+            </Link>
+          </li>
+        ))}
+
+        <div className='py-4 mt-4 tems-center gap-4'>
+          <Link
+            href='/login'
+            className='btn border border-secondary text-secondary'
+          >
+            Login
+          </Link>
+          <Link href='/register' className='btn bg-secondary text-white'>
+            Create Account
+          </Link>
+        </div>
+      </ul>
+    </header>
   );
 };
 

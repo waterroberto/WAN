@@ -85,7 +85,7 @@ const Register = () => {
       currency: countries.find((el) => el.name === country)['code'],
       documents: { ID: '', bankStatements: [], passport: '' },
       depositBalance: 0,
-      loanBalance: 0,
+      incomeBalance: 0,
       canDeposit: true,
       canRequestLoan: true,
       canTokenize: true,

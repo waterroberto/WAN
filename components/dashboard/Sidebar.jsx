@@ -148,7 +148,7 @@ export default function Sidebar({ children }) {
             <Image
               // src={require('../../public/logo.png')}
               src=''
-              alt='south banks'
+              alt='ravdak finance'
               width={open ? 60 : 50}
               height={open ? 60 : 50}
             />

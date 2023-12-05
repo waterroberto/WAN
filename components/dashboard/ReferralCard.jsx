@@ -50,7 +50,7 @@ const ReferralCard = () => {
           mt: 4,
           width: '100%',
           background:
-            'linear-gradient(90deg, rgba(1,126,255,1)  0%, rgba(96,174,255,1)80%)',
+            'linear-gradient(45deg, rgba(28,105,72,1) 0%, rgba(99,255,160,1) 100%)',
           borderRadius: '1rem',
         }}
       >
@@ -84,7 +84,7 @@ const ReferralCard = () => {
         <Image
           // src={require('../../public/logo.png')}
           src=''
-          alt='South Bank'
+          alt='ravdak finance'
           style={{
             height: '80px',
             width: '80px',

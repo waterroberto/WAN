@@ -15,8 +15,8 @@ import '../styles/globals.css';
 const theme = createTheme({
   palette: {
     primary: {
-      main: '#00a9a4',
-      dark: '#010647',
+      main: '#008533',
+      dark: '#006341',
       contrastText: '#1b4cd5',
     },
     secondary: {

@@ -1,8 +1,8 @@
-import { Box, Grid, Typography, Button } from '@mui/material';
+import InputUnstyled from '@mui/base/InputUnstyled';
+import { Box, Button, Grid, Typography } from '@mui/material';
+import { styled } from '@mui/system';
 import React from 'react';
 import Layout from '../Layout/Layout';
-import InputUnstyled from '@mui/base/InputUnstyled';
-import { styled } from '@mui/system';
 
 const StyledInputElement = styled('input')(
   ({ theme }) => `
@@ -17,10 +17,6 @@ const StyledInputElement = styled('input')(
   background: #1b1b1b;
   border: 1px solid #333;
   outline: none;
-
-  &:hover {
-    border-color: #1b4cd1;
-  }
 `
 );
 
@@ -94,9 +90,6 @@ const NewsLetter = () => {
                 fontFamily: 'inherit',
                 width: '100%',
                 mt: 2,
-                '&:hover': {
-                  background: '#1b4cd1',
-                },
               }}
             >
               Subscribe

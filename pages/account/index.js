@@ -1,5 +1,8 @@
-import { Box, Button, Stack, Typography } from '@mui/material';
+import { Box, Button, Stack, Typography, useTheme } from '@mui/material';
+import Link from 'next/link';
 import React, { useContext } from 'react';
+import { HiOutlineArrowTrendingUp } from 'react-icons/hi2';
+import { MdOutlineAdd } from 'react-icons/md';
 import { Dash, Heading, Meta, MobileNav, Sidebar } from '../../components';
 import PrivateRoute from '../../components/auth/PrivateRoute';
 import AppBar from '../../components/dashboard/AppBar';
@@ -11,6 +14,8 @@ import userDataContext from '../../context/UserDataContext';
 
 const Dashboard = () => {
   const { userData } = useContext(userDataContext);
+
+  const theme = useTheme();
 
   return (
     <PrivateRoute>
@@ -25,6 +30,47 @@ const Dashboard = () => {
           <AppBar page='Dashboard' />
           <Heading />
 
+          {/*  */}
+          <div className='grid grid-cols-2 gap-4 my-4'>
+            <Button
+              variant='text'
+              disableElevation
+              startIcon={<HiOutlineArrowTrendingUp />}
+              sx={{
+                color: '#fff',
+                textTransform: 'capitalize',
+                fontFamily: 'inherit',
+                borderRadius: 3,
+                padding: 2,
+                background: theme.palette.secondary.main,
+
+                '&:hover': {
+                  background: theme.palette.secondary.dark,
+                },
+              }}
+            >
+              <Link href='/account/withdraw'>Bank Transfer</Link>
+            </Button>
+            <Button
+              variant='text'
+              disableElevation
+              startIcon={<MdOutlineAdd />}
+              sx={{
+                color: '#fff',
+                textTransform: 'capitalize',
+                fontFamily: 'inherit',
+                borderRadius: 3,
+                padding: 2,
+                background: theme.palette.primary.dark,
+
+                '&:hover': {
+                  background: theme.palette.primary.main,
+                },
+              }}
+            >
+              <Link href='/account/deposit'>Add Funds</Link>
+            </Button>
+          </div>
           <InvestCards />
           <Stack
             direction='row'
@@ -35,9 +81,6 @@ const Dashboard = () => {
             <Typography sx={{ fontSize: '1.4rem', fontWeight: 700, p: 1 }}>
               Transactions
             </Typography>
-            {/* <Button variant='outlined' color='primary'>
-              {[...userData?.deposits, ...userData?.withdrawals].length}
-            </Button> */}
           </Stack>
           {(userData?.deposits || userData?.withdrawals) && (
             <Transactions

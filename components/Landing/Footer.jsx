@@ -8,7 +8,7 @@ import logo from '../../assets/logo.svg';
 const Footer = () => {
   return (
     <Box sx={{ background: '#f5f5f5' }}>
-      {/* <NewsLetter /> */}
+      <NewsLetter />
       <Layout>
         <Grid
           container
@@ -22,7 +22,7 @@ const Footer = () => {
             <Link href='/'>
               <Image
                 src=''
-                alt='South bank logo'
+                alt='ravdak finance logo'
                 // src={require('../../public/logo.png')}
                 style={{ width: '70px', height: '70px' }}
               />
@@ -102,9 +102,8 @@ const Footer = () => {
                 },
               }}
             >
-              <Typography>support@southbank.online</Typography>
-              <Typography>+1 (781) 234-5678</Typography>
-              {/* <Typography>234 Hamilton, Cleveland, Ohio, USA.</Typography> */}
+              <Typography>support@ravdakfinance.online</Typography>
+              <Typography>+1 (111) 222-3333</Typography>
             </Box>
           </Grid>
         </Grid>

@@ -89,16 +89,12 @@ const featuresData = [
 const contactInformation = [
   {
     icon: <RiWhatsappLine />,
-    body: '+1 (781) 234-5678',
+    body: '+1 (111) 222-3333',
   },
   {
     icon: <MdMarkEmailRead />,
-    body: 'support@southbank.online',
+    body: 'support@ravdakfinance.online',
   },
-  // {
-  //   icon: <ImLocation />,
-  //   body: '234 Hamilton, Cleveland, Ohio, USA.',
-  // },
 ];
 
 const faqs = [
@@ -111,16 +107,6 @@ const faqs = [
     question: 'Why do I need Decentralized Banking?',
     answer:
       'Since De-Banks are open source, anyone with Internet can use it, create and offer services (like lending), and combine existing services. De-Banking systems are available to the public free of charge and can even be used, enhanced or adapted to user needs.',
-  },
-  {
-    question: 'How to apply for a loan?',
-    answer:
-      'Only registered and verified users are allowed to apply for loans. Your verification level depends on the amount we would loan you.',
-  },
-  {
-    question: 'Documents I need for loan application?',
-    answer:
-      'This depends on the country of the applicant. Typically, we need your ID Card, Voter`s card, SSN, Proof of Residence, Proof of Employment or Bank Statement dated 3 months prior, International Passport',
   },
   {
     question: 'How do I increase my verification level?',

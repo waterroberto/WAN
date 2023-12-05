@@ -42,7 +42,7 @@ export default function InvestCards() {
   return (
     <Box maxWidth='1024px' mx='auto' mt={4}>
       <Typography variant='h5' component='p' sx={{ fontWeight: 700 }}>
-        Build Your Wealth
+        Quick Actions
       </Typography>
       <Grid container columns={12} sx={{ pt: 2 }}>
         {cardsData.map((card, index) => (
