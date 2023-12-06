@@ -10,13 +10,13 @@ const BankConvenience = () => {
           Bank At Your Convenience
         </p>
 
-        <p className='text-gray-100 my-4'>
+        <p className='text-gray-100 my-4 font-light mb-8'>
           We understand that your time is valuable, and that`s why we offer a
           range of flexible and accessible banking solutions tailored to your
           needs.
         </p>
-        <Link href='/register' className='btn bg-primary text-white'>
-          Start Banking <AiOutlineArrowRight />
+        <Link href='/login' className='btn bg-primary text-white'>
+          Login Online Banking <AiOutlineArrowRight />
         </Link>
       </div>
     </div>

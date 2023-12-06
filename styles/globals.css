@@ -140,11 +140,10 @@ button {
   font-weight: 300;
   padding: 1.25rem 1rem;
   border-radius: 8px;
-  color: #eee;
-  background: var(--dark);
+  background: inherit;
   border: none;
   outline: none;
-  border: 1px solid #444;
+  border: 1px solid #ccc;
   max-width: 600px;
   display: block;
   margin: auto;
@@ -313,7 +312,7 @@ input {
 }
 
 .btn {
-  @apply text-sm px-6 py-2 cursor-pointer font-semibold duration-500 hover:scale-x-[99%] text-center rounded-md;
+  @apply text-sm px-6 py-3 cursor-pointer font-medium duration-500 hover:scale-x-[99%] text-center rounded-full;
 }
 
 .btn:disabled {
@@ -364,4 +363,8 @@ input:disabled {
   background: linear-gradient(rgba(9, 22, 29, 0.75), rgba(9, 22, 29, 0.75)),
     url('../assets/services-1.jpg') no-repeat center center/cover;
   /* background: #a0082e; */
+}
+
+.pattern-bg {
+  background: url('../public/bg_pattern1.png') 100% 100%;
 }

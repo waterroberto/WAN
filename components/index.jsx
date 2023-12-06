@@ -5,7 +5,7 @@ export { default as Stats } from './Landing/About/Stats';
 export { default as Footer } from './Landing/Footer';
 export { default as Navbar } from './Landing/Navbar';
 export { default as NewsLetter } from './Landing/NewsLetter';
-export { default as Partners } from './Landing/Partners';
+
 export { default as AboutUs } from './Landing/Sections/AboutUs';
 export { default as ContactInformation } from './Landing/Sections/ContactInformation';
 export { default as Customers } from './Landing/Sections/Customers';

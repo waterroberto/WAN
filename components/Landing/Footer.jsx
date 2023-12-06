@@ -2,19 +2,46 @@ import { Box, Grid, Stack, Typography } from '@mui/material';
 import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
+import { FiPhoneCall } from 'react-icons/fi';
+import { MdOutlineMailOutline } from 'react-icons/md';
 import { Layout, NewsLetter } from '../';
 import logo from '../../assets/logo.svg';
 
 const Footer = () => {
   return (
-    <Box sx={{ background: '#f5f5f5' }}>
-      <NewsLetter />
+    <div className='mt-24 bg-black text-gray-200 p-4'>
+      <div className='rounded-md -mt-16 max-w-[768px] mx-auto bg-primary padding border-b flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-8 text-gray-50'>
+        <div className='flex items-center gap-2'>
+          <span className='p-2 w-16 h-16 bg-primary-dark flex items-center justify-center rounded-full'>
+            <FiPhoneCall className='text-2xl' />
+          </span>
+          <div>
+            <p className='text-xl font-extrabold'>Call Us</p>
+            <span className='text-sm font-light'>+1 (458) 796-8314</span>
+          </div>
+        </div>
+        <div className='h-4 w-[1px] bg-gray-100 hidden sm:block'></div>
+
+        <div className='flex items-center gap-2'>
+          <span className='p-2 w-16 h-16 bg-primary-dark flex items-center justify-center rounded-full'>
+            <MdOutlineMailOutline className='text-2xl' />
+          </span>
+          <div>
+            <p className='text-xl font-extrabold'>Message Us</p>
+            <span className='text-sm font-light'>
+              support@ravdakfinance.online
+            </span>
+          </div>
+        </div>
+      </div>
+
+      {/* <NewsLetter /> */}
       <Layout>
         <Grid
           container
           mx='auto'
           rowSpacing={4}
-          columnSpacing={{ sm: 2, md: 2 }}
+          columnSpacing={{ sm: 2, md: 4 }}
           columns={12}
         >
           {/* . . . */}
@@ -108,7 +135,7 @@ const Footer = () => {
           </Grid>
         </Grid>
       </Layout>
-    </Box>
+    </div>
   );
 };
 

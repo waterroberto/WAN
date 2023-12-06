@@ -23,13 +23,12 @@ const ContactInformation = () => {
         sx={{
           width: '200px',
           height: '4px',
-          background: '#1b4cd1',
           mx: 'auto',
           mb: 4,
         }}
         data-aos='fade-right'
       ></Box>
-      <Grid container maxWidth='1280px' mx='auto' columns={12}>
+      <Grid container maxWidth='768px' mx='auto' columns={12}>
         {contactInformation.map((feature, index) => (
           <Grid
             key={`${index + 1}-${feature.body}`}
@@ -38,8 +37,6 @@ const ContactInformation = () => {
             px={2}
             xs={12}
             sm={6}
-            md={4}
-            lg={4}
             my={{ xs: '2px', sm: '2px' }}
             mx='auto'
             sx={{

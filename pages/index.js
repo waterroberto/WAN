@@ -7,6 +7,7 @@ import {
   Navbar,
 } from '../components';
 import BankConvenience from '../components/Landing/BankConvenience';
+import FeaturedSection from '../components/Landing/FeaturedSection';
 import HowItWorks from '../components/Landing/HowItWorks';
 import Features from '../components/Landing/Sections/Features';
 
@@ -19,11 +20,10 @@ export default function Home() {
       />
       <Navbar />
       <Hero />
+      <FeaturedSection />
+      <HowItWorks />
       <Features />
       <BankConvenience />
-      <HowItWorks />
-      <FAQs />
-      <ContactInformation />
       <Footer />
     </>
   );

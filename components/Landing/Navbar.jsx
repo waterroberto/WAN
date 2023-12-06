@@ -3,6 +3,8 @@ import Image from 'next/image';
 import Link from 'next/link';
 import React, { useState } from 'react';
 import { CgMenu } from 'react-icons/cg';
+import { FiPhoneCall } from 'react-icons/fi';
+import { MdOutlineMailOutline } from 'react-icons/md';
 
 const links = [
   { name: 'home', url: '/' },
@@ -19,51 +21,54 @@ const Navbar = () => {
   };
 
   return (
-    <header className='z-50 bg-white w-full fixed top-0 left-0 max-h-44'>
-      <nav className='padding border-b border-b-gray-200 flex items-center justify-between'>
+    <header className='z-50 w-full max-h-44 relative'>
+      <div className='bg-primary padding border-b flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-8 text-gray-50'>
+        <div className='flex items-center gap-1'>
+          <FiPhoneCall />
+          <span className='text-sm font-light'>+1 (458) 796-8314</span>
+        </div>
+        <div className='h-4 w-[1px] bg-gray-100 hidden sm:block'></div>
+        <div className='flex items-center gap-1'>
+          <MdOutlineMailOutline />
+          <span className='text-sm font-light'>
+            support@ravdakfinance.online
+          </span>
+        </div>
+      </div>
+      <nav className='bg-white padding border-b flex items-center justify-between'>
         <Link href='/'>
           <img src={''} alt='navbar logo' className='max-w-[150px]' />
         </Link>
 
-        <div className='items-center gap-4 hidden sm:flex'>
-          <Link
-            href='/login'
-            className='btn border border-primary text-primary hover:text-secondary hover:border-secondary'
-          >
-            Login
-          </Link>
-          <Link
-            href='/register'
-            className='btn bg-primary text-white hover:bg-secondary'
-          >
-            Create Account
-          </Link>
-        </div>
-
+        <ul className='padding items-center gap-8 hidden md:flex'>
+          {links.map((link) => (
+            <li key={link.name}>
+              <Link
+                href={link.url}
+                className='text-[13px] text-secondary font-medium uppercase'
+              >
+                {link.name}
+              </Link>
+            </li>
+          ))}
+        </ul>
+        <Link
+          href='/login'
+          className='btn bg-primary text-white hidden md:block'
+        >
+          Sign In
+        </Link>
         <button
           aria-label='navbar toggle Button'
           onClick={toggleMobileNav}
-          className='block sm:hidden text-primary p-2 z-20 duration-500 border-[1px] rounded-md'
+          className='block md:hidden bg-primary text-white p-2 z-20 duration-500 border-[1px] rounded-md'
         >
           <CgMenu className='text-2xl' />
         </button>
       </nav>
 
-      <ul className='padding items-center gap-8 hidden sm:flex'>
-        {links.map((link) => (
-          <li key={link.name}>
-            <Link
-              href={link.url}
-              className='text-[13px] text-secondary font-semibold uppercase'
-            >
-              {link.name}
-            </Link>
-          </li>
-        ))}
-      </ul>
-
       <ul
-        className={`p-4 absolute w-full padding items-start gap-8 flex sm:hidden flex-col shadow-2xl bg-light duration-500 ${
+        className={`p-4 absolute w-full padding items-start gap-8 flex md:hidden flex-col shadow-2xl bg-light duration-500 ${
           showMobileNav ? 'navbar-open' : 'navbar-close'
         }`}
       >
@@ -74,7 +79,7 @@ const Navbar = () => {
           >
             <Link
               href={link.url}
-              className='text-[13px] text-secondary font-semibold uppercase'
+              className='text-[13px] text-secondary font-medium underline uppercase'
             >
               {link.name}
             </Link>
@@ -82,14 +87,8 @@ const Navbar = () => {
         ))}
 
         <div className='py-4 mt-4 tems-center gap-4'>
-          <Link
-            href='/login'
-            className='btn border border-secondary text-secondary'
-          >
-            Login
-          </Link>
-          <Link href='/register' className='btn bg-secondary text-white'>
-            Create Account
+          <Link href='/login' className='btn bg-secondary text-white'>
+            Login Online Banking
           </Link>
         </div>
       </ul>

@@ -43,38 +43,24 @@ const Login = () => {
   return (
     <>
       <Meta
-        title='Login - south Bank - Online banking for everyone'
-        description='Login to your south Bank - Online banking for everyone'
+        title='Login - Ravdak Finance - Online banking for everyone'
+        description='Login to your Ravdak Finance - Online banking for everyone'
       />
-      <Box
-        mt={8}
-        sx={{
-          background:
-            'linear-gradient(55deg, rgba(6,6,6,1) 0%, rgba(27,27,27,1) 53%, rgba(27,34,52,1) 76%, rgba(9,9,9,1) 100%)',
-        }}
-      >
-        <Navbar />
+      <Box height='100vh' className='service-1'>
         <Layout>
-          <Typography
-            component='h2'
-            mb={2}
-            sx={{
-              fontSize: {
-                xs: '2rem',
-                sm: '2rem',
-                md: '2.5rem',
-              },
-              fontWeight: 700,
-              fontFamily: 'inherit',
-              textAlign: 'center',
-              color: '#fff',
-            }}
-            mt={8}
+          <Link
+            href='/'
+            className='block text-center font-bold text-lg p-8 text-gray-200'
           >
-            Sign In
-          </Typography>
-
-          <form style={{ width: '100%', margin: 'auto', maxWidth: '512px' }}>
+            RavDak Finance
+          </Link>
+          <form
+            style={{ width: '100%', margin: 'auto', maxWidth: '512px' }}
+            className='py-8 p-4 bg-white rounded-md'
+          >
+            <p className='text-center text-lg mb-8 text-gray-800'>
+              Login to your account
+            </p>
             <input
               className='styled-input'
               aria-label='Email'
@@ -95,7 +81,7 @@ const Login = () => {
               value={password}
               onChange={inputChangeHandler}
             />
-            <Link
+            {/* <Link
               href='/forgot-password'
               style={{
                 color: '#1b4cd1',
@@ -107,7 +93,7 @@ const Login = () => {
               }}
             >
               Forgot Password?
-            </Link>
+            </Link> */}
             <Button
               variant='contained'
               type='button'
@@ -133,18 +119,14 @@ const Login = () => {
             >
               {isLoading ? 'Loading...' : 'Login'}
             </Button>
-            <Typography textAlign='right' sx={{ color: '#fff' }}>
+            <p className='text-gray-800 text-right text-sm'>
               <span>Don`t have an account?</span> {'  '}
-              <Link
-                href='/register'
-                style={{ color: '#1b4cd1', fontWeight: 700 }}
-              >
+              <Link href='/contact' className='text-primary font-bold'>
                 Register
               </Link>
-            </Typography>
+            </p>
           </form>
         </Layout>
-        <Footer />
       </Box>
     </>
   );

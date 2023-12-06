@@ -10,6 +10,7 @@ import {
   Statistics,
   Stats,
 } from '../components';
+import FeaturedSection from '../components/Landing/FeaturedSection';
 
 const About = () => {
   return (
@@ -22,11 +23,12 @@ const About = () => {
 
       <Navbar />
       <Header />
+      <FeaturedSection />
       <Statistics />
       <Stats />
       <FAQs />
       <ContactInformation />
-      <GetStarted />
+      {/* <GetStarted /> */}
       <Footer />
     </>
   );

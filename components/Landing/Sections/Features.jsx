@@ -59,7 +59,7 @@ const Features = () => {
               <p className='text-lg font-extrabold text-secondary capitalize'>
                 {feature.name}
               </p>
-              <p className='text-gray-800 my-2 text-sm font-medium'>
+              <p className='text-gray-600 my-2 text-sm font-medium'>
                 {feature.content}
               </p>
               <Link
@@ -72,19 +72,12 @@ const Features = () => {
             <Image
               alt={feature.name}
               src={feature.image}
-              height={100}
-              width={100}
+              height={75}
+              width={75}
             />
           </div>
         ))}
       </div>
-
-      <Link
-        href='/register'
-        className='block mt-16 mx-auto btn border border-white text-white bg-primary py-4 px-12 text-center max-w-[240px]'
-      >
-        Create Account
-      </Link>
     </section>
   );
 };

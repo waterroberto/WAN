@@ -20,8 +20,8 @@ const Dashboard = () => {
   return (
     <PrivateRoute>
       <Meta
-        title='Massaa Bank - Account - Online Bank'
-        description='Massaa Online Financial Bank | Welcome to your account'
+        title='Ravdak Finance - Account - Online Bank'
+        description='Ravdak Financial Bank | Welcome to your account'
       />
       <Dash />
 
