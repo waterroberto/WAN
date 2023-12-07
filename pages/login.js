@@ -1,10 +1,12 @@
 import { Box, Button, Typography } from '@mui/material';
 import cogoToast from 'cogo-toast';
+import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import React, { useState } from 'react';
 import { Footer, Layout, Meta, Navbar } from '../components';
 import CustomInput from '../components/UnstyledInput';
+import logo from '../public/logo.png';
 import { AuthService } from '../services/auth';
 
 const Login = () => {
@@ -52,7 +54,13 @@ const Login = () => {
             href='/'
             className='block text-center font-bold text-lg p-8 text-gray-200'
           >
-            RavDak Finance
+            <Image
+              height={100}
+              width={100}
+              src={logo.src}
+              alt='navbar logo'
+              className='w-[100px] h-[100px]'
+            />
           </Link>
           <form
             style={{ width: '100%', margin: 'auto', maxWidth: '512px' }}

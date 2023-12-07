@@ -20,7 +20,10 @@ const Hero = () => {
         </h2>
 
         <div className='mt-4 flex flex-col sm:flex-row sm:items-center gap-4'>
-          <Link href='/login' className='btn text-white bg-primary py-4 px-12'>
+          <Link
+            href='/login'
+            className='btn text-white bg-secondary py-4 px-12'
+          >
             Login Online Banking
           </Link>
         </div>

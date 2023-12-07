@@ -1,10 +1,10 @@
-// import logo from '@/assets/apex-trades.png';
 import Image from 'next/image';
 import Link from 'next/link';
 import React, { useState } from 'react';
 import { CgMenu } from 'react-icons/cg';
 import { FiPhoneCall } from 'react-icons/fi';
 import { MdOutlineMailOutline } from 'react-icons/md';
+import logo from '../../public/logo.png';
 
 const links = [
   { name: 'home', url: '/' },
@@ -22,7 +22,7 @@ const Navbar = () => {
 
   return (
     <header className='z-50 w-full max-h-44 relative'>
-      <div className='bg-primary padding border-b flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-8 text-gray-50'>
+      <div className='bg-secondary padding border-b flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-8 text-gray-50'>
         <div className='flex items-center gap-1'>
           <FiPhoneCall />
           <span className='text-sm font-light'>+1 (458) 796-8314</span>
@@ -36,8 +36,19 @@ const Navbar = () => {
         </div>
       </div>
       <nav className='bg-white padding border-b flex items-center justify-between'>
-        <Link href='/'>
-          <img src={''} alt='navbar logo' className='max-w-[150px]' />
+        <Link href='/' className='flex items-center gap-1'>
+          <Image
+            height={100}
+            width={100}
+            // src={require('../../public/logo.png')}
+            src={logo.src}
+            alt='navbar logo'
+            className='w-[50px] h-[50px]'
+          />
+          <div className='font-extrabold text-gray-700'>
+            <p>RAVDAK</p>
+            <p>FINANCE</p>
+          </div>
         </Link>
 
         <ul className='padding items-center gap-8 hidden md:flex'>

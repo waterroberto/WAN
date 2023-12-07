@@ -5,7 +5,7 @@ import React from 'react';
 import { FiPhoneCall } from 'react-icons/fi';
 import { MdOutlineMailOutline } from 'react-icons/md';
 import { Layout, NewsLetter } from '../';
-import logo from '../../assets/logo.svg';
+import logo from '../../public/logo.png';
 
 const Footer = () => {
   return (
@@ -48,10 +48,12 @@ const Footer = () => {
           <Grid item xs={12} sm={6} md={4} width='100%'>
             <Link href='/'>
               <Image
-                src=''
                 alt='ravdak finance logo'
-                // src={require('../../public/logo.png')}
+                src={logo.src}
+                height={100}
+                width={100}
                 style={{ width: '70px', height: '70px' }}
+                className='w-[50px] h-[50px]'
               />
             </Link>
             <Typography
