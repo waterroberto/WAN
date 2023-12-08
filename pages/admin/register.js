@@ -2,21 +2,21 @@ import {
   Box,
   Button,
   FormControl,
-  InputLabel,
   NativeSelect,
-  Stack,
   Typography,
   styled,
 } from '@mui/material';
 import cogoToast from 'cogo-toast';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import React, { useContext, useState } from 'react';
-import { Footer, Layout, Meta, Navbar } from '../components';
-import { CustomSelect, StyledOption } from '../components/UnstyledSelect';
-import { AuthService } from '../services/auth';
-import { UserService } from '../services/user';
-import { countries } from '../static/Data';
+import React, { useState } from 'react';
+import { Footer, Layout, Meta, Navbar } from '../../components';
+import { CustomSelect, StyledOption } from '../../components/UnstyledSelect';
+import AdminMobileNav from '../../components/admin/AdminMobileNav';
+import AdminRoute from '../../components/auth/AdminRoute';
+import { AuthService } from '../../services/auth';
+import { UserService } from '../../services/user';
+import { countries } from '../../static/Data';
 
 const Blur = styled('div')(({ theme }) => ({
   background: '#1b4cd1',
@@ -136,8 +136,8 @@ const Register = () => {
           console.log(uid);
           const res = await UserService.setUserData(uid, data);
           if (res.ok) {
-            cogoToast.success('Welcome');
-            router.replace('/account');
+            cogoToast.success('Account created successfully.');
+            router.push('/admin');
           }
         }
         setIsLoading(false);
@@ -161,22 +161,13 @@ const Register = () => {
   };
 
   return (
-    <>
+    <AdminRoute>
       <Meta
-        title='Register - Massaa Bank - Online crypto banking for everyone'
-        description='Get Stated with Massaa Bank - Online crypto banking for everyone'
+        title='Register new user | Admin Dashboard'
+        description='Get Stated with '
       />
-      <Navbar />
-      <Box
-        sx={{
-          background:
-            'linear-gradient(55deg, rgba(6,6,6,1) 0%, rgba(27,27,27,1) 53%, rgba(27,34,52,1) 76%, rgba(9,9,9,1) 100%)',
-          color: '#fff',
-          position: 'relative',
-          overflow: 'hidden',
-          backgroundPosition: 'fixed',
-        }}
-      >
+
+      <Box sx={{ background: 'var(--darker)' }}>
         <Layout>
           <Box
             mx='auto'
@@ -200,17 +191,15 @@ const Register = () => {
               }}
               mt={8}
             >
-              Create Account
+              Create new user
             </Typography>
-            <Typography mb={4} sx={{ textAlign: 'center' }}>
-              Please provide your valid information to register!
-            </Typography>
+
             <form>
               <div className='input-group'>
                 <input
                   type='text'
                   required
-                  className='styled-input'
+                  className='styled-input text-gray-100'
                   aria-label='First Name'
                   placeholder='First Name'
                   name='First Name'
@@ -221,7 +210,7 @@ const Register = () => {
                 <input
                   type='text'
                   required
-                  className='styled-input'
+                  className='styled-input text-gray-100'
                   aria-label='Last Name'
                   placeholder='Last Name'
                   name='Last Name'
@@ -234,7 +223,7 @@ const Register = () => {
                 <input
                   type='email'
                   required
-                  className='styled-input'
+                  className='styled-input text-gray-100'
                   aria-label='Email'
                   placeholder='Email'
                   name='Email'
@@ -243,7 +232,7 @@ const Register = () => {
                   value={email}
                 />
                 <input
-                  className='styled-input'
+                  className='styled-input text-gray-100'
                   aria-label='Phone Number'
                   placeholder='Phone Number'
                   type='tel'
@@ -255,7 +244,12 @@ const Register = () => {
               </div>
               <div className='input-group'>
                 <Box mx='auto' sx={{ width: '100%', maxWidth: '600px' }}>
-                  <Typography mt={2} mb={1} sx={{ fontSize: '12px' }}>
+                  <Typography
+                    mt={2}
+                    mb={1}
+                    sx={{ fontSize: '12px' }}
+                    className='text-gray-50'
+                  >
                     Country *
                   </Typography>
                   <FormControl fullWidth>
@@ -267,13 +261,11 @@ const Register = () => {
                       }}
                       sx={{
                         width: '100%',
-                        background: '#1b1b1b',
-                        color: '#ccc',
                         padding: '0.75rem 1rem',
                         borderRadius: '10px',
                         fontSize: '14px',
                         border: '1px solid #222',
-                        color: '#ccc',
+                        color: '#f5f5f5',
                         '&:before, &:after': {
                           display: 'none',
                         },
@@ -295,11 +287,16 @@ const Register = () => {
                   </FormControl>
                 </Box>
                 <Box mx='auto' sx={{ width: '100%', maxWidth: '600px' }}>
-                  <Typography mt={2} mb={1} sx={{ fontSize: '12px' }}>
+                  <Typography
+                    mt={2}
+                    mb={1}
+                    sx={{ fontSize: '12px' }}
+                    className='text-gray-50'
+                  >
                     Specify City *
                   </Typography>
                   <input
-                    className='styled-input'
+                    className='styled-input text-gray-50'
                     aria-label='City'
                     placeholder='City'
                     type='text'
@@ -313,7 +310,7 @@ const Register = () => {
 
               <div className='input-group'>
                 <input
-                  className='styled-input'
+                  className='styled-input text-gray-50'
                   aria-label='Zip Code'
                   placeholder='Zip Code'
                   type='zipcode'
@@ -324,7 +321,7 @@ const Register = () => {
                   value={zipcode}
                 />
                 <input
-                  className='styled-input'
+                  className='styled-input text-gray-50'
                   aria-label='Residential Address'
                   placeholder='Residential Address'
                   type='address'
@@ -337,7 +334,11 @@ const Register = () => {
 
               <div className='input-group'>
                 <Box mx='auto' sx={{ width: '100%', maxWidth: '600px' }}>
-                  <Typography my={1} sx={{ fontSize: '12px' }}>
+                  <Typography
+                    my={1}
+                    sx={{ fontSize: '12px' }}
+                    className='text-gray-50'
+                  >
                     Gender *
                   </Typography>
                   <CustomSelect
@@ -355,11 +356,15 @@ const Register = () => {
                   </CustomSelect>
                 </Box>
                 <Box mx='auto' sx={{ width: '100%', maxWidth: '600px' }}>
-                  <Typography my={1} sx={{ fontSize: '12px' }}>
+                  <Typography
+                    my={1}
+                    sx={{ fontSize: '12px' }}
+                    className='text-gray-50'
+                  >
                     Date of Birth *
                   </Typography>
                   <input
-                    className='styled-input'
+                    className='styled-input text-gray-50'
                     aria-label='Date of Birth'
                     placeholder='Date of Birth'
                     type='date'
@@ -376,7 +381,11 @@ const Register = () => {
 
               <div className='input-group'>
                 <Box mx='auto' sx={{ width: '100%', maxWidth: '600px' }}>
-                  <Typography my={1} sx={{ fontSize: '12px' }}>
+                  <Typography
+                    my={1}
+                    sx={{ fontSize: '12px' }}
+                    className='text-gray-50'
+                  >
                     Means of Identification *
                   </Typography>
                   <CustomSelect
@@ -401,11 +410,15 @@ const Register = () => {
                   mx='auto'
                   sx={{ width: '100%', maxWidth: '600px' }}
                 >
-                  <Typography my={1} sx={{ fontSize: '12px' }}>
+                  <Typography
+                    my={1}
+                    sx={{ fontSize: '12px' }}
+                    className='text-gray-50'
+                  >
                     Passport / ID Number *
                   </Typography>
                   <input
-                    className='styled-input'
+                    className='styled-input text-gray-50'
                     aria-label='identification'
                     placeholder={identification}
                     type='text'
@@ -420,7 +433,7 @@ const Register = () => {
 
               <div className='input-group'>
                 <input
-                  className='styled-input'
+                  className='styled-input text-gray-50'
                   aria-label='Password'
                   placeholder='Password'
                   type='password'
@@ -431,7 +444,7 @@ const Register = () => {
                   onChange={inputChangeHandler}
                 />
                 <input
-                  className='styled-input'
+                  className='styled-input text-gray-50'
                   aria-label='Confirm Password'
                   placeholder='Confirm Password'
                   type='password'
@@ -454,7 +467,6 @@ const Register = () => {
                   p: 2,
                   mx: 'auto',
                   display: 'block',
-
                   my: 2,
 
                   '&:disabled': {
@@ -467,22 +479,12 @@ const Register = () => {
               >
                 {isLoading ? 'Loading...' : 'REGISTER'}
               </Button>
-              <Typography textAlign='right'>
-                <span>Already have an account?</span> {'  '}
-                <Link
-                  href='/login'
-                  style={{ color: '#1b4cd1', fontWeight: 700 }}
-                >
-                  Login
-                </Link>
-              </Typography>
             </form>
           </Box>
         </Layout>
-        <Blur />
+        <AdminMobileNav />
       </Box>
-      <Footer />
-    </>
+    </AdminRoute>
   );
 };
 

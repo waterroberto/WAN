@@ -113,10 +113,7 @@ const UserDetails = () => {
 
   return (
     <AdminRoute>
-      <Meta
-        title='Admin Portal - Blue Chip Finance'
-        description='Admin Portal - Blue Chip Finance'
-      />
+      <Meta title='Admin Portal' description='Admin Portal' />
       <Box minHeight='100vh' sx={{ background: 'var(--darker)' }}>
         <Nav />
 
@@ -253,10 +250,10 @@ const UserDetails = () => {
                 </div>
                 <div>
                   <p className='text-gray-200 uppercase text-[12px] mb-2'>
-                    Loan Balance
+                    Income Balance
                   </p>
                   <p className='font-bold text-2xl'>
-                    £{userData.loanBalance.toLocaleString()}
+                    £{userData.incomeBalance.toLocaleString()}
                   </p>
                 </div>
               </div>
@@ -270,10 +267,10 @@ const UserDetails = () => {
                   Set Deposit Balance
                 </button>
                 <button
-                  className='btn p-4 bg-green-500 text-white uppercase rounded-md'
-                  onClick={() => fundUserAccount('loanBalance')}
+                  className='btn p-4 bg-secondary text-white uppercase rounded-md'
+                  onClick={() => fundUserAccount('incomeBalance')}
                 >
-                  Set Loan Balance
+                  Set Income Balance
                 </button>
               </div>
             </Container>

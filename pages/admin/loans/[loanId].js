@@ -1,20 +1,19 @@
-import React, { useEffect, useState } from "react";
-import { useRouter } from "next/router";
-import { doc, getDoc, updateDoc } from "firebase/firestore";
-import { db } from "../../../services/firebase.config";
-import cogoToast from "cogo-toast";
-import { Layout } from "../../../components";
-import AdminRoute from "../../../components/auth/AdminRoute";
-import { Typography, Stack, Button, Grid, Box, Avatar } from "@mui/material";
-import Nav from "../../../components/admin/Nav";
-import AdminMobileNav from "../../../components/admin/AdminMobileNav";
-import Container from "../../../components/dashboard/Container";
-import { Meta } from "../../../components";
-import { stringAvatar } from "../../../utils/stringAvatar";
-import Link from "next/link";
-import parseDate from "../../../utils/parseDate";
-import Progress from "../../../components/Global/Progress";
-import { UpdateDisabled } from "@mui/icons-material";
+import { UpdateDisabled } from '@mui/icons-material';
+import { Avatar, Box, Button, Grid, Stack, Typography } from '@mui/material';
+import cogoToast from 'cogo-toast';
+import { doc, getDoc, updateDoc } from 'firebase/firestore';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
+import React, { useEffect, useState } from 'react';
+import { Layout, Meta } from '../../../components';
+import Progress from '../../../components/Global/Progress';
+import AdminMobileNav from '../../../components/admin/AdminMobileNav';
+import Nav from '../../../components/admin/Nav';
+import AdminRoute from '../../../components/auth/AdminRoute';
+import Container from '../../../components/dashboard/Container';
+import { db } from '../../../services/firebase.config';
+import parseDate from '../../../utils/parseDate';
+import { stringAvatar } from '../../../utils/stringAvatar';
 
 const Loans = () => {
   const router = useRouter();
@@ -30,12 +29,12 @@ const Loans = () => {
       setLoading(true);
 
       try {
-        const loanRef = doc(db, "loanRequests", loanId.trim());
+        const loanRef = doc(db, 'loanRequests', loanId.trim());
         const _loanDoc = await getDoc(loanRef);
 
         const _userId = _loanDoc.data()._user;
 
-        const userRef = doc(db, "users", _userId.trim());
+        const userRef = doc(db, 'users', _userId.trim());
         const _userDoc = await getDoc(userRef);
 
         if (_userDoc.exists && _loanDoc) {
@@ -45,7 +44,7 @@ const Loans = () => {
         setLoading(false);
       } catch (error) {
         console.log(error);
-        cogoToast.error("Error fetching loand details");
+        cogoToast.error('Error fetching loand details');
         setLoading(false);
       }
     };
@@ -57,8 +56,8 @@ const Loans = () => {
     const loanId = loanDetails._id;
     const loan = userData.loans?.find((loan) => loan._id === loanId);
 
-    const loanRef = doc(db, "loanRequests", loanId.trim());
-    const userRef = doc(db, "users", loanDetails._user.trim());
+    const loanRef = doc(db, 'loanRequests', loanId.trim());
+    const userRef = doc(db, 'users', loanDetails._user.trim());
 
     const applicationDate = loan.application_date.seconds * 1000;
 
@@ -80,17 +79,17 @@ const Loans = () => {
           ...loanToUpdate,
           status: _status,
           payout_date:
-            _status === "approved"
+            _status === 'approved'
               ? payoutDate
-              : _status === "declined"
-              ? ". . ."
-              : ". . .",
+              : _status === 'declined'
+              ? '. . .'
+              : '. . .',
           repayment_date:
-            _status === "approved"
+            _status === 'approved'
               ? repaymentDate
-              : _status === "declined"
-              ? ". . ."
-              : ". . .",
+              : _status === 'declined'
+              ? '. . .'
+              : '. . .',
         },
       ];
 
@@ -101,17 +100,17 @@ const Loans = () => {
 
       await updateDoc(loanRef, {
         status:
-          _status === "approved"
-            ? "approved"
-            : _status === "declined"
-            ? "declined"
-            : "pending",
+          _status === 'approved'
+            ? 'approved'
+            : _status === 'declined'
+            ? 'declined'
+            : 'pending',
       });
 
       setIsUpdating(false);
-      cogoToast.success("Successful");
+      cogoToast.success('Successful');
     } catch (error) {
-      cogoToast.error("Error updating loan");
+      cogoToast.error('Error updating loan');
 
       console.log(error);
       setIsUpdating(false);
@@ -120,11 +119,8 @@ const Loans = () => {
 
   return (
     <AdminRoute>
-      <Meta
-        title="Admin Portal - Blue Chip Finance"
-        description="Admin Portal - Blue Chip Finance"
-      />
-      <Box minHeight="100vh" sx={{ background: "var(--darker)" }}>
+      <Meta title='Admin Portal' description='Admin Portal' />
+      <Box minHeight='100vh' sx={{ background: 'var(--darker)' }}>
         <Nav />
         <Box my={4} />
         <Layout>
@@ -132,11 +128,11 @@ const Loans = () => {
             <Typography
               fontSize={32}
               sx={{
-                height: "60vh",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                color: "var(--mid)",
+                height: '60vh',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                color: 'var(--mid)',
               }}
             >
               Loading...
@@ -148,15 +144,15 @@ const Loans = () => {
                 <Typography
                   fontWeight={800}
                   sx={{
-                    color: "var(--mid)",
+                    color: 'var(--mid)',
                   }}
                 >
-                  LOAN ID: {"  "}
+                  LOAN ID: {'  '}
                   <Typography
-                    component="span"
+                    component='span'
                     fontWeight={300}
                     sx={{
-                      color: "var(--mid)",
+                      color: 'var(--mid)',
                     }}
                   >
                     {loanId}
@@ -168,7 +164,7 @@ const Loans = () => {
                 fontSize={24}
                 fontWeight={600}
                 sx={{
-                  color: "var(--mid)",
+                  color: 'var(--mid)',
                 }}
                 mb={2}
               >
@@ -177,14 +173,14 @@ const Loans = () => {
               <Container>
                 <Grid
                   container
-                  mx="auto"
+                  mx='auto'
                   rowSpacing={{ xs: 4, sm: 6 }}
                   columnSpacing={{ sm: 4, md: 8 }}
                   columns={12}
-                  alignItems="center"
-                  sx={{ color: "var(--mid)" }}
+                  alignItems='center'
+                  sx={{ color: 'var(--mid)' }}
                 >
-                  <Grid item xs={12} sm={6} md={4} width="100%">
+                  <Grid item xs={12} sm={6} md={4} width='100%'>
                     <Typography fontWeight={800} fontSize={20}>
                       Application Date
                     </Typography>
@@ -192,25 +188,25 @@ const Loans = () => {
                       {parseDate(loanDetails?.applicationDate?.seconds * 1000)}
                     </Typography>
                   </Grid>
-                  <Grid item xs={12} sm={6} md={4} width="100%">
+                  <Grid item xs={12} sm={6} md={4} width='100%'>
                     <Typography fontWeight={800} fontSize={20}>
                       Loan Amount
                     </Typography>
                     <Typography fontSize={16} fontWeight={300}>
-                      {loanDetails?.currency}{" "}
+                      {loanDetails?.currency}{' '}
                       {parseInt(loanDetails?.amount).toLocaleString()}
                     </Typography>
                   </Grid>
-                  <Grid item xs={12} sm={6} md={4} width="100%">
+                  <Grid item xs={12} sm={6} md={4} width='100%'>
                     <Typography fontWeight={800} fontSize={20}>
                       Client`s Income
                     </Typography>
                     <Typography fontSize={16} fontWeight={300}>
-                      {loanDetails?.currency}{" "}
+                      {loanDetails?.currency}{' '}
                       {parseInt(loanDetails?.income).toLocaleString()}
                     </Typography>
                   </Grid>
-                  <Grid item xs={12} sm={6} md={4} width="100%">
+                  <Grid item xs={12} sm={6} md={4} width='100%'>
                     <Typography fontWeight={800} fontSize={20}>
                       Financial Placement
                     </Typography>
@@ -218,7 +214,7 @@ const Loans = () => {
                       {loanDetails?.placement}
                     </Typography>
                   </Grid>
-                  <Grid item xs={12} sm={6} md={4} width="100%">
+                  <Grid item xs={12} sm={6} md={4} width='100%'>
                     <Typography fontWeight={800} fontSize={20}>
                       Employment Status
                     </Typography>
@@ -226,7 +222,7 @@ const Loans = () => {
                       {loanDetails?.employmentStatus}
                     </Typography>
                   </Grid>
-                  <Grid item xs={12} sm={6} md={4} width="100%">
+                  <Grid item xs={12} sm={6} md={4} width='100%'>
                     <Typography fontWeight={800} fontSize={20}>
                       Employment Duration
                     </Typography>
@@ -240,7 +236,7 @@ const Loans = () => {
                 fontSize={24}
                 fontWeight={600}
                 sx={{
-                  color: "var(--mid)",
+                  color: 'var(--mid)',
                 }}
                 mb={2}
               >
@@ -249,9 +245,9 @@ const Loans = () => {
               <Container>
                 <a
                   href={loanDetails?.bankStatement}
-                  rel="noreferrer"
-                  target="_blank"
-                  style={{ color: "var(--blue)", fontSize: 18 }}
+                  rel='noreferrer'
+                  target='_blank'
+                  style={{ color: 'var(--blue)', fontSize: 18 }}
                 >
                   Click to view attached bank statement
                 </a>
@@ -261,7 +257,7 @@ const Loans = () => {
                 fontSize={24}
                 fontWeight={600}
                 sx={{
-                  color: "var(--mid)",
+                  color: 'var(--mid)',
                 }}
                 mb={2}
               >
@@ -270,15 +266,15 @@ const Loans = () => {
               <Container>
                 <Grid
                   container
-                  mx="auto"
+                  mx='auto'
                   rowSpacing={{ xs: 4, sm: 6 }}
                   columnSpacing={{ sm: 4, md: 8 }}
                   columns={12}
-                  alignItems="center"
-                  sx={{ color: "var(--mid)" }}
+                  alignItems='center'
+                  sx={{ color: 'var(--mid)' }}
                 >
-                  <Grid item xs={12} sm={6} md={4} width="100%">
-                    <Stack direction="row" alignItems="center" gap={4}>
+                  <Grid item xs={12} sm={6} md={4} width='100%'>
+                    <Stack direction='row' alignItems='center' gap={4}>
                       <Link href={`/admin/users/${userData?.id}`}>
                         <Avatar
                           {...stringAvatar(
@@ -288,13 +284,13 @@ const Loans = () => {
                           sx={{
                             width: 120,
                             height: 120,
-                            border: "4px solid var(--pale-blue)",
+                            border: '4px solid var(--pale-blue)',
                           }}
                         />
                       </Link>
                       <Box>
                         <Typography fontWeight={800} fontSize={20}>
-                          {userData?.firstName.toUpperCase()}{" "}
+                          {userData?.firstName.toUpperCase()}{' '}
                           {userData?.lastName.toUpperCase()}
                         </Typography>
                         <Typography fontSize={16} fontWeight={300}>
@@ -303,7 +299,7 @@ const Loans = () => {
                       </Box>
                     </Stack>
                   </Grid>
-                  <Grid item xs={12} sm={6} md={4} width="100%">
+                  <Grid item xs={12} sm={6} md={4} width='100%'>
                     <Typography fontWeight={800} fontSize={20}>
                       Location
                     </Typography>
@@ -311,7 +307,7 @@ const Loans = () => {
                       {userData?.city}, {userData?.country}
                     </Typography>
                   </Grid>
-                  <Grid item xs={12} sm={6} md={4} width="100%">
+                  <Grid item xs={12} sm={6} md={4} width='100%'>
                     <Typography fontWeight={800} fontSize={20}>
                       Gender
                     </Typography>
@@ -319,7 +315,7 @@ const Loans = () => {
                       {userData?.gender}
                     </Typography>
                   </Grid>
-                  <Grid item xs={12} sm={6} md={4} width="100%">
+                  <Grid item xs={12} sm={6} md={4} width='100%'>
                     <Typography fontWeight={800} fontSize={20}>
                       Phone Number
                     </Typography>
@@ -333,39 +329,39 @@ const Loans = () => {
             </>
           )}
           {isUpdating && <Progress />}
-          {loanDetails?.status !== "declined" &&
-            loanDetails?.status !== "approved" && (
+          {loanDetails?.status !== 'declined' &&
+            loanDetails?.status !== 'approved' && (
               <Container>
                 {/* {!user.role === 'admin' && <UserLayout /> } */}
                 {/* {user.role !== 'admin' && <UserLayout/> } */}
-                <Stack gap={2} direction={{ xs: "column", sm: "row" }}>
+                <Stack gap={2} direction={{ xs: 'column', sm: 'row' }}>
                   <Button
                     disableElevation
                     sx={{
-                      color: "var(--mid)",
-                      background: "var(--green)",
+                      color: 'var(--mid)',
+                      background: 'var(--green)',
 
-                      "&:hover": {
-                        background: "var(--green-hover)",
+                      '&:hover': {
+                        background: 'var(--green-hover)',
                       },
-                      width: "100%",
+                      width: '100%',
                     }}
-                    onClick={() => updateLoanStatus("approved")}
+                    onClick={() => updateLoanStatus('approved')}
                   >
                     Approve
                   </Button>
                   <Button
                     disableElevation
                     sx={{
-                      color: "var(--mid)",
-                      background: "var(--red)",
+                      color: 'var(--mid)',
+                      background: 'var(--red)',
 
-                      "&:hover": {
-                        background: "var(--red-hover)",
+                      '&:hover': {
+                        background: 'var(--red-hover)',
                       },
-                      width: "100%",
+                      width: '100%',
                     }}
-                    onClick={() => updateLoanStatus("declined")}
+                    onClick={() => updateLoanStatus('declined')}
                   >
                     Decline
                   </Button>
@@ -377,7 +373,7 @@ const Loans = () => {
               <Typography
                 fontSize={32}
                 sx={{
-                  color: "var(--mid)",
+                  color: 'var(--mid)',
                 }}
               >
                 Cannot fetch details
