@@ -13,6 +13,7 @@ import Container from '../../../components/dashboard/Container';
 import LoanHistory from '../../../components/dashboard/Loan/LoanHistory';
 import TransactionHistory from '../../../components/dashboard/UserDetails/TransactionHistory';
 import { db } from '../../../services/firebase.config';
+import { UserService } from '../../../services/user';
 import parseDate from '../../../utils/parseDate';
 import { stringAvatar } from '../../../utils/stringAvatar';
 
@@ -25,10 +26,17 @@ const UserDetails = () => {
 
   const [open2, setOpen2] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
+  const [modal3Open, setModal3Open] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [isUpgrading, setIsUpgrading] = useState(false);
 
   const [balanceType, setBalanceType] = useState('');
+
+  const [depositDate, setDepositDate] = useState('');
+  const [depositAmount, setDepositAmount] = useState('');
+  const [depositStatus, setDepositStatus] = useState('pending');
+  const [depositMethod, setDepositMethod] = useState('local bank');
+  const [depositLoading, setDepositLoading] = useState(false);
 
   useEffect(() => {
     setIsLoading(true);
@@ -56,6 +64,9 @@ const UserDetails = () => {
 
   const handleOpen2 = () => setOpen2(true);
   const handleClose2 = () => setOpen2(false);
+
+  const handleOpen3 = () => setModal3Open(true);
+  const handleClose3 = () => setModal3Open(false);
 
   const upgradeUserAccount = async () => {
     try {
@@ -111,6 +122,39 @@ const UserDetails = () => {
     setModalOpen(true);
   };
 
+  const addNewTransaction = async () => {
+    const data = {
+      type: 'deposit',
+      amount: +depositAmount,
+      method: depositMethod,
+      date: new Date(depositDate),
+      status: depositStatus,
+    };
+
+    // jerroldhartzog25490@gmail.com
+    // Osomsky1224@,.
+
+    if (+depositAmount > 0) {
+      setDepositLoading(true);
+      try {
+        if (data)
+          await UserService.sendDepositRequest(userData.id, data).then(() => {
+            cogoToast.success('Transaction Created.');
+            handleClose3();
+
+            setDepositAmount('');
+            setDepositMethod('');
+          });
+
+        setDepositLoading(false);
+      } catch (err) {
+        console.log(err);
+        cogoToast.error('Error! Cannot perform this action at the moment');
+        setDepositLoading(false);
+      }
+    } else cogoToast.error('Please input valid amount.');
+  };
+
   return (
     <AdminRoute>
       <Meta title='Admin Portal' description='Admin Portal' />
@@ -144,6 +188,99 @@ const UserDetails = () => {
         )}
         {!isLoading && userData && (
           <Layout>
+            {/*  */}
+            <PopupModal
+              open={modal3Open}
+              handleClose={handleClose3}
+              handleOpen={handleOpen3}
+              title='add new transaction to deposit history'
+              sx={{ maxWidth: '512px' }}
+            >
+              <div className='my-6'>
+                <label htmlFor='amount' className='text-sm text-gray-300 mb-2'>
+                  Transcation Amount
+                </label>
+                <input
+                  type='number'
+                  id='amount'
+                  className='w-full px-4 py-2 outline-none rounded-md bg-gray-700 text-gray-300 text-sm'
+                  onChange={(e) => {
+                    setDepositAmount(e.target.value);
+                  }}
+                  required
+                />
+              </div>
+              {/*  */}
+              <div className='my-6'>
+                <label htmlFor='date' className='text-sm text-gray-300 mb-2'>
+                  Transaction Date
+                </label>
+                <input
+                  className='w-full px-4 py-2 outline-none rounded-md bg-gray-700 text-gray-300 text-sm'
+                  placeholder='Transaction Date'
+                  type='date'
+                  required
+                  id='date'
+                  onChange={(e) => {
+                    setDepositDate(e.target.value);
+                  }}
+                />
+              </div>
+              {/*  */}
+
+              <div className='my-6'>
+                <label htmlFor='status' className='text-sm text-gray-300 mb-2'>
+                  Transaction Status
+                </label>
+                <select
+                  name='status'
+                  id='status'
+                  className='w-full px-4 py-2 outline-none rounded-md bg-gray-700 text-gray-300 text-sm'
+                  onChange={(e) => {
+                    // setDepositStatus(e.target.value);
+                    console.log(e.target.value);
+                  }}
+                >
+                  <option value='approved' defaultChecked>
+                    Approved
+                  </option>
+                  <option value='pending'>Pending</option>
+                  <option value='declined'>Declined</option>
+                </select>
+              </div>
+              {/*  */}
+              <div className='my-6'>
+                <label htmlFor='method' className='text-sm text-gray-300 mb-2'>
+                  Deposit Method
+                </label>
+                <select
+                  name='method'
+                  id='method'
+                  className='w-full px-4 py-2 outline-none rounded-md bg-gray-700 text-gray-300 text-sm'
+                  onChange={(e) => {
+                    setDepositMethod(e.target.value);
+                  }}
+                >
+                  <option value='crypto' defaultChecked>
+                    Crypto
+                  </option>
+                  <option value='local bank'>Local Bank</option>
+                  <option value='paypal'>PayPal</option>
+                  <option value='skrill'>Skrill</option>
+                </select>
+              </div>
+
+              <button
+                type='submit'
+                className='px-16 rounded-md bg-primary mt-4 py-4 text-white'
+                onClick={addNewTransaction}
+              >
+                {depositLoading ? 'Loading...' : 'SUBMIT'}
+              </button>
+              {/*  */}
+            </PopupModal>
+
+            {/*  */}
             <PopupModal
               title={`SET NEW ${balanceType.toUpperCase()} VALUE`}
               open={modalOpen}
@@ -236,7 +373,17 @@ const UserDetails = () => {
                 </Grid>
               </Grid>
             </Container>
+            {/*  */}
+            <Container>
+              <button
+                className='w-full btn p-4 bg-yellow-500 text-white uppercase rounded-md'
+                onClick={handleOpen3}
+              >
+                Add new transaction
+              </button>
+            </Container>
 
+            {/*  */}
             <Container>
               <p className='mb-8 text-gray-300'>ACCOUNT DETAILS</p>
               <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-4 gap-y-8 my-4 text-gray-400'>

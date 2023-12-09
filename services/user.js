@@ -101,7 +101,6 @@ export const UserService = {
     const _ = await addDoc(collection(db, 'depositRequests'), {
       ...data,
       user,
-      status: 'pending',
       type: 'deposit',
     });
 
@@ -110,7 +109,6 @@ export const UserService = {
         ...deposits,
         {
           ...data,
-          status: 'pending',
           type: 'deposit',
           id: _.id,
         },

@@ -1,9 +1,9 @@
-import { useContext, useEffect } from "react";
-import AuthContext from "../../context/AuthContext";
-import { useRouter } from "next/router";
-import Spinner from "../Global/Spinner";
-import userDataContext from "../../context/UserDataContext";
-import { AdminDataProvider } from "../../context/AdminDataContext";
+import { useRouter } from 'next/router';
+import { useContext, useEffect } from 'react';
+import { AdminDataProvider } from '../../context/AdminDataContext';
+import AuthContext from '../../context/AuthContext';
+import userDataContext from '../../context/UserDataContext';
+import Spinner from '../Global/Spinner';
 
 export default function AdminRoute({ children }) {
   const router = useRouter();
@@ -12,7 +12,7 @@ export default function AdminRoute({ children }) {
 
   useEffect(() => {
     if (!checkingStatus && !fetchingData && !isAuthenticated && !userData) {
-      router.replace("/login");
+      router.replace('/login');
     } else if (
       !checkingStatus &&
       !fetchingData &&
@@ -20,12 +20,12 @@ export default function AdminRoute({ children }) {
       userData &&
       !userData.isAdmin
     ) {
-      router.replace("/account");
+      router.replace('/account');
     }
   }, [router, checkingStatus, isAuthenticated, userData, fetchingData]);
 
   return (
-    <section id="admin-route">
+    <section id='admin-route'>
       {checkingStatus && !isAuthenticated && <Spinner />}
       {fetchingData && !userData && <Spinner />}
       {!checkingStatus &&

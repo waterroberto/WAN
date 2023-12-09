@@ -1,8 +1,8 @@
-import { useContext, useEffect } from "react";
-import AuthContext from "../../context/AuthContext";
-import { useRouter } from "next/router";
-import Spinner from "../Global/Spinner";
-import userDataContext from "../../context/UserDataContext";
+import { useRouter } from 'next/router';
+import { useContext, useEffect } from 'react';
+import AuthContext from '../../context/AuthContext';
+import userDataContext from '../../context/UserDataContext';
+import Spinner from '../Global/Spinner';
 
 export default function PrivateRoute({ children }) {
   const router = useRouter();
@@ -11,12 +11,12 @@ export default function PrivateRoute({ children }) {
 
   useEffect(() => {
     if (!checkingStatus && !fetchingData && !isAuthenticated && !userData) {
-      router.replace("/login");
+      router.replace('/login');
     }
   }, [router, checkingStatus, isAuthenticated, userData, fetchingData]);
 
   return (
-    <section id="private-route">
+    <section id='private-route'>
       {checkingStatus && !isAuthenticated && <Spinner />}
       {fetchingData && !userData && <Spinner />}
       {!checkingStatus && !fetchingData && isAuthenticated && userData && (

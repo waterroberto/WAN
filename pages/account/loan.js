@@ -480,8 +480,6 @@ const Loan = (props) => {
               />
             )}
           </Container>
-
-          <ReferralCard />
         </Sidebar>
       </Box>
       <MobileNav />

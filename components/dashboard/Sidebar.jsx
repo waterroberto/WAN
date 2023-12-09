@@ -15,13 +15,9 @@ import Image from 'next/image';
 import Link from 'next/link';
 import * as React from 'react';
 import { HiLogout, HiUser } from 'react-icons/hi';
-import {
-  MdDashboard,
-  MdOutlineWaterfallChart,
-  MdRemoveCircle,
-} from 'react-icons/md';
+import { MdDashboard, MdRemoveCircle } from 'react-icons/md';
 import { RiBankLine, RiWallet3Fill } from 'react-icons/ri';
-import logo from '../../assets/logo-2.svg';
+import logo from '../../public/logo.png';
 import Layout from '../Layout/Layout';
 
 const drawerWidth = 220;
@@ -147,7 +143,7 @@ export default function Sidebar({ children }) {
           >
             <Image
               // src={require('../../public/logo.png')}
-              src=''
+              src={logo}
               alt='ravdak finance'
               width={open ? 60 : 50}
               height={open ? 60 : 50}

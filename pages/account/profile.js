@@ -549,7 +549,6 @@ const Profile = () => {
               </Grid>
             </PopupModal>
           </>
-          <ReferralCard />
           <Container>
             <Button
               variant='text'

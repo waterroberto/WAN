@@ -90,6 +90,8 @@ const Transactions = ({
                         color:
                           transaction.status === 'approved'
                             ? 'var(--green)'
+                            : transaction.status === 'declined'
+                            ? 'var(--red)'
                             : 'var(--secondary)',
                         fontSize: '12px',
                       }}

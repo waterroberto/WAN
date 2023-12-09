@@ -90,7 +90,6 @@ const Dashboard = () => {
               customStyles={{ p: { xs: 2, sm: 3, md: 4 } }}
             />
           )}
-          <ReferralCard />
         </Sidebar>
       </Box>
       <MobileNav />
