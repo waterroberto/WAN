@@ -133,12 +133,13 @@ const Withdraw = () => {
             >
               <Button
                 disableElevation
-                className='bg-primary'
+                className='bg-primary hover:bg-secondary duration-500'
                 sx={{
                   color: '#fff',
                   borderRadius: 2,
                   minHeight: 96,
                   width: '100%',
+                  background: 'var(--green)',
                 }}
                 onClick={handleOpen}
               >
