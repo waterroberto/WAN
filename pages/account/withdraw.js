@@ -197,7 +197,7 @@ const Withdraw = () => {
               Deposit Balance ( £{userData?.depositBalance.toLocaleString()})
             </option>
             <option value='incomeBalance'>
-              Income Balance ( £{userData?.loanBalance.toLocaleString()})
+              Income Balance ( £{userData?.incomeBalance.toLocaleString()})
             </option>
           </select>
         </div>
