@@ -106,8 +106,8 @@ const Deposit = () => {
   return (
     <PrivateRoute>
       <Meta
-        title='Massaa Online - Deposit - Online Bank'
-        description='Massaa Online Bank | Deposit into your account'
+        title='Ravdak Online - Deposit - Online Bank'
+        description='Ravdak Online Bank | Deposit into your account'
       />
       <Dash />
 

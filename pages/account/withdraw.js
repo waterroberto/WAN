@@ -108,8 +108,8 @@ const Withdraw = () => {
   return (
     <PrivateRoute>
       <Meta
-        title='Massaa Bank Finance - Withdraw - Online Bank'
-        description='Massaa Bank Financial Bank | Withdraw into your account'
+        title='Ravdak Finance - Withdraw - Online'
+        description='Ravdak Financial Bank | Withdraw into your account'
       />
       <Dash />
 

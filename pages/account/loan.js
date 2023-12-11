@@ -168,8 +168,8 @@ const Loan = (props) => {
   return (
     <PrivateRoute>
       <Meta
-        title='Massaa Bank Finance - Loan - Online Bank'
-        description='Massaa Bank Financial Bank | Loan into your account'
+        title='Ravdak Bank Finance - Loan - Online Bank'
+        description='Ravdak Bank Financial Bank | Loan into your account'
       />
       <Dash />
 

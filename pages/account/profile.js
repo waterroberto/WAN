@@ -115,8 +115,8 @@ const Profile = () => {
   return (
     <PrivateRoute>
       <Meta
-        title='Massaa Bank Finance - Profile - Online Bank'
-        description='Massaa Bank Financial Bank | Profile into your account'
+        title='Ravdak Bank Finance - Profile - Online Bank'
+        description='Ravdak Bank Financial Bank | Profile into your account'
       />
       <Dash />
 

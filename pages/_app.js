@@ -48,7 +48,7 @@ function MyApp({ Component, pageProps }) {
   return (
     <ThemeProvider theme={theme}>
       <SnackbarProvider maxSnack={1}>
-        <Script src='//code.jivosite.com/widget/YVqChreEMh' async />
+        <Script src='//code.jivosite.com/widget/yOzEEKiM0t' async />
 
         <Popup>
           <AuthContextProvider>

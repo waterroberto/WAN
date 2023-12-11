@@ -42,7 +42,7 @@ const Transactions = ({
             .map((transaction, index) => (
               <>
                 <Stack
-                  key={transaction.type + (index + 1)}
+                  key={transaction.id}
                   direction='row'
                   alignItems='center'
                   justifyContent='space-between'
