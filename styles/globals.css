@@ -368,3 +368,6 @@ input:disabled {
 .pattern-bg {
   background: url('../public/bg_pattern1.png') 100% 100%;
 }
+.top-most {
+  z-index: 100 !important;
+}

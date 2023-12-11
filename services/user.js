@@ -143,6 +143,6 @@ export const UserService = {
       ],
     });
 
-    return { message: 'Successful', ok: true, id: data?._id };
+    return { message: 'Successful', ok: true, id: _.id };
   },
 };

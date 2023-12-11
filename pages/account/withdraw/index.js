@@ -1,18 +1,24 @@
 import { Box, Button, Stack, Typography } from '@mui/material';
 import cogoToast from 'cogo-toast';
+import Image from 'next/image';
+import { useRouter } from 'next/router';
 import React, { useContext, useState } from 'react';
 import { FaFolderOpen } from 'react-icons/fa';
 import { MdArrowDropDown } from 'react-icons/md';
-import { Dash, Meta, MobileNav, Sidebar } from '../../components';
-import PopupModal from '../../components/Global/Modal';
-import PrivateRoute from '../../components/auth/PrivateRoute';
-import AppBar from '../../components/dashboard/AppBar';
-import Container from '../../components/dashboard/Container';
-import Transactions from '../../components/dashboard/Transactions';
-import userDataContext from '../../context/UserDataContext';
-import { UserService } from '../../services/user';
+import { v4 as uuidv4 } from 'uuid';
+import { Dash, Meta, MobileNav, Sidebar } from '../../../components';
+import PopupModal from '../../../components/Global/Modal';
+import PrivateRoute from '../../../components/auth/PrivateRoute';
+import AppBar from '../../../components/dashboard/AppBar';
+import Container from '../../../components/dashboard/Container';
+import Transactions from '../../../components/dashboard/Transactions';
+import userDataContext from '../../../context/UserDataContext';
+import logo from '../../../public/logo.png';
+import { UserService } from '../../../services/user';
 
 const Withdraw = () => {
+  const { push } = useRouter();
+
   const [modalOpen, setModalOpen] = useState(false);
 
   const [asset, setAsset] = useState('depositBalance');
@@ -43,6 +49,7 @@ const Withdraw = () => {
     if (validateFormInputs()) {
       if (!(+amount > userData[asset])) {
         const data = {
+          id: uuidv4(),
           status: 'pending',
           type: 'withdraw',
           amount: +amount,
@@ -90,9 +97,11 @@ const Withdraw = () => {
           setModalOpen(false);
           setIsLoading(false);
 
-          cogoToast.success(
-            'Withdrawal placed. Contact admin for more information'
-          );
+          // cogoToast.success(
+          //   'Withdrawal placed. Contact admin for more information'
+          // );
+
+          push(`/account/withdraw/${res.id}`);
         } catch (error) {
           console.log(error);
           cogoToast.error('Cannot process payment at the moment');
