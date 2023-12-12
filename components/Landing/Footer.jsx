@@ -17,7 +17,7 @@ const Footer = () => {
           </span>
           <div>
             <p className='text-xl font-extrabold'>Call Us</p>
-            <span className='text-sm font-light'>+1 (458) 796-8314</span>
+            <span className='text-sm font-light'>+44 458-796-8314</span>
           </div>
         </div>
         <div className='h-4 w-[1px] bg-gray-100 hidden sm:block'></div>
@@ -132,7 +132,7 @@ const Footer = () => {
               }}
             >
               <Typography>support@ravdakfinance.online</Typography>
-              <Typography>+1 (111) 222-3333</Typography>
+              <Typography>+44 458-796-8314</Typography>
             </Box>
           </Grid>
         </Grid>

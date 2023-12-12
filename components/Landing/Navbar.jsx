@@ -25,7 +25,7 @@ const Navbar = () => {
       <div className='bg-secondary padding border-b flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-8 text-gray-50'>
         <div className='flex items-center gap-1'>
           <FiPhoneCall />
-          <span className='text-sm font-light'>+1 (458) 796-8314</span>
+          <span className='text-sm font-light'>+44 458-796-8314</span>
         </div>
         <div className='h-4 w-[1px] bg-gray-100 hidden sm:block'></div>
         <div className='flex items-center gap-1'>

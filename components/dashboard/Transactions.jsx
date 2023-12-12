@@ -6,7 +6,7 @@ import parseDate from '../../utils/parseDate';
 
 const Transactions = ({
   transactions = [],
-  currency = '£',
+  currency = '€',
   customStyles = {},
 }) => {
   return (
@@ -71,7 +71,8 @@ const Transactions = ({
                         color: 'var(--mid)',
                       }}
                     >
-                      £{transaction?.amount.toLocaleString()}
+                      {currency}
+                      {transaction?.amount.toLocaleString()}
                     </Typography>
                   </Stack>
 

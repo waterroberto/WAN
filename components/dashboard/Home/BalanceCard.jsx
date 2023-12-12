@@ -42,7 +42,7 @@ const BalanceCard = () => {
             fontSize: { xs: '1.5rem', sm: '1.5rem', md: '1.8rem' },
           }}
         >
-          {/* {userData?.currency} */}$
+          {userData?.currency}
           {(userData?.incomeBalance).toLocaleString()}
         </Typography>
       </Box>

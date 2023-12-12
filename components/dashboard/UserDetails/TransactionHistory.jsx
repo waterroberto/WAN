@@ -5,7 +5,12 @@ import userDataContext from '../../../context/UserDataContext';
 import { db } from '../../../services/firebase.config';
 import parseDate from '../../../utils/parseDate';
 
-const TransactionHistory = ({ transactions, isAdmin = false, userId = '' }) => {
+const TransactionHistory = ({
+  transactions,
+  isAdmin = false,
+  userId = '',
+  currency,
+}) => {
   const { userData } = useContext(userDataContext);
 
   const processTransaction = async (type, status, id) => {
@@ -123,14 +128,15 @@ const TransactionHistory = ({ transactions, isAdmin = false, userId = '' }) => {
                         <td
                           className={`px-6 py-4 whitespace-nowrap font-semibold ${
                             transaction.type === 'withdraw'
-                              ? 'text-secondary'
-                              : 'text-blue-500'
+                              ? 'text-red-500'
+                              : 'text-green-500'
                           }`}
                         >
                           {transaction.type}
                         </td>
                         <td className='px-6 py-4 whitespace-nowrap'>
-                          £{transaction.amount.toLocaleString()}
+                          {currency ?? '€'}
+                          {transaction.amount.toLocaleString()}
                         </td>
                         <td className='px-6 py-4 whitespace-nowrap'>
                           {transaction.method}

@@ -7,10 +7,9 @@ import {
   styled,
 } from '@mui/material';
 import cogoToast from 'cogo-toast';
-import Link from 'next/link';
 import { useRouter } from 'next/router';
 import React, { useState } from 'react';
-import { Footer, Layout, Meta, Navbar } from '../../components';
+import { Layout, Meta } from '../../components';
 import { CustomSelect, StyledOption } from '../../components/UnstyledSelect';
 import AdminMobileNav from '../../components/admin/AdminMobileNav';
 import AdminRoute from '../../components/auth/AdminRoute';
@@ -28,6 +27,18 @@ const Blur = styled('div')(({ theme }) => ({
   bottom: '200px',
   left: '-100px',
 }));
+
+const SelectStyles = {
+  width: '100%',
+  padding: '0.75rem 1rem',
+  borderRadius: '10px',
+  fontSize: '14px',
+  border: '1px solid #222',
+  color: '#f5f5f5',
+  '&:before, &:after': {
+    display: 'none',
+  },
+};
 
 const Register = () => {
   const router = useRouter();
@@ -47,6 +58,7 @@ const Register = () => {
     DOB: '',
     password: '',
     confirmPassword: '',
+    currency: '$',
   });
 
   const {
@@ -64,6 +76,7 @@ const Register = () => {
     DOB,
     password,
     confirmPassword,
+    currency,
   } = userData;
 
   const inputChangeHandler = (e) => {
@@ -82,7 +95,7 @@ const Register = () => {
       referred: 0,
       timeStamp: new Date(),
       transactions: [],
-      currency: countries.find((el) => el.name === country)['code'],
+      currency,
       documents: { ID: '', bankStatements: [], passport: '' },
       depositBalance: 0,
       incomeBalance: 0,
@@ -115,6 +128,7 @@ const Register = () => {
       meansOfId.trim().length > 0 &&
       email.trim().length > 0 &&
       phone.trim().length > 0 &&
+      currency.trim().length > 0 &&
       country.trim().length > 0 &&
       city.trim().length > 0 &&
       zipcode.trim().length > 0 &&
@@ -131,7 +145,6 @@ const Register = () => {
       try {
         setIsLoading(true);
         const { uid } = await UserService.registerUser(email, password);
-
         if (uid) {
           console.log(uid);
           const res = await UserService.setUserData(uid, data);
@@ -250,6 +263,45 @@ const Register = () => {
                     sx={{ fontSize: '12px' }}
                     className='text-gray-50'
                   >
+                    Currency *
+                  </Typography>
+                  <FormControl fullWidth>
+                    <NativeSelect
+                      defaultValue={'South Africa'}
+                      inputProps={{
+                        name: 'currency',
+                        id: 'currency',
+                      }}
+                      sx={SelectStyles}
+                      onChange={inputChangeHandler}
+                      id='currency'
+                      name='currency'
+                    >
+                      <option
+                        value='$'
+                        style={{ background: '#1b1b1b' }}
+                        defaultChecked
+                      >
+                        USD - $
+                      </option>
+                      <option value='€' style={{ background: '#1b1b1b' }}>
+                        EUR - €
+                      </option>
+                      <option value='£' style={{ background: '#1b1b1b' }}>
+                        GBP - £
+                      </option>
+                    </NativeSelect>
+                  </FormControl>
+                </Box>
+              </div>
+              <div className='input-group'>
+                <Box mx='auto' sx={{ width: '100%', maxWidth: '600px' }}>
+                  <Typography
+                    mt={2}
+                    mb={1}
+                    sx={{ fontSize: '12px' }}
+                    className='text-gray-50'
+                  >
                     Country *
                   </Typography>
                   <FormControl fullWidth>
@@ -259,17 +311,7 @@ const Register = () => {
                         name: 'country',
                         id: 'country',
                       }}
-                      sx={{
-                        width: '100%',
-                        padding: '0.75rem 1rem',
-                        borderRadius: '10px',
-                        fontSize: '14px',
-                        border: '1px solid #222',
-                        color: '#f5f5f5',
-                        '&:before, &:after': {
-                          display: 'none',
-                        },
-                      }}
+                      sx={SelectStyles}
                       onChange={inputChangeHandler}
                       id='country'
                       name='Country'

@@ -392,7 +392,8 @@ const UserDetails = () => {
                     Deposit Balance
                   </p>
                   <p className='font-bold text-2xl'>
-                    £{userData.depositBalance.toLocaleString()}
+                    {userData.currency ?? '€'}
+                    {userData.depositBalance.toLocaleString()}
                   </p>
                 </div>
                 <div>
@@ -400,7 +401,8 @@ const UserDetails = () => {
                     Income Balance
                   </p>
                   <p className='font-bold text-2xl'>
-                    £{userData.incomeBalance.toLocaleString()}
+                    {userData.currency ?? '€'}
+                    {userData.incomeBalance.toLocaleString()}
                   </p>
                 </div>
               </div>
@@ -651,6 +653,7 @@ const UserDetails = () => {
               userId={userData?.id}
               transactions={[...userData?.deposits, ...userData?.withdrawals]}
               isAdmin={true}
+              currency={userData.currency}
             />
 
             <Container>
