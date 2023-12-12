@@ -204,11 +204,11 @@ const Withdraw = () => {
             onChange={(e) => setAsset(e.target.value.trim())}
           >
             <option value='depositBalance' defaultChecked>
-              Deposit Balance ( {userData.currency ?? '€'}
+              Deposit Balance ( {userData?.currency ?? '€'}
               {userData?.depositBalance.toLocaleString()})
             </option>
             <option value='incomeBalance'>
-              Income Balance ( {userData.currency ?? '€'}
+              Income Balance ( {userData?.currency ?? '€'}
               {userData?.incomeBalance.toLocaleString()})
             </option>
           </select>
