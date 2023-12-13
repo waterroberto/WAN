@@ -3,7 +3,7 @@ import { getAuth } from 'firebase/auth';
 import { getFirestore } from 'firebase/firestore';
 import { getStorage } from 'firebase/storage';
 
-const firebaseConfig = {
+export const firebaseConfig = {
   apiKey: 'AIzaSyDTiQPS_ZcxKMlWvpJ1D_SI1tYR1DJeWTw',
   authDomain: 'ravdak-finance.firebaseapp.com',
   projectId: 'ravdak-finance',

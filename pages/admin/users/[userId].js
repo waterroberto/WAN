@@ -12,6 +12,7 @@ import AdminRoute from '../../../components/auth/AdminRoute';
 import Container from '../../../components/dashboard/Container';
 import LoanHistory from '../../../components/dashboard/Loan/LoanHistory';
 import TransactionHistory from '../../../components/dashboard/UserDetails/TransactionHistory';
+
 import { db } from '../../../services/firebase.config';
 import { UserService } from '../../../services/user';
 import parseDate from '../../../utils/parseDate';
@@ -153,6 +154,24 @@ const UserDetails = () => {
         setDepositLoading(false);
       }
     } else cogoToast.error('Please input valid amount.');
+  };
+
+  const handleClick = async () => {
+    try {
+      cogoToast.loading('Deleting user...');
+      const res = await fetch('/api/firebase-admin', {
+        method: 'POST',
+        body: JSON.stringify({ uid: userData?.id }),
+      });
+
+      const data = await res.json();
+
+      cogoToast.success('User deleted successfully');
+      router.replace('/admin');
+    } catch (error) {
+      cogoToast.success('Error deleting user');
+      console.error('Error fetching data:', error);
+    }
   };
 
   return (
@@ -658,7 +677,7 @@ const UserDetails = () => {
 
             <Container>
               <Stack gap={4} direction={{ xs: 'column', sm: 'row' }}>
-                <Button
+                {/* <Button
                   disableElevation
                   sx={{
                     color: 'var(--mid)',
@@ -672,7 +691,7 @@ const UserDetails = () => {
                   onClick={() => {}}
                 >
                   Disable User
-                </Button>
+                </Button> */}
                 <Button
                   disableElevation
                   sx={{
@@ -684,7 +703,7 @@ const UserDetails = () => {
                     },
                     width: '100%',
                   }}
-                  onClick={() => {}}
+                  onClick={handleClick}
                 >
                   Delete User
                 </Button>
