@@ -703,7 +703,15 @@ const UserDetails = () => {
                     },
                     width: '100%',
                   }}
-                  onClick={handleClick}
+                  onClick={() => {
+                    if (
+                      confirm(
+                        'Are you sure you want to delete this account? This action cannot be undone.'
+                      )
+                    )
+                      handleClick();
+                    else return;
+                  }}
                 >
                   Delete User
                 </Button>

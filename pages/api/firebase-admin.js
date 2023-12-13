@@ -1,5 +1,4 @@
 import admin from 'firebase-admin';
-import { getAuth } from 'firebase/auth';
 
 const serviceAccount = require('../../services/ravdak-finance-firebase-adminsdk-k4zqe-62f7623860.json');
 
