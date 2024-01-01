@@ -24,7 +24,7 @@ const Footer = () => {
           </div>
         </div>
         {/*  */}
-        <div className='flex items-center gap-2'>
+        {/* <div className='flex items-center gap-2'>
           <span className='p-2 w-16 h-16 bg-secondary flex items-center justify-center rounded-lg'>
             <FiPhoneCall className='text-2xl' />
           </span>
@@ -32,7 +32,7 @@ const Footer = () => {
             <p className='text-xl font-extrabold'>Call Us</p>
             <span className='text-sm font-light'>+1 458-796-8314</span>
           </div>
-        </div>
+        </div> */}
         <div className='h-4 w-[1px] bg-gray-100 hidden sm:block'></div>
         {/*  */}
       </div>

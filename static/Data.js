@@ -87,10 +87,10 @@ const featuresData = [
 ];
 
 const contactInformation = [
-  {
-    icon: <RiWhatsappLine />,
-    body: '+1 458-796-8314',
-  },
+  // {
+  //   icon: <RiWhatsappLine />,
+  //   body: '+1 458-796-8314',
+  // },
   {
     icon: <MdMarkEmailRead />,
     body: 'support@capitaltrustfinance.online',

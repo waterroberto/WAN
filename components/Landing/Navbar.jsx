@@ -22,7 +22,7 @@ const Navbar = () => {
 
   return (
     <header className='z-50 w-full max-h-44 relative'>
-      <div className='bg-secondary padding border-b flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-8 text-gray-50'>
+      {/* <div className='bg-secondary padding border-b flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-8 text-gray-50'>
         <div className='flex items-center gap-1'>
           <FiPhoneCall />
           <span className='text-sm font-light'>+1 458-796-8314</span>
@@ -34,7 +34,8 @@ const Navbar = () => {
             support@capitaltrustfinance.online
           </span>
         </div>
-      </div>
+      </div> */}
+      {/*  */}
       <nav className='bg-white padding border-b flex items-center justify-between'>
         <Link href='/'>
           <Image

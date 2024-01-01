@@ -87,13 +87,13 @@ const GoalSetting = () => {
       {/*  */}
       <Grid item xs={12} sm={12} md={6} width='100%' data-aos='fade-left'>
         <Layout>
-          <div
+          {/* <div
             className='p-4 bg-red-400 min-h-[400px] rounded-xl'
             style={{
               background: `url('${goalImage.src}') no-repeat center center/cover`,
             }}
             data-aos='fade-left'
-          ></div>
+          ></div> */}
         </Layout>
       </Grid>
     </Grid>
