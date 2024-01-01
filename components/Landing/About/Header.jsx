@@ -7,10 +7,10 @@ import aboutImageGroup from '../../../assets/breadcrumb-1.png';
 const Header = () => {
   return (
     <Box
-      pt={20}
+      pt={8}
       sx={{
         background:
-          'linear-gradient(55deg, rgba(3,3,3,1) 0%, rgba(27,27,27,1) 55%, #006341 70%, rgba(27,34,52,1) 85%, rgba(9,9,9,1) 100%)',
+          'linear-gradient(55deg, rgba(3,3,3,1) 0%, rgba(10,10,10,1) 55%, #010647 70%, rgba(15,15,15,1) 85%, rgba(10,10,10,1) 100%)',
       }}
     >
       <Grid container columns={12}>
@@ -25,7 +25,7 @@ const Header = () => {
                 fontSize: { xs: '2.5rem', sm: '3rem', xl: '4rem' },
               }}
             >
-              Who we are. What we do.
+              About Us
             </Typography>
             <Typography
               sx={{
@@ -35,34 +35,18 @@ const Header = () => {
                 fontSize: { xs: '1.1rem', sm: '1.2rem' },
               }}
             >
-              Ravdak Finance is one of the world`s leading investment firms &
-              decentralized banking establishment. We aim to revolutionise the
-              way people bank, save, invest, and enhance investors financial
-              education.
-              <br /> Over the years, we set milestones for ourselves and we have
-              managed to accomplish most of it. <br /> We provide quality
-              financial consultation services, offer soft money loans with small
-              interest rates, and empowerment grants. We are an international
+              Capital Trust Finance is one of the world`s leading investment
+              firms & mobile banking establishment.
+              <br /> We provide quality financial consultation services, offer
+              soft money loans, and empowerment grants, while facilitating safe
+              spending and international transactions. We are an international
               business working with the goal of helping build small businesses
-              and private infrastructure. <br /> Below are our public stats of
-              realtime data.
+              and private infrastructure.
             </Typography>
           </Layout>
         </Grid>
         <Grid item xs={12} sm={12} md={6} width='100%'>
-          <Layout>
-            {/* <Image
-              src={aboutImageGroup}
-              alt='People smiling and happy'
-              style={{
-                width: '100%',
-                height: '100%',
-                maxWidth: '700px',
-                maxHeight: '700px',
-                filter: 'hue-rotate(10deg)',
-              }}
-            /> */}
-          </Layout>
+          <Layout></Layout>
         </Grid>
       </Grid>
     </Box>

@@ -4,6 +4,7 @@ import {
   FAQs,
   Footer,
   GetStarted,
+  GoalSetting,
   Header,
   Meta,
   Navbar,
@@ -16,9 +17,9 @@ const About = () => {
   return (
     <>
       <Meta
-        title='About - Massaa Bank- Online loans for everyone -
+        title='About - Capital Trust Finance - Online banking for everyone -
         Homepage'
-        description='About us - Massaa Bank- Online loans for everyone - About page'
+        description='About us | Online banking for everyone'
       />
 
       <Navbar />
@@ -26,9 +27,9 @@ const About = () => {
       <FeaturedSection />
       <Statistics />
       <Stats />
+      <GoalSetting />
       <FAQs />
-      <ContactInformation />
-      {/* <GetStarted /> */}
+      <GetStarted />
       <Footer />
     </>
   );

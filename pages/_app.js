@@ -15,8 +15,8 @@ import '../styles/globals.css';
 const theme = createTheme({
   palette: {
     primary: {
-      main: '#008533',
-      dark: '#006341',
+      main: '#51b2df',
+      dark: '#0a3877',
       contrastText: '#1b4cd5',
     },
     secondary: {
@@ -48,7 +48,7 @@ function MyApp({ Component, pageProps }) {
   return (
     <ThemeProvider theme={theme}>
       <SnackbarProvider maxSnack={1}>
-        <Script src='//code.jivosite.com/widget/yOzEEKiM0t' async />
+        {/* <Script src='//code.jivosite.com/widget/yOzEEKiM0t' async /> */}
 
         <Popup>
           <AuthContextProvider>

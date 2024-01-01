@@ -10,29 +10,31 @@ import logo from '../../public/logo.png';
 const Footer = () => {
   return (
     <div className='mt-24 bg-black text-gray-200 p-4'>
-      <div className='rounded-md -mt-16 max-w-[768px] mx-auto bg-primary padding border-b flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-8 text-gray-50'>
+      <div className='rounded-md -mt-16 max-w-[768px] mx-auto bg-primary-dark padding border-b flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-8 text-gray-50'>
+        {/*  */}
         <div className='flex items-center gap-2'>
-          <span className='p-2 w-16 h-16 bg-primary-dark flex items-center justify-center rounded-full'>
+          <span className='p-2 w-16 h-16 bg-secondary flex items-center justify-center rounded-lg'>
+            <MdOutlineMailOutline className='text-2xl' />
+          </span>
+          <div>
+            <p className='text-xl font-extrabold'>Email Us</p>
+            <span className='text-sm font-light'>
+              support@capitaltrustfinance.online
+            </span>
+          </div>
+        </div>
+        {/*  */}
+        <div className='flex items-center gap-2'>
+          <span className='p-2 w-16 h-16 bg-secondary flex items-center justify-center rounded-lg'>
             <FiPhoneCall className='text-2xl' />
           </span>
           <div>
             <p className='text-xl font-extrabold'>Call Us</p>
-            <span className='text-sm font-light'>+44 458-796-8314</span>
+            <span className='text-sm font-light'>+1 458-796-8314</span>
           </div>
         </div>
         <div className='h-4 w-[1px] bg-gray-100 hidden sm:block'></div>
-
-        <div className='flex items-center gap-2'>
-          <span className='p-2 w-16 h-16 bg-primary-dark flex items-center justify-center rounded-full'>
-            <MdOutlineMailOutline className='text-2xl' />
-          </span>
-          <div>
-            <p className='text-xl font-extrabold'>Message Us</p>
-            <span className='text-sm font-light'>
-              support@ravdakfinance.online
-            </span>
-          </div>
-        </div>
+        {/*  */}
       </div>
 
       {/* <NewsLetter /> */}
@@ -48,7 +50,7 @@ const Footer = () => {
           <Grid item xs={12} sm={6} md={4} width='100%'>
             <Link href='/'>
               <Image
-                alt='ravdak finance logo'
+                alt='capital trust finance logo'
                 src={logo.src}
                 height={100}
                 width={100}
@@ -131,8 +133,8 @@ const Footer = () => {
                 },
               }}
             >
-              <Typography>support@ravdakfinance.online</Typography>
-              <Typography>+44 458-796-8314</Typography>
+              <Typography>support@capitaltrustfinance.online</Typography>
+              <Typography>+1 458-796-8314</Typography>
             </Box>
           </Grid>
         </Grid>

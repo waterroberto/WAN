@@ -9,8 +9,8 @@ const Services = () => {
   return (
     <>
       <Meta
-        title='Services - Massaa Bank - Online loan banking for everyone'
-        description='What services Massaa Bank offers - Online loan banking for everyone'
+        title='Services | Capital Trust Financie - Online loan banking for everyone'
+        description='What services Capital Trust Finance offers - Online loan banking for everyone'
       />
 
       <Navbar />

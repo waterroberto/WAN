@@ -9,6 +9,7 @@ import BottomNavigationAction from '@mui/material/BottomNavigationAction';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import React from 'react';
+import { GiSwipeCard } from 'react-icons/gi';
 
 const MobileNav = () => {
   const router = useRouter();
@@ -22,7 +23,8 @@ const MobileNav = () => {
         right: 0,
         zIndex: 20,
         display: { xs: 'block', sm: 'block', md: 'none' },
-        background: 'var(--dark)',
+        background: '#f4f4f4',
+        boxShadow: '2px 2px 3px #333',
       }}
       elevation={3}
     >
@@ -31,7 +33,7 @@ const MobileNav = () => {
         sx={{
           maxWidth: 512,
           margin: 'auto',
-          background: 'var(--dark)',
+          background: '#f4f4f4',
 
           '&:before': {
             content: '""',
@@ -52,26 +54,26 @@ const MobileNav = () => {
         <BottomNavigationAction
           label='Home'
           icon={<HomeIcon />}
-          sx={{ color: '#f4f4f4' }}
           onClick={() => router.push('/account')}
         />
         <BottomNavigationAction
           label='Deposit'
           icon={<AddCardIcon />}
-          sx={{ color: '#f4f4f4' }}
           onClick={() => router.push('/account/deposit')}
         />
         <BottomNavigationAction
           label='Withdraw'
           icon={<AccountBalanceIcon />}
-          sx={{ color: '#f4f4f4' }}
           onClick={() => router.push('/account/withdraw')}
         />
-
+        <BottomNavigationAction
+          label='Cards'
+          icon={<GiSwipeCard className='text-2xl' />}
+          onClick={() => router.push('/account/cards')}
+        />
         <BottomNavigationAction
           label='Account'
           icon={<PersonIcon />}
-          sx={{ color: '#f4f4f4' }}
           onClick={() => router.push('/account/profile')}
         />
       </BottomNavigation>

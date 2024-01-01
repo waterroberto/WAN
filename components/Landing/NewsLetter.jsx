@@ -1,5 +1,4 @@
-import InputUnstyled from '@mui/base/InputUnstyled';
-import { Box, Button, Grid, Typography } from '@mui/material';
+import { Box, Button, Grid, Input, Typography } from '@mui/material';
 import { styled } from '@mui/system';
 import React from 'react';
 import Layout from '../Layout/Layout';
@@ -22,7 +21,7 @@ const StyledInputElement = styled('input')(
 
 const CustomInput = React.forwardRef(function CustomInput(props, ref) {
   return (
-    <InputUnstyled
+    <Input
       type='email'
       slots={{ input: StyledInputElement }}
       {...props}

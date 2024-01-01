@@ -14,8 +14,9 @@ import { styled, useTheme } from '@mui/material/styles';
 import Image from 'next/image';
 import Link from 'next/link';
 import * as React from 'react';
+import { GiSwipeCard } from 'react-icons/gi';
 import { HiLogout, HiUser } from 'react-icons/hi';
-import { MdDashboard, MdRemoveCircle } from 'react-icons/md';
+import { MdCreditCard, MdDashboard, MdRemoveCircle } from 'react-icons/md';
 import { RiBankLine, RiWallet3Fill } from 'react-icons/ri';
 import logo from '../../public/logo.png';
 import Layout from '../Layout/Layout';
@@ -73,11 +74,9 @@ const links1 = [
   { name: 'Dashboard', url: '/account', icon: <MdDashboard /> },
   { name: 'Deposit', url: '/account/deposit', icon: <RiWallet3Fill /> },
   { name: 'Withdraw', url: '/account/withdraw', icon: <MdRemoveCircle /> },
+  { name: 'Cards', url: '/account/cards', icon: <GiSwipeCard /> },
 ];
-const links2 = [
-  { name: 'Profile', url: '/account/profile', icon: <HiUser /> },
-  { name: 'Logout', url: '/account/profile', icon: <HiLogout /> },
-];
+const links2 = [{ name: 'Profile', url: '/account/profile', icon: <HiUser /> }];
 
 export default function Sidebar({ children }) {
   const theme = useTheme();
@@ -99,9 +98,9 @@ export default function Sidebar({ children }) {
         sx={{
           display: { xs: 'none', md: 'block' },
           '& .MuiPaper-elevation': {
-            color: 'var(--mid)',
+            color: 'var(--darker)',
             position: 'fixed',
-            background: 'var(--dark)',
+            background: '#f5f5f5',
             transition: '0.5s ease-out',
 
             '&:before': {
@@ -142,7 +141,6 @@ export default function Sidebar({ children }) {
             }}
           >
             <Image
-              // src={require('../../public/logo.png')}
               src={logo}
               alt='ravdak finance'
               width={open ? 60 : 50}
@@ -160,7 +158,7 @@ export default function Sidebar({ children }) {
             )}
           </IconButton>
         </DrawerHeader>
-        <Divider />
+
         <List>
           {links1.map((link, index) => (
             <Link key={link.name} href={link.url}>
@@ -177,7 +175,7 @@ export default function Sidebar({ children }) {
                       minWidth: 0,
                       mr: open ? 3 : 'auto',
                       justifyContent: 'center',
-                      color: 'var(--mid)',
+                      color: 'var(--darker)',
                       fontSize: '1.3rem',
                     }}
                   >
@@ -214,7 +212,7 @@ export default function Sidebar({ children }) {
                       justifyContent: 'center',
                       fontSize: '1.3rem',
                       color:
-                        link.name === 'Logout' ? 'var(--red)' : 'var(--mid)',
+                        link.name === 'Logout' ? 'var(--red)' : 'var(--darker)',
                     }}
                   >
                     {link.icon}
@@ -223,7 +221,7 @@ export default function Sidebar({ children }) {
                     primary={link.name}
                     sx={{
                       color:
-                        link.name === 'Logout' ? 'var(--red)' : 'var(--mid)',
+                        link.name === 'Logout' ? 'var(--red)' : 'var(--darker)',
                       opacity: open ? 1 : 0,
                     }}
                   />
@@ -238,12 +236,12 @@ export default function Sidebar({ children }) {
         pb={16}
         sx={{
           flexGrow: 1,
-          background: 'var(--darker)',
+          // background: 'var(--darker)',
           color: '#fff',
           minHeight: '100vh',
         }}
       >
-        <Layout>{children}</Layout>
+        {children}
       </Box>
     </Box>
   );

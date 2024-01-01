@@ -5,7 +5,7 @@ import { BiSolidBank } from 'react-icons/bi';
 import { FaFolderOpen } from 'react-icons/fa';
 import { MdArrowDropDown, MdOutlineContentCopy } from 'react-icons/md';
 import { SiHiveBlockchain } from 'react-icons/si';
-import { Dash, Meta, MobileNav, Sidebar } from '../../components';
+import { Dash, Layout, Meta, MobileNav, Sidebar } from '../../components';
 import PopupModal from '../../components/Global/Modal';
 import PrivateRoute from '../../components/auth/PrivateRoute';
 import AppBar from '../../components/dashboard/AppBar';
@@ -106,17 +106,18 @@ const Deposit = () => {
   return (
     <PrivateRoute>
       <Meta
-        title='Ravdak Online - Deposit - Online Bank'
-        description='Ravdak Online Bank | Deposit into your account'
+        title='Capital Trust Online - Deposit - Online Bank'
+        description='Capital Trust Online Bank | Deposit into your account'
       />
       <Dash />
 
-      <Box minHeight='100vh' sx={{ background: 'var(--darker)' }}>
+      <Box minHeight='100vh'>
         <Sidebar>
-          <AppBar page='Deposit' />
-          <Container>
-            <div className='grid grid-cols-1 sm:grid-cols-2 gap-4'>
-              {/* <button
+          <Layout>
+            <AppBar page='Deposit' />
+            <Container>
+              <div className='grid grid-cols-1 sm:grid-cols-2 gap-4'>
+                {/* <button
                 type='button'
                 className='w-full p-6 pb-16 rounded-3xl bg-secondary text-gray-50 relative'
                 onClick={() => {
@@ -129,45 +130,46 @@ const Deposit = () => {
                   <SiHiveBlockchain />
                 </span>
               </button> */}
-              <button
-                type='button'
-                className='w-full p-6 pb-16 rounded-3xl bg-primary text-gray-50 relative'
-                onClick={() => {
-                  cogoToast.success(
-                    'Contact support for payment via local bank.'
-                  );
-                }}
-              >
-                <p className='text-2xl font-extrabold'>Fund Via Local Bank</p>
-                <span className='absolute bottom-6 right-6 text-3xl'>
-                  <BiSolidBank />
-                </span>
-              </button>
-            </div>
-          </Container>
-          <Container>
-            <Typography>DEPOSIT HISTORY</Typography>
-            {(!userData?.deposits || userData?.deposits.length === 0) && (
-              <Stack
-                alignItems='center'
-                justifyContent='center'
-                mt={8}
-                py={2}
-                sx={{ color: 'var(--mid)' }}
-              >
-                <Box sx={{ fontSize: '64px' }}>
-                  <FaFolderOpen />
-                </Box>
-                <Typography>No Transactions Yet</Typography>
-              </Stack>
-            )}
-            {userData?.deposits && userData?.deposits?.length > 0 && (
-              <Transactions
-                transactions={userData.deposits}
-                currency={userData?.currency}
-              />
-            )}
-          </Container>
+                <button
+                  type='button'
+                  className='w-full p-6 pb-16 rounded-3xl bg-primary text-gray-50 relative'
+                  onClick={() => {
+                    cogoToast.success(
+                      'Contact support for payment via local bank.'
+                    );
+                  }}
+                >
+                  <p className='text-2xl font-extrabold'>Fund Via Local Bank</p>
+                  <span className='absolute bottom-6 right-6 text-3xl'>
+                    <BiSolidBank />
+                  </span>
+                </button>
+              </div>
+            </Container>
+            <Container>
+              <Typography color='#444'>DEPOSIT HISTORY</Typography>
+              {(!userData?.deposits || userData?.deposits.length === 0) && (
+                <Stack
+                  alignItems='center'
+                  justifyContent='center'
+                  mt={8}
+                  py={2}
+                  sx={{ color: 'var(--dark)' }}
+                >
+                  <Box sx={{ fontSize: '64px' }}>
+                    <FaFolderOpen />
+                  </Box>
+                  <Typography>No Transactions Yet</Typography>
+                </Stack>
+              )}
+              {userData?.deposits && userData?.deposits?.length > 0 && (
+                <Transactions
+                  transactions={userData.deposits}
+                  currency={userData?.currency}
+                />
+              )}
+            </Container>
+          </Layout>
         </Sidebar>
       </Box>
 

@@ -1,6 +1,7 @@
 import { Box, Button, Stack, Typography } from '@mui/material';
 import React from 'react';
 import { Layout } from '../../';
+import heroImage from '../../../public/hero-image.jpg';
 
 const GetStarted = () => {
   return (
@@ -8,8 +9,7 @@ const GetStarted = () => {
       sx={{
         position: 'relative',
         overflow: 'hidden',
-        background:
-          'url("https://firebasestorage.googleapis.com/v0/b/west-financial-services.appspot.com/o/house-loan-2.jpg?alt=media&token=33ecfb6b-5018-419d-95f3-0dea94338dac") no-repeat center center/cover',
+        background: `url("${heroImage.src}") no-repeat center center/cover`,
 
         '&:after': {
           content: "''",
@@ -55,7 +55,7 @@ const GetStarted = () => {
               fontFamily: 'inherit',
             }}
           >
-            Create a personal account and start applying for convenient loans.
+            Create a personal account and start banking with us today.
           </Typography>
           <Button
             variant='contained'

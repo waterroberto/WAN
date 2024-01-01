@@ -2,12 +2,14 @@ import {
   ContactInformation,
   FAQs,
   Footer,
+  GoalSetting,
   Hero,
   Meta,
   Navbar,
 } from '../components';
 import BankConvenience from '../components/Landing/BankConvenience';
 import FeaturedSection from '../components/Landing/FeaturedSection';
+import FeaturedSection2 from '../components/Landing/FeaturedSection2';
 import HowItWorks from '../components/Landing/HowItWorks';
 import Features from '../components/Landing/Sections/Features';
 
@@ -15,13 +17,14 @@ export default function Home() {
   return (
     <>
       <Meta
-        title='Ravdak Finance - Home - Online loans banking for everyone'
-        description='Ravdak Finance - Online loans banking for everyone - Homepage'
+        title='Capital Trust Finance - Home - Online banking for everyone'
+        description='Capital Trust Finance - Online banking for everyone - Homepage'
       />
       <Navbar />
       <Hero />
       <FeaturedSection />
-      <HowItWorks />
+      <GoalSetting />
+      <FeaturedSection2 />
       <Features />
       <BankConvenience />
       <Footer />

@@ -1,16 +1,7 @@
-import * as React from 'react';
-import SelectUnstyled, {
-  selectUnstyledClasses,
-  SelectUnstyledProps,
-  SelectUnstyledRootSlotProps,
-} from '@mui/base/SelectUnstyled';
-import OptionUnstyled, {
-  optionUnstyledClasses,
-} from '@mui/base/OptionUnstyled';
-import PopperUnstyled from '@mui/base/PopperUnstyled';
-import { styled } from '@mui/system';
+import { Option, Popper, Select } from '@mui/base';
 import UnfoldMoreRoundedIcon from '@mui/icons-material/UnfoldMoreRounded';
-import { FormControlUnstyled } from '@mui/base';
+import { styled } from '@mui/system';
+import * as React from 'react';
 
 const Button = React.forwardRef(function Button(props, ref) {
   const { ownerState, ...other } = props;
@@ -59,11 +50,6 @@ const StyledButton = styled(Button, { shouldForwardProp: () => true })(
     background: #1b1b1b;
     border-color: #222;
   }
-
-  &.${selectUnstyledClasses.focusVisible} {
-    border-color: #222;
-    outline: 3px solid #ccc;
-  }
   `
 );
 
@@ -84,7 +70,7 @@ const StyledListbox = styled('ul')(
   `
 );
 
-export const StyledOption = styled(OptionUnstyled)(
+export const StyledOption = styled(Option)(
   ({ theme }) => `
   list-style: none;
   padding: 12px;
@@ -94,34 +80,10 @@ export const StyledOption = styled(OptionUnstyled)(
   &:last-of-type {
     border-bottom: none;
   }
-
-  &.${optionUnstyledClasses.selected} {
-    background-color: #1b1b1b;
-    color: #ccc;
-  }
-
-  &.${optionUnstyledClasses.highlighted} {
-    background-color: #1b1b1b;
-    color: #ccc;
-  }
-
-  &.${optionUnstyledClasses.highlighted}.${optionUnstyledClasses.selected} {
-    background-color: #1b1b1b;
-    color: #ccc;
-  }
-
-  &.${optionUnstyledClasses.disabled} {
-    color: #bbb;
-  }
-
-  &:hover:not(.${optionUnstyledClasses.disabled}) {
-    background-color: #222;
-    color: #bbb};
-  }
   `
 );
 
-const StyledPopper = styled(PopperUnstyled)`
+const StyledPopper = styled(Popper)`
   z-index: 1;
 `;
 
@@ -135,7 +97,7 @@ export const CustomSelect = React.forwardRef(function CustomSelect(props, ref) {
 
   return (
     <>
-      <SelectUnstyled {...props} ref={ref} slots={slots} mb={2} />
+      <Select {...props} ref={ref} slots={slots} mb={2} />
     </>
   );
 });

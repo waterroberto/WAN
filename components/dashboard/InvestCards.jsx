@@ -8,10 +8,10 @@ import holdingCurrency1 from '../../assets/png/person-holding-currency-1.png';
 import holdingCurrency from '../../assets/png/person-holding-currency.png';
 
 const swiperCardStyles = {
-  background: '#252837',
+  background: 'var(--mid)',
   marginTop: '1rem',
   height: '160px',
-  color: '#f4f4f4',
+  color: 'var(--dark)',
   padding: '2rem',
   borderRadius: '1rem',
   border: '1px solid rgb(1, 126, 255,0.2)',
@@ -41,7 +41,11 @@ const cardsData = [
 export default function InvestCards() {
   return (
     <Box maxWidth='1024px' mx='auto' mt={4}>
-      <Typography variant='h5' component='p' sx={{ fontWeight: 700 }}>
+      <Typography
+        variant='h5'
+        component='p'
+        sx={{ fontWeight: 700, color: 'var(--dark)' }}
+      >
         Quick Actions
       </Typography>
       <Grid container columns={12} sx={{ pt: 2 }}>

@@ -89,11 +89,11 @@ const featuresData = [
 const contactInformation = [
   {
     icon: <RiWhatsappLine />,
-    body: '+1 (111) 222-3333',
+    body: '+1 458-796-8314',
   },
   {
     icon: <MdMarkEmailRead />,
-    body: 'support@ravdakfinance.online',
+    body: 'support@capitaltrustfinance.online',
   },
 ];
 

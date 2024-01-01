@@ -44,7 +44,7 @@ const WithdrawalId = (props) => {
               width={200}
               height={200}
               className='block mt-16 mb-4 w-24 h-24'
-              alt='Ravdak finance logo'
+              alt='Capital Trust finance logo'
             />
 
             <div className='mb-12'>
@@ -59,8 +59,8 @@ const WithdrawalId = (props) => {
                 the IVN (International Verification Number.)
               </p>
               <p className='mb-4'>
-                Kindly chat with the support@ravdakfinance(chat Icon on the
-                webpage) for more info.
+                Kindly chat with the support@capitaltrustfinance(chat Icon on
+                the webpage) for more info.
               </p>
               <p className='font-medium'>Thanks, Regards.</p>
             </div>

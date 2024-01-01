@@ -1,7 +1,7 @@
-import React from 'react';
 import { Stack, Typography } from '@mui/material';
-import { MdNotifications } from 'react-icons/md';
 import Link from 'next/link';
+import React from 'react';
+import { HiUser } from 'react-icons/hi2';
 
 const AppBar = (props) => {
   return (
@@ -20,11 +20,11 @@ const AppBar = (props) => {
       >
         {props.page}
       </Typography>
-      <Link href='/dashboard/notifications'>
+      <Link href='/account/profile'>
         <Typography
           sx={{ color: 'var(--light-blue)', fontSize: '2rem', pt: 1 }}
         >
-          <MdNotifications />
+          <HiUser />
         </Typography>
       </Link>
     </Stack>

@@ -1,11 +1,11 @@
 import admin from 'firebase-admin';
 
-const serviceAccount = require('../../services/ravdak-finance-firebase-adminsdk-k4zqe-62f7623860.json');
+const serviceAccount = require('../../services/capital-trust-finance-firebase-adminsdk-v7cvb-d92378ff92.json');
 
 if (!admin.apps.length) {
   admin.initializeApp({
     credential: admin.credential.cert(serviceAccount),
-    databaseURL: 'https://ravdak-finance.firebaseio.com',
+    databaseURL: 'https://capital-trust-finance.firebaseio.com',
   });
 }
 

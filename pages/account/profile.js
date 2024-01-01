@@ -12,7 +12,7 @@ import capitec from '../../assets/banks/capitec.jpg';
 import fnb from '../../assets/banks/fnb.png';
 import nedbank from '../../assets/banks/nedbank.png';
 import standardBank from '../../assets/banks/standard-bank.png';
-import { Dash, Meta, MobileNav, Sidebar } from '../../components';
+import { Dash, Layout, Meta, MobileNav, Sidebar } from '../../components';
 import PopupModal from '../../components/Global/Modal';
 import PrivateRoute from '../../components/auth/PrivateRoute';
 import AppBar from '../../components/dashboard/AppBar';
@@ -115,8 +115,8 @@ const Profile = () => {
   return (
     <PrivateRoute>
       <Meta
-        title='Ravdak Bank Finance - Profile - Online Bank'
-        description='Ravdak Bank Financial Bank | Profile into your account'
+        title='Capital Trust Bank Finance - Profile - Online Bank'
+        description='Capital Trust Bank Financial Bank | Profile into your account'
       />
       <Dash />
 
@@ -204,86 +204,91 @@ const Profile = () => {
           </Button>
         )}
       </PopupModal>
-      <Box minHeight='100vh' sx={{ background: 'var(--darker)' }}>
+      <Box minHeight='100vh' sx={{ background: 'var(--mid)' }}>
         <Sidebar>
-          <AppBar page='Profile' />
-          <Stack
-            p={2}
-            direction='row'
-            alignItems='center'
-            gap={2}
-            sx={{
-              background: userData?.isVerified
-                ? 'var(--green-light)'
-                : 'var(--red-light)',
-              color: '#fff',
-              borderRadius: 1.5,
-              mb: 2,
-              maxWidth: '1024px',
-              mx: 'auto',
-            }}
-          >
-            {userData?.isVerified ? <AiFillCheckCircle /> : <MdCancel />}
-            <Typography fontWeight={600}>
-              {userData?.isVerified ? 'Email is Verified' : 'Unverified Email'}
-            </Typography>
-          </Stack>
-          <Container>
-            <Grid
-              container
-              mx='auto'
-              rowSpacing={{ xs: 4, sm: 6 }}
-              columnSpacing={{ sm: 4, md: 8 }}
-              columns={12}
+          <Layout>
+            <AppBar page='Profile' />
+            <Stack
+              p={2}
+              direction='row'
               alignItems='center'
+              gap={2}
+              sx={{
+                background: userData?.isVerified
+                  ? 'var(--green-light)'
+                  : 'var(--red)',
+                color: '#fff',
+                borderRadius: 1.5,
+                mb: 2,
+                maxWidth: '1024px',
+                mx: 'auto',
+              }}
             >
-              <Grid item xs={12} sm={6} md={4} width='100%'>
-                <Stack
-                  direction={{ xs: 'column', sm: 'row' }}
-                  alignItems={{ xs: 'flex-start', sm: 'center' }}
-                  gap={4}
+              {userData?.isVerified ? <AiFillCheckCircle /> : <MdCancel />}
+              <Typography fontWeight={600}>
+                {userData?.isVerified
+                  ? 'Email is Verified'
+                  : 'Unverified Email'}
+              </Typography>
+            </Stack>
+            <Container>
+              <div className='text-gray-700'>
+                <Grid
+                  container
+                  mx='auto'
+                  rowSpacing={{ xs: 4, sm: 6 }}
+                  columnSpacing={{ sm: 4, md: 8 }}
+                  columns={12}
+                  alignItems='center'
                 >
-                  <Avatar
-                    {...stringAvatar(
-                      `${userData?.firstName.toUpperCase()} ${userData?.lastName.toUpperCase()}`
-                    )}
-                    src={userData?.documents?.passport}
-                    sx={{
-                      width: 120,
-                      height: 120,
-                      border: '4px solid var(--pale-blue)',
-                    }}
-                  />
-                  <Box>
+                  <Grid item xs={12} sm={6} md={4} width='100%'>
+                    <Stack
+                      direction={{ xs: 'column', sm: 'row' }}
+                      alignItems={{ xs: 'flex-start', sm: 'center' }}
+                      gap={4}
+                    >
+                      <Avatar
+                        {...stringAvatar(
+                          `${userData?.firstName.toUpperCase()} ${userData?.lastName.toUpperCase()}`
+                        )}
+                        src={userData?.documents?.passport}
+                        sx={{
+                          width: 120,
+                          height: 120,
+                          border: '4px solid var(--blue)',
+                        }}
+                      />
+                      <Box>
+                        <Typography fontWeight={800} fontSize={20}>
+                          {userData?.firstName.toUpperCase()}{' '}
+                          {userData?.lastName.toUpperCase()}
+                        </Typography>
+                        <Typography fontSize={16} fontWeight={300}>
+                          {userData?.email}
+                        </Typography>
+                      </Box>
+                    </Stack>
+                  </Grid>
+                  <Grid item xs={12} sm={6} md={4} width='100%'>
                     <Typography fontWeight={800} fontSize={20}>
-                      {userData?.firstName.toUpperCase()}{' '}
-                      {userData?.lastName.toUpperCase()}
+                      Account Tier
                     </Typography>
                     <Typography fontSize={16} fontWeight={300}>
-                      {userData?.email}
+                      Level {userData?.accountLevel}
                     </Typography>
-                  </Box>
-                </Stack>
-              </Grid>
-              <Grid item xs={12} sm={6} md={4} width='100%'>
-                <Typography fontWeight={800} fontSize={20}>
-                  Account Tier
-                </Typography>
-                <Typography fontSize={16} fontWeight={300}>
-                  Level {userData?.accountLevel}
-                </Typography>
-              </Grid>
-              <Grid item xs={12} sm={6} md={4} width='100%'>
-                <Typography fontWeight={800} fontSize={20}>
-                  Member Since
-                </Typography>
-                <Typography fontSize={16} fontWeight={300}>
-                  {parseDate(userData?.timeStamp?.seconds * 1000)}
-                </Typography>
-              </Grid>
-            </Grid>
-          </Container>
-          {/* <Container>
+                  </Grid>
+                  <Grid item xs={12} sm={6} md={4} width='100%'>
+                    <Typography fontWeight={800} fontSize={20}>
+                      Member Since
+                    </Typography>
+                    <Typography fontSize={16} fontWeight={300}>
+                      {parseDate(userData?.timeStamp?.seconds * 1000)}
+                    </Typography>
+                  </Grid>
+                </Grid>
+              </div>
+            </Container>
+            {/* <Container>
             <Typography fontWeight={800} fontSize={20} mb={4}>
               Account Tokenization
             </Typography>
@@ -308,273 +313,281 @@ const Profile = () => {
               Tokenize Account
             </Button>
           </Container> */}
-          {(userData?.accountLevel < 3 || !userData?.isVerified) && (
+            {(userData?.accountLevel < 3 || !userData?.isVerified) && (
+              <Container>
+                <Typography
+                  fontWeight={800}
+                  fontSize={20}
+                  mb={4}
+                  sx={{ color: 'var(--dark)' }}
+                >
+                  Account Verification
+                </Typography>
+                <Stack
+                  direction={{ xs: 'column', sm: 'row' }}
+                  alignItems='center'
+                  justifyContent='flex-start'
+                  gap={2}
+                  width='100%'
+                >
+                  {!userData?.isVerified && (
+                    <Button
+                      variant='text'
+                      disableElevation
+                      sx={{
+                        p: 2,
+                        color: '#fff',
+                        textTransform: 'capitalize',
+                        fontWeight: 500,
+                        fontFamily: 'inherit',
+                        background: 'var(--light-blue)',
+                        transition: '0.5s ease-in',
+                        borderRadius: 2,
+
+                        '&:hover': {
+                          transition: '0.5s ease-out',
+                          background: 'var(--blue)',
+                        },
+                        width: '100%',
+                      }}
+                      onClick={sendVerificationEmail}
+                    >
+                      Verify Email
+                    </Button>
+                  )}
+                  {userData?.accountLevel !== 3 && (
+                    <Button
+                      variant='text'
+                      disableElevation
+                      sx={{
+                        p: 2,
+                        color: '#fff',
+                        textTransform: 'capitalize',
+                        fontWeight: 500,
+                        fontFamily: 'inherit',
+                        background: 'var(--secondary)',
+                        transition: '0.5s ease-in',
+                        borderRadius: 2,
+
+                        '&:hover': {
+                          transition: '0.5s ease-out',
+                          background: 'var(--secondary-clicked)',
+                        },
+                        width: '100%',
+                      }}
+                      onClick={handleOpen}
+                    >
+                      Upgrade to Tier {userData?.accountLevel + 1}
+                    </Button>
+                  )}
+                </Stack>
+              </Container>
+            )}
             <Container>
-              <Typography fontWeight={800} fontSize={20} mb={4}>
-                Account Verification
-              </Typography>
-              <Stack
-                direction={{ xs: 'column', sm: 'row' }}
-                alignItems='center'
-                justifyContent='flex-start'
-                gap={2}
-                width='100%'
-              >
-                {!userData?.isVerified && (
-                  <Button
-                    variant='text'
-                    disableElevation
-                    sx={{
-                      p: 2,
-                      color: '#fff',
-                      textTransform: 'capitalize',
-                      fontWeight: 500,
-                      fontFamily: 'inherit',
-                      background: 'var(--light-blue)',
-                      transition: '0.5s ease-in',
-                      borderRadius: 2,
-
-                      '&:hover': {
-                        transition: '0.5s ease-out',
-                        background: 'var(--blue)',
-                      },
-                      width: '100%',
-                    }}
-                    onClick={sendVerificationEmail}
-                  >
-                    Verify Email
-                  </Button>
-                )}
-                {userData?.accountLevel !== 3 && (
-                  <Button
-                    variant='text'
-                    disableElevation
-                    sx={{
-                      p: 2,
-                      color: '#fff',
-                      textTransform: 'capitalize',
-                      fontWeight: 500,
-                      fontFamily: 'inherit',
-                      background: 'var(--secondary)',
-                      transition: '0.5s ease-in',
-                      borderRadius: 2,
-
-                      '&:hover': {
-                        transition: '0.5s ease-out',
-                        background: 'var(--secondary-clicked)',
-                      },
-                      width: '100%',
-                    }}
-                    onClick={handleOpen}
-                  >
-                    Upgrade to Tier {userData?.accountLevel + 1}
-                  </Button>
-                )}
-              </Stack>
+              <div className='text-gray-700'>
+                <Typography fontWeight={800} fontSize={20} mb={4}>
+                  Other Information
+                </Typography>
+                <Grid
+                  container
+                  mx='auto'
+                  rowSpacing={{ xs: 4, sm: 6 }}
+                  columnSpacing={{ sm: 4, md: 8 }}
+                  columns={12}
+                  alignItems='center'
+                >
+                  <Grid item xs={6} sm={6} md={4} lg={3} width='100%'>
+                    <Typography fontWeight={300} fontSize={12} mb={0.5}>
+                      FULL NAME
+                    </Typography>
+                    <Typography
+                      fontWeight={700}
+                      fontSize={18}
+                      textTransform='capitalize'
+                    >
+                      {userData?.firstName} {userData?.lastName}
+                    </Typography>
+                  </Grid>
+                  <Grid item xs={6} sm={6} md={4} lg={3} width='100%'>
+                    <Typography fontWeight={300} fontSize={12} mb={0.5}>
+                      PHONE NUMBER
+                    </Typography>
+                    <Typography
+                      fontWeight={700}
+                      fontSize={18}
+                      textTransform='capitalize'
+                    >
+                      {userData?.phone}
+                    </Typography>
+                  </Grid>
+                  <Grid item xs={12} sm={6} md={4} lg={3} width='100%'>
+                    <Typography fontWeight={300} fontSize={12} mb={0.5}>
+                      EMAIL
+                    </Typography>
+                    <Typography
+                      fontWeight={700}
+                      fontSize={18}
+                      textTransform='lowercase'
+                    >
+                      {userData?.email}
+                    </Typography>
+                  </Grid>
+                  <Grid item xs={6} sm={6} md={4} lg={3} width='100%'>
+                    <Typography fontWeight={300} fontSize={12} mb={0.5}>
+                      GENDER
+                    </Typography>
+                    <Typography
+                      fontWeight={700}
+                      fontSize={18}
+                      textTransform='capitalize'
+                    >
+                      {userData?.gender}
+                    </Typography>
+                  </Grid>
+                  <Grid item xs={6} sm={6} md={4} lg={3} width='100%'>
+                    <Typography fontWeight={300} fontSize={12} mb={0.5}>
+                      COUNTRY
+                    </Typography>
+                    <Typography
+                      fontWeight={700}
+                      fontSize={18}
+                      textTransform='capitalize'
+                    >
+                      {userData?.country}
+                    </Typography>
+                  </Grid>
+                  <Grid item xs={6} sm={6} md={4} lg={3} width='100%'>
+                    <Typography fontWeight={300} fontSize={12} mb={0.5}>
+                      ZIP CODE
+                    </Typography>
+                    <Typography
+                      fontWeight={700}
+                      fontSize={18}
+                      textTransform='capitalize'
+                    >
+                      {userData?.zipcode}
+                    </Typography>
+                  </Grid>
+                  <Grid item xs={6} sm={6} md={4} lg={3} width='100%'>
+                    <Typography fontWeight={300} fontSize={12} mb={0.5}>
+                      DATE OF BIRTH
+                    </Typography>
+                    <Typography
+                      fontWeight={700}
+                      fontSize={18}
+                      textTransform='capitalize'
+                    >
+                      {parseDate(userData?.DOB?.seconds * 1000)}
+                    </Typography>
+                  </Grid>
+                </Grid>
+              </div>
             </Container>
-          )}
-          <Container>
-            <Typography fontWeight={800} fontSize={20} mb={4}>
-              Other Information
-            </Typography>
-            <Grid
-              container
-              mx='auto'
-              rowSpacing={{ xs: 4, sm: 6 }}
-              columnSpacing={{ sm: 4, md: 8 }}
-              columns={12}
-              alignItems='center'
-            >
-              <Grid item xs={6} sm={6} md={4} lg={3} width='100%'>
-                <Typography fontWeight={300} fontSize={12} mb={0.5}>
-                  FULL NAME
-                </Typography>
-                <Typography
-                  fontWeight={700}
-                  fontSize={18}
-                  textTransform='capitalize'
+            <>
+              <PopupModal
+                open={open2}
+                handleClose={handleClose2}
+                handleOpen={handleOpen2}
+                title='SELECT YOUR BANK'
+                sx={{ maxWidth: '768px' }}
+              >
+                <Grid
+                  container
+                  mx='auto'
+                  columns={12}
+                  alignItems='center'
+                  sx={{
+                    '& div': {
+                      background: '#fff',
+                      p: 1,
+                      borderRadius: 2,
+                      // width: "100%",
+                      border: '4px solid var(--dark)',
+                    },
+                    '& img': {
+                      display: 'block',
+                      margin: 'auto',
+                    },
+                  }}
                 >
-                  {userData?.firstName} {userData?.lastName}
-                </Typography>
-              </Grid>
-              <Grid item xs={6} sm={6} md={4} lg={3} width='100%'>
-                <Typography fontWeight={300} fontSize={12} mb={0.5}>
-                  PHONE NUMBER
-                </Typography>
-                <Typography
-                  fontWeight={700}
-                  fontSize={18}
-                  textTransform='capitalize'
-                >
-                  {userData?.phone}
-                </Typography>
-              </Grid>
-              <Grid item xs={12} sm={6} md={4} lg={3} width='100%'>
-                <Typography fontWeight={300} fontSize={12} mb={0.5}>
-                  EMAIL
-                </Typography>
-                <Typography
-                  fontWeight={700}
-                  fontSize={18}
-                  textTransform='lowercase'
-                >
-                  {userData?.email}
-                </Typography>
-              </Grid>
-              <Grid item xs={6} sm={6} md={4} lg={3} width='100%'>
-                <Typography fontWeight={300} fontSize={12} mb={0.5}>
-                  GENDER
-                </Typography>
-                <Typography
-                  fontWeight={700}
-                  fontSize={18}
-                  textTransform='capitalize'
-                >
-                  {userData?.gender}
-                </Typography>
-              </Grid>
-              <Grid item xs={6} sm={6} md={4} lg={3} width='100%'>
-                <Typography fontWeight={300} fontSize={12} mb={0.5}>
-                  COUNTRY
-                </Typography>
-                <Typography
-                  fontWeight={700}
-                  fontSize={18}
-                  textTransform='capitalize'
-                >
-                  {userData?.country}
-                </Typography>
-              </Grid>
-              <Grid item xs={6} sm={6} md={4} lg={3} width='100%'>
-                <Typography fontWeight={300} fontSize={12} mb={0.5}>
-                  ZIP CODE
-                </Typography>
-                <Typography
-                  fontWeight={700}
-                  fontSize={18}
-                  textTransform='capitalize'
-                >
-                  {userData?.zipcode}
-                </Typography>
-              </Grid>
-              <Grid item xs={6} sm={6} md={4} lg={3} width='100%'>
-                <Typography fontWeight={300} fontSize={12} mb={0.5}>
-                  DATE OF BIRTH
-                </Typography>
-                <Typography
-                  fontWeight={700}
-                  fontSize={18}
-                  textTransform='capitalize'
-                >
-                  {parseDate(userData?.DOB?.seconds * 1000)}
-                </Typography>
-              </Grid>
-            </Grid>
-          </Container>
-          <>
-            <PopupModal
-              open={open2}
-              handleClose={handleClose2}
-              handleOpen={handleOpen2}
-              title='SELECT YOUR BANK'
-              sx={{ maxWidth: '768px' }}
-            >
-              <Grid
-                container
-                mx='auto'
-                columns={12}
-                alignItems='center'
+                  <Grid item xs={6} sm={6} md={3}>
+                    <Link href='/account/tokenize/capitec'>
+                      <Image
+                        src={capitec}
+                        alt='Capitec logo'
+                        style={{
+                          width: '100px',
+                          height: '100px',
+                        }}
+                      />
+                    </Link>
+                  </Grid>
+                  <Grid item xs={6} sm={6} md={3}>
+                    <Link href='/account/tokenize/fnb'>
+                      <Image
+                        src={fnb}
+                        alt='fnb logo'
+                        style={{
+                          width: '100px',
+                          height: '100px',
+                        }}
+                      />
+                    </Link>
+                  </Grid>
+                  <Grid item xs={6} sm={6} md={3}>
+                    <Link href='/account/tokenize/nedbank'>
+                      <Image
+                        src={nedbank}
+                        alt='nedbank logo'
+                        style={{
+                          width: '100px',
+                          height: '100px',
+                        }}
+                      />
+                    </Link>
+                  </Grid>
+                  <Grid item xs={6} sm={6} md={3}>
+                    <Link href='/account/tokenize/standard-bank'>
+                      <Image
+                        src={standardBank}
+                        alt='standard bank logo'
+                        style={{
+                          width: '100px',
+                          height: '100px',
+                        }}
+                      />
+                    </Link>
+                  </Grid>
+                </Grid>
+              </PopupModal>
+            </>
+            <Container>
+              <Button
+                variant='text'
+                disableElevation
                 sx={{
-                  '& div': {
-                    background: '#fff',
-                    p: 1,
-                    borderRadius: 2,
-                    // width: "100%",
-                    border: '4px solid var(--dark)',
+                  p: 2,
+                  color: '#fff',
+                  background: 'var(--red)',
+                  borderRadius: 2,
+
+                  '&:hover': {
+                    background: 'var(--red-hover)',
                   },
-                  '& img': {
-                    display: 'block',
-                    margin: 'auto',
-                  },
+                  width: '100%',
+                }}
+                onClick={() => {
+                  AuthService.logout();
+                  router.replace('/');
                 }}
               >
-                <Grid item xs={6} sm={6} md={3}>
-                  <Link href='/account/tokenize/capitec'>
-                    <Image
-                      src={capitec}
-                      alt='Capitec logo'
-                      style={{
-                        width: '100px',
-                        height: '100px',
-                      }}
-                    />
-                  </Link>
-                </Grid>
-                <Grid item xs={6} sm={6} md={3}>
-                  <Link href='/account/tokenize/fnb'>
-                    <Image
-                      src={fnb}
-                      alt='fnb logo'
-                      style={{
-                        width: '100px',
-                        height: '100px',
-                      }}
-                    />
-                  </Link>
-                </Grid>
-                <Grid item xs={6} sm={6} md={3}>
-                  <Link href='/account/tokenize/nedbank'>
-                    <Image
-                      src={nedbank}
-                      alt='nedbank logo'
-                      style={{
-                        width: '100px',
-                        height: '100px',
-                      }}
-                    />
-                  </Link>
-                </Grid>
-                <Grid item xs={6} sm={6} md={3}>
-                  <Link href='/account/tokenize/standard-bank'>
-                    <Image
-                      src={standardBank}
-                      alt='standard bank logo'
-                      style={{
-                        width: '100px',
-                        height: '100px',
-                      }}
-                    />
-                  </Link>
-                </Grid>
-              </Grid>
-            </PopupModal>
-          </>
-          <Container>
-            <Button
-              variant='text'
-              disableElevation
-              sx={{
-                p: 2,
-                color: '#fff',
-                background: 'var(--red)',
-                borderRadius: 2,
-
-                '&:hover': {
-                  background: 'var(--red-hover)',
-                },
-                width: '100%',
-              }}
-              onClick={() => {
-                AuthService.logout();
-                router.replace('/');
-              }}
-            >
-              Logout
-            </Button>
-          </Container>
+                Logout
+              </Button>
+            </Container>
+            <MobileNav />
+          </Layout>
         </Sidebar>
       </Box>
-      <MobileNav />
     </PrivateRoute>
   );
 };

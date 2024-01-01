@@ -25,18 +25,18 @@ const Navbar = () => {
       <div className='bg-secondary padding border-b flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-8 text-gray-50'>
         <div className='flex items-center gap-1'>
           <FiPhoneCall />
-          <span className='text-sm font-light'>+44 458-796-8314</span>
+          <span className='text-sm font-light'>+1 458-796-8314</span>
         </div>
         <div className='h-4 w-[1px] bg-gray-100 hidden sm:block'></div>
         <div className='flex items-center gap-1'>
           <MdOutlineMailOutline />
           <span className='text-sm font-light'>
-            support@ravdakfinance.online
+            support@capitaltrustfinance.online
           </span>
         </div>
       </div>
       <nav className='bg-white padding border-b flex items-center justify-between'>
-        <Link href='/' className='flex items-center gap-1'>
+        <Link href='/'>
           <Image
             height={100}
             width={100}
@@ -45,19 +45,12 @@ const Navbar = () => {
             alt='navbar logo'
             className='w-[50px] h-[50px]'
           />
-          <div className='font-extrabold text-gray-700'>
-            <p>RAVDAK</p>
-            <p>FINANCE</p>
-          </div>
         </Link>
 
         <ul className='padding items-center gap-8 hidden md:flex'>
           {links.map((link) => (
             <li key={link.name}>
-              <Link
-                href={link.url}
-                className='text-[13px] text-secondary font-medium uppercase'
-              >
+              <Link href={link.url} className='text-gray-700 capitalize'>
                 {link.name}
               </Link>
             </li>
@@ -77,7 +70,7 @@ const Navbar = () => {
           <CgMenu className='text-2xl' />
         </button>
       </nav>
-
+      {/*  */}
       <ul
         className={`p-4 absolute w-full padding items-start gap-8 flex md:hidden flex-col shadow-2xl bg-light duration-500 ${
           showMobileNav ? 'navbar-open' : 'navbar-close'
@@ -97,9 +90,12 @@ const Navbar = () => {
           </li>
         ))}
 
-        <div className='py-4 mt-4 tems-center gap-4'>
+        <div className='py-4 mt-4 flex items-center gap-4'>
+          <Link href='/register' className='btn bg-primary text-white'>
+            Create Account
+          </Link>
           <Link href='/login' className='btn bg-secondary text-white'>
-            Login Online Banking
+            Login Account
           </Link>
         </div>
       </ul>

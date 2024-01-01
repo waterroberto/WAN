@@ -14,49 +14,17 @@ import goalImage from '../../../assets/goal-1.jpg';
 import Layout from '../../Layout/Layout';
 
 const aboutList = [
-  'Learn To Budge',
-  'Save And Invest Your Money',
-  'Create An Emergency Fund',
-  'Get Out Of Debt',
+  'Mobile Banking',
+  'Online Deposit',
+  'International Transfer',
+  'Virtual Cards',
 ];
 
 const GoalSetting = () => {
   return (
     <Grid container columns={12} className='bg-gray-900'>
-      <Grid item xs={12} sm={12} md={6} width='100%' data-aos='fade-left'>
-        <Layout>
-          <Image
-            src={goalImage}
-            alt='About Incrypto Finance. Wallet balance svg'
-            style={{
-              width: '100%',
-              height: '100%',
-              maxWidth: '700px',
-              maxHeight: '700px',
-              borderRadius: '40px',
-            }}
-          />
-        </Layout>
-      </Grid>
       <Grid item xs={12} sm={12} md={6} width='100%' data-aos='fade-right'>
         <Layout>
-          <Typography
-            mb={2}
-            sx={{
-              fontFamily: 'inherit',
-              color: 'secondary.dark',
-              fontWeight: 500,
-              color: '#fff',
-              fontSize: {
-                xs: '1rem',
-                sm: '1.5rem',
-                md: '2rem',
-                lg: '2.3rem',
-              },
-            }}
-          >
-            Goal Setting
-          </Typography>
           <Typography
             mb={2}
             sx={{
@@ -65,14 +33,13 @@ const GoalSetting = () => {
               fontWeight: 700,
               color: '#fff',
               fontSize: {
-                xs: '1.8rem',
-                sm: '2rem',
+                xs: '1.5rem',
+                sm: '1.8rem',
                 md: '2.5rem',
-                lg: '3rem',
               },
             }}
           >
-            Manage Your Money With Online Banking Solution
+            Ultimate Online Banking Solution
           </Typography>
           <Typography
             mb={4}
@@ -88,13 +55,11 @@ const GoalSetting = () => {
               },
             }}
           >
-            With South BANK it is simple to get started Banking, and it’s easy
-            to get the support needed to hone your skills. You’ll be able to
-            benefit from one on one support from our specialist team and develop
-            your expertise with our professional trading resources and insights.
-            For beginner and advanced bankers alike we offer high leverage,
-            guaranteed stop losses on every trade, and our fixed spreads remain
-            constant to give you greater strategic power and control.
+            With The Capital Trust Finance Bank it is simple to get started with
+            mobile banking, and easy to get the support needed to grow
+            financially. You`ll benefit from one on one support from our
+            specialist team and develop your expertise with our professional
+            financial resources and insights.
           </Typography>
 
           <List>
@@ -105,11 +70,11 @@ const GoalSetting = () => {
                     <ListItemIcon sx={{ color: '#fff' }}>
                       <CheckBoxIcon />
                     </ListItemIcon>
+
                     <ListItemText
                       primary={text}
                       sx={{
                         color: '#fff',
-                        fontSize: '0.7rem',
                       }}
                     />
                   </ListItem>
@@ -117,6 +82,18 @@ const GoalSetting = () => {
               ))}
             </Grid>
           </List>
+        </Layout>
+      </Grid>
+      {/*  */}
+      <Grid item xs={12} sm={12} md={6} width='100%' data-aos='fade-left'>
+        <Layout>
+          <div
+            className='p-4 bg-red-400 min-h-[400px] rounded-xl'
+            style={{
+              background: `url('${goalImage.src}') no-repeat center center/cover`,
+            }}
+            data-aos='fade-left'
+          ></div>
         </Layout>
       </Grid>
     </Grid>

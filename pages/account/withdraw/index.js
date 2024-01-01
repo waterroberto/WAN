@@ -6,7 +6,7 @@ import React, { useContext, useState } from 'react';
 import { FaFolderOpen } from 'react-icons/fa';
 import { MdArrowDropDown } from 'react-icons/md';
 import { v4 as uuidv4 } from 'uuid';
-import { Dash, Meta, MobileNav, Sidebar } from '../../../components';
+import { Dash, Layout, Meta, MobileNav, Sidebar } from '../../../components';
 import PopupModal from '../../../components/Global/Modal';
 import PrivateRoute from '../../../components/auth/PrivateRoute';
 import AppBar from '../../../components/dashboard/AppBar';
@@ -117,68 +117,70 @@ const Withdraw = () => {
   return (
     <PrivateRoute>
       <Meta
-        title='Ravdak Finance - Withdraw - Online'
-        description='Ravdak Financial Bank | Withdraw into your account'
+        title='Capital Trust Finance - Withdraw - Online'
+        description='Capital Trust Financial Bank | Withdraw into your account'
       />
       <Dash />
 
-      <Box minHeight='100vh' sx={{ background: 'var(--darker)' }}>
+      <Box minHeight='100vh'>
         <Sidebar>
-          <AppBar page='Withdraw' />
-          <Box
-            sx={{
-              width: '100%',
-              maxWidth: '1024px',
-              margin: 'auto',
-              mb: 4,
-            }}
-          >
-            <Stack
-              direction={{ xs: 'column', sm: 'row' }}
-              alignItems='center'
-              justifyContent='flex-start'
-              gap={2}
-              width='100%'
+          <Layout>
+            <AppBar page='Withdraw' />
+            <Box
+              sx={{
+                width: '100%',
+                maxWidth: '1024px',
+                margin: 'auto',
+                mb: 4,
+              }}
             >
-              <Button
-                disableElevation
-                className='bg-primary hover:bg-secondary duration-500'
-                sx={{
-                  color: '#fff',
-                  borderRadius: 2,
-                  minHeight: 96,
-                  width: '100%',
-                  background: 'var(--green)',
-                }}
-                onClick={handleOpen}
-              >
-                TRANSFER TO MY ACCOUNT
-              </Button>
-            </Stack>
-          </Box>
-          <Container>
-            <Typography>WITHDRAWAL HISTORY</Typography>
-            {(!withdrawals || withdrawals.length === 0) && (
               <Stack
+                direction={{ xs: 'column', sm: 'row' }}
                 alignItems='center'
-                justifyContent='center'
-                mt={8}
-                py={2}
-                sx={{ color: 'var(--mid)' }}
+                justifyContent='flex-start'
+                gap={2}
+                width='100%'
               >
-                <Box sx={{ fontSize: '64px' }}>
-                  <FaFolderOpen />
-                </Box>
-                <Typography>No Transactions Yet</Typography>
+                <Button
+                  disableElevation
+                  className='bg-primary hover:bg-secondary duration-500'
+                  sx={{
+                    color: '#fff',
+                    borderRadius: 2,
+                    minHeight: 96,
+                    width: '100%',
+                    background: 'var(--green)',
+                  }}
+                  onClick={handleOpen}
+                >
+                  TRANSFER TO MY ACCOUNT
+                </Button>
               </Stack>
-            )}
-            {withdrawals && withdrawals.length > 0 && (
-              <Transactions
-                transactions={withdrawals}
-                currency={userData?.currency}
-              />
-            )}
-          </Container>
+            </Box>
+            <Container>
+              <Typography color='#444'>WITHDRAWAL HISTORY</Typography>
+              {(!withdrawals || withdrawals.length === 0) && (
+                <Stack
+                  alignItems='center'
+                  justifyContent='center'
+                  mt={8}
+                  py={2}
+                  sx={{ color: 'var(--mid)' }}
+                >
+                  <Box sx={{ fontSize: '64px' }}>
+                    <FaFolderOpen />
+                  </Box>
+                  <Typography>No Transactions Yet</Typography>
+                </Stack>
+              )}
+              {withdrawals && withdrawals.length > 0 && (
+                <Transactions
+                  transactions={withdrawals}
+                  currency={userData?.currency}
+                />
+              )}
+            </Container>
+          </Layout>
         </Sidebar>
       </Box>
 

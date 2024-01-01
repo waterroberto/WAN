@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;600;700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
 
 :root {
   --green-light: rgb(9, 219, 121, 0.2);
@@ -16,7 +16,7 @@
   --red-light: rgb(219, 25, 41, 0.2);
   --red: #db1929;
   --red-hover: #a51420;
-  --dark: #252837;
+  --dark: #323648;
   --darker: #1e1c2a;
   --mid: #eee;
   --secondary-light: rgb(254, 130, 53, 0.3);
@@ -49,7 +49,7 @@ ul {
   box-sizing: border-box;
   padding: 0;
   margin: 0;
-  font-family: 'Raleway', sans-serif !important;
+  font-family: 'Plus Jakarta Sans', sans-serif !important;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -312,7 +312,7 @@ input {
 }
 
 .btn {
-  @apply text-sm px-6 py-3 cursor-pointer font-medium duration-500 hover:scale-x-[99%] text-center rounded-full;
+  @apply text-sm px-6 py-3 cursor-pointer font-medium duration-500 hover:scale-x-[99%] text-center rounded-md;
 }
 
 .btn:disabled {
@@ -342,8 +342,8 @@ input:disabled {
   height: 100%;
   top: 0;
   left: 0;
-  background: rgba(0, 0, 0, 0.6);
-  backdrop-filter: blur(5px);
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(2px);
 }
 
 .navbar-open {
@@ -356,7 +356,7 @@ input:disabled {
 
 .products-hero-section {
   /* background: #111827; */
-  background: linear-gradient(120deg, #008533 0%, #006341 100%);
+  background: linear-gradient(120deg, #005985 0%, #002d63 100%);
 }
 
 .service-1 {

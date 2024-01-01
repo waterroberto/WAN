@@ -41,11 +41,10 @@ const Features = () => {
     <section className='bg-white mb-8'>
       <div className='py-16 flex flex-col items-center justify-center gap-2 text-gray-800'>
         <h4 className='text-4xl font-extrabold md:text-5xl text-center'>
-          Choose Your Product
+          Features & Products
         </h4>
-        <h5 className='text-lg text-center md:text-xl'>
-          Enjoy several benefits and explore the awesome features we have to
-          offer.
+        <h5 className='text-lg text-center md:text-xl font-normal'>
+          Enjoy several benefits and explore awesome features.
         </h5>
       </div>
       <div className='padding grid grid-cols-1 md:grid-cols-2 gap-16'>

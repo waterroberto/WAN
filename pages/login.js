@@ -45,29 +45,29 @@ const Login = () => {
   return (
     <>
       <Meta
-        title='Login - Ravdak Finance - Online banking for everyone'
-        description='Login to your Ravdak Finance - Online banking for everyone'
+        title='Login - Capital Trust Finance - Online banking for everyone'
+        description='Login to your Capital Trust Finance - Online banking for everyone'
       />
       <Box height='100vh' className='service-1'>
         <Layout>
-          <Link
-            href='/'
-            className='block text-center font-bold text-lg p-8 text-gray-200'
-          >
-            <Image
-              height={100}
-              width={100}
-              src={logo.src}
-              alt='navbar logo'
-              className='w-[100px] h-[100px]'
-            />
-          </Link>
           <form
             style={{ width: '100%', margin: 'auto', maxWidth: '512px' }}
             className='py-8 p-4 bg-white rounded-md'
           >
-            <p className='text-center text-lg mb-8 text-gray-800'>
-              Login to your account
+            <Link
+              href='/'
+              className='block text-center font-bold text-lg p-8 text-gray-200'
+            >
+              <Image
+                height={100}
+                width={100}
+                src={logo.src}
+                alt='navbar logo'
+                className='w-[75px] h-[75px]'
+              />
+            </Link>
+            <p className='font-bold text-center text-lg mb-8 text-gray-800'>
+              SIGN IN
             </p>
             <input
               className='styled-input'
@@ -129,7 +129,7 @@ const Login = () => {
             </Button>
             <p className='text-gray-800 text-right text-sm'>
               <span>Don`t have an account?</span> {'  '}
-              <Link href='/contact' className='text-primary font-bold'>
+              <Link href='/register' className='text-primary font-bold'>
                 Register
               </Link>
             </p>

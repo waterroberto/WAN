@@ -3,14 +3,14 @@ import { getAuth } from 'firebase/auth';
 import { getFirestore } from 'firebase/firestore';
 import { getStorage } from 'firebase/storage';
 
-export const firebaseConfig = {
-  apiKey: 'AIzaSyDTiQPS_ZcxKMlWvpJ1D_SI1tYR1DJeWTw',
-  authDomain: 'ravdak-finance.firebaseapp.com',
-  projectId: 'ravdak-finance',
-  storageBucket: 'ravdak-finance.appspot.com',
-  messagingSenderId: '437313426680',
-  appId: '1:437313426680:web:b9c89a998d24dd6d4d170d',
-  measurementId: 'G-10PG1VLXRR',
+const firebaseConfig = {
+  apiKey: 'AIzaSyAEsNAp_ayER5Oh5_H0u6W0pZwDX3S_p50',
+  authDomain: 'capital-trust-finance.firebaseapp.com',
+  projectId: 'capital-trust-finance',
+  storageBucket: 'capital-trust-finance.appspot.com',
+  messagingSenderId: '304916520502',
+  appId: '1:304916520502:web:3c61fb5857d7368de80297',
+  measurementId: 'G-L9GVZ315KJ',
 };
 
 // Initialize Firebase

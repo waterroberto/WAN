@@ -1,5 +1,5 @@
 {
-  "name": "incrypto-finance",
+  "name": "Capital Trust Finance Bank",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -11,6 +11,7 @@
   "dependencies": {
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",
+    "@mui/base": "^5.0.0-beta.29",
     "@mui/icons-material": "^5.10.16",
     "@mui/material": "^5.10.17",
     "aos": "^2.3.4",

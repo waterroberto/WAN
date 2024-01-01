@@ -16,7 +16,7 @@ const Transactions = ({
         my: 4,
         position: 'relative',
         width: '100%',
-        background: 'var(--dark)',
+        background: 'var(--mid)',
 
         '&:before': {
           content: '""',
@@ -67,8 +67,8 @@ const Transactions = ({
                     )}
                     <Typography
                       sx={{
-                        fontWeight: 700,
-                        color: 'var(--mid)',
+                        fontWeight: 600,
+                        color: 'var(--dark)',
                       }}
                     >
                       {currency}
@@ -79,7 +79,7 @@ const Transactions = ({
                   <Typography
                     sx={{
                       fontWeight: 700,
-                      color: 'var(--mid)',
+                      color: 'var(--dark)',
                       textAlign: 'right',
                     }}
                   >
@@ -104,7 +104,7 @@ const Transactions = ({
                       component='span'
                       sx={{
                         textTransform: 'uppercase',
-                        color: 'var(--mid)',
+                        color: 'var(--dark)',
                         fontSize: '12px',
                       }}
                     >
@@ -112,7 +112,7 @@ const Transactions = ({
                     </Typography>
                   </Typography>
                 </Stack>
-                <Divider color='#555' />
+                <Divider color='#eee' />
               </>
             ))}
         </Box>

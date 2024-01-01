@@ -4,9 +4,9 @@ import { MdLooks3, MdLooksOne, MdLooksTwo } from 'react-icons/md';
 const steps = [
   {
     icon: <MdLooksOne />,
-    title: 'Account Creation',
+    title: 'Registration',
     content:
-      'We make account creation easy by summarizing application to simple steps.',
+      'Account creation is easy, we summarize the application process to simple steps.',
   },
   {
     icon: <MdLooksTwo />,
@@ -16,8 +16,9 @@ const steps = [
   },
   {
     icon: <MdLooks3 />,
-    title: 'Online Banking',
-    content: 'Enjoy our amazing services we offer, 24/7 customer support, etc.',
+    title: 'Mobile Banking',
+    content:
+      'Enjoy the multiple amazing features we have to offer, 24/7 customer support, etc.',
   },
 ];
 
@@ -35,7 +36,7 @@ const HowItWorks = () => {
             className='flex flex-col items-center justify-center gap-4 p-6 text-gray-200 mx-auto max-w-sm'
             data-aos='fade-up'
           >
-            <span className='text-green-500 text-6xl'>{step.icon}</span>
+            <span className='text-primary text-6xl'>{step.icon}</span>
             <p className='text-center font-extrabold text-xl'>{step.title}</p>
             <p className='text-center text-gray-100 font-light'>
               {step.content}
