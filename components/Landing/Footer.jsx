@@ -6,38 +6,44 @@ import { FiPhoneCall } from 'react-icons/fi';
 import { MdOutlineMailOutline } from 'react-icons/md';
 import { Layout, NewsLetter } from '../';
 import logo from '../../public/logo.png';
+import manager from '../../public/manager.png';
 
 const Footer = () => {
   return (
     <div className='mt-24 bg-black text-gray-200 p-4'>
-      <div className='rounded-md -mt-16 max-w-[768px] mx-auto bg-primary-dark padding border-b flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-8 text-gray-50'>
+      <div className='rounded-md -mt-16 max-w-3xl mx-auto bg-primary-dark p-4 border-b flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-8 text-gray-50'>
         {/*  */}
         <div className='flex items-center gap-2'>
           <span className='p-2 w-16 h-16 bg-secondary flex items-center justify-center rounded-lg'>
             <MdOutlineMailOutline className='text-2xl' />
           </span>
           <div>
-            <p className='text-xl font-extrabold'>Email Us</p>
+            <p className='text-lg font-extrabold'>Email Us</p>
             <span className='text-sm font-light'>
               support@capitaltrustfinance.online
             </span>
           </div>
         </div>
         {/*  */}
-        {/* <div className='flex items-center gap-2'>
-          <span className='p-2 w-16 h-16 bg-secondary flex items-center justify-center rounded-lg'>
-            <FiPhoneCall className='text-2xl' />
-          </span>
-          <div>
-            <p className='text-xl font-extrabold'>Call Us</p>
-            <span className='text-sm font-light'>+1 458-796-8314</span>
-          </div>
-        </div> */}
         <div className='h-4 w-[1px] bg-gray-100 hidden sm:block'></div>
         {/*  */}
+        <div className='flex items-center gap-2 mt-4 sm:mt-0'>
+          <Image
+            src={manager.src}
+            alt='account manager at capital trust finance'
+            className='w-16 h-16 '
+            width={100}
+            height={100}
+          />
+          <div>
+            <span className='text-[12px] font-light uppercase'>
+              Account Manage on Signal
+            </span>
+            <p className='text-lg font-extrabold'>Angelina Montello</p>
+            <span className='text-sm font-light'>+1 (614) 379-3692</span>
+          </div>
+        </div>
       </div>
-
-      {/* <NewsLetter /> */}
       <Layout>
         <Grid
           container
@@ -134,7 +140,6 @@ const Footer = () => {
               }}
             >
               <Typography>support@capitaltrustfinance.online</Typography>
-              <Typography>+1 458-796-8314</Typography>
             </Box>
           </Grid>
         </Grid>
