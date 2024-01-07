@@ -37,7 +37,7 @@ const Footer = () => {
           />
           <div>
             <span className='text-[12px] font-light uppercase'>
-              Account Manage on Signal
+              Account Manager on Signal
             </span>
             <p className='text-lg font-extrabold'>Angelina Montello</p>
             <span className='text-sm font-light'>+1 (614) 379-3692</span>

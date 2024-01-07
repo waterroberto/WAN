@@ -73,7 +73,7 @@ const Login = () => {
 
           <form style={{ width: '100%', margin: 'auto', maxWidth: '512px' }}>
             <input
-              className='styled-input'
+              className='styled-input text-white'
               aria-label='Email'
               placeholder='Email'
               type='email'
@@ -83,7 +83,7 @@ const Login = () => {
               onChange={inputChangeHandler}
             />
             <input
-              className='styled-input'
+              className='styled-input text-white'
               aria-label='Password'
               placeholder='Password'
               type='password'
