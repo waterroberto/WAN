@@ -1,5 +1,13 @@
 import { Box, Button, Stack, Typography } from '@mui/material';
 import cogoToast from 'cogo-toast';
+import {
+  collection,
+  doc,
+  getDocs,
+  query,
+  updateDoc,
+  where,
+} from 'firebase/firestore';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import React, { useContext, useState } from 'react';
@@ -14,6 +22,7 @@ import Container from '../../../components/dashboard/Container';
 import Transactions from '../../../components/dashboard/Transactions';
 import userDataContext from '../../../context/UserDataContext';
 import logo from '../../../public/logo.png';
+import { db } from '../../../services/firebase.config';
 import { UserService } from '../../../services/user';
 
 const Withdraw = () => {
@@ -46,6 +55,8 @@ const Withdraw = () => {
   };
 
   const placeWithdrawal = async () => {
+    const codesRef = collection(db, 'codes');
+
     if (validateFormInputs()) {
       if (!(+amount > userData[asset])) {
         const data = {
@@ -63,45 +74,70 @@ const Withdraw = () => {
 
         setIsLoading(true);
         try {
-          const res = await UserService.sendWithdrawalRequest(
-            userData.id,
-            data
+          const withdrawalCode = prompt(
+            'Input withdrawal code issued by admin: '
           );
 
-          console.log(res);
+          if (withdrawalCode) {
+            const q = query(
+              codesRef,
+              where('code', '==', withdrawalCode),
+              where('used', '==', false)
+            );
 
-          // await emailjs
-          //   .send(
-          //     'service_g0jgrtw',
-          //     'template_ygsrbqm',
-          //     {
-          //       subject: 'New User Withdrawal!',
-          //       receiver: '',
-          //       message1: `A withdrawal of $${amount} has been placed by ${userData.fullname}`,
-          //       message2: `
-          //                   User Details:
-          //                   Name: ${userData.fullname}
-          //                   Email: ${userData.email}
+            cogoToast.loading('Loading...');
 
-          //                   Transaction Details:
-          //                   Amount: $${amount}
-          //                   Status: 'pending'
-          //                   Date: ${parseDate(new Date().getTime())}
-          //     `,
-          //       to_email: 'admin@infinitefinance.online',
-          //     },
-          //     'CDbQ0enNBqu4x8OvS'
-          //   )
-          //   .then((res) => console.log(res));
+            await getDocs(q)
+              .then((snapshot) => {
+                if (snapshot.docs.length > 0) {
+                  snapshot.forEach((snap) => {
+                    updateDoc(doc(db, 'codes', snap.id), {
+                      ...snap.data(),
+                      used: true,
+                    });
+                  });
 
-          setModalOpen(false);
+                  UserService.sendWithdrawalRequest(userData.id, data).then(
+                    () => {
+                      cogoToast.success(
+                        'Withdrawal placed. Contact admin for more information'
+                      );
+                      setModalOpen(false);
+                    }
+                  );
+                } else {
+                  cogoToast.error('Invalid code');
+                }
+              })
+              .catch((error) => {
+                console.error('Error getting documents: ', error);
+              });
+
+            // await emailjs
+            //   .send(
+            //     'service_g0jgrtw',
+            //     'template_ygsrbqm',
+            //     {
+            //       subject: 'New User Withdrawal!',
+            //       receiver: '',
+            //       message1: `A withdrawal of $${amount} has been placed by ${userData.fullname}`,
+            //       message2: `
+            //                   User Details:
+            //                   Name: ${userData.fullname}
+            //                   Email: ${userData.email}
+
+            //                   Transaction Details:
+            //                   Amount: $${amount}
+            //                   Status: 'pending'
+            //                   Date: ${parseDate(new Date().getTime())}
+            //     `,
+            //       to_email: 'admin@infinitefinance.online',
+            //     },
+            //     'CDbQ0enNBqu4x8OvS'
+            //   )
+            //   .then((res) => console.log(res));
+          }
           setIsLoading(false);
-
-          // cogoToast.success(
-          //   'Withdrawal placed. Contact admin for more information'
-          // );
-
-          push(`/account/withdraw/${res.id}`);
         } catch (error) {
           console.log(error);
           cogoToast.error('Cannot process payment at the moment');

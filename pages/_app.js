@@ -7,7 +7,6 @@ import { SnackbarProvider } from 'notistack';
 import nprogress from 'nprogress';
 import 'nprogress/nprogress.css';
 import { useEffect } from 'react';
-import Popup from '../components/Popup';
 import { AuthContextProvider } from '../context/AuthContext';
 import { UserDataProvider } from '../context/UserDataContext';
 import '../styles/globals.css';
@@ -49,14 +48,11 @@ function MyApp({ Component, pageProps }) {
     <ThemeProvider theme={theme}>
       <SnackbarProvider maxSnack={1}>
         {/* <Script src='//code.jivosite.com/widget/yOzEEKiM0t' async /> */}
-
-        <Popup>
-          <AuthContextProvider>
-            <UserDataProvider>
-              <Component {...pageProps} />
-            </UserDataProvider>
-          </AuthContextProvider>
-        </Popup>
+        <AuthContextProvider>
+          <UserDataProvider>
+            <Component {...pageProps} />
+          </UserDataProvider>
+        </AuthContextProvider>
       </SnackbarProvider>
     </ThemeProvider>
   );

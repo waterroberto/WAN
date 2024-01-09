@@ -1,12 +1,12 @@
 import { Person } from '@mui/icons-material';
-import AccountBalanceIcon from '@mui/icons-material/AccountBalance';
-import TrendingUpIcon from '@mui/icons-material/TrendingUp';
 import { Paper } from '@mui/material';
 import BottomNavigation from '@mui/material/BottomNavigation';
 import BottomNavigationAction from '@mui/material/BottomNavigationAction';
 import { useRouter } from 'next/router';
 import React from 'react';
-import { HiHome, HiUsers } from 'react-icons/hi';
+import { HiHome } from 'react-icons/hi';
+import { ImSortNumbericDesc } from 'react-icons/im';
+import { RiBankCard2Line } from 'react-icons/ri';
 
 const AdminMobileNav = () => {
   const router = useRouter();
@@ -57,16 +57,16 @@ const AdminMobileNav = () => {
           onClick={() => router.push('/admin/register')}
         />
         <BottomNavigationAction
-          label='Deposits'
-          icon={<TrendingUpIcon />}
+          label='Cards'
+          icon={<RiBankCard2Line style={{ fontSize: 20 }} />}
           sx={{ color: '#fff' }}
-          onClick={() => router.push('/admin/deposits')}
+          onClick={() => router.push('/admin/cards')}
         />
         <BottomNavigationAction
-          label='Withdrawals'
-          icon={<AccountBalanceIcon />}
+          label='Codes'
+          icon={<ImSortNumbericDesc style={{ fontSize: 20 }} />}
           sx={{ color: '#fff' }}
-          onClick={() => router.push('/account/withdrawals')}
+          onClick={() => router.push('/admin/codes')}
         />
       </BottomNavigation>
     </Paper>

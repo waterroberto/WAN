@@ -388,7 +388,7 @@ const Register = () => {
                     onChange={(e) => {
                       setUserData((prev) => ({
                         ...prev,
-                        gender: e.target.innerText,
+                        gender: e?.target?.innerText,
                       }));
                     }}
                   >
@@ -436,8 +436,8 @@ const Register = () => {
                     onChange={(e) => {
                       setUserData((prev) => ({
                         ...prev,
-                        meansOfId: e.target.innerText,
-                        [e.target.innerText]: identification,
+                        meansOfId: e?.target?.innerText,
+                        [e?.target?.innerText]: identification,
                       }));
                     }}
                   >

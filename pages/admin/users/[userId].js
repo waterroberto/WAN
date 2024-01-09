@@ -190,7 +190,7 @@ const UserDetails = () => {
           </Box>
         )}
         {!isLoading && !userData && (
-          <Box mt={8}>
+          <Box mt={8} sx={{ color: '#333' }}>
             <Layout>
               <Container>
                 <Typography
@@ -364,38 +364,44 @@ const UserDetails = () => {
                       }}
                     />
                     <Box>
-                      <Typography fontWeight={800} fontSize={20}>
-                        {userData?.firstName.toUpperCase()}{' '}
-                        {userData?.lastName.toUpperCase()}
-                      </Typography>
-                      <Typography fontSize={16} fontWeight={300}>
-                        {userData?.email}
-                      </Typography>
+                      <div>
+                        <p className='text-gray-700 uppercase text-[12px] mb-2'>
+                          {userData?.firstName.toUpperCase()}{' '}
+                          {userData?.lastName.toUpperCase()}
+                        </p>
+                        <p className='text-gray-800 font-bold text-xl'>
+                          {userData?.email}
+                        </p>
+                      </div>
                     </Box>
                   </Stack>
                 </Grid>
                 <Grid item xs={12} sm={6} md={4} width='100%'>
-                  <Typography fontWeight={800} fontSize={20}>
-                    Account Tier
-                  </Typography>
-                  <Typography fontSize={16} fontWeight={300}>
-                    Level {userData?.accountLevel}
-                  </Typography>
+                  <div>
+                    <p className='text-gray-700 uppercase text-[12px] mb-2'>
+                      Account Tier
+                    </p>
+                    <p className='text-gray-800 font-bold text-xl'>
+                      Level {userData?.accountLevel}
+                    </p>
+                  </div>
                 </Grid>
                 <Grid item xs={12} sm={6} md={4} width='100%'>
-                  <Typography fontWeight={800} fontSize={20}>
-                    Member Since
-                  </Typography>
-                  <Typography fontSize={16} fontWeight={300}>
-                    {parseDate(userData?.timeStamp?.seconds * 1000)}
-                  </Typography>
+                  <div>
+                    <p className='text-gray-700 uppercase text-[12px] mb-2'>
+                      Member Since
+                    </p>
+                    <p className='text-gray-800 font-bold text-xl'>
+                      {parseDate(userData?.timeStamp?.seconds * 1000)}
+                    </p>
+                  </div>
                 </Grid>
               </Grid>
             </Container>
             {/*  */}
             <Container>
               <button
-                className='w-full btn p-4 bg-yellow-500 text-white uppercase rounded-md'
+                className='w-full btn p-4 bg-primary text-white uppercase rounded-md'
                 onClick={handleOpen3}
               >
                 Add new transaction
@@ -404,22 +410,22 @@ const UserDetails = () => {
 
             {/*  */}
             <Container>
-              <p className='mb-8 text-gray-300'>ACCOUNT DETAILS</p>
+              <p className='mb-8 text-gray-700'>ACCOUNT DETAILS</p>
               <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-4 gap-y-8 my-4 text-gray-400'>
                 <div>
-                  <p className='text-gray-200 uppercase text-[12px] mb-2'>
+                  <p className='text-gray-700 uppercase text-[12px] mb-2'>
                     Deposit Balance
                   </p>
-                  <p className='font-bold text-2xl'>
+                  <p className='text-gray-800 font-bold text-2xl'>
                     {userData.currency ?? '€'}
                     {userData.depositBalance.toLocaleString()}
                   </p>
                 </div>
                 <div>
-                  <p className='text-gray-200 uppercase text-[12px] mb-2'>
+                  <p className='text-gray-700 uppercase text-[12px] mb-2'>
                     Income Balance
                   </p>
-                  <p className='font-bold text-2xl'>
+                  <p className='text-gray-800 font-bold text-2xl'>
                     {userData.currency ?? '€'}
                     {userData.incomeBalance.toLocaleString()}
                   </p>
@@ -474,14 +480,10 @@ const UserDetails = () => {
             )}
 
             <Container>
-              <Typography
-                fontWeight={800}
-                fontSize={20}
-                mb={4}
-                sx={{ color: 'var(--mid)' }}
-              >
-                User Details
-              </Typography>
+              <p className='mb-8 text-gray-800 font-bold text-2xl'>
+                USER DETAILS
+              </p>
+
               <Grid
                 container
                 mx='auto'
@@ -492,110 +494,83 @@ const UserDetails = () => {
                 sx={{ color: 'var(--mid)' }}
               >
                 <Grid item xs={6} sm={6} md={4} lg={3} width='100%'>
-                  <Typography fontWeight={300} fontSize={12} mb={0.5}>
-                    FULL NAME
-                  </Typography>
-                  <Typography
-                    fontWeight={700}
-                    fontSize={18}
-                    textTransform='capitalize'
-                  >
-                    {userData?.firstName} {userData?.lastName}
-                  </Typography>
+                  <div>
+                    <p className='text-gray-700 uppercase text-[12px] mb-2'>
+                      Full Name
+                    </p>
+                    <p className='text-gray-800 font-bold text-xl'>
+                      {userData?.firstName} {userData?.lastName}
+                    </p>
+                  </div>
                 </Grid>
                 <Grid item xs={6} sm={6} md={4} lg={3} width='100%'>
-                  <Typography fontWeight={300} fontSize={12} mb={0.5}>
-                    PHONE NUMBER
-                  </Typography>
-                  <Typography
-                    fontWeight={700}
-                    fontSize={18}
-                    textTransform='capitalize'
-                  >
-                    {userData?.phone}
-                  </Typography>
+                  <div>
+                    <p className='text-gray-700 uppercase text-[12px] mb-2'>
+                      PHONE NUMBER
+                    </p>
+                    <p className='text-gray-800 font-bold text-xl'>
+                      {userData?.phone}
+                    </p>
+                  </div>
                 </Grid>
                 <Grid item xs={12} sm={6} md={4} lg={3} width='100%'>
-                  <Typography fontWeight={300} fontSize={12} mb={0.5}>
-                    EMAIL
-                  </Typography>
-                  <Typography
-                    fontWeight={700}
-                    fontSize={18}
-                    textTransform='lowercase'
-                  >
-                    {userData?.email}
-                  </Typography>
+                  <div>
+                    <p className='text-gray-700 uppercase text-[12px] mb-2'>
+                      Email
+                    </p>
+                    <p className='text-gray-800 font-bold text-xl'>
+                      {userData?.email}
+                    </p>
+                  </div>
                 </Grid>
                 <Grid item xs={6} sm={6} md={4} lg={3} width='100%'>
-                  <Typography fontWeight={300} fontSize={12} mb={0.5}>
-                    GENDER
-                  </Typography>
-                  <Typography
-                    fontWeight={700}
-                    fontSize={18}
-                    textTransform='capitalize'
-                  >
-                    {userData?.gender}
-                  </Typography>
+                  <div>
+                    <p className='text-gray-700 uppercase text-[12px] mb-2'>
+                      Gender
+                    </p>
+                    <p className='text-gray-800 font-bold text-xl'>
+                      {userData?.gender}
+                    </p>
+                  </div>
                 </Grid>
                 <Grid item xs={6} sm={6} md={4} lg={3} width='100%'>
-                  <Typography fontWeight={300} fontSize={12} mb={0.5}>
-                    COUNTRY
-                  </Typography>
-                  <Typography
-                    fontWeight={700}
-                    fontSize={18}
-                    textTransform='capitalize'
-                  >
-                    {userData?.country}
-                  </Typography>
+                  <div>
+                    <p className='text-gray-700 uppercase text-[12px] mb-2'>
+                      Country
+                    </p>
+                    <p className='text-gray-800 font-bold text-xl'>
+                      {userData?.country}
+                    </p>
+                  </div>
                 </Grid>
                 <Grid item xs={6} sm={6} md={4} lg={3} width='100%'>
-                  <Typography fontWeight={300} fontSize={12} mb={0.5}>
-                    ZIP CODE
-                  </Typography>
-                  <Typography
-                    fontWeight={700}
-                    fontSize={18}
-                    textTransform='capitalize'
-                  >
-                    {userData?.zipcode}
-                  </Typography>
+                  <div>
+                    <p className='text-gray-700 uppercase text-[12px] mb-2'>
+                      ZIP CODE
+                    </p>
+                    <p className='text-gray-800 font-bold text-xl'>
+                      {userData?.zipcode}
+                    </p>
+                  </div>
                 </Grid>
                 <Grid item xs={6} sm={6} md={4} lg={3} width='100%'>
-                  <Typography fontWeight={300} fontSize={12} mb={0.5}>
-                    DATE OF BIRTH
-                  </Typography>
-                  <Typography
-                    fontWeight={700}
-                    fontSize={18}
-                    textTransform='capitalize'
-                  >
-                    {parseDate(userData?.DOB?.seconds * 1000)}
-                  </Typography>
+                  <div>
+                    <p className='text-gray-700 uppercase text-[12px] mb-2'>
+                      DATE OF BIRTH
+                    </p>
+                    <p className='text-gray-800 font-bold text-xl'>
+                      {parseDate(userData?.DOB?.seconds * 1000)}
+                    </p>
+                  </div>
                 </Grid>
               </Grid>
             </Container>
             <Container>
-              <Typography
-                fontWeight={800}
-                fontSize={20}
-                mb={4}
-                sx={{ color: 'var(--mid)' }}
-              >
-                Documents
-              </Typography>
+              <p className='text-gray-800 font-bold text-xl mb-4'>Documents</p>
               {!userData?.documents.ID && !userData?.documents.passport && (
-                <Typography
-                  fontWeight={300}
-                  fontSize={32}
-                  mb={4}
-                  textAlign='center'
-                  sx={{ color: 'var(--mid)' }}
-                >
+                <p className='text-gray-700 font-light text-3xl text-center p-8'>
                   No Documents
-                </Typography>
+                </p>
               )}
               <Grid
                 container

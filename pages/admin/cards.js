@@ -129,19 +129,21 @@ const Cards = () => {
                         />
                         {/*  */}
                         <div className='flex items-center justify-between my-3'>
-                          <p className='text-gray-300 font-light'>
+                          <p className='text-gray-800 font-light'>
                             Date Applied:
                           </p>
-                          <p className='capitalize'>{parseDate(card?.date)}</p>
+                          <p className='capitalize text-gray-800'>
+                            {parseDate(card?.date)}
+                          </p>
                         </div>
                         {/*  */}
                         <div className='flex items-center justify-between my-3'>
-                          <p className='text-gray-300 font-light'>Card Type:</p>
+                          <p className='text-gray-800 font-light'>Card Type:</p>
                           <p className='capitalize'>{card?.card_name}</p>
                         </div>
                         {/*  */}
                         <div className='flex items-center justify-between my-3'>
-                          <p className='text-gray-300 font-light'>
+                          <p className='text-gray-800 font-light'>
                             Activation Status:
                           </p>
                           <p
@@ -159,7 +161,7 @@ const Cards = () => {
                         {/*  */}
 
                         <div className='flex items-center justify-between my-3'>
-                          <p className='text-gray-300 font-light'>
+                          <p className='text-gray-800 font-light'>
                             Activation Fee:
                           </p>
                           <p className='text-teal-500 capitalize'>
@@ -168,28 +170,28 @@ const Cards = () => {
                         </div>
                         {/*  */}
                         <div className='flex items-center justify-between my-3'>
-                          <p className='text-gray-300 font-light'>User Name</p>
+                          <p className='text-gray-800 font-light'>User Name</p>
                           <p className='text-teal-500 capitalize'>
                             {card?.user_name}
                           </p>
                         </div>
                         {/*  */}
                         <div className='flex items-center justify-between my-3'>
-                          <p className='text-gray-300 font-light'>User Email</p>
+                          <p className='text-gray-800 font-light'>User Email</p>
                           <p className='text-teal-500 font-light text-sm'>
                             {card?.user_email}
                           </p>
                         </div>
                         {/*  */}
                         <div className='flex items-center justify-between my-3'>
-                          <p className='text-gray-300 font-light'>User ID</p>
+                          <p className='text-gray-800 font-light'>User ID</p>
                           <p className='text-teal-500 font-light text-sm'>
                             {card?.user_id}
                           </p>
                         </div>
                         {/*  */}
                         <div className='flex items-center justify-between my-3'>
-                          <p className='text-gray-300 font-light'>
+                          <p className='text-gray-800 font-light'>
                             Card Number
                           </p>
                           <p className='text-teal-500 font-light'>
@@ -198,7 +200,7 @@ const Cards = () => {
                         </div>
                         {/*  */}
                         <div className='flex items-center justify-between my-3'>
-                          <p className='text-gray-300 font-light'>
+                          <p className='text-gray-800 font-light'>
                             Expiry Date
                           </p>
                           <p className='text-teal-500 font-light'>
@@ -207,7 +209,7 @@ const Cards = () => {
                         </div>
                         {/*  */}
                         <div className='flex items-center justify-between my-3'>
-                          <p className='text-gray-300 font-light'>CVV</p>
+                          <p className='text-gray-800 font-light'>CVV</p>
                           <p className='text-teal-500 font-light'>
                             {card?.cvv}
                           </p>
@@ -237,7 +239,7 @@ const Cards = () => {
               </div>
             ) : (
               <Container>
-                <p className='text-2xl'>No cards</p>
+                <p className='text-2xl text-gray-800'>No cards</p>
               </Container>
             )}
           </Box>
