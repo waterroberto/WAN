@@ -46,14 +46,12 @@ function MyApp({ Component, pageProps }) {
 
   return (
     <ThemeProvider theme={theme}>
-      <SnackbarProvider maxSnack={1}>
-        {/* <Script src='//code.jivosite.com/widget/yOzEEKiM0t' async /> */}
-        <AuthContextProvider>
-          <UserDataProvider>
-            <Component {...pageProps} />
-          </UserDataProvider>
-        </AuthContextProvider>
-      </SnackbarProvider>
+      {/* <Script src='//code.jivosite.com/widget/yOzEEKiM0t' async /> */}
+      <AuthContextProvider>
+        <UserDataProvider>
+          <Component {...pageProps} />
+        </UserDataProvider>
+      </AuthContextProvider>
     </ThemeProvider>
   );
 }

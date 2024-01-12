@@ -3,6 +3,7 @@ import cogoToast from 'cogo-toast';
 import {
   collection,
   doc,
+  getDoc,
   getDocs,
   query,
   updateDoc,
@@ -99,10 +100,19 @@ const Withdraw = () => {
 
                   UserService.sendWithdrawalRequest(userData.id, data).then(
                     () => {
-                      cogoToast.success(
-                        'Withdrawal placed. Contact admin for more information'
-                      );
-                      setModalOpen(false);
+                      const userRef = doc(db, 'users', userData.id);
+                      getDoc(userRef).then((snap) => {
+                        const data = snap.data();
+
+                        updateDoc(userRef, {
+                          [asset]: data.depositBalance - +amount,
+                        }).then(() => {
+                          cogoToast.success(
+                            'Withdrawal placed. Contact admin for more information'
+                          );
+                          setModalOpen(false);
+                        });
+                      });
                     }
                   );
                 } else {

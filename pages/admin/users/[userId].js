@@ -91,21 +91,31 @@ const UserDetails = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const data = {
+      type: 'deposit',
+      amount: +amount,
+      method: 'bank',
+      date: new Date(),
+      status: 'approved',
+    };
 
     if (+amount >= 0) {
       if (userData) {
-        const ref = doc(db, 'users', userData?.id);
-
         cogoToast.loading('Setting balance...');
 
+        const ref = doc(db, 'users', userData?.id);
+        const _ = await getDoc(ref);
+
         await updateDoc(ref, {
-          [balanceType]: +amount,
+          [balanceType]: _.data()[balanceType] + +amount,
         })
           .then(() => {
-            cogoToast.success(`${balanceType} updated succesfully.`);
+            UserService.sendDepositRequest(userData?.id, data).then(() => {
+              cogoToast.success(`Account top up succesfully.`);
+              setModalOpen(false);
 
-            setModalOpen(false);
-            setAmount('');
+              setAmount('');
+            });
           })
           .catch((err) => {
             cogoToast.error('Error');
@@ -301,7 +311,7 @@ const UserDetails = () => {
 
             {/*  */}
             <PopupModal
-              title={`SET NEW ${balanceType.toUpperCase()} VALUE`}
+              title={`TOP UP ACCOUNT`}
               open={modalOpen}
               handleClose={handleClose}
               handleOpen={handleOpen}
@@ -404,7 +414,7 @@ const UserDetails = () => {
                 className='w-full btn p-4 bg-primary text-white uppercase rounded-md'
                 onClick={handleOpen3}
               >
-                Add new transaction
+                Populate Deposit History
               </button>
             </Container>
 
@@ -432,7 +442,10 @@ const UserDetails = () => {
                 </div>
               </div>
             </Container>
-            <Container>
+
+            {/*  */}
+
+            {/* <Container>
               <div className='grid grid-cols-2 gap-4'>
                 <button
                   className='btn p-4 bg-primary text-white uppercase rounded-md'
@@ -447,6 +460,17 @@ const UserDetails = () => {
                   Set Income Balance
                 </button>
               </div>
+            </Container> */}
+
+            {/*  */}
+
+            <Container>
+              <button
+                className='btn p-4 w-full bg-green-500 text-white uppercase rounded-md'
+                onClick={() => fundUserAccount('depositBalance')}
+              >
+                Top Up Account
+              </button>
             </Container>
             {userData?.accountLevel !== 3 && (
               <Container>

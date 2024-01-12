@@ -13,7 +13,7 @@ const TransactionHistory = ({
 }) => {
   const { userData } = useContext(userDataContext);
 
-  const processTransaction = async (type, status, id) => {
+  const processTransaction = async (type, status, id, amount) => {
     const collectionType =
       type === 'deposit' ? 'depositRequests' : 'withdrawalRequests';
 
@@ -41,6 +41,10 @@ const TransactionHistory = ({
 
                 updateDoc(userRef, {
                   [index]: [...filtered, updated],
+                  depositBalance:
+                    status === 'declined'
+                      ? res.data().depositBalance + amount
+                      : res.data().depositBalance,
                 })
                   .then(() => {
                     updateDoc(docRef, {
@@ -182,7 +186,8 @@ const TransactionHistory = ({
                                     processTransaction(
                                       transaction.type,
                                       'declined',
-                                      transaction.id
+                                      transaction.id,
+                                      transaction.amount
                                     )
                                   }
                                 >
