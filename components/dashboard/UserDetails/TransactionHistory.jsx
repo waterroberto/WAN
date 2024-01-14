@@ -1,9 +1,11 @@
+import { Divider, Stack, Typography } from '@mui/material';
 import cogoToast from 'cogo-toast';
 import { doc, getDoc, updateDoc } from 'firebase/firestore';
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import userDataContext from '../../../context/UserDataContext';
 import { db } from '../../../services/firebase.config';
 import parseDate from '../../../utils/parseDate';
+import PopupModal from '../../Global/Modal';
 
 const TransactionHistory = ({
   transactions,
@@ -11,6 +13,12 @@ const TransactionHistory = ({
   userId = '',
   currency,
 }) => {
+  const [modalOpen, setModalOpen] = useState(true);
+  const [selectedTransaction, setSelectedTransaction] = useState(null);
+
+  const openModal = () => setModalOpen(true);
+  const closeModal = () => setModalOpen(false);
+
   const { userData } = useContext(userDataContext);
 
   const processTransaction = async (type, status, id, amount) => {
@@ -71,6 +79,255 @@ const TransactionHistory = ({
 
   return (
     <div className='mt-8 flex flex-col mb-8'>
+      {/*  */}
+      <PopupModal
+        title='Transaction Details'
+        open={modalOpen && selectedTransaction}
+        handleClose={closeModal}
+      >
+        {selectedTransaction && (
+          <>
+            <Stack
+              direction='row'
+              alignItems='center'
+              justifyContent='space-between'
+              px={1}
+              py={1}
+            >
+              <Typography
+                sx={{
+                  color: 'var(--mid)',
+                  fontSize: '14px',
+                }}
+              >
+                Transaction Type
+              </Typography>
+
+              <Typography
+                sx={{
+                  textTransform: 'capitalize',
+                  color: '#fff',
+                  fontSize: '14px',
+                }}
+              >
+                {selectedTransaction?.type}
+              </Typography>
+            </Stack>
+            <Divider color='#555' />
+            {/*  */}
+            <Stack
+              direction='row'
+              alignItems='center'
+              justifyContent='space-between'
+              px={1}
+              py={1}
+            >
+              <Typography
+                sx={{
+                  color: 'var(--mid)',
+                  fontSize: '14px',
+                }}
+              >
+                Transaction ID
+              </Typography>
+
+              <Typography
+                sx={{
+                  textTransform: 'capitalize',
+                  color: '#fff',
+                  fontSize: '14px',
+                }}
+              >
+                {selectedTransaction?.id}
+              </Typography>
+            </Stack>
+            <Divider color='#555' />
+            {/*  */}
+            <Stack
+              direction='row'
+              alignItems='center'
+              justifyContent='space-between'
+              px={1}
+              py={1}
+            >
+              <Typography
+                sx={{
+                  color: 'var(--mid)',
+                  fontSize: '14px',
+                }}
+              >
+                Transaction Status
+              </Typography>
+
+              <Typography
+                sx={{
+                  textTransform: 'capitalize',
+                  color: '#fff',
+                  fontSize: '14px',
+                  color:
+                    selectedTransaction.status === 'approved'
+                      ? 'var(--green)'
+                      : selectedTransaction.status === 'declined'
+                      ? 'var(--red)'
+                      : 'var(--secondary)',
+                }}
+              >
+                {selectedTransaction?.status}
+              </Typography>
+            </Stack>
+            <Divider color='#555' />
+            {/*  */}
+            <Stack
+              direction='row'
+              alignItems='center'
+              justifyContent='space-between'
+              px={1}
+              py={1}
+            >
+              <Typography
+                sx={{
+                  color: 'var(--mid)',
+                  fontSize: '14px',
+                }}
+              >
+                Amount
+              </Typography>
+
+              <Typography
+                sx={{
+                  textTransform: 'capitalize',
+                  color: '#fff',
+                  fontSize: '14px',
+                }}
+              >
+                {currency}
+                {selectedTransaction?.amount.toLocaleString()}
+              </Typography>
+            </Stack>
+            <Divider color='#555' />
+            {/*  */}
+            <Stack
+              direction='row'
+              alignItems='center'
+              justifyContent='space-between'
+              px={1}
+              py={1}
+            >
+              <Typography
+                sx={{
+                  color: 'var(--mid)',
+                  fontSize: '14px',
+                }}
+              >
+                Date
+              </Typography>
+
+              <Typography
+                sx={{
+                  textTransform: 'capitalize',
+                  color: '#fff',
+                  fontSize: '14px',
+                }}
+              >
+                {parseDate(selectedTransaction?.date?.seconds * 1000)}
+              </Typography>
+            </Stack>
+            <Divider color='#555' />
+            {/*  */}
+
+            <>
+              {selectedTransaction?.type === 'withdraw' && (
+                <>
+                  <Stack
+                    direction='row'
+                    alignItems='center'
+                    justifyContent='space-between'
+                    px={1}
+                    py={1}
+                  >
+                    <Typography
+                      sx={{
+                        color: 'var(--mid)',
+                        fontSize: '14px',
+                      }}
+                    >
+                      Account Number
+                    </Typography>
+
+                    <Typography
+                      sx={{
+                        textTransform: 'capitalize',
+                        color: '#fff',
+                        fontSize: '14px',
+                      }}
+                    >
+                      {selectedTransaction?.accountNumber}
+                    </Typography>
+                  </Stack>
+                  <Divider color='#555' />
+                  {/*  */}
+                  <Stack
+                    direction='row'
+                    alignItems='center'
+                    justifyContent='space-between'
+                    px={1}
+                    py={1}
+                  >
+                    <Typography
+                      sx={{
+                        color: 'var(--mid)',
+                        fontSize: '14px',
+                      }}
+                    >
+                      Account Holder Name
+                    </Typography>
+
+                    <Typography
+                      sx={{
+                        textTransform: 'capitalize',
+                        color: '#fff',
+                        fontSize: '14px',
+                      }}
+                    >
+                      {selectedTransaction?.accountHolder}
+                    </Typography>
+                  </Stack>
+                  <Divider color='#555' />
+                  {/*  */}
+                  <Stack
+                    direction='row'
+                    alignItems='center'
+                    justifyContent='space-between'
+                    px={1}
+                    py={1}
+                  >
+                    <Typography
+                      sx={{
+                        color: 'var(--mid)',
+                        fontSize: '14px',
+                      }}
+                    >
+                      Bank Name
+                    </Typography>
+
+                    <Typography
+                      sx={{
+                        textTransform: 'capitalize',
+                        color: '#fff',
+                        fontSize: '14px',
+                      }}
+                    >
+                      {selectedTransaction?.bankName}
+                    </Typography>
+                  </Stack>
+                  <Divider color='#555' />
+                </>
+              )}
+            </>
+          </>
+        )}
+      </PopupModal>
+      {/*  */}
       <div className='-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8'>
         <div className='py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8'>
           <div className='overflow-hidden border-b border-gray-300'>
@@ -128,6 +385,10 @@ const TransactionHistory = ({
                         className={`capitalize text-sm text-gray-300 ${
                           i % 2 === 0 ? 'bg-gray-700' : 'bg-gray-800'
                         }`}
+                        onClick={() => {
+                          openModal();
+                          setSelectedTransaction(transaction);
+                        }}
                       >
                         <td
                           className={`px-6 py-4 whitespace-nowrap font-semibold ${
