@@ -9,6 +9,7 @@ import PrivateRoute from '../../components/auth/PrivateRoute';
 import Container from '../../components/dashboard/Container';
 import InvestCards from '../../components/dashboard/InvestCards';
 import Transactions from '../../components/dashboard/Transactions';
+import VerifyAccount from '../../components/dashboard/VerifyAccount';
 import userDataContext from '../../context/UserDataContext';
 
 const Dashboard = () => {
@@ -34,6 +35,7 @@ const Dashboard = () => {
                   {userData?.firstName} {userData?.lastName}
                 </span>
               </p>
+              {userData?.accountLevel < 2 && <VerifyAccount />}
             </Layout>
           </div>
           <Layout>
@@ -123,6 +125,8 @@ const Dashboard = () => {
             </div>
             {/*  */}
             <InvestCards />
+            {/*  */}
+
             <Stack
               direction='row'
               alignItems='center'

@@ -15,11 +15,11 @@ import Image from 'next/image';
 import Link from 'next/link';
 import * as React from 'react';
 import { GiSwipeCard } from 'react-icons/gi';
-import { HiLogout, HiUser } from 'react-icons/hi';
-import { MdCreditCard, MdDashboard, MdRemoveCircle } from 'react-icons/md';
-import { RiBankLine, RiWallet3Fill } from 'react-icons/ri';
+import { HiUser } from 'react-icons/hi';
+import { IoDocumentAttachSharp } from 'react-icons/io5';
+import { MdDashboard, MdRemoveCircle } from 'react-icons/md';
+import { RiWallet3Fill } from 'react-icons/ri';
 import logo from '../../public/logo.png';
-import Layout from '../Layout/Layout';
 
 const drawerWidth = 220;
 
@@ -75,6 +75,7 @@ const links1 = [
   { name: 'Deposit', url: '/account/deposit', icon: <RiWallet3Fill /> },
   { name: 'Withdraw', url: '/account/withdraw', icon: <MdRemoveCircle /> },
   { name: 'Cards', url: '/account/cards', icon: <GiSwipeCard /> },
+  { name: 'KYC', url: '/account/kyc', icon: <IoDocumentAttachSharp /> },
 ];
 const links2 = [{ name: 'Profile', url: '/account/profile', icon: <HiUser /> }];
 

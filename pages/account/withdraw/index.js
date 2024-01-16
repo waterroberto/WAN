@@ -21,6 +21,7 @@ import PrivateRoute from '../../../components/auth/PrivateRoute';
 import AppBar from '../../../components/dashboard/AppBar';
 import Container from '../../../components/dashboard/Container';
 import Transactions from '../../../components/dashboard/Transactions';
+import VerifyAccount from '../../../components/dashboard/VerifyAccount';
 import userDataContext from '../../../context/UserDataContext';
 import logo from '../../../public/logo.png';
 import { db } from '../../../services/firebase.config';
@@ -172,6 +173,7 @@ const Withdraw = () => {
         <Sidebar>
           <Layout>
             <AppBar page='Withdraw' />
+            <VerifyAccount />
             <Box
               sx={{
                 width: '100%',

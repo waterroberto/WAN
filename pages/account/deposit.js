@@ -11,6 +11,7 @@ import PrivateRoute from '../../components/auth/PrivateRoute';
 import AppBar from '../../components/dashboard/AppBar';
 import Container from '../../components/dashboard/Container';
 import Transactions from '../../components/dashboard/Transactions';
+import VerifyAccount from '../../components/dashboard/VerifyAccount';
 import userDataContext from '../../context/UserDataContext';
 import { UserService } from '../../services/user';
 
@@ -115,6 +116,7 @@ const Deposit = () => {
         <Sidebar>
           <Layout>
             <AppBar page='Deposit' />
+            <VerifyAccount />
             <Container>
               <div className='grid grid-cols-1 sm:grid-cols-2 gap-4'>
                 {/* <button

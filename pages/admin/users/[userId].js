@@ -590,12 +590,13 @@ const UserDetails = () => {
               </Grid>
             </Container>
             <Container>
-              <p className='text-gray-800 font-bold text-xl mb-4'>Documents</p>
-              {!userData?.documents.ID && !userData?.documents.passport && (
-                <p className='text-gray-700 font-light text-3xl text-center p-8'>
-                  No Documents
-                </p>
-              )}
+              {!userData?.documents.ID &&
+                !userData?.documents.passport &&
+                !userData?.kyc_documents && (
+                  <p className='text-gray-700 font-light text-3xl text-center p-8'>
+                    No Documents
+                  </p>
+                )}
               <Grid
                 container
                 mx='auto'
@@ -618,7 +619,24 @@ const UserDetails = () => {
                     </Box>
                   </Grid>
                 )}
-                {userData?.documents.ID && (
+                {userData.kyc_documents && (
+                  <div>
+                    <p className='text-lg font-extrabold mb-8 text-gray-700'>
+                      KYC Documents
+                    </p>
+                    <div className='grid grid-cols-1 gap-4 md:grid-cols-2'>
+                      {userData.kyc_documents.map((document) => (
+                        <img
+                          key={document}
+                          src={document}
+                          alt={userData.id}
+                          className='w-full'
+                        />
+                      ))}
+                    </div>
+                  </div>
+                )}
+                {/* {userData?.documents.ID && (
                   <Grid item xs={12} sm={12} lg={6} mx='auto'>
                     <Box my={4} px={2}>
                       <Typography fontWeight={600} fontSize={20} mb={4}>
@@ -632,7 +650,7 @@ const UserDetails = () => {
                       />
                     </Box>
                   </Grid>
-                )}
+                )} */}
               </Grid>
             </Container>
             {userData?.loans && userData?.loans.length > 0 && (

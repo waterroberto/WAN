@@ -47,6 +47,7 @@ function MyApp({ Component, pageProps }) {
   return (
     <ThemeProvider theme={theme}>
       {/* <Script src='//code.jivosite.com/widget/yOzEEKiM0t' async /> */}
+      <Script src='//code.tidio.co/gszlypxhumqn7lgays1luqlionp7qxol.js' async />
       <AuthContextProvider>
         <UserDataProvider>
           <Component {...pageProps} />

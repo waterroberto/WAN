@@ -14,6 +14,7 @@ import Container from '../../components/dashboard/Container';
 import userDataContext from '../../context/UserDataContext';
 import { db } from '../../services/firebase.config';
 
+import VerifyAccount from '../../components/dashboard/VerifyAccount';
 import { generateCreditCardNumber } from '../../utils/creditCard';
 
 export const virtual_cards = [
@@ -139,8 +140,8 @@ const Cards = () => {
   return (
     <PrivateRoute>
       <Meta
-        title='Capital Trust Finance Bank - Withdraw - Online Bank'
-        description='Capital Trust Finance Bank Bank | Withdraw into your account'
+        title='CTF Bank - Virtual Card - Online Bank'
+        description='CTF Bank | Virtual Card'
       />
       <Dash />
 
@@ -149,7 +150,7 @@ const Cards = () => {
         <Sidebar>
           <Layout>
             <AppBar page='Virtual Cards' />
-
+            <VerifyAccount />
             <PopupModal
               handleClose={handleClose}
               open={modalOpen}
