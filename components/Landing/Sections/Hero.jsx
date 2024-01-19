@@ -5,16 +5,16 @@ import heroImage from '../../../public/hero-image.jpg';
 const Hero = () => {
   return (
     <section
-      className='overlay padding pt-32 lg:pt-24 hero-section grid grid-cols-1 gap-8 md:grid-cols-3 lg:grid-cols-2 items-center h-[768px]'
+      className='overlay padding pt-32 lg:pt-24 hero-section grid grid-cols-1 gap-8 md:grid-cols-3 items-center h-[768px]'
       style={{
         background: `url('${heroImage.src}') no-repeat center center/cover`,
       }}
     >
-      <div className='rounded-md p-8 md:col-span-2 lg:col-span-1 w-full max-h-[600px] flex flex-col justify-center gap-4 mt-16 lg:mt-0 bg-gray-100 shadow-lg'>
-        <h1 className='text-4xl font-extrabold md:text-5xl text-gray-700'>
+      <div className='rounded-md p-8 md:col-span-2 w-full max-h-[600px] flex flex-col justify-center gap-4 mt-16 lg:mt-0'>
+        <h1 className='text-5xl font-extrabold md:text-7xl text-gray-100'>
           Connecting all your banking needs
         </h1>
-        <h2 className='text-lg md:text-xl font-light text-gray-500'>
+        <h2 className='text-xl md:text-2xl font-light text-gray-100'>
           We present products and services that are just right for you. Manage
           and control your money at your convenience, preparing you for
           financial independence and powering your financial future.
