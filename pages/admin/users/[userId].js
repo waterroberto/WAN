@@ -28,6 +28,7 @@ const UserDetails = () => {
   const [open2, setOpen2] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
   const [modal3Open, setModal3Open] = useState(false);
+  const [modal4Open, setModal4Open] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [isUpgrading, setIsUpgrading] = useState(false);
 
@@ -99,7 +100,7 @@ const UserDetails = () => {
       status: 'approved',
     };
 
-    if (+amount >= 0) {
+    if (+amount > 0) {
       if (userData) {
         cogoToast.loading('Setting balance...');
 
@@ -122,7 +123,33 @@ const UserDetails = () => {
             console.log(err);
           });
       }
-    } else cogoToast.error('Amount must be 0 or more');
+    } else cogoToast.error('Amount must be more than 0.00');
+  };
+
+  const handleSetWithdrawLimit = async (e) => {
+    e.preventDefault();
+
+    if (+amount > 0) {
+      if (userData) {
+        cogoToast.loading('Loading...');
+
+        const ref = doc(db, 'users', userData?.id);
+
+        await updateDoc(ref, {
+          withdrawLimit: +amount,
+        })
+          .then(() => {
+            cogoToast.success(`Succesful.`);
+            setModal4Open(false);
+
+            setAmount('');
+          })
+          .catch((err) => {
+            cogoToast.error('Error');
+            console.log(err);
+          });
+      }
+    } else cogoToast.error('Amount must be more than 0.00');
   };
 
   const fundUserAccount = (bal) => {
@@ -440,6 +467,20 @@ const UserDetails = () => {
                     {userData.incomeBalance.toLocaleString()}
                   </p>
                 </div>
+                <div>
+                  <p className='text-gray-700 uppercase text-[12px] mb-2'>
+                    Withdrawal Limit
+                  </p>
+                  <p className='text-gray-800 font-bold text-2xl'>
+                    {userData.currency &&
+                      userData.withdrawLimit &&
+                      userData.currency}
+
+                    {userData.withdrawLimit
+                      ? userData.withdrawLimit.toLocaleString()
+                      : 'Not set'}
+                  </p>
+                </div>
               </div>
             </Container>
 
@@ -470,6 +511,12 @@ const UserDetails = () => {
                 onClick={() => fundUserAccount('depositBalance')}
               >
                 Top Up Account
+              </button>
+              <button
+                className='btn my-4 p-4 w-full bg-primary text-white uppercase rounded-md'
+                onClick={() => setModal4Open(true)}
+              >
+                Set Withdrawal Limit
               </button>
             </Container>
             {userData?.accountLevel !== 3 && (
@@ -734,6 +781,41 @@ const UserDetails = () => {
                 </Button>
               </Stack>
             </Container>
+
+            {/*  */}
+            <PopupModal
+              title={`Set withdrawal limit`}
+              open={modal4Open}
+              handleClose={() => setModal4Open(false)}
+              handleOpen={() => setModal4Open(true)}
+              sx={{ maxWidth: '768px' }}
+            >
+              <form onSubmit={handleSetWithdrawLimit}>
+                <div className='w-full col-span-1'>
+                  <label
+                    htmlFor='amount'
+                    className='mb-2 font-semibold text-sm text-gray-400'
+                  >
+                    Input Withdrawal Limit*
+                  </label>
+                  <input
+                    type='number'
+                    id='amount'
+                    placeholder='Withdrawal Limit'
+                    className='p-6 outline-none border-none w-full rounded-md text-gray-400 bg-gray-900'
+                    required
+                    value={amount}
+                    onChange={(e) => setAmount(e.target.value)}
+                  />
+                </div>
+                <button
+                  type='submit'
+                  className='px-16 rounded-md bg-orange-500 mt-4 py-4 text-white hover:bg-orange-600'
+                >
+                  Submit
+                </button>
+              </form>
+            </PopupModal>
           </Layout>
         )}
       </Box>

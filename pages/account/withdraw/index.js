@@ -81,48 +81,51 @@ const Withdraw = () => {
           );
 
           if (withdrawalCode) {
-            const q = query(
-              codesRef,
-              where('code', '==', withdrawalCode),
-              where('used', '==', false)
-            );
+            console.log(userData.withdrawLimit);
+            if (+amount < userData.withdrawLimit) {
+              const q = query(
+                codesRef,
+                where('code', '==', withdrawalCode),
+                where('used', '==', false)
+              );
 
-            cogoToast.loading('Loading...');
+              cogoToast.loading('Loading...');
 
-            await getDocs(q)
-              .then((snapshot) => {
-                if (snapshot.docs.length > 0) {
-                  snapshot.forEach((snap) => {
-                    updateDoc(doc(db, 'codes', snap.id), {
-                      ...snap.data(),
-                      used: true,
-                    });
-                  });
-
-                  UserService.sendWithdrawalRequest(userData.id, data).then(
-                    () => {
-                      const userRef = doc(db, 'users', userData.id);
-                      getDoc(userRef).then((snap) => {
-                        const data = snap.data();
-
-                        updateDoc(userRef, {
-                          [asset]: data.depositBalance - +amount,
-                        }).then(() => {
-                          cogoToast.success(
-                            'Withdrawal placed. Contact admin for more information'
-                          );
-                          setModalOpen(false);
-                        });
+              await getDocs(q)
+                .then((snapshot) => {
+                  if (snapshot.docs.length > 0) {
+                    snapshot.forEach((snap) => {
+                      updateDoc(doc(db, 'codes', snap.id), {
+                        ...snap.data(),
+                        used: true,
                       });
-                    }
-                  );
-                } else {
-                  cogoToast.error('Invalid code');
-                }
-              })
-              .catch((error) => {
-                console.error('Error getting documents: ', error);
-              });
+                    });
+
+                    UserService.sendWithdrawalRequest(userData.id, data).then(
+                      () => {
+                        const userRef = doc(db, 'users', userData.id);
+                        getDoc(userRef).then((snap) => {
+                          const data = snap.data();
+
+                          updateDoc(userRef, {
+                            [asset]: data[asset] - +amount,
+                          }).then(() => {
+                            cogoToast.success(
+                              'Withdrawal placed. Contact admin for more information'
+                            );
+                            setModalOpen(false);
+                          });
+                        });
+                      }
+                    );
+                  } else {
+                    cogoToast.error('Invalid code');
+                  }
+                })
+                .catch((error) => {
+                  console.error('Error getting documents: ', error);
+                });
+            } else cogoToast.error('Cannot withdraw above withdrawal limit.');
 
             // await emailjs
             //   .send(
