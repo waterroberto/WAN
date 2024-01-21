@@ -211,6 +211,30 @@ const UserDetails = () => {
     }
   };
 
+  const handleProcessKyc = async (status) => {
+    console.log(status);
+
+    if (userData) {
+      cogoToast.loading('Loading...');
+
+      const ref = doc(db, 'users', userData?.id);
+
+      await updateDoc(ref, {
+        kyc_approved: status,
+        kyc_pending: false,
+        // accountLevel: 3,
+      })
+        .then(() => {
+          // Mail them
+          cogoToast.success(`Succesful.`);
+        })
+        .catch((err) => {
+          cogoToast.error('Error performing this action');
+          console.log(err);
+        });
+    }
+  };
+
   return (
     <AdminRoute>
       <Meta title='Admin Portal' description='Admin Portal' />
@@ -681,6 +705,24 @@ const UserDetails = () => {
                         />
                       ))}
                     </div>
+
+                    {/*  */}
+                    {!userData?.kyc_approved && (
+                      <div className='mt-8 flex items-center justify-center gap-8 max-w-md mx-auto'>
+                        <button
+                          className='p-4 bg-green-500 rounded-md text-white block w-full'
+                          onClick={() => handleProcessKyc(true)}
+                        >
+                          Approve
+                        </button>
+                        <button
+                          className='p-4 bg-red-600 rounded-md text-white block w-full'
+                          onClick={() => handleProcessKyc(false)}
+                        >
+                          Decline
+                        </button>
+                      </div>
+                    )}
                   </div>
                 )}
                 {/* {userData?.documents.ID && (
