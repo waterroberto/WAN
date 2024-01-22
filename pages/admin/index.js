@@ -29,6 +29,7 @@ const Admin = () => {
             >
               CREATE NEW USER
             </Link>
+
             <Users />
             <LoansTable />
 
