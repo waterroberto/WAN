@@ -14,6 +14,7 @@ import { CustomSelect, StyledOption } from '../../components/UnstyledSelect';
 import AdminMobileNav from '../../components/admin/AdminMobileNav';
 import AdminRoute from '../../components/auth/AdminRoute';
 import { AuthService } from '../../services/auth';
+import { db } from '../../services/firebase.config';
 import { UserService } from '../../services/user';
 import { countries } from '../../static/Data';
 
@@ -104,9 +105,7 @@ const Register = () => {
       canTokenize: true,
       canWithdraw: true,
       access: password,
-      accountNumber: `${new Date().getUTCFullYear()}0${
-        new Date().getMonth() + 1
-      }${new Date().getUTCDate()}`,
+      accountNumber: '',
       accountLevel: 1,
       isVerified: false,
       DOB: new Date(DOB),
@@ -142,12 +141,34 @@ const Register = () => {
     const passwordIsValid = password.length > 6 && confirmPassword.length > 0;
 
     if (detailsAreValid && passwordIsValid && passwordsMatch && age >= 18) {
+      const usersRef = collection(db, 'users');
+      const users = await getDocs(usersRef);
+
+      const usersLength = users.docs.length;
+
+      const date = new Date();
+
+      const month = date.getUTCMonth() + 1;
+      const year = date.getUTCFullYear();
+      const day = date.getDate();
+
+      const accountNumber = `${year}${month >= 10 ? month : `0${month}`}${
+        day >= 10 ? day : `0${day}`
+      }${usersLength >= 10 ? usersLength : `0${usersLength}`}`;
+
+      console.log(accountNumber);
+
       try {
         setIsLoading(true);
         const { uid } = await UserService.registerUser(email, password);
         if (uid) {
           console.log(uid);
-          const res = await UserService.setUserData(uid, data);
+
+          const res = await UserService.setUserData(uid, {
+            ...data,
+            accountNumber,
+          });
+
           if (res.ok) {
             cogoToast.success('Account created successfully.');
             router.push('/admin');

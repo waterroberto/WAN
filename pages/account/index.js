@@ -62,6 +62,13 @@ const Dashboard = () => {
               </div>
 
               <div className='h-[2px] w-full bg-gray-200 my-4'></div>
+
+              <div className='flex items-center justify-between'>
+                <p className='text-gray-600 text-sm mb-2'>Account Number</p>
+                <p className='text-secondary font-semibold text-lg'>
+                  {userData?.accountNumber}
+                </p>
+              </div>
             </div>
             {/*  */}
             <div className='grid grid-cols-2 gap-4'>

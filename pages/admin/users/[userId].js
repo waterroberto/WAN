@@ -411,7 +411,7 @@ const UserDetails = () => {
                 alignItems='center'
                 sx={{ color: 'var(--mid)' }}
               >
-                <Grid item xs={12} sm={6} md={4} width='100%'>
+                <Grid item xs={12} sm={6} width='100%'>
                   <Stack direction='row' alignItems='center' gap={4}>
                     <Avatar
                       {...stringAvatar(
@@ -437,7 +437,17 @@ const UserDetails = () => {
                     </Box>
                   </Stack>
                 </Grid>
-                <Grid item xs={12} sm={6} md={4} width='100%'>
+                <Grid item xs={12} sm={6} width='100%'>
+                  <div>
+                    <p className='text-gray-700 uppercase text-[12px] mb-2'>
+                      Account Number
+                    </p>
+                    <p className='text-gray-800 font-bold text-xl'>
+                      {userData?.accountNumber}
+                    </p>
+                  </div>
+                </Grid>
+                <Grid item xs={12} sm={6} width='100%'>
                   <div>
                     <p className='text-gray-700 uppercase text-[12px] mb-2'>
                       Account Tier
@@ -447,7 +457,7 @@ const UserDetails = () => {
                     </p>
                   </div>
                 </Grid>
-                <Grid item xs={12} sm={6} md={4} width='100%'>
+                <Grid item xs={12} sm={6} width='100%'>
                   <div>
                     <p className='text-gray-700 uppercase text-[12px] mb-2'>
                       Member Since
