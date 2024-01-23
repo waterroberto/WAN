@@ -287,7 +287,7 @@ const Transactions = ({
       ) : (
         <Typography sx={{ textAlign: 'center', opacity: 0.5, mt: 4 }}>
           <RiFolder5Fill style={{ fontSize: '4rem' }} /> <br />
-          <Typography component='span' mt={1}>
+          <Typography component='span' mt={1} sx={{ color: '#1b1b1b' }}>
             No Transactions
           </Typography>
         </Typography>

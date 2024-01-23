@@ -7,6 +7,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import React, { useContext, useState } from 'react';
 import { AiFillCheckCircle } from 'react-icons/ai';
+import { BiCreditCard, BiSolidFileImport } from 'react-icons/bi';
 import { MdCancel } from 'react-icons/md';
 import capitec from '../../assets/banks/capitec.jpg';
 import fnb from '../../assets/banks/fnb.png';
@@ -383,6 +384,18 @@ const Profile = () => {
                 </Stack>
               </Container>
             )}
+            <Container>
+              <Link
+                href='/account/kyc'
+                type='button'
+                className='block w-full p-6 pb-16 rounded-3xl bg-secondary text-gray-50 relative'
+              >
+                <p className='text-2xl font-extrabold'>KYC Verification</p>
+                <span className='absolute bottom-6 right-6 text-3xl'>
+                  <BiSolidFileImport />
+                </span>
+              </Link>
+            </Container>
             <Container>
               <div className='text-gray-700'>
                 <Typography fontWeight={800} fontSize={20} mb={4}>

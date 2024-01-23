@@ -2,41 +2,7 @@ import { Box, Grid, Typography } from '@mui/material';
 import Image from 'next/image';
 import Link from 'next/link';
 import React, { useRef, useState } from 'react';
-import liftingWeight from '../../assets/png/business-person-lifting-weight.png';
-import showingDollar from '../../assets/png/man-showing-dollar-and-rupee.png';
-import holdingCurrency1 from '../../assets/png/person-holding-currency-1.png';
-import holdingCurrency from '../../assets/png/person-holding-currency.png';
-
-const swiperCardStyles = {
-  background: 'var(--mid)',
-  marginTop: '1rem',
-  height: '160px',
-  color: 'var(--dark)',
-  padding: '2rem',
-  borderRadius: '1rem',
-  border: '1px solid rgb(1, 126, 255,0.2)',
-};
-
-const cardsData = [
-  {
-    image: showingDollar,
-    title: (
-      <>
-        Fund <br /> Account
-      </>
-    ),
-    page: '/account/deposit',
-  },
-  {
-    image: holdingCurrency1,
-    title: (
-      <>
-        Withdraw <br /> & Benefits
-      </>
-    ),
-    page: '/account/withdraw',
-  },
-];
+import { BiCreditCard, BiSolidBank } from 'react-icons/bi';
 
 export default function InvestCards() {
   return (
@@ -45,55 +11,35 @@ export default function InvestCards() {
         variant='h5'
         component='p'
         sx={{ fontWeight: 700, color: 'var(--dark)' }}
+        mb={4}
       >
         Quick Actions
       </Typography>
-      <Grid container columns={12} sx={{ pt: 2 }}>
-        {cardsData.map((card, index) => (
-          <Grid
-            key={card.title + (index + 1)}
-            item
-            xs={12}
-            sm={6}
-            lg={3}
-            data-aos='fade-up'
-          >
-            <Link href={card.page}>
-              <Box
-                style={swiperCardStyles}
-                mx={{ sm: 1 }}
-                my={{ xs: 1, sm: 1, md: 0 }}
-                sx={{ position: 'relative' }}
-              >
-                <Image
-                  src={card.image}
-                  alt={card.title}
-                  height={130}
-                  width={130}
-                  style={{
-                    position: 'absolute',
-                    bottom: '1rem',
-                    left: '0.5rem',
-                  }}
-                />
-                <Box
-                  sx={{
-                    display: 'flex',
-                    alignItems: 'flex-end',
-                    justifyContent: 'flex-end',
-                    width: '100%',
-                    height: '100px',
-                  }}
-                >
-                  <Typography sx={{ fontSize: '1.6rem', fontWeight: 600 }}>
-                    {card.title}
-                  </Typography>
-                </Box>
-              </Box>
-            </Link>
-          </Grid>
-        ))}
-      </Grid>
+
+      <div className='grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-lg'>
+        <Link
+          href='/account/deposit'
+          type='button'
+          className='w-full p-6 pb-16 rounded-3xl bg-green-500 text-gray-50 relative'
+        >
+          <p className='text-2xl font-extrabold'>Fund Account</p>
+          <span className='absolute bottom-6 right-6 text-3xl'>
+            <BiCreditCard />
+          </span>
+        </Link>
+
+        {/*  */}
+        <Link
+          href='/account/withdraw'
+          type='button'
+          className='w-full p-6 pb-16 rounded-3xl bg-orange-500 text-gray-50 relative'
+        >
+          <p className='text-2xl font-extrabold'>Withdraw</p>
+          <span className='absolute bottom-6 right-6 text-3xl'>
+            <BiSolidBank />
+          </span>
+        </Link>
+      </div>
     </Box>
   );
 }
