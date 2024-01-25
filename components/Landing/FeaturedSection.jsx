@@ -5,7 +5,7 @@ import people from '../../public/company-people.jpg';
 
 const FeaturedSection = () => {
   return (
-    <div className='padding pattern-bg mb-16' data-aos='fade-up'>
+    <div className='padding mb-16' data-aos='fade-up'>
       <div className='bg-gray-100 p-4 py-8 h-full grid grid-cols-1 md:grid-cols-2 mt-16 md:mt-32'>
         <div className='p-4 mb-8'>
           <p className='text-lg font-light mb-2'>~ Capital Trust Finance</p>

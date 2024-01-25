@@ -5,7 +5,7 @@ import people from '../../public/company-people-2.jpg';
 
 const FeaturedSection2 = () => {
   return (
-    <div className='padding pattern-bg mb-16' data-aos='fade-up'>
+    <div className='padding mb-16' data-aos='fade-up'>
       <div className='bg-gray-100 p-4 py-8 h-full grid grid-cols-1 md:grid-cols-2 mt-16 md:mt-32'>
         <Image
           src={people.src}
