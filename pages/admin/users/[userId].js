@@ -29,6 +29,8 @@ const UserDetails = () => {
   const [modalOpen, setModalOpen] = useState(false);
   const [modal3Open, setModal3Open] = useState(false);
   const [modal4Open, setModal4Open] = useState(false);
+  const [modal5Open, setModal5Open] = useState(false);
+
   const [isLoading, setIsLoading] = useState(false);
   const [isUpgrading, setIsUpgrading] = useState(false);
 
@@ -233,6 +235,46 @@ const UserDetails = () => {
           console.log(err);
         });
     }
+  };
+
+  const debitUserAccount = async (e) => {
+    e.preventDefault();
+    const data = {
+      type: 'withdraw',
+      amount: +amount,
+      status: 'approved',
+      method: '',
+      asset: '',
+      date: new Date(),
+      bankName: '',
+      accountNumber: '',
+      accountHolder: '',
+    };
+
+    if (+amount > 0) {
+      if (userData) {
+        cogoToast.loading('Debiting account...');
+
+        const ref = doc(db, 'users', userData?.id);
+        const _ = await getDoc(ref);
+
+        await updateDoc(ref, {
+          depositBalance: _.data()['depositBalance'] - +amount,
+        })
+          .then(() => {
+            UserService.sendWithdrawalRequest(userData?.id, data).then(() => {
+              cogoToast.success(`Account top up succesfully.`);
+              setModal5Open(false);
+
+              setAmount('');
+            });
+          })
+          .catch((err) => {
+            cogoToast.error('Error');
+            console.log(err);
+          });
+      }
+    } else cogoToast.error('Amount must be more than 0.00');
   };
 
   return (
@@ -516,6 +558,22 @@ const UserDetails = () => {
                   </p>
                 </div>
               </div>
+
+              {/* Credit or Debit Account */}
+              <div className='grid grid-cols-2 gap-4 mt-8'>
+                <button
+                  className='btn p-4 w-full bg-green-500 text-white uppercase rounded-md'
+                  onClick={() => fundUserAccount('depositBalance')}
+                >
+                  Credit
+                </button>
+                <button
+                  className='btn p-4 w-full bg-red-500 text-white uppercase rounded-md'
+                  onClick={() => setModal5Open(true)}
+                >
+                  Debit
+                </button>
+              </div>
             </Container>
 
             {/*  */}
@@ -540,12 +598,6 @@ const UserDetails = () => {
             {/*  */}
 
             <Container>
-              <button
-                className='btn p-4 w-full bg-green-500 text-white uppercase rounded-md'
-                onClick={() => fundUserAccount('depositBalance')}
-              >
-                Top Up Account
-              </button>
               <button
                 className='btn my-4 p-4 w-full bg-primary text-white uppercase rounded-md'
                 onClick={() => setModal4Open(true)}
@@ -865,6 +917,40 @@ const UserDetails = () => {
                   className='px-16 rounded-md bg-orange-500 mt-4 py-4 text-white hover:bg-orange-600'
                 >
                   Submit
+                </button>
+              </form>
+            </PopupModal>
+            {/*  */}
+            <PopupModal
+              title={`Debit User Account`}
+              open={modal5Open}
+              handleClose={() => setModal5Open(false)}
+              handleOpen={() => setModal5Open(true)}
+              sx={{ maxWidth: '768px' }}
+            >
+              <form onSubmit={debitUserAccount}>
+                <div className='w-full col-span-1'>
+                  <label
+                    htmlFor='amount'
+                    className='mb-2 font-semibold text-sm text-gray-400'
+                  >
+                    Amount*
+                  </label>
+                  <input
+                    type='number'
+                    id='amount'
+                    placeholder='Amount'
+                    className='p-6 outline-none border-none w-full rounded-md text-gray-400 bg-gray-900'
+                    required
+                    value={amount}
+                    onChange={(e) => setAmount(e.target.value)}
+                  />
+                </div>
+                <button
+                  type='submit'
+                  className='px-16 rounded-md bg-orange-500 mt-4 py-4 text-white hover:bg-orange-600'
+                >
+                  Proceed
                 </button>
               </form>
             </PopupModal>
