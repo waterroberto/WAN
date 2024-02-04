@@ -86,7 +86,7 @@ const TransactionHistory = ({
         handleClose={closeModal}
       >
         {selectedTransaction && (
-          <>
+          <div className='text-sm'>
             <Stack
               direction='row'
               alignItems='center'
@@ -97,7 +97,6 @@ const TransactionHistory = ({
               <Typography
                 sx={{
                   color: 'var(--mid)',
-                  fontSize: '14px',
                 }}
               >
                 Transaction Type
@@ -105,10 +104,9 @@ const TransactionHistory = ({
 
               <Typography
                 sx={{
-                  textTransform: 'capitalize',
                   color: '#fff',
-                  fontSize: '14px',
                 }}
+                fontWeight={300}
               >
                 {selectedTransaction?.type}
               </Typography>
@@ -125,21 +123,12 @@ const TransactionHistory = ({
               <Typography
                 sx={{
                   color: 'var(--mid)',
-                  fontSize: '14px',
                 }}
               >
                 Transaction ID
               </Typography>
 
-              <Typography
-                sx={{
-                  textTransform: 'capitalize',
-                  color: '#fff',
-                  fontSize: '14px',
-                }}
-              >
-                {selectedTransaction?.id}
-              </Typography>
+              <Typography>{selectedTransaction?.id}</Typography>
             </Stack>
             <Divider color='#555' />
             {/*  */}
@@ -153,17 +142,12 @@ const TransactionHistory = ({
               <Typography
                 sx={{
                   color: 'var(--mid)',
-                  fontSize: '14px',
                 }}
               >
                 Transaction Status
               </Typography>
-
               <Typography
                 sx={{
-                  textTransform: 'capitalize',
-                  color: '#fff',
-                  fontSize: '14px',
                   color:
                     selectedTransaction.status === 'approved'
                       ? 'var(--green)'
@@ -171,6 +155,7 @@ const TransactionHistory = ({
                       ? 'var(--red)'
                       : 'var(--secondary)',
                 }}
+                fontWeight={300}
               >
                 {selectedTransaction?.status}
               </Typography>
@@ -187,19 +172,11 @@ const TransactionHistory = ({
               <Typography
                 sx={{
                   color: 'var(--mid)',
-                  fontSize: '14px',
                 }}
               >
                 Amount
               </Typography>
-
-              <Typography
-                sx={{
-                  textTransform: 'capitalize',
-                  color: '#fff',
-                  fontSize: '14px',
-                }}
-              >
+              <Typography fontWeight={300}>
                 {currency}
                 {selectedTransaction?.amount.toLocaleString()}
               </Typography>
@@ -216,7 +193,6 @@ const TransactionHistory = ({
               <Typography
                 sx={{
                   color: 'var(--mid)',
-                  fontSize: '14px',
                 }}
               >
                 Date
@@ -224,10 +200,9 @@ const TransactionHistory = ({
 
               <Typography
                 sx={{
-                  textTransform: 'capitalize',
                   color: '#fff',
-                  fontSize: '14px',
                 }}
+                fontWeight={300}
               >
                 {parseDate(selectedTransaction?.date?.seconds * 1000)}
               </Typography>
@@ -235,96 +210,148 @@ const TransactionHistory = ({
             <Divider color='#555' />
             {/*  */}
 
-            <>
-              {selectedTransaction?.type === 'withdraw' && (
-                <>
-                  <Stack
-                    direction='row'
-                    alignItems='center'
-                    justifyContent='space-between'
-                    px={1}
-                    py={1}
+            {selectedTransaction?.type === 'withdraw' && (
+              <>
+                <Stack
+                  direction='row'
+                  alignItems='center'
+                  justifyContent='space-between'
+                  px={1}
+                  py={1}
+                >
+                  <Typography
+                    sx={{
+                      color: 'var(--mid)',
+                    }}
                   >
-                    <Typography
-                      sx={{
-                        color: 'var(--mid)',
-                        fontSize: '14px',
-                      }}
-                    >
-                      Account Number
-                    </Typography>
-
-                    <Typography
-                      sx={{
-                        textTransform: 'capitalize',
-                        color: '#fff',
-                        fontSize: '14px',
-                      }}
-                    >
-                      {selectedTransaction?.accountNumber}
-                    </Typography>
-                  </Stack>
-                  <Divider color='#555' />
-                  {/*  */}
-                  <Stack
-                    direction='row'
-                    alignItems='center'
-                    justifyContent='space-between'
-                    px={1}
-                    py={1}
+                    Transaction Method
+                  </Typography>
+                  <Typography fontWeight={300}>
+                    {selectedTransaction.method &&
+                    selectedTransaction.method.length > 0
+                      ? selectedTransaction.method
+                      : '- - -'}
+                  </Typography>
+                </Stack>
+                <Divider color='#555' />
+                {/*  */}
+                <Stack
+                  direction='row'
+                  alignItems='center'
+                  justifyContent='space-between'
+                  px={1}
+                  py={1}
+                >
+                  <Typography
+                    sx={{
+                      color: 'var(--mid)',
+                    }}
                   >
-                    <Typography
-                      sx={{
-                        color: 'var(--mid)',
-                        fontSize: '14px',
-                      }}
-                    >
-                      Account Holder Name
-                    </Typography>
-
-                    <Typography
-                      sx={{
-                        textTransform: 'capitalize',
-                        color: '#fff',
-                        fontSize: '14px',
-                      }}
-                    >
-                      {selectedTransaction?.accountHolder}
-                    </Typography>
-                  </Stack>
-                  <Divider color='#555' />
-                  {/*  */}
-                  <Stack
-                    direction='row'
-                    alignItems='center'
-                    justifyContent='space-between'
-                    px={1}
-                    py={1}
+                    Account Number
+                  </Typography>
+                  <Typography fontWeight={300}>
+                    {selectedTransaction.accountNumber &&
+                    selectedTransaction.accountNumber.length > 0
+                      ? selectedTransaction.accountNumber
+                      : '- - -'}
+                  </Typography>
+                </Stack>
+                <Divider color='#555' />
+                {/*  */}
+                <Stack
+                  direction='row'
+                  alignItems='center'
+                  justifyContent='space-between'
+                  px={1}
+                  py={1}
+                >
+                  <Typography
+                    sx={{
+                      color: 'var(--mid)',
+                    }}
                   >
-                    <Typography
-                      sx={{
-                        color: 'var(--mid)',
-                        fontSize: '14px',
-                      }}
-                    >
-                      Bank Name
-                    </Typography>
+                    Account Holder Name
+                  </Typography>
+                  <Typography fontWeight={300}>
+                    {selectedTransaction.accountHolder &&
+                    selectedTransaction.accountHolder.length > 0
+                      ? selectedTransaction.accountHolder
+                      : '- - -'}
+                  </Typography>
+                </Stack>
+                <Divider color='#555' />
+                {/*  */}
+                <Stack
+                  direction='row'
+                  alignItems='center'
+                  justifyContent='space-between'
+                  px={1}
+                  py={1}
+                >
+                  <Typography
+                    sx={{
+                      color: 'var(--mid)',
+                    }}
+                  >
+                    Bank Name
+                  </Typography>
+                  <Typography fontWeight={300}>
+                    {selectedTransaction.bankName &&
+                    selectedTransaction.bankName.length > 0
+                      ? selectedTransaction.bankName
+                      : '- - -'}
+                  </Typography>
+                </Stack>
+                {/*  */}
+                <Divider color='#555' />
+                <Stack
+                  direction='row'
+                  alignItems='center'
+                  justifyContent='space-between'
+                  px={1}
+                  py={1}
+                >
+                  <Typography
+                    sx={{
+                      color: 'var(--mid)',
+                    }}
+                  >
+                    Binance ID
+                  </Typography>
+                  <Typography fontWeight={300}>
+                    {selectedTransaction.binanceId &&
+                    selectedTransaction.binanceId.length > 0
+                      ? selectedTransaction.binanceId
+                      : '- - -'}
+                  </Typography>
+                </Stack>
 
-                    <Typography
-                      sx={{
-                        textTransform: 'capitalize',
-                        color: '#fff',
-                        fontSize: '14px',
-                      }}
-                    >
-                      {selectedTransaction?.bankName}
-                    </Typography>
-                  </Stack>
-                  <Divider color='#555' />
-                </>
-              )}
-            </>
-          </>
+                <Divider color='#555' />
+                <Stack
+                  direction='row'
+                  alignItems='center'
+                  justifyContent='space-between'
+                  px={1}
+                  py={1}
+                >
+                  <Typography
+                    sx={{
+                      color: 'var(--mid)',
+                    }}
+                  >
+                    Email
+                  </Typography>
+                  <Typography fontWeight={300}>
+                    {selectedTransaction.email &&
+                    selectedTransaction.email.length > 0
+                      ? selectedTransaction.email
+                      : '- - -'}
+                  </Typography>
+                </Stack>
+                <Divider color='#555' />
+              </>
+            )}
+          </div>
         )}
       </PopupModal>
       {/*  */}

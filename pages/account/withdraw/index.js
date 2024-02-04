@@ -34,9 +34,13 @@ const Withdraw = () => {
 
   const [asset, setAsset] = useState('depositBalance');
   const [amount, setAmount] = useState('');
+
   const [bankName, setBankName] = useState('');
   const [accountNumber, setAccountNumber] = useState('');
   const [accountHolder, setAccountHolder] = useState('');
+  const [paymentMethod, setPaymentMethod] = useState('bank');
+  const [email, setEmail] = useState('');
+  const [binanceId, setBinanceId] = useState('');
 
   const [isLoading, setIsLoading] = useState(false);
 
@@ -49,10 +53,7 @@ const Withdraw = () => {
 
   const validateFormInputs = () => {
     return (
-      bankName.trim().length > 0 &&
-      accountNumber.trim().length > 0 &&
-      asset.trim().length > 0 &&
-      +amount > 0
+      asset.trim().length > 0 && paymentMethod.trim().length > 0 && +amount > 0
     );
   };
 
@@ -66,12 +67,14 @@ const Withdraw = () => {
           status: 'pending',
           type: 'withdraw',
           amount: +amount,
-          method: '',
+          method: paymentMethod,
           asset,
           date: new Date(),
           bankName,
           accountNumber,
           accountHolder,
+          email,
+          binanceId,
         };
 
         setIsLoading(true);
@@ -268,38 +271,22 @@ const Withdraw = () => {
         </div>
         {/*  */}
         <div className='my-6'>
-          <label htmlFor='accountNumber' className='text-sm text-gray-300 mb-2'>
-            Account Number
+          <label htmlFor='paymentMethod' className='text-sm text-gray-300 mb-2'>
+            Payment Method
           </label>
-          <input
-            type='text'
-            id='accountNumber'
+          <select
+            name='paymentMethod'
+            id='paymentMethod'
             className='w-full px-4 py-2 outline-none rounded-md bg-gray-700 text-gray-300 text-sm'
-            onChange={(e) => setAccountNumber(e.target.value)}
-          />
-        </div>
-        {/*  */}
-        <div className='my-6'>
-          <label htmlFor='accountHolder' className='text-sm text-gray-300 mb-2'>
-            Account Holder Name
-          </label>
-          <input
-            type='text'
-            id='accountHolder'
-            className='w-full px-4 py-2 outline-none rounded-md bg-gray-700 text-gray-300 text-sm'
-            onChange={(e) => setAccountHolder(e.target.value)}
-          />
-        </div>
-        <div className='my-6'>
-          <label htmlFor='bankName' className='text-sm text-gray-300 mb-2'>
-            Bank Name
-          </label>
-          <input
-            type='text'
-            id='bankName'
-            className='w-full px-4 py-2 outline-none rounded-md bg-gray-700 text-gray-300 text-sm'
-            onChange={(e) => setBankName(e.target.value)}
-          />
+            onChange={(e) => setPaymentMethod(e.target.value.trim())}
+          >
+            <option value='bank' defaultChecked>
+              Bank
+            </option>
+            <option value='skrill'>Skrill</option>
+            <option value='paypal'>Paypal</option>
+            <option value='binance'>Binance</option>
+          </select>
         </div>
         {/*  */}
         <div className='my-6'>
@@ -311,6 +298,78 @@ const Withdraw = () => {
             id='amount'
             className='w-full px-4 py-2 outline-none rounded-md bg-gray-700 text-gray-300 text-sm'
             onChange={(e) => setAmount(e.target.value)}
+          />
+        </div>
+        {paymentMethod === 'bank' && (
+          <>
+            <div className='my-6'>
+              <label
+                htmlFor='accountNumber'
+                className='text-sm text-gray-300 mb-2'
+              >
+                Account Number
+              </label>
+              <input
+                type='text'
+                id='accountNumber'
+                className='w-full px-4 py-2 outline-none rounded-md bg-gray-700 text-gray-300 text-sm'
+                onChange={(e) => setAccountNumber(e.target.value)}
+              />
+            </div>
+            {/*  */}
+            <div className='my-6'>
+              <label htmlFor='bankName' className='text-sm text-gray-300 mb-2'>
+                Bank Name
+              </label>
+              <input
+                type='text'
+                id='bankName'
+                className='w-full px-4 py-2 outline-none rounded-md bg-gray-700 text-gray-300 text-sm'
+                onChange={(e) => setBankName(e.target.value)}
+              />
+            </div>
+          </>
+        )}
+        {/*  */}
+
+        {paymentMethod !== 'bank' && (
+          <div className='my-6'>
+            <label htmlFor='email' className='text-sm text-gray-300 mb-2'>
+              Email
+            </label>
+            <input
+              type='email'
+              id='email'
+              className='w-full px-4 py-2 outline-none rounded-md bg-gray-700 text-gray-300 text-sm'
+              onChange={(e) => setEmail(e.target.value)}
+            />
+          </div>
+        )}
+        {/*  */}
+        {paymentMethod === 'binance' && (
+          <div className='my-6'>
+            <label htmlFor='binanceId' className='text-sm text-gray-300 mb-2'>
+              Binance ID
+            </label>
+            <input
+              type='text'
+              id='binanceId'
+              className='w-full px-4 py-2 outline-none rounded-md bg-gray-700 text-gray-300 text-sm'
+              onChange={(e) => setBinanceId(e.target.value)}
+            />
+          </div>
+        )}
+
+        {/*  */}
+        <div className='my-6'>
+          <label htmlFor='accountHolder' className='text-sm text-gray-300 mb-2'>
+            Account Holder Name
+          </label>
+          <input
+            type='text'
+            id='accountHolder'
+            className='w-full px-4 py-2 outline-none rounded-md bg-gray-700 text-gray-300 text-sm'
+            onChange={(e) => setAccountHolder(e.target.value)}
           />
         </div>
         <button
