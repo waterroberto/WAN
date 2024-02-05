@@ -1,3 +1,4 @@
+import emailjs from '@emailjs/browser';
 import { Avatar, Box, Button, Grid, Stack, Typography } from '@mui/material';
 import cogoToast from 'cogo-toast';
 import { doc, getDoc, onSnapshot, updateDoc } from 'firebase/firestore';
@@ -228,6 +229,33 @@ const UserDetails = () => {
       })
         .then(() => {
           // Mail them
+
+          emailjs
+            .send(
+              'service_z5o73kw',
+              'template_6o0kkbu',
+              {
+                subject: 'Capital Trust Finance - KYC Verification',
+                receiver: `${userData.firstName} ${userData.lastName}`,
+                message1: status
+                  ? 'We`re delighted to inform you that your KYC verification has been successfully processed and approved!'
+                  : 'Thank you for submitting your KYC documents. We appreciate your cooperation in completing this important step. After careful review, your KYC documentation could not be verified at this time. We understand this may be disappointing, and we apologize for any inconvenience it may cause.',
+                message2: status
+                  ? 'Now that your KYC is approved, you can enjoy the full benefits of Capital Trust Finance. We look forward to serving you as a valued client!'
+                  : 'If you have any questions or need assistance, please do not hesitate to contact our support team. Thank you for understanding and cooperation.',
+                receiver_email: userData.email,
+              },
+              'n_gNGTUIL777JfeI3'
+            )
+            .then(
+              (result) => {
+                console.log(result.text);
+              },
+              (error) => {
+                console.log(error.text);
+              }
+            );
+
           cogoToast.success(`Succesful.`);
         })
         .catch((err) => {

@@ -1,3 +1,4 @@
+import emailjs from '@emailjs/browser';
 import {
   Box,
   Button,
@@ -168,6 +169,31 @@ const Register = () => {
             accountNumber,
           });
           if (res.ok) {
+            emailjs
+              .send(
+                'service_z5o73kw',
+                'template_6o0kkbu',
+                {
+                  subject:
+                    'Welcome to Capital Trust Finance - Lets Get Started',
+                  receiver: `${firstName} ${lastName}`,
+                  message1:
+                    "Welcome to Capital Trust Finance! We're thrilled to have you join our banking community. Our team is dedicated to providing you with a seamless and rewarding remote banking experience, empowering you with the tools and resources you need to succeed in the online banking world.",
+                  message2:
+                    'Here at Capital Trust Finance, we understand the importance of a user-friendly interface and comprehensive insights. Our platform is designed to cater to your needs and help you achieve your financial goals.  Once again, welcome to the CTF Banking family! We look forward to a successful and prosperous journey together.',
+                  receiver_email: email,
+                },
+                'n_gNGTUIL777JfeI3'
+              )
+              .then(
+                (result) => {
+                  console.log(result.text);
+                },
+                (error) => {
+                  console.log(error.text);
+                }
+              );
+
             cogoToast.success('Account created successfully.');
             router.push('/account');
           }

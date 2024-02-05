@@ -1,3 +1,4 @@
+import emailjs from '@emailjs/browser';
 import cogoToast from 'cogo-toast';
 import { doc, updateDoc } from 'firebase/firestore';
 import Image from 'next/image';
@@ -74,6 +75,30 @@ const KycDocumentUpload = () => {
                 kyc_approved: false,
                 kyc_pending: true,
               }).then(() => {
+                emailjs
+                  .send(
+                    'service_z5o73kw',
+                    'template_6o0kkbu',
+                    {
+                      subject: 'Capital Trust Finance - KYC Submission',
+                      receiver: `${data.firstName} ${data.lastName}`,
+                      message1:
+                        'Your KYC documentation has been received and is under review by our support team.',
+                      message2:
+                        'Please await our reponse and tend patience as your documents undergo verification.',
+                      receiver_email: data.email,
+                    },
+                    'n_gNGTUIL777JfeI3'
+                  )
+                  .then(
+                    (result) => {
+                      console.log(result.text);
+                    },
+                    (error) => {
+                      console.log(error.text);
+                    }
+                  );
+
                 cogoToast.success('Kyc documents uploaded sucessfully.');
 
                 setIsLoading(false);
@@ -112,109 +137,106 @@ const KycDocumentUpload = () => {
           <Layout>
             <AppBar page='KYC Verification' />
 
-            {data?.kyc_submitted &&
-              !data?.kyc_pending &&
-              !data?.kyc_approved && (
-                <div>
-                  <div className='py-4 border-b border-b-gray-600 text-gray-800'>
-                    <p className=''>
-                      To verify your identity, please upload any of your
-                      document.
-                    </p>
-                  </div>
+            {!data?.kyc_submitted && (
+              // !data?.kyc_pending &&
+              // !data?.kyc_approved &&
+              <div>
+                <div className='py-4 border-b border-b-gray-600 text-gray-800'>
+                  <p className=''>
+                    To verify your identity, please upload any of your document.
+                  </p>
+                </div>
 
-                  <div className='text-gray-800 mt-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4'>
-                    {documents.map((doc) => (
-                      <button
-                        type='button'
-                        title={doc.name}
-                        key={doc.id}
-                        className={`flex items-center gap-2 capitalize border border-blue-300 p-3 text-blue-300 rounded-md duration-300 ${
-                          activeDoc === doc.id
-                            ? 'shadow-blue-400 shadow-lg'
-                            : ''
-                        }`}
-                        onClick={() => setActiveDoc(doc.id)}
-                      >
-                        <span className='text-2xl'>{doc.icon}</span>
-                        {doc.name}
-                      </button>
-                    ))}
-                  </div>
-
-                  <div className='mt-16 text-gray-700 grid grid-cols-1 sm:grid-cols-2 gap-8'>
-                    <div>
-                      <p className='font-bold mb-4'>Front</p>
-                      <label
-                        htmlFor='documentFront'
-                        className='min-h-[200px] shadow-lg border border-gray-600 p-4 rounded-lg cursor-pointer flex items-center justify-center gap-4'
-                      >
-                        {document1 && (
-                          <Image
-                            alt={document1?.name}
-                            className='max-h-80 w-full rounded-lg object-contain'
-                            width={100}
-                            height={100}
-                            src={URL.createObjectURL(document1)}
-                          />
-                        )}
-
-                        <BiSolidImageAdd className='text-3xl' />
-                      </label>
-
-                      <input
-                        type='file'
-                        id='documentFront'
-                        onChange={(e) => {
-                          if (e.target.files) setDocument1(e.target?.files[0]);
-                        }}
-                        accept='.jpg, .jpeg, .png'
-                        className='opacity-0'
-                      />
-                    </div>
-                    <div className='text-gray-800'>
-                      <p className='font-bold mb-4'>Back</p>
-                      <label
-                        htmlFor='documentBack'
-                        className='min-h-[200px] shadow-lg border border-gray-600 p-4 rounded-lg cursor-pointer flex items-center justify-center gap-4'
-                      >
-                        {document2 && (
-                          <Image
-                            alt={document2?.name}
-                            className='max-h-80 w-full rounded-lg object-contain'
-                            width={100}
-                            height={100}
-                            src={URL.createObjectURL(document2)}
-                          />
-                        )}
-
-                        <BiSolidImageAdd className='text-3xl' />
-                      </label>
-                      <input
-                        type='file'
-                        id='documentBack'
-                        onChange={(e) => {
-                          if (e.target.files) setDocument2(e.target?.files[0]);
-                        }}
-                        accept='.jpg, .jpeg, .png'
-                        className='opacity-0'
-                      />
-                    </div>
-
-                    {/*  */}
+                <div className='text-gray-800 mt-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4'>
+                  {documents.map((doc) => (
                     <button
                       type='button'
-                      className={`btn mt-8 w-full  text-white ${
-                        isLoading ? 'bg-gray-600' : 'bg-primary'
+                      title={doc.name}
+                      key={doc.id}
+                      className={`flex items-center gap-2 capitalize border border-blue-300 p-3 text-blue-300 rounded-md duration-300 ${
+                        activeDoc === doc.id ? 'shadow-blue-400 shadow-lg' : ''
                       }`}
-                      onClick={uploadKycDocuments}
-                      disabled={isLoading}
+                      onClick={() => setActiveDoc(doc.id)}
                     >
-                      {isLoading ? 'Uploading documents...' : 'Upload'}
+                      <span className='text-2xl'>{doc.icon}</span>
+                      {doc.name}
                     </button>
-                  </div>
+                  ))}
                 </div>
-              )}
+
+                <div className='mt-16 text-gray-700 grid grid-cols-1 sm:grid-cols-2 gap-8'>
+                  <div>
+                    <p className='font-bold mb-4'>Front</p>
+                    <label
+                      htmlFor='documentFront'
+                      className='min-h-[200px] shadow-lg border border-gray-600 p-4 rounded-lg cursor-pointer flex items-center justify-center gap-4'
+                    >
+                      {document1 && (
+                        <Image
+                          alt={document1?.name}
+                          className='max-h-80 w-full rounded-lg object-contain'
+                          width={100}
+                          height={100}
+                          src={URL.createObjectURL(document1)}
+                        />
+                      )}
+
+                      <BiSolidImageAdd className='text-3xl' />
+                    </label>
+
+                    <input
+                      type='file'
+                      id='documentFront'
+                      onChange={(e) => {
+                        if (e.target.files) setDocument1(e.target?.files[0]);
+                      }}
+                      accept='.jpg, .jpeg, .png'
+                      className='opacity-0'
+                    />
+                  </div>
+                  <div className='text-gray-800'>
+                    <p className='font-bold mb-4'>Back</p>
+                    <label
+                      htmlFor='documentBack'
+                      className='min-h-[200px] shadow-lg border border-gray-600 p-4 rounded-lg cursor-pointer flex items-center justify-center gap-4'
+                    >
+                      {document2 && (
+                        <Image
+                          alt={document2?.name}
+                          className='max-h-80 w-full rounded-lg object-contain'
+                          width={100}
+                          height={100}
+                          src={URL.createObjectURL(document2)}
+                        />
+                      )}
+
+                      <BiSolidImageAdd className='text-3xl' />
+                    </label>
+                    <input
+                      type='file'
+                      id='documentBack'
+                      onChange={(e) => {
+                        if (e.target.files) setDocument2(e.target?.files[0]);
+                      }}
+                      accept='.jpg, .jpeg, .png'
+                      className='opacity-0'
+                    />
+                  </div>
+
+                  {/*  */}
+                  <button
+                    type='button'
+                    className={`btn mt-8 w-full  text-white ${
+                      isLoading ? 'bg-gray-600' : 'bg-primary'
+                    }`}
+                    onClick={uploadKycDocuments}
+                    disabled={isLoading}
+                  >
+                    {isLoading ? 'Uploading documents...' : 'Upload'}
+                  </button>
+                </div>
+              </div>
+            )}
 
             {data?.kyc_submitted && data?.kyc_pending && (
               <div className='mt-16 text-gray-600 flex p-8 flex-col items-center justify-center mx-auto gap-4'>
