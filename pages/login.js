@@ -1,5 +1,6 @@
 import { Box, Button, Typography } from '@mui/material';
 import cogoToast from 'cogo-toast';
+import { doc, getDoc } from 'firebase/firestore';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
@@ -8,6 +9,7 @@ import { Footer, Layout, Meta, Navbar } from '../components';
 import CustomInput from '../components/UnstyledInput';
 import logo from '../public/logo.png';
 import { AuthService } from '../services/auth';
+import { db } from '../services/firebase.config';
 
 const Login = () => {
   const router = useRouter();
@@ -23,8 +25,17 @@ const Login = () => {
       const req = await AuthService.login(email, password);
 
       if (req) {
-        cogoToast.success('Welcome');
-        router.replace('/account');
+        const res = await getDoc(doc(db, 'users', req.uid));
+        const data = res.data();
+
+        if (data)
+          if (!data.isBlocked) {
+            cogoToast.success('Welcome to CTF Bank');
+            router.replace('/account');
+          } else
+            cogoToast.warn(
+              'Account Blocked! Contact support for more information.'
+            );
       }
     } catch (error) {
       console.log(error);

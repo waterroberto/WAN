@@ -10,7 +10,10 @@ export default function PrivateRoute({ children }) {
   const { fetchingData, userData } = useContext(userDataContext);
 
   useEffect(() => {
-    if (!checkingStatus && !fetchingData && !isAuthenticated && !userData) {
+    if (
+      (!checkingStatus && !fetchingData && !isAuthenticated && !userData) ||
+      (!checkingStatus && !fetchingData && userData && userData?.isBlocked)
+    ) {
       router.replace('/login');
     }
   }, [router, checkingStatus, isAuthenticated, userData, fetchingData]);

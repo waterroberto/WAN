@@ -305,6 +305,27 @@ const UserDetails = () => {
     } else cogoToast.error('Amount must be more than 0.00');
   };
 
+  const setUserBlockedStatus = async () => {
+    if (userData) {
+      try {
+        cogoToast.loading('Loading...');
+
+        const ref = doc(db, 'users', userData?.id);
+        const data = (await getDoc(ref)).data();
+
+        const isBlocked = data?.isBlocked ?? false;
+
+        console.log('Blocked: ', isBlocked);
+
+        await updateDoc(ref, {
+          isBlocked: !isBlocked,
+        }).then(() => cogoToast.success('Completed.'));
+      } catch (error) {
+        cogoToast.error('Something went wrong.');
+      }
+    }
+  };
+
   return (
     <AdminRoute>
       <Meta title='Admin Portal' description='Admin Portal' />
@@ -537,6 +558,20 @@ const UserDetails = () => {
                     </p>
                   </div>
                 </Grid>
+                <Grid item xs={12} sm={6} width='100%'>
+                  <div>
+                    <p className='text-gray-700 uppercase text-[12px] mb-2'>
+                      Status
+                    </p>
+                    <p className='text-gray-800 font-bold text-xl'>
+                      {userData?.isBlocked ? (
+                        <p className='text-orange-600'>User Blocked</p>
+                      ) : (
+                        <p className='text-green-600'>Active</p>
+                      )}
+                    </p>
+                  </div>
+                </Grid>
               </Grid>
             </Container>
             {/*  */}
@@ -603,25 +638,6 @@ const UserDetails = () => {
                 </button>
               </div>
             </Container>
-
-            {/*  */}
-
-            {/* <Container>
-              <div className='grid grid-cols-2 gap-4'>
-                <button
-                  className='btn p-4 bg-primary text-white uppercase rounded-md'
-                  onClick={() => fundUserAccount('depositBalance')}
-                >
-                  Set Deposit Balance
-                </button>
-                <button
-                  className='btn p-4 bg-secondary text-white uppercase rounded-md'
-                  onClick={() => fundUserAccount('incomeBalance')}
-                >
-                  Set Income Balance
-                </button>
-              </div>
-            </Container> */}
 
             {/*  */}
 
@@ -832,6 +848,54 @@ const UserDetails = () => {
                 )} */}
               </Grid>
             </Container>
+
+            <Container>
+              <Stack gap={4} direction={{ xs: 'column', sm: 'row' }}>
+                <Button
+                  disableElevation
+                  sx={{
+                    color: 'var(--mid)',
+                    background: userData?.isBlocked
+                      ? 'var(--green)'
+                      : 'var(--secondary)',
+
+                    '&:hover': {
+                      background: userData?.isBlocked
+                        ? 'var(--green)'
+                        : 'var(--secondary)',
+                    },
+                    width: '100%',
+                  }}
+                  onClick={setUserBlockedStatus}
+                >
+                  {userData?.isBlocked ? 'Unblock User' : 'Block User'}
+                </Button>
+                <Button
+                  disableElevation
+                  sx={{
+                    color: 'var(--mid)',
+                    background: 'var(--red)',
+
+                    '&:hover': {
+                      background: 'var(--red-hover)',
+                    },
+                    width: '100%',
+                  }}
+                  onClick={() => {
+                    if (
+                      confirm(
+                        'Are you sure you want to delete this account? This action cannot be undone.'
+                      )
+                    )
+                      handleClick();
+                    else return;
+                  }}
+                >
+                  Delete User
+                </Button>
+              </Stack>
+            </Container>
+
             {userData?.loans && userData?.loans.length > 0 && (
               <Container>
                 <Typography
@@ -870,49 +934,6 @@ const UserDetails = () => {
               isAdmin={true}
               currency={userData.currency}
             />
-
-            <Container>
-              <Stack gap={4} direction={{ xs: 'column', sm: 'row' }}>
-                {/* <Button
-                  disableElevation
-                  sx={{
-                    color: 'var(--mid)',
-                    border: '1px solid var(--secondary)',
-
-                    '&:hover': {
-                      border: '1px solid var(--secondary-clicked)',
-                    },
-                    width: '100%',
-                  }}
-                  onClick={() => {}}
-                >
-                  Disable User
-                </Button> */}
-                <Button
-                  disableElevation
-                  sx={{
-                    color: 'var(--mid)',
-                    background: 'var(--red)',
-
-                    '&:hover': {
-                      background: 'var(--red-hover)',
-                    },
-                    width: '100%',
-                  }}
-                  onClick={() => {
-                    if (
-                      confirm(
-                        'Are you sure you want to delete this account? This action cannot be undone.'
-                      )
-                    )
-                      handleClick();
-                    else return;
-                  }}
-                >
-                  Delete User
-                </Button>
-              </Stack>
-            </Container>
 
             {/*  */}
             <PopupModal
