@@ -15,11 +15,12 @@ export const AuthService = {
   },
 
   processError: (error) => {
-    const errArray = error.split("/");
-    const errString = errArray[1];
-    const errMessage = errString.replace("-", " ");
+    console.log(error)
+    // const errArray = error.split("/");
+    // const errString = errArray[1];
+    // const errMessage = errString.replace("-", " ");
 
-    return errMessage.toUpperCase();
+    // return errMessage.toUpperCase();
   },
 
   loginAdmin: async function (email, password) {

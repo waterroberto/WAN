@@ -12,16 +12,19 @@ import FeaturedSection from '../components/Landing/FeaturedSection';
 import FeaturedSection2 from '../components/Landing/FeaturedSection2';
 import HowItWorks from '../components/Landing/HowItWorks';
 import Features from '../components/Landing/Sections/Features';
+import AboutSection from '../components/Landing/AboutSection';
+
 
 export default function Home() {
   return (
     <>
       <Meta
-        title='Capital Trust Finance - Home - Online banking for everyone'
-        description='Capital Trust Finance - Online banking for everyone - Homepage'
+        title='WAN Cooperation Finance - Home - Online banking for everyone'
+        description='WAN Cooperation Finance  - Online banking for everyone - Homepage'
       />
       <Navbar />
       <Hero />
+      <AboutSection/>
       <FeaturedSection />
       <GoalSetting />
       <FeaturedSection2 />

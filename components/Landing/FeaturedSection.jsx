@@ -8,12 +8,12 @@ const FeaturedSection = () => {
     <div className='padding mb-16' data-aos='fade-up'>
       <div className='bg-gray-100 p-4 py-8 h-full grid grid-cols-1 md:grid-cols-2 mt-16 md:mt-32'>
         <div className='p-4 mb-8'>
-          <p className='text-lg font-light mb-2'>~ Capital Trust Finance</p>
+          <p className='text-lg font-light mb-2'>~ WAN Cooperation Finance </p>
           <p className='mb-4 text-3xl text-gray-800 font-extrabold'>
             Who we are. What we do.
           </p>
           <p className='font-light text-gray-600 mb-8'>
-            Capital Trust Finance is one of the first of global virtual banking
+           WAN Cooperation Finance  is one of the first of global virtual banking
             services, offering quick, simple and convenient way to take command
             of your bank account, on your mobile phone. Explore the power of
             simpler and smarter banking.

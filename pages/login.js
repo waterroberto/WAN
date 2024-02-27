@@ -69,15 +69,17 @@ const Login = () => {
               href='/'
               className='block text-center font-bold text-lg p-8 text-gray-200'
             >
-              <Image
+              {/* <Image
                 height={100}
                 width={100}
                 src={logo.src}
                 alt='navbar logo'
                 className='w-[75px] h-[75px]'
-              />
+              /> */}
+                <h2 className="text-2xl font-bold text-gray-800">WAN Cooperation Finance</h2>
+
             </Link>
-            <p className='font-bold text-center text-lg mb-8 text-gray-800'>
+            <p className='text-center text-lg mb-8 text-gray-800'>
               SIGN IN
             </p>
             <input
@@ -125,6 +127,7 @@ const Login = () => {
                 maxWidth: '512px',
                 mb: 2,
                 cursor: isLoading ? 'not-allowed' : 'cursor',
+                background: "#009fdf",
 
                 color: '#fff',
 
@@ -140,7 +143,7 @@ const Login = () => {
             </Button>
             <p className='text-gray-800 text-right text-sm'>
               <span>Don`t have an account?</span> {'  '}
-              <Link href='/register' className='text-primary font-bold'>
+              <Link href='/register' className='text-[#009fdf] font-bold'>
                 Register
               </Link>
             </p>

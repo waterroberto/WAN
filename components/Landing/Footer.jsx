@@ -11,8 +11,9 @@ import manager from '../../public/manager.png';
 const Footer = () => {
   return (
     <div className='mt-24 bg-black text-gray-200 p-4'>
-      <div className='rounded-md -mt-16 max-w-3xl mx-auto bg-primary-dark p-4 border-b flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-8 text-gray-50'>
+      <div className='rounded-md -mt-16 max-w-3xl mx-auto bg-[#009fdf] p-4 border-b flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-8 text-gray-50'>
         {/*  */}
+        
         <div className='flex items-center gap-2'>
           <span className='p-2 w-16 h-16 bg-secondary flex items-center justify-center rounded-lg'>
             <MdOutlineMailOutline className='text-2xl' />
@@ -20,7 +21,7 @@ const Footer = () => {
           <div>
             <p className='text-lg font-extrabold'>Email Us</p>
             <span className='text-sm font-light'>
-              support@capitaltrustfinance.online
+              support@wancooperationfinance.online
             </span>
           </div>
         </div>
@@ -55,14 +56,15 @@ const Footer = () => {
           {/* . . . */}
           <Grid item xs={12} sm={6} md={4} width='100%'>
             <Link href='/'>
-              <Image
+              {/* <Image
                 alt='capital trust finance logo'
                 src={logo.src}
                 height={100}
                 width={100}
                 style={{ width: '70px', height: '70px' }}
                 className='w-[50px] h-[50px]'
-              />
+              /> */}
+              <h2 className="text-2xl">WAN Cooperation Finance</h2>
             </Link>
             <Typography
               py={2}
@@ -139,7 +141,7 @@ const Footer = () => {
                 },
               }}
             >
-              <Typography>support@capitaltrustfinance.online</Typography>
+              <Typography>support@wancooperationfinance.online</Typography>
             </Box>
           </Grid>
         </Grid>

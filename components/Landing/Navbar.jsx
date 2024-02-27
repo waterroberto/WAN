@@ -36,7 +36,7 @@ const Navbar = () => {
         </div>
       </div> */}
       {/*  */}
-      <nav className='bg-white padding border-b flex items-center justify-between'>
+      <nav className='bg-[#009fdf] padding border-b flex items-center justify-between'>
         <Link href='/'>
           <Image
             height={100}

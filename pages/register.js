@@ -231,13 +231,15 @@ const Register = () => {
             href='/'
             className='block text-center font-bold text-lg p-8 text-gray-200'
           >
-            <Image
+            {/* <Image
               height={100}
               width={100}
               src={logo.src}
               alt='navbar logo'
               className='w-[100px] h-[100px]'
-            />
+            /> */}
+                <h2 className="text-2xl font-bold text-white">WAN Cooperation Finance</h2>
+
           </Link>
 
           <form className='max-w-xl mx-auto'>
@@ -541,6 +543,7 @@ const Register = () => {
                 mx: 'auto',
                 display: 'block',
                 my: 2,
+                background: '#009fdf',
 
                 '&:disabled': {
                   background: 'var(--blue-hover)',
@@ -555,7 +558,7 @@ const Register = () => {
 
             <p className='text-gray-200 text-right text-sm'>
               <span>Already have an account?</span> {'  '}
-              <Link href='/login' className='text-primary font-bold'>
+              <Link href='/login' className='text-[#009fdf] font-bold'>
                 Login
               </Link>
             </p>
