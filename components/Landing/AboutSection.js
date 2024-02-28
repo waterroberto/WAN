@@ -14,7 +14,7 @@ const items = [
 const AboutSection = () => {
   return (
     <div className='padding  bg-gray-900' data-aos='fade-up '>
-      <div className=" bg-white w-full grid grid-cols-1 md:grid-cols-2 gap-1 lg:grid-cols-4 -mt-14 rounded-sm bg-gray-400 shadow-md">
+      <div className=" bg-white w-full grid grid-cols-1 md:grid-cols-2 gap-1 lg:grid-cols-4 -mt-14 rounded-sm shadow-md">
         {items.map((item) => (
           <div key={item.title} className=' flex flex-col p-6'>
             <h4 className=" text-xl font-bold py-5 text-[#009fdf]">{item.title}</h4>
