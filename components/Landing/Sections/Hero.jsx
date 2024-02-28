@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import React from 'react';
-import heroImage from '../../../public/hero-image.jpg';
+import heroImage from '../../../assets/pexels-sora-shimazaki-5668838.jpg';
 
 const Hero = () => {
   return (

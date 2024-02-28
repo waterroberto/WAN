@@ -38,8 +38,8 @@ const features = [
 
 const Features = () => {
   return (
-    <section className='bg-white mb-8'>
-      <div className='py-16 flex flex-col items-center justify-center gap-2 text-gray-800'>
+    <section className='bg-gray-900'>
+      <div className='py-16 flex flex-col items-center justify-center gap-2 text-white'>
         <h4 className='text-4xl font-extrabold md:text-5xl text-center'>
           Features & Products
         </h4>
@@ -55,10 +55,10 @@ const Features = () => {
             data-aos='fade-up'
           >
             <div className='text-center md:text-right'>
-              <p className='text-lg font-extrabold text-secondary capitalize'>
+              <p className='text-lg font-extrabold text-[#009fdf] capitalize'>
                 {feature.name}
               </p>
-              <p className='text-gray-600 my-2 text-sm font-medium'>
+              <p className='text-white my-2 text-sm font-medium'>
                 {feature.content}
               </p>
               <Link

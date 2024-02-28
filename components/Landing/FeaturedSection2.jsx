@@ -1,17 +1,18 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
-import people from '../../public/company-people-2.jpg';
+import people from '../../assets/pexels-ivan-samkov-7621136.jpg';
 
 const FeaturedSection2 = () => {
   return (
-    <div className='padding mb-16' data-aos='fade-up'>
+    <div className='padding bg-black' data-aos='fade-up'>
       <div className='bg-gray-100 p-4 py-8 h-full grid grid-cols-1 md:grid-cols-2 mt-16 md:mt-32'>
         <Image
           src={people.src}
           width={400}
           height={400}
           className='w-full max-w-[512px] mx-auto h-[300px] md:h-[400px] bg-secondary rounded-2xl -mt-32'
+          alt="product service offered image"
         />
         {/*  */}
         <div className='p-4 mb-8'>

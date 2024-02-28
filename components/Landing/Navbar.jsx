@@ -36,7 +36,7 @@ const Navbar = () => {
         </div>
       </div> */}
       {/*  */}
-      <nav className='bg-[#009fdf] padding border-b flex items-center justify-between'>
+      <nav className='bg-[#009fdf] padding border-b flex items-center justify-between top-0 sticky'>
         <Link href='/'>
           <Image
             height={100}
@@ -51,7 +51,7 @@ const Navbar = () => {
         <ul className='padding items-center gap-8 hidden md:flex'>
           {links.map((link) => (
             <li key={link.name}>
-              <Link href={link.url} className='text-gray-700 capitalize'>
+              <Link href={link.url} className='text-gray-200 capitalize'>
                 {link.name}
               </Link>
             </li>

@@ -1,11 +1,11 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
-import people from '../../public/company-people.jpg';
+import people from '../../assets/pexels-canva-studio-3153198.jpg';
 
 const FeaturedSection = () => {
   return (
-    <div className='padding mb-16' data-aos='fade-up'>
+    <div className='padding  bg-black' data-aos='fade-up'>
       <div className='bg-gray-100 p-4 py-8 h-full grid grid-cols-1 md:grid-cols-2 mt-16 md:mt-32'>
         <div className='p-4 mb-8'>
           <p className='text-lg font-light mb-2'>~ WAN Cooperation Finance </p>
@@ -32,6 +32,7 @@ const FeaturedSection = () => {
           width={400}
           height={400}
           className='w-full max-w-[512px] mx-auto h-[300px] md:h-[400px] bg-secondary rounded-2xl -mb-24 md:-mt-32'
+          alt="about our goals and purpose"
         />
       </div>
     </div>

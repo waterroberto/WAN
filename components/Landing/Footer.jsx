@@ -10,7 +10,7 @@ import manager from '../../public/manager.png';
 
 const Footer = () => {
   return (
-    <div className='mt-24 bg-black text-gray-200 p-4'>
+    <div className='mt-16 bg-black text-gray-200 p-4'>
       <div className='rounded-md -mt-16 max-w-3xl mx-auto bg-[#009fdf] p-4 border-b flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-8 text-gray-50'>
         {/*  */}
         

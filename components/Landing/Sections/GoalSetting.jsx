@@ -31,7 +31,7 @@ const GoalSetting = () => {
               fontFamily: 'inherit',
               color: 'secondary.dark',
               fontWeight: 700,
-              color: '#fff',
+              color: '#009fdf',
               fontSize: {
                 xs: '1.5rem',
                 sm: '1.8rem',
