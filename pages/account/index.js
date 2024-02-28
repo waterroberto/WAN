@@ -77,9 +77,9 @@ const Dashboard = () => {
                 disableElevation
                 startIcon={<MdOutlineAdd />}
                 sx={{
-                  color: 'purple',
+                  color: '#fff',
                   textTransform: 'capitalize',
-                  // background: theme.palette.primary.main,
+                  background: theme.palette.primary.main,
                   padding: 1.5,
                   borderRadius: 1,
 
@@ -97,9 +97,9 @@ const Dashboard = () => {
                 disableElevation
                 startIcon={<HiOutlineArrowTrendingUp />}
                 sx={{
-                  color: 'purple',
+                  color: '#fff',
                   textTransform: 'capitalize',
-                  // background: theme.palette.secondary.main,
+                  background: theme.palette.secondary.main,
                   padding: 1.5,
                   borderRadius: 1,
 

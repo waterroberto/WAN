@@ -35,7 +35,7 @@ const Header = () => {
                 fontSize: { xs: '1.1rem', sm: '1.2rem' },
               }}
             >
-              Capital Trust Finance is one of the world`s leading investment
+              WAN Cooperate Finance is one of the world`s leading investment
               firms & mobile banking establishment.
               <br /> We provide quality financial consultation services, offer
               soft money loans, and empowerment grants, while facilitating safe

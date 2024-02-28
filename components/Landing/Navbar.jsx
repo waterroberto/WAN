@@ -38,14 +38,15 @@ const Navbar = () => {
       {/*  */}
       <nav className='bg-[#009fdf] padding border-b flex items-center justify-between top-0 sticky'>
         <Link href='/'>
-          <Image
+          {/* <Image
             height={100}
             width={100}
             // src={require('../../public/logo.png')}
             src={logo.src}
             alt='navbar logo'
             className='w-[50px] h-[50px]'
-          />
+          /> */}
+          <h1 className="text-xl text-white md:px-16">WAN Cooperation Finance</h1>
         </Link>
 
         <ul className='padding items-center gap-8 hidden md:flex'>

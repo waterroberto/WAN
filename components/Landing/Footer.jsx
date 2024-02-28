@@ -26,9 +26,9 @@ const Footer = () => {
           </div>
         </div>
         {/*  */}
-        <div className='h-4 w-[1px] bg-gray-100 hidden sm:block'></div>
+        {/* <div className='h-4 w-[1px] bg-gray-100 hidden sm:block'></div> */}
         {/*  */}
-        <div className='flex items-center gap-2 mt-4 sm:mt-0'>
+        {/* <div className='flex items-center gap-2 mt-4 sm:mt-0'>
           <Image
             src={manager.src}
             alt='account manager at capital trust finance'
@@ -43,7 +43,7 @@ const Footer = () => {
             <p className='text-lg font-extrabold'>Angelina Montello</p>
             <span className='text-sm font-light'>+1 (614) 379-3692</span>
           </div>
-        </div>
+        </div> */}
       </div>
       <Layout>
         <Grid

@@ -22,7 +22,7 @@ const aboutList = [
 
 const GoalSetting = () => {
   return (
-    <Grid container columns={12} className='bg-gray-900'>
+    <Grid container columns={12} className='bg-gray-900 pt-12'>
       <Grid item xs={12} sm={12} md={6} width='100%' data-aos='fade-right'>
         <Layout>
           <Typography

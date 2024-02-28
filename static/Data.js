@@ -93,7 +93,7 @@ const contactInformation = [
   // },
   {
     icon: <MdMarkEmailRead />,
-    body: 'support@capitaltrustfinance.online',
+    body: 'support@wancooperationfinance.online',
   },
 ];
 
