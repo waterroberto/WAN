@@ -18,7 +18,7 @@ export default function InvestCards() {
 
       <div className='grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-lg'>
         <Link
-          href='/account/card'
+          href='/account/cards'
           type='button'
           className='w-full p-6 pb-16 rounded-3xl bg-green-500 text-gray-50 relative'
         >
