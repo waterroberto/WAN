@@ -250,7 +250,7 @@ const Profile = () => {
                     >
                       <Avatar
                         {...stringAvatar(
-                          `${userData?.firstName.toUpperCase()} ${userData?.lastName.toUpperCase()}`
+                          `${userData?.firstName?.toUpperCase()} ${userData?.lastName?.toUpperCase()}`
                         )}
                         src={userData?.documents?.passport}
                         sx={{

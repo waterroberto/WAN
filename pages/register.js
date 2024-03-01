@@ -127,7 +127,7 @@ const Register = () => {
     const detailsAreValid =
       firstName.trim().length > 0 &&
       lastName.trim().length > 0 &&
-      meansOfId.trim().length > 0 &&
+      // meansOfId.trim().length > 0 &&
       email.trim().length > 0 &&
       phone.trim().length > 0 &&
       currency.trim().length > 0 &&
@@ -136,17 +136,19 @@ const Register = () => {
       zipcode.trim().length > 0 &&
       address.trim().length > 0 &&
       gender.trim().length > 0 &&
-      identification.trim().length > 0 &&
+      // identification.trim().length > 0 &&
       DOB.trim().length > 0;
 
     const age = new Date().getUTCFullYear() - new Date(DOB).getUTCFullYear();
     const passwordsMatch = password === confirmPassword;
     const passwordIsValid = password.length > 6 && confirmPassword.length > 0;
 
+    console.log(detailsAreValid, passwordIsValid, passwordsMatch, age)
     if (detailsAreValid && passwordIsValid && passwordsMatch && age >= 18) {
       try {
         setIsLoading(true);
         const { uid } = await UserService.registerUser(email, password);
+        console.log(data, uid)
         if (uid) {
           const usersRef = collection(db, 'users');
           const users = await getDocs(usersRef);
@@ -163,7 +165,14 @@ const Register = () => {
             day >= 10 ? day : `0${day}`
           }${usersLength >= 10 ? usersLength : `0${usersLength}`}`;
 
-          console.log(uid);
+          for (const key in data) {
+            if (data[key] === "") {
+              console.log(data[key])
+              delete data[key];
+            }
+          }
+          console.log(data)
+
           const res = await UserService.setUserData(uid, {
             ...data,
             accountNumber,
@@ -175,12 +184,12 @@ const Register = () => {
                 'template_6o0kkbu',
                 {
                   subject:
-                    'Welcome to Capital Trust Finance - Lets Get Started',
+                    'Welcome to WAN Cooperation Finance - Lets Get Started',
                   receiver: `${firstName} ${lastName}`,
                   message1:
-                    "Welcome to Capital Trust Finance! We're thrilled to have you join our banking community. Our team is dedicated to providing you with a seamless and rewarding remote banking experience, empowering you with the tools and resources you need to succeed in the online banking world.",
+                    "Welcome to WAN Cooperation Finance! We're thrilled to have you join our banking community. Our team is dedicated to providing you with a seamless and rewarding remote banking experience, empowering you with the tools and resources you need to succeed in the online banking world.",
                   message2:
-                    'Here at Capital Trust Finance, we understand the importance of a user-friendly interface and comprehensive insights. Our platform is designed to cater to your needs and help you achieve your financial goals.  Once again, welcome to the CTF Banking family! We look forward to a successful and prosperous journey together.',
+                    'Here at WAN Cooperation Finance, we understand the importance of a user-friendly interface and comprehensive insights. Our platform is designed to cater to your needs and help you achieve your financial goals.  Once again, welcome to the WAN Cooperation Finance Banking family! We look forward to a successful and prosperous journey together.',
                   receiver_email: email,
                 },
                 'n_gNGTUIL777JfeI3'
@@ -206,6 +215,7 @@ const Register = () => {
       }
     } else {
       cogoToast.error('One or more details are invalid');
+      console.log(data)
       if (!age >= 18) {
         cogoToast.error('You must be 18 or older');
       }
