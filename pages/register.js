@@ -116,14 +116,14 @@ const Register = () => {
       withdrawals: [],
     };
 
-    delete data.identification;
+    // delete data.identification;
     delete data.password;
     delete data.confirmPassword;
 
-    data.meansOfId === 'idNumber'
+    data.meansOfId === 'ID Number'
       ? delete data['passportNumber']
-      : delete data['idNumber'];
-
+      : delete data['ID Number']
+      
     const detailsAreValid =
       firstName.trim().length > 0 &&
       lastName.trim().length > 0 &&
@@ -143,7 +143,6 @@ const Register = () => {
     const passwordsMatch = password === confirmPassword;
     const passwordIsValid = password.length > 6 && confirmPassword.length > 0;
 
-    console.log(detailsAreValid, passwordIsValid, passwordsMatch, age)
     if (detailsAreValid && passwordIsValid && passwordsMatch && age >= 18) {
       try {
         setIsLoading(true);
@@ -166,8 +165,7 @@ const Register = () => {
           }${usersLength >= 10 ? usersLength : `0${usersLength}`}`;
 
           for (const key in data) {
-            if (data[key] === "") {
-              console.log(data[key])
+            if (key === "" || key === undefined) {
               delete data[key];
             }
           }
@@ -486,7 +484,7 @@ const Register = () => {
                     }));
                   }}
                 >
-                  <StyledOption value={'id'}>idNumber</StyledOption>
+                  <StyledOption value={'id'}>ID Number</StyledOption>
                   <StyledOption value={'passport'}>passportNumber</StyledOption>
                 </CustomSelect>
               </Box>
