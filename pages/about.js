@@ -17,7 +17,7 @@ const About = () => {
   return (
     <>
       <Meta
-        title='About - Capital Trust Finance - Online banking for everyone -
+        title='About - WAN Cooperation Finance - Online banking for everyone -
         Homepage'
         description='About us | Online banking for everyone'
       />

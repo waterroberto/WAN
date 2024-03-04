@@ -56,8 +56,8 @@ const Login = () => {
   return (
     <>
       <Meta
-        title='Login - Capital Trust Finance - Online banking for everyone'
-        description='Login to your Capital Trust Finance - Online banking for everyone'
+        title='Login - WAN Cooperation Finance - Online banking for everyone'
+        description='Login to your WAN Cooperation Finance - Online banking for everyone'
       />
       <Box height='100vh' className='service-1'>
         <Layout>
@@ -115,6 +115,11 @@ const Login = () => {
             >
               Forgot Password?
             </Link> */}
+            <p className='text-gray-800 my-6 text-right text-sm'>
+              <Link href='/forget-password' className='text-[#009fdf] font-bold'>
+                Forgot Password?
+              </Link>
+            </p>
             <Button
               variant='contained'
               type='button'

@@ -140,8 +140,8 @@ const Cards = () => {
   return (
     <PrivateRoute>
       <Meta
-        title='CTF Bank - Virtual Card - Online Bank'
-        description='CTF Bank | Virtual Card'
+        title='WAN Cooperation Finance - Virtual Card - Online Bank'
+        description='WAN Cooperation Finance | Virtual Card'
       />
       <Dash />
 
@@ -154,7 +154,7 @@ const Cards = () => {
             <PopupModal
               handleClose={handleClose}
               open={modalOpen}
-              title='Claim Your CTF Bank Card'
+              title='Claim Your WAN Cooperation Finance Card'
             >
               <div className='mb-4'>
                 <p className='font-light'>
@@ -167,7 +167,7 @@ const Cards = () => {
               <Image
                 src={currentCard?.image}
                 className='w-full'
-                alt='Capital Trust bank virtual card'
+                alt='WAN Cooperation Finance bank virtual card'
               />
               {/*  */}
               {/* <div className='my-6'>
@@ -218,7 +218,7 @@ const Cards = () => {
                     }}
                   >
                     <Box sx={{ position: 'relative', zIndex: 2 }}>
-                      <p>Capital Trust Bank</p>
+                      <p>WAN Cooperation Finance Bank</p>
 
                       <div className='mt-16 flex items-center justify-between'>
                         <p className='font-light'>

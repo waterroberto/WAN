@@ -19,6 +19,7 @@ import { HiUser } from 'react-icons/hi';
 import { IoDocumentAttachSharp } from 'react-icons/io5';
 import { MdDashboard, MdRemoveCircle } from 'react-icons/md';
 import { RiWallet3Fill } from 'react-icons/ri';
+import { GiHamburgerMenu } from "react-icons/gi";
 import logo from '../../public/logo.png';
 
 const drawerWidth = 220;
@@ -141,12 +142,13 @@ export default function Sidebar({ children }) {
               pb: 1,
             }}
           >
-            <Image
+            {/* <Image
               src={logo}
               alt='ravdak finance'
               width={open ? 60 : 50}
               height={open ? 60 : 50}
-            />
+            /> */}
+            <GiHamburgerMenu/>
           </IconButton>
           <IconButton
             onClick={handleDrawerClose}

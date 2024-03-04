@@ -116,8 +116,8 @@ const Profile = () => {
   return (
     <PrivateRoute>
       <Meta
-        title='Capital Trust Bank Finance - Profile - Online Bank'
-        description='Capital Trust Bank Financial Bank | Profile into your account'
+        title='WAN Cooperation Bank Finance - Profile - Online Bank'
+        description='WAN Cooperation Bank Financial Bank | Profile into your account'
       />
       <Dash />
 

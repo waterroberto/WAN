@@ -107,8 +107,8 @@ const Deposit = () => {
   return (
     <PrivateRoute>
       <Meta
-        title='Capital Trust Online - Deposit - Online Bank'
-        description='Capital Trust Online Bank | Deposit into your account'
+        title='WAN Cooperation Finance Online - Deposit - Online Bank'
+        description='WAN Cooperation Finance Online Bank | Deposit into your account'
       />
       <Dash />
 

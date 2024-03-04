@@ -229,8 +229,8 @@ const Register = () => {
   return (
     <>
       <Meta
-        title='Register | Capital Trust Finance'
-        description='Get Stated with Capital Trust Finance'
+        title='Register | WAN Cooperation Finance'
+        description='Get Stated with WAN Cooperation Finance'
       />
 
       <Box minHeight='100vh' className='service-1'>

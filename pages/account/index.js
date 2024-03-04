@@ -20,8 +20,8 @@ const Dashboard = () => {
   return (
     <PrivateRoute>
       <Meta
-        title='Capital Trust Finance - Account - Online Bank'
-        description='Capital Trust Financial Bank | Welcome to your account'
+        title='WAN Cooperation Finance - Account - Online Bank'
+        description='WAN Cooperation Financial Bank | Welcome to your account'
       />
       <Dash />
 

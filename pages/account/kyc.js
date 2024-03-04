@@ -128,8 +128,8 @@ const KycDocumentUpload = () => {
   return (
     <PrivateRoute>
       <Meta
-        title='CTF Bank - KYC Verification - Online Bank'
-        description='CTF Bank | KYC Verification'
+        title='WAN Cooperation Finance Bank - KYC Verification - Online Bank'
+        description='WAN Cooperation Finance Bank | KYC Verification'
       />
       <Dash />
       <Box minHeight='100vh'>

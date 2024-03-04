@@ -13,8 +13,8 @@ const Contact = () => {
   return (
     <>
       <Meta
-        title='Contact us | Capital Trust Finance - Online banking for everyone'
-        description='Contact Capital Trust Finance - Online banking for everyone'
+        title='Contact us | WAN Cooperation Finance - Online banking for everyone'
+        description='Contact WAN Cooperation Finance - Online banking for everyone'
       />
 
       <Navbar />
