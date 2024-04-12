@@ -14,7 +14,7 @@ export const UserService = {
   registerUser: async function (email, password) {
     const user = await createUserWithEmailAndPassword(auth, email, password);
 
-    return { uid: user.user.uid };
+    return { uid: user.user.uid, user };
   },
 
   getUrlFromFileUpload: async function (_fileRef, userId, loanId, file) {

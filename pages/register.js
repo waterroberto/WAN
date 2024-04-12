@@ -144,10 +144,12 @@ const Register = () => {
     const passwordIsValid = password.length > 6 && confirmPassword.length > 0;
 
     if (detailsAreValid && passwordIsValid && passwordsMatch && age >= 18) {
+      let dupUserRef
       try {
         setIsLoading(true);
-        const { uid } = await UserService.registerUser(email, password);
+        const { uid, user } = await UserService.registerUser(email, password);
         console.log(data, uid)
+        dupUserRef = user
         if (uid) {
           const usersRef = collection(db, 'users');
           const users = await getDocs(usersRef);
@@ -207,6 +209,7 @@ const Register = () => {
         }
         setIsLoading(false);
       } catch (error) {
+        dupUserRef?.user.delete()
         console.log(error);
         setIsLoading(false);
         cogoToast.error(AuthService.processError(error.code));
