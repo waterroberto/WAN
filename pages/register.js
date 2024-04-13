@@ -143,7 +143,12 @@ const Register = () => {
     const passwordsMatch = password === confirmPassword;
     const passwordIsValid = password.length > 6 && confirmPassword.length > 0;
 
-    if (detailsAreValid && passwordIsValid && passwordsMatch && age >= 18) {
+    if (!age >= 18) return cogoToast.error('You must be 18 or older')
+    if(!passwordsMatch) return cogoToast.error("password do not match")
+    if(!passwordIsValid) return cogoToast.error("Password must be 6 digits or more")
+
+
+    // if (detailsAreValid && passwordIsValid && passwordsMatch && age >= 18) {
       let dupUserRef
       try {
         setIsLoading(true);
@@ -214,19 +219,17 @@ const Register = () => {
         setIsLoading(false);
         cogoToast.error(AuthService.processError(error.code));
       }
-    } else {
-      cogoToast.error('One or more details are invalid');
-      console.log(data)
-      if (!age >= 18) {
-        cogoToast.error('You must be 18 or older');
-      }
-      if (!passwordsMatch) {
-        cogoToast.error('Passwords do not match');
-      }
-      if (!passwordIsValid) {
-        cogoToast.error('Password must be 6 digits or more');
-      }
-    }
+    // } else {
+    //   cogoToast.error('One or more details are invalid');
+    //   console.log(data)
+
+    //   if (!passwordsMatch) {
+    //     cogoToast.error('Passwords do not match');
+    //   }
+    //   if (!passwordIsValid) {
+    //     cogoToast.error('Password must be 6 digits or more');
+    //   }
+    // }
   };
 
   return (
